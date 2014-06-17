@@ -11,7 +11,7 @@
 #import "DisplayName.h"
 
 @interface Employer : NSObject{
-    IDentifer *employerID;
-    DisplayName *employerDisplayName;
 }
+@property IDentifer *employerID;
+@property DisplayName *employerDisplayName;
 @end

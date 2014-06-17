@@ -13,7 +13,7 @@
 #import "Resume.h"
 
 @interface JreqJob : NSObject <IJob>{
-    IDentifer *jobID;
-    DisplayName *jobDisplayName;
+
 }
+
 @end

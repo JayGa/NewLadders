@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IDentifer.h"
 
 @protocol IJobApplication <NSObject>
-@required
+@property IDentifer *jobseeker ;
+
 @property BOOL jobApplicationStatus;
-@optional
 
 @end

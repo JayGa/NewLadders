@@ -13,6 +13,10 @@
 
 @protocol IJob <NSObject>
 
+@property IDentifer *jobID;
+@property IDentifer *jobPosterID;
+@property NSString *jobName;
+@property DisplayName *jobDisplayName;
 -(void)applyForJobWithResume:(Resume *)resume;
 -(IDentifer*)generateJobID;
 @end
