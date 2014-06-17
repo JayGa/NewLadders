@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8201B63519507AED0048CA56 /* JReqJobApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201B63419507AED0048CA56 /* JReqJobApplication.m */; };
+		8201B63819507AFD0048CA56 /* ATSJobApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201B63719507AFD0048CA56 /* ATSJobApplication.m */; };
+		8201B63B19507D590048CA56 /* CSVReportGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201B63A19507D590048CA56 /* CSVReportGenerator.m */; };
+		8201B63E19507D6D0048CA56 /* HTMLReportGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201B63D19507D6D0048CA56 /* HTMLReportGenerator.m */; };
+		8201B641195080F70048CA56 /* JobApplicationReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201B640195080F70048CA56 /* JobApplicationReport.m */; };
+		8201B64719508FC10048CA56 /* JobPostedDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201B64619508FC10048CA56 /* JobPostedDate.m */; };
+		8201B64A195090940048CA56 /* JobApplicationDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201B649195090940048CA56 /* JobApplicationDate.m */; };
 		821CE343193F723C00E5447F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE342193F723C00E5447F /* main.m */; };
 		821CE346193F723C00E5447F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE345193F723C00E5447F /* AppDelegate.m */; };
 		821CE349193F723C00E5447F /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE348193F723C00E5447F /* FirstViewController.m */; };
@@ -14,6 +21,14 @@
 		821CE34F193F723C00E5447F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 821CE34D193F723C00E5447F /* Main.storyboard */; };
 		821CE351193F723C00E5447F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821CE350193F723C00E5447F /* Images.xcassets */; };
 		821CE35D193F723C00E5447F /* NewLaddersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE35C193F723C00E5447F /* NewLaddersTests.m */; };
+		821CE368193F727200E5447F /* Employer.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE367193F727200E5447F /* Employer.m */; };
+		821CE36B193F728500E5447F /* Jobseeker.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE36A193F728500E5447F /* Jobseeker.m */; };
+		821CE371193F731E00E5447F /* Resume.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE370193F731E00E5447F /* Resume.m */; };
+		82AFB9B1194B4FC1002ECF5A /* NSString+TLC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9B0194B4FC1002ECF5A /* NSString+TLC.m */; };
+		82AFB9B4194B7A82002ECF5A /* IDentifer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9B3194B7A82002ECF5A /* IDentifer.m */; };
+		82AFB9B8194B8F85002ECF5A /* JreqJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9B7194B8F85002ECF5A /* JreqJob.m */; };
+		82AFB9BB194B8F93002ECF5A /* ATSJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9BA194B8F93002ECF5A /* ATSJob.m */; };
+		82C8ECFB194F601B009ED64F /* DisplayName.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C8ECFA194F601B009ED64F /* DisplayName.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +42,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8201B63319507AED0048CA56 /* JReqJobApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JReqJobApplication.h; sourceTree = "<group>"; };
+		8201B63419507AED0048CA56 /* JReqJobApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JReqJobApplication.m; sourceTree = "<group>"; };
+		8201B63619507AFD0048CA56 /* ATSJobApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSJobApplication.h; sourceTree = "<group>"; };
+		8201B63719507AFD0048CA56 /* ATSJobApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSJobApplication.m; sourceTree = "<group>"; };
+		8201B63919507D590048CA56 /* CSVReportGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSVReportGenerator.h; sourceTree = "<group>"; };
+		8201B63A19507D590048CA56 /* CSVReportGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVReportGenerator.m; sourceTree = "<group>"; };
+		8201B63C19507D6D0048CA56 /* HTMLReportGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLReportGenerator.h; sourceTree = "<group>"; };
+		8201B63D19507D6D0048CA56 /* HTMLReportGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLReportGenerator.m; sourceTree = "<group>"; };
+		8201B63F195080F70048CA56 /* JobApplicationReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobApplicationReport.h; sourceTree = "<group>"; };
+		8201B640195080F70048CA56 /* JobApplicationReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobApplicationReport.m; sourceTree = "<group>"; };
+		8201B642195083110048CA56 /* IReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IReport.h; sourceTree = "<group>"; };
+		8201B64519508FC10048CA56 /* JobPostedDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobPostedDate.h; sourceTree = "<group>"; };
+		8201B64619508FC10048CA56 /* JobPostedDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobPostedDate.m; sourceTree = "<group>"; };
+		8201B648195090940048CA56 /* JobApplicationDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobApplicationDate.h; sourceTree = "<group>"; };
+		8201B649195090940048CA56 /* JobApplicationDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobApplicationDate.m; sourceTree = "<group>"; };
 		821CE33D193F723C00E5447F /* NewLadders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewLadders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		821CE341193F723C00E5447F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		821CE342193F723C00E5447F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -41,6 +71,24 @@
 		821CE356193F723C00E5447F /* NewLaddersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewLaddersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		821CE35B193F723C00E5447F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		821CE35C193F723C00E5447F /* NewLaddersTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewLaddersTests.m; sourceTree = "<group>"; };
+		821CE366193F727200E5447F /* Employer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employer.h; sourceTree = "<group>"; };
+		821CE367193F727200E5447F /* Employer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employer.m; sourceTree = "<group>"; };
+		821CE369193F728500E5447F /* Jobseeker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jobseeker.h; sourceTree = "<group>"; };
+		821CE36A193F728500E5447F /* Jobseeker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jobseeker.m; sourceTree = "<group>"; };
+		821CE36F193F731E00E5447F /* Resume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resume.h; sourceTree = "<group>"; };
+		821CE370193F731E00E5447F /* Resume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resume.m; sourceTree = "<group>"; };
+		821CE372193F732F00E5447F /* IJobApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJobApplication.h; sourceTree = "<group>"; };
+		82AFB9B0194B4FC1002ECF5A /* NSString+TLC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TLC.m"; sourceTree = "<group>"; };
+		82AFB9B2194B7A82002ECF5A /* IDentifer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDentifer.h; sourceTree = "<group>"; };
+		82AFB9B3194B7A82002ECF5A /* IDentifer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDentifer.m; sourceTree = "<group>"; };
+		82AFB9B6194B8F85002ECF5A /* JreqJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JreqJob.h; sourceTree = "<group>"; };
+		82AFB9B7194B8F85002ECF5A /* JreqJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JreqJob.m; sourceTree = "<group>"; };
+		82AFB9B9194B8F93002ECF5A /* ATSJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSJob.h; sourceTree = "<group>"; };
+		82AFB9BA194B8F93002ECF5A /* ATSJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSJob.m; sourceTree = "<group>"; };
+		82C8ECF9194F601B009ED64F /* DisplayName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayName.h; sourceTree = "<group>"; };
+		82C8ECFA194F601B009ED64F /* DisplayName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayName.m; sourceTree = "<group>"; };
+		82C8ED02194F7D77009ED64F /* IJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJob.h; sourceTree = "<group>"; };
+		82C8ED05194F7DCE009ED64F /* IReportGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IReportGenerator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +109,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8201B63219507A450048CA56 /* JobApplication */ = {
+			isa = PBXGroup;
+			children = (
+				821CE372193F732F00E5447F /* IJobApplication.h */,
+				8201B63319507AED0048CA56 /* JReqJobApplication.h */,
+				8201B63419507AED0048CA56 /* JReqJobApplication.m */,
+				8201B63619507AFD0048CA56 /* ATSJobApplication.h */,
+				8201B63719507AFD0048CA56 /* ATSJobApplication.m */,
+			);
+			name = JobApplication;
+			sourceTree = "<group>";
+		};
 		821CE334193F723C00E5447F = {
 			isa = PBXGroup;
 			children = (
@@ -84,12 +144,10 @@
 			children = (
 				821CE344193F723C00E5447F /* AppDelegate.h */,
 				821CE345193F723C00E5447F /* AppDelegate.m */,
-				821CE347193F723C00E5447F /* FirstViewController.h */,
-				821CE348193F723C00E5447F /* FirstViewController.m */,
-				821CE34A193F723C00E5447F /* SecondViewController.h */,
-				821CE34B193F723C00E5447F /* SecondViewController.m */,
-				821CE34D193F723C00E5447F /* Main.storyboard */,
+				821CE375193F73A100E5447F /* Model */,
+				821CE376193F73B100E5447F /* ViewController */,
 				821CE350193F723C00E5447F /* Images.xcassets */,
+				821CE34D193F723C00E5447F /* Main.storyboard */,
 				821CE340193F723C00E5447F /* Supporting Files */,
 			);
 			path = NewLadders;
@@ -119,6 +177,77 @@
 				821CE35B193F723C00E5447F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		821CE375193F73A100E5447F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82C8ED01194F779C009ED64F /* ReportGeneration */,
+				821CE366193F727200E5447F /* Employer.h */,
+				821CE367193F727200E5447F /* Employer.m */,
+				821CE369193F728500E5447F /* Jobseeker.h */,
+				821CE36A193F728500E5447F /* Jobseeker.m */,
+				821CE36F193F731E00E5447F /* Resume.h */,
+				821CE370193F731E00E5447F /* Resume.m */,
+				82C8ECFC194F6869009ED64F /* Jobs */,
+				8201B63219507A450048CA56 /* JobApplication */,
+				82AFB9B0194B4FC1002ECF5A /* NSString+TLC.m */,
+				82C8ECFD194F687D009ED64F /* WrapperClasses */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		821CE376193F73B100E5447F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				821CE347193F723C00E5447F /* FirstViewController.h */,
+				821CE348193F723C00E5447F /* FirstViewController.m */,
+				821CE34A193F723C00E5447F /* SecondViewController.h */,
+				821CE34B193F723C00E5447F /* SecondViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		82C8ECFC194F6869009ED64F /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				82C8ED02194F7D77009ED64F /* IJob.h */,
+				82AFB9B6194B8F85002ECF5A /* JreqJob.h */,
+				82AFB9B7194B8F85002ECF5A /* JreqJob.m */,
+				82AFB9B9194B8F93002ECF5A /* ATSJob.h */,
+				82AFB9BA194B8F93002ECF5A /* ATSJob.m */,
+			);
+			name = Jobs;
+			sourceTree = "<group>";
+		};
+		82C8ECFD194F687D009ED64F /* WrapperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				82C8ECF9194F601B009ED64F /* DisplayName.h */,
+				82C8ECFA194F601B009ED64F /* DisplayName.m */,
+				82AFB9B2194B7A82002ECF5A /* IDentifer.h */,
+				82AFB9B3194B7A82002ECF5A /* IDentifer.m */,
+				8201B64519508FC10048CA56 /* JobPostedDate.h */,
+				8201B64619508FC10048CA56 /* JobPostedDate.m */,
+				8201B648195090940048CA56 /* JobApplicationDate.h */,
+				8201B649195090940048CA56 /* JobApplicationDate.m */,
+			);
+			name = WrapperClasses;
+			sourceTree = "<group>";
+		};
+		82C8ED01194F779C009ED64F /* ReportGeneration */ = {
+			isa = PBXGroup;
+			children = (
+				82C8ED05194F7DCE009ED64F /* IReportGenerator.h */,
+				8201B63919507D590048CA56 /* CSVReportGenerator.h */,
+				8201B63A19507D590048CA56 /* CSVReportGenerator.m */,
+				8201B63C19507D6D0048CA56 /* HTMLReportGenerator.h */,
+				8201B63D19507D6D0048CA56 /* HTMLReportGenerator.m */,
+				8201B642195083110048CA56 /* IReport.h */,
+				8201B63F195080F70048CA56 /* JobApplicationReport.h */,
+				8201B640195080F70048CA56 /* JobApplicationReport.m */,
+			);
+			name = ReportGeneration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,10 +349,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8201B63519507AED0048CA56 /* JReqJobApplication.m in Sources */,
+				8201B64719508FC10048CA56 /* JobPostedDate.m in Sources */,
+				8201B63B19507D590048CA56 /* CSVReportGenerator.m in Sources */,
+				82AFB9B8194B8F85002ECF5A /* JreqJob.m in Sources */,
+				8201B63819507AFD0048CA56 /* ATSJobApplication.m in Sources */,
 				821CE34C193F723C00E5447F /* SecondViewController.m in Sources */,
+				821CE368193F727200E5447F /* Employer.m in Sources */,
 				821CE346193F723C00E5447F /* AppDelegate.m in Sources */,
+				82C8ECFB194F601B009ED64F /* DisplayName.m in Sources */,
 				821CE349193F723C00E5447F /* FirstViewController.m in Sources */,
+				821CE371193F731E00E5447F /* Resume.m in Sources */,
+				82AFB9BB194B8F93002ECF5A /* ATSJob.m in Sources */,
+				821CE36B193F728500E5447F /* Jobseeker.m in Sources */,
+				8201B64A195090940048CA56 /* JobApplicationDate.m in Sources */,
 				821CE343193F723C00E5447F /* main.m in Sources */,
+				82AFB9B1194B4FC1002ECF5A /* NSString+TLC.m in Sources */,
+				8201B641195080F70048CA56 /* JobApplicationReport.m in Sources */,
+				8201B63E19507D6D0048CA56 /* HTMLReportGenerator.m in Sources */,
+				82AFB9B4194B7A82002ECF5A /* IDentifer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +556,7 @@
 				821CE362193F723C00E5447F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		821CE363193F723C00E5447F /* Build configuration list for PBXNativeTarget "NewLaddersTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +565,7 @@
 				821CE365193F723C00E5447F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
