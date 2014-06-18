@@ -12,7 +12,9 @@
 
 @end
 
-@implementation NewLaddersTests
+@implementation NewLaddersTests{
+
+}
 
 - (void)setUp {
     [super setUp];
@@ -26,7 +28,8 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    XCTAssert(YES, @"Jay");
+    
 }
 
 - (void)testPerformanceExample {

@@ -16,9 +16,10 @@
 -(BOOL)postJReqJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
     
 //    Parameters- Jobname, Job description will come from UI.
-    [(JreqJob*)job setJobPosterID: _employerID];
-    [(JreqJob*)job setJobID:[job generateJobID]];
-    [(JreqJob*)job setJobName:jobName];
+    [job setJobPosterID: self.employerID];
+    [job setJobID:[job generateJobID]];
+    [job setJobName:jobName];
+    [job setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
 //    Call method to save Job to DB,
     BOOL dataBaseReturnStatus = true; //True if post successful.
     return dataBaseReturnStatus;
@@ -29,9 +30,10 @@
     
 //    Parameters- Jobname, Job description will come from UI.
     
-    [(ATSJob*)job setJobPosterID: _employerID];
-    [(ATSJob*)job setJobID:[job generateJobID]];
-    [(ATSJob*)job setJobName:jobName];
+    [job setJobPosterID: self.employerID];
+    [job setJobID:[job generateJobID]];
+    [job setJobName:jobName];
+    [job setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     //    Call method to save Job to DB,
     BOOL dataBaseReturnStatus = true; //True if post successful.
     return dataBaseReturnStatus;

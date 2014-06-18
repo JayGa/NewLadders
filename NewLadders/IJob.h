@@ -10,6 +10,7 @@
 #import "IDentifer.h"
 #import "DisplayName.h"
 #import "Resume.h"
+#import "JobPostedDate.h"
 
 @protocol IJob <NSObject>
 
@@ -17,6 +18,7 @@
 @property IDentifer *jobPosterID;
 @property NSString *jobName;
 @property DisplayName *jobDisplayName;
+@property JobPostedDate *jobPostedDate;
 -(void)applyForJobWithResume:(Resume *)resume;
 -(IDentifer*)generateJobID;
 @end

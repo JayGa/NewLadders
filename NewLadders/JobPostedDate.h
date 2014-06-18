@@ -11,5 +11,5 @@
 @interface JobPostedDate : NSDate{
     JobPostedDate *gJobPostedDate;
 }
-
+-(JobPostedDate*)initByPostedDate:(NSDate*)postedDate;
 @end

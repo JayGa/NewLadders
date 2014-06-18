@@ -13,6 +13,7 @@
 #import "JreqJob.h"
 #import "ATSJob.h"
 #import "IDentifer.h"
+#import "IJobApplication.h"
 
 @interface EmployerTests : XCTestCase
 
@@ -21,6 +22,7 @@
 @implementation EmployerTests{
         Employer *employer;
         id<IJob> job;
+    id<IJobApplication> jobApplication;
 }
 
 - (void)setUp {
@@ -35,23 +37,54 @@
     [super tearDown];
 }
 
-- (void)testJReqJob {
+- (void)testpostJReqJobWithNameType{
     // This is an example of a functional test case.
     
     job = [[JreqJob alloc]init];
     BOOL result = [employer postJReqJobWithName:@"Test Job" withJobType:job];
     NSLog(@"In testJReqJob :%d", result);
-    XCTAssert(result, @"Should return True");
+    XCTAssertTrue(result, @"Should return True");
 }
 
-- (void)testATSJob {
+- (void)testpostATSJobWithNameType{
     // This is an example of a functional test case.
     
     job = [[ATSJob alloc]init];
     BOOL result = [employer postATSJobWithName:@"Test Job" withJobType:job];
-    XCTAssert(result, @"Should return True");
+    XCTAssertTrue(result, @"Should return True");
     
 }
+
+-(void)testSeePostedJobListing{
+    
+    XCTAssert([[employer seePostedJobListing] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+    
+}
+
+
+-(void)testSeeApplicationsForAjob{
+
+    XCTAssert([[employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"234"]] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+    
+}
+//
+//-(void)testSeeApplicationsForAjobByDay{
+//    -(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;
+//    XCTAssert([[employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"234"]ByDay:<#(JobApplicationDate *)#>] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+//    
+//}
+//
+//-(void)test{
+//    -(NSArray*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate;
+//    XCTAssert([[employer seePostedJobListing] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+//    
+//}
+//
+//-(void)test{
+//    -(NSArray*)seeApplicationsForAjobByDate:(JobPostedDate*)date ByJob:(id<IJob>)job;
+//    XCTAssert([[employer seePostedJobListing] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+//    
+//}
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.

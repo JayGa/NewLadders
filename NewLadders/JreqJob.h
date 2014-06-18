@@ -17,4 +17,5 @@
 @property IDentifer *jobPosterID;
 @property NSString *jobName;
 @property DisplayName *jobDisplayName;
+@property JobPostedDate *jobPostedDate;
 @end

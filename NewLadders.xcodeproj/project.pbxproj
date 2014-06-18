@@ -29,6 +29,7 @@
 		82AFB9B8194B8F85002ECF5A /* JreqJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9B7194B8F85002ECF5A /* JreqJob.m */; };
 		82AFB9BB194B8F93002ECF5A /* ATSJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9BA194B8F93002ECF5A /* ATSJob.m */; };
 		82C8ECFB194F601B009ED64F /* DisplayName.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C8ECFA194F601B009ED64F /* DisplayName.m */; };
+		82D59C7D1951D64400CB917E /* EmployerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D59C7C1951D64400CB917E /* EmployerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		82C8ECFA194F601B009ED64F /* DisplayName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayName.m; sourceTree = "<group>"; };
 		82C8ED02194F7D77009ED64F /* IJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJob.h; sourceTree = "<group>"; };
 		82C8ED05194F7DCE009ED64F /* IReportGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IReportGenerator.h; sourceTree = "<group>"; };
+		82D59C7C1951D64400CB917E /* EmployerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				821CE35C193F723C00E5447F /* NewLaddersTests.m */,
+				82D59C7C1951D64400CB917E /* EmployerTests.m */,
 				821CE35A193F723C00E5447F /* Supporting Files */,
 			);
 			path = NewLaddersTests;
@@ -375,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82D59C7D1951D64400CB917E /* EmployerTests.m in Sources */,
 				821CE35D193F723C00E5447F /* NewLaddersTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
