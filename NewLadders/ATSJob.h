@@ -12,10 +12,10 @@
 #import "IJob.h"
 #import "Resume.h"
 
-@interface ATSJob : NSObject <IJob>{
-    
-    IDentifer *jobID;
-    DisplayName *jobDisplayName;
-}
+@interface ATSJob : NSObject <IJob>
+@property IDentifer *jobID;
+@property IDentifer *jobPosterID;
+@property NSString *jobName;
+@property DisplayName *jobDisplayName;
 
 @end

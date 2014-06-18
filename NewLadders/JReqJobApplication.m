@@ -8,8 +8,6 @@
 
 #import "JReqJobApplication.h"
 
-@implementation JReqJobApplication{
-        BOOL jobApplicationStatus;
-}
+@implementation JReqJobApplication
 
 @end

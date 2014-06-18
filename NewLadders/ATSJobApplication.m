@@ -8,8 +8,6 @@
 
 #import "ATSJobApplication.h"
 
-@implementation ATSJobApplication{
-        BOOL jobApplicationStatus;
-}
+@implementation ATSJobApplication
 
 @end

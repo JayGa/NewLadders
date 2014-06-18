@@ -14,4 +14,11 @@
         //        applyForATS
 //    return true;
 }
+-(IDentifer*)generateJobID{
+    
+    //ID generation mechanism;
+    IDentifer *jobID = [[IDentifer alloc]initWithString:@"345"];
+    
+    return jobID;
+}
 @end

@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
 
-@interface Resume : NSObject{
-    
-    IDentifer *resumeID;
-    BOOL isComplete;
-}
+@interface Resume : NSObject
+@property IDentifer *resumeID;
+@property BOOL isComplete;
+
 @end

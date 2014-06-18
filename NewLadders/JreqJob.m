@@ -19,7 +19,7 @@
 -(IDentifer*)generateJobID{
     
     //ID generation mechanism;
-    IDentifer *jobID = [IDentifer new];
+    IDentifer *jobID = [[IDentifer alloc]initWithString:@"345"];
     
     return jobID;
 }

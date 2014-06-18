@@ -7,8 +7,8 @@
 //
 
 #import "Employer.h"
-#import "IJob.h"
-#import "JobApplicationDate.h"
+#import "JreqJob.h"
+#import "ATSJob.h"
 
 @implementation Employer 
 //@synthesize employerID;
@@ -16,13 +16,26 @@
 -(BOOL)postJReqJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
     
 //    Parameters- Jobname, Job description will come from UI.
-    job.jobPosterID = _employerID;
-    job.jobID = [job generateJobID];
-    job.jobName = jobName;
+    [(JreqJob*)job setJobPosterID: _employerID];
+    [(JreqJob*)job setJobID:[job generateJobID]];
+    [(JreqJob*)job setJobName:jobName];
 //    Call method to save Job to DB,
     BOOL dataBaseReturnStatus = true; //True if post successful.
     return dataBaseReturnStatus;
 //    Error message is displayed to the user, if post fails.
+}
+
+-(BOOL)postATSJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
+    
+//    Parameters- Jobname, Job description will come from UI.
+    
+    [(ATSJob*)job setJobPosterID: _employerID];
+    [(ATSJob*)job setJobID:[job generateJobID]];
+    [(ATSJob*)job setJobName:jobName];
+    //    Call method to save Job to DB,
+    BOOL dataBaseReturnStatus = true; //True if post successful.
+    return dataBaseReturnStatus;
+    //    Error message is displayed to the user, if post fails.
 }
 
 -(NSArray*)seePostedJobListing{

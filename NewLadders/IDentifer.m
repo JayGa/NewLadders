@@ -11,7 +11,7 @@
 @implementation IDentifer
 
 
--(IDentifer*)init:(NSString *)identifier{
+-(IDentifer*)initWithString:(NSString *)identifier{
  
     
     gIdentifier = identifier;

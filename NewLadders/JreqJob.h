@@ -12,8 +12,9 @@
 #import "IJob.h"
 #import "Resume.h"
 
-@interface JreqJob : NSObject <IJob>{
-
-}
-
+@interface JreqJob : NSObject <IJob>
+@property IDentifer *jobID;
+@property IDentifer *jobPosterID;
+@property NSString *jobName;
+@property DisplayName *jobDisplayName;
 @end
