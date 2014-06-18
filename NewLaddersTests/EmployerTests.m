@@ -41,7 +41,7 @@
     job = [[JreqJob alloc]init];
     BOOL result = [employer postJReqJobWithName:@"Test Job" withJobType:job];
     NSLog(@"In testJReqJob :%d", result);
-    XCTAssertTrue(result);
+    XCTAssert(result, @"Should return True");
 }
 
 - (void)testATSJob {
@@ -49,7 +49,7 @@
     
     job = [[ATSJob alloc]init];
     BOOL result = [employer postATSJobWithName:@"Test Job" withJobType:job];
-    XCTAssertTrue(result);
+    XCTAssert(result, @"Should return True");
     
 }
 
