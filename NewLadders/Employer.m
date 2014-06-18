@@ -8,29 +8,21 @@
 
 #import "Employer.h"
 #import "IJob.h"
-#import "JreqJob.h"
-#import "ATSJob.h"
 #import "JobApplicationDate.h"
 
 @implementation Employer 
 //@synthesize employerID;
 
--(void)postJReqJobWithName:(NSString *)jobName{
+-(BOOL)postJReqJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
     
 //    Parameters- Jobname, Job description will come from UI.
-    id<IJob> job = [JreqJob new];
     job.jobPosterID = _employerID;
     job.jobID = [job generateJobID];
     job.jobName = jobName;
-    
-//    Call method to save Job to DB
-}
-
--(void)postATSJobWithName:(NSString *)jobName{
-    id<IJob> job = [ATSJob new];
-    job.jobID = [job generateJobID];
-    job.jobName = jobName;
-//    Call method to save Job to DB
+//    Call method to save Job to DB,
+    BOOL dataBaseReturnStatus = true; //True if post successful.
+    return dataBaseReturnStatus;
+//    Error message is displayed to the user, if post fails.
 }
 
 -(NSArray*)seePostedJobListing{
@@ -38,24 +30,29 @@
     NSArray *jobList = [NSArray new];
     
     return jobList;
-    
 //    return the array to UI
 }
+
 -(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID{
-//    Fetch from DB, where jobID == jobID;
+//    Fetch from DB, job Apllication where jobID == jobID;
     NSArray *jobList = [NSArray new];
+    
     return jobList;
+//    Return the array to the UI to be displayed 
 }
+
 -(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate{
 //    Fetch from DB, where jobID == jobID and jobAppliedDate == jobApplicationDate ;
     NSArray *jobList = [NSArray new];
     return jobList;
 }
+
 -(NSArray*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate{
 //  Fetch fromDB where jobPosterID== employerID and applicationDate == jobApplicationDate
     NSArray *jobList = [NSArray new];
     return jobList;
 }
+
 -(NSArray*)seeApplicationsForAjobByDate:(NSDate *)date ByJob:(id<IJob>)job{
     NSArray *jobList = [NSArray new];
     return jobList;
