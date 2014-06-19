@@ -10,13 +10,16 @@
 #import "Jobseeker.h"
 #import "IJob.h"
 #import "Resume.h"
+#import "JReqJobApplication.h"
+#import "ATSJobApplication.h"
 
 @interface JobseekerTest : XCTestCase{
     
     id<IJobApplication> jobApplication;
     Jobseeker *jobSeeker;
-    IDentifer *jobID;
+    IDentifer *resumeID;
     Resume  *resume;
+    IDentifer *jobID;
 }
 
 @end
@@ -26,53 +29,47 @@
 - (void)setUp {
     [super setUp];
     jobSeeker = [[Jobseeker alloc]init];
-    jobID = [[IDentifer alloc]initWithString:@"345"];
-    
+    resume = [[Resume alloc]init];
+    resumeID = [[IDentifer alloc]initWithString:@"345"];
+    jobID = [[IDentifer alloc]initWithString:@"234"];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    jobSeeker = nil;
+    resumeID = nil;
+    jobID = nil;
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
 
-
-
-
--(BOOL) testSaveJob{
-
+- (void) testSaveJob{
     
     XCTAssertTrue([jobSeeker saveJob:jobID], @"Should return true");
 
 }
 
--(NSArray*) testSeeSavedJobs{
+- (void) testSeeSavedJobs{
 
      XCTAssert([[jobSeeker seeSavedJobs] isKindOfClass:[NSArray class]], @"Should return a NSArray");
 }
 
--(BOOL)testApplyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume{
+- (void)testApplyForJreqJob{
     
-//    applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume
-
-    XCTAssert([jobSeeker applyForJob:jobID WithResume:resume], @"Should return true");
+    jobApplication = [[JReqJobApplication alloc]init];
+    XCTAssert([jobSeeker applyForJob: jobApplication WithResume:resume], @"Should return true");
 }
 
--(void) testSeeAppliedJobs{
+- (void)testApplyForATSJob{
+    
+    jobApplication = [[ATSJobApplication alloc]init];
+    XCTAssert([jobSeeker applyForJob:jobApplication WithResume:nil], @"Should return true");
+}
+
+- (void) testSeeAppliedJobs{
 
      XCTAssert([[jobSeeker seeAppliedJobs] isKindOfClass:[NSArray class]], @"Should return a NSArray");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
 }
 
 @end

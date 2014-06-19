@@ -41,7 +41,7 @@
     // This is an example of a functional test case.
     
     job = [[JreqJob alloc]init];
-    BOOL result = [employer postJReqJobWithName:@"Test Job" withJobType:job];
+    BOOL result = [employer postJReqJobWithName:@"Test JReq Job" withJobType:job];
     XCTAssertTrue(result, @"Should return True");
 }
 
@@ -49,7 +49,7 @@
     // This is an example of a functional test case.
     
     job = [[ATSJob alloc]init];
-    BOOL result = [employer postATSJobWithName:@"Test Job" withJobType:job];
+    BOOL result = [employer postATSJobWithName:@"Test ATS Job" withJobType:job];
     XCTAssertTrue(result, @"Should return True");
     
 }
@@ -66,7 +66,7 @@
     XCTAssert([[employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"234"]] isKindOfClass:[NSArray class]], @"Should return a NSArray");
     
 }
-//
+
 //-(void)testSeeApplicationsForAjobByDay{
 //    -(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;
 //    XCTAssert([[employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"234"]ByDay:<#(JobApplicationDate *)#>] isKindOfClass:[NSArray class]], @"Should return a NSArray");
@@ -85,11 +85,5 @@
 //    
 //}
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
 
 @end
