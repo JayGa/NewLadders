@@ -10,6 +10,7 @@
 #import "Resume.h"
 #import "IDentifer.h"
 #import "DisplayName.h"
+#import "IJobApplication.h"
 
 @interface Jobseeker : NSObject{
     
@@ -18,5 +19,8 @@
     DisplayName *jobseekerDisplayName;
     NSArray *resumeArray;
 }
--(BOOL)applyForJobWithResume:(Resume *)resume;
+-(BOOL)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
+-(BOOL) saveJob:(IDentifer *)jobID;
+-(NSArray*) seeSavedJobs;
+-(NSArray *) seeAppliedJobs;
 @end

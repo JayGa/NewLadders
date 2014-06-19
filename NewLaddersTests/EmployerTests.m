@@ -42,7 +42,6 @@
     
     job = [[JreqJob alloc]init];
     BOOL result = [employer postJReqJobWithName:@"Test Job" withJobType:job];
-    NSLog(@"In testJReqJob :%d", result);
     XCTAssertTrue(result, @"Should return True");
 }
 

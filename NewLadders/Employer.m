@@ -20,7 +20,7 @@
     [job setJobID:[job generateJobID]];
     [job setJobName:jobName];
     [job setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-//    Call method to save Job to DB,
+//    Call method to save Job to DB, OR pass the object for validation
     BOOL dataBaseReturnStatus = true; //True if post successful.
     return dataBaseReturnStatus;
 //    Error message is displayed to the user, if post fails.
@@ -34,7 +34,7 @@
     [job setJobID:[job generateJobID]];
     [job setJobName:jobName];
     [job setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    //    Call method to save Job to DB,
+    //    Call method to save Job to DB, OR pass the object for validation
     BOOL dataBaseReturnStatus = true; //True if post successful.
     return dataBaseReturnStatus;
     //    Error message is displayed to the user, if post fails.

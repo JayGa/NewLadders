@@ -7,7 +7,6 @@
 //
 
 #import "Jobseeker.h"
-#import "IJobApplication.h"
 #import "JReqJobApplication.h"
 
 @implementation Jobseeker
@@ -31,14 +30,19 @@
 -(BOOL)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume{
     
     if (resume!=nil) {
-//        [(JReqJobApplication*)jobApplication].resumeID = resume.resumeID;
+        [(JReqJobApplication*)jobApplication setResumeID:resume.resumeID];
     }
-
-    return true;
+    //  Do DB operations to insert an entry OR pass the object for validation.
+    BOOL dataBaseReturnStatus = true; //True if post successful.
+    return dataBaseReturnStatus;
 }
 
--(void) seeAppliedJobs{
+-(NSArray *) seeAppliedJobs{
+    //    Fetch from DB, where joobseekerId= jobseekerID;
+    NSArray *appliedJobList = [NSArray new];
     
+    return appliedJobList;
+    //    return the array to UI
 }
 
 
