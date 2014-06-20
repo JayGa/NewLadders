@@ -1,20 +1,18 @@
 //
-//  NewLaddersTests.m
-//  NewLaddersTests
+//  ReportGenerationTests.m
+//  NewLadders
 //
-//  Created by Jay Gaonkar on 6/4/14.
+//  Created by Jay Gaonkar on 6/19/14.
 //  Copyright (c) 2014 Jay Gaonkar. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface NewLaddersTests : XCTestCase
+@interface ReportGenerationTests : XCTestCase
 
 @end
 
-@implementation NewLaddersTests{
-
-}
+@implementation ReportGenerationTests
 
 - (void)setUp {
     [super setUp];
@@ -28,12 +26,10 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-    XCTAssert(YES, @"Jay");
-    
+    XCTAssert(YES, @"Pass");
 }
 
 - (void)testPerformanceExample {
 
 }
-
 @end

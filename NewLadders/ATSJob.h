@@ -11,11 +11,10 @@
 #import "DisplayName.h"
 #import "IJob.h"
 #import "Resume.h"
+#import "JobMetaData.h"
 
 @interface ATSJob : NSObject <IJob>
 @property IDentifer *jobID;
-@property IDentifer *jobPosterID;
 @property NSString *jobName;
-@property DisplayName *jobDisplayName;
-@property JobPostedDate *jobPostedDate;
+@property JobMetaData *jobMetaData;
 @end

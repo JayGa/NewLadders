@@ -14,6 +14,8 @@
 #import "ATSJob.h"
 #import "IDentifer.h"
 #import "IJobApplication.h"
+#import "DM.h"
+#import "EmployerModel.h"
 
 @interface EmployerTests : XCTestCase
 
@@ -27,7 +29,7 @@
 
 - (void)setUp {
     [super setUp];
-    employer = [Employer new];
+    employer = [[Employer alloc]init];
     employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -35,13 +37,14 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    NSLog(@"In tear down array size is:%d ",[[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count] );
 }
 
 - (void)testpostJReqJobWithNameType{
     // This is an example of a functional test case.
     
     job = [[JreqJob alloc]init];
-    BOOL result = [employer postJReqJobWithName:@"Test JReq Job" withJobType:job];
+    BOOL result = [employer postJobWithName:@"Test JReq Job" withJobType:job];
     XCTAssertTrue(result, @"Should return True");
 }
 
@@ -49,7 +52,7 @@
     // This is an example of a functional test case.
     
     job = [[ATSJob alloc]init];
-    BOOL result = [employer postATSJobWithName:@"Test ATS Job" withJobType:job];
+    BOOL result = [employer postJobWithName:@"Test ATS Job" withJobType:job];
     XCTAssertTrue(result, @"Should return True");
     
 }

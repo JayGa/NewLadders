@@ -14,12 +14,11 @@
 #import "IJob.h"
 
 @interface Employer : NSObject{
+
 }
 @property IDentifer *employerID;
 @property DisplayName *employerDisplayName;
-
--(BOOL)postJReqJobWithName:(NSString *)jobName withJobType:(id<IJob>)job;
--(BOOL)postATSJobWithName:(NSString *)jobName withJobType:(id<IJob>)job;
+-(BOOL)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job;
 -(NSArray*)seePostedJobListing;
 -(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID;
 -(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;

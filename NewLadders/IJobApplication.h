@@ -12,6 +12,4 @@
 @protocol IJobApplication <NSObject>
 @property IDentifer *jobseeker ;
 @property IDentifer *jobID;
-@property BOOL jobApplicationStatus;
-
 @end
