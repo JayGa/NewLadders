@@ -11,15 +11,16 @@
 #import "IDentifer.h"
 #import "DisplayName.h"
 #import "IJobApplication.h"
+#import "MutableArrayWrap.h"
 
 @interface Jobseeker : NSObject{
     
     //@property BOOL hasResume;
 }
 @property(nonatomic, strong) IDentifer *jobseekerID;
-@property(nonatomic, strong) NSArray *resumeArray;
+@property(nonatomic, strong) MutableArrayWrap *resumeArray;
 -(BOOL)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
 -(BOOL) saveJob:(IDentifer *)jobID;
--(NSArray*) seeSavedJobs;
--(NSArray *) seeAppliedJobs;
+-(MutableArrayWrap*) seeSavedJobs;
+-(MutableArrayWrap *) seeAppliedJobs;
 @end

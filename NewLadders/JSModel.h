@@ -9,18 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "IJobApplication.h"
 #import "IJob.h"
+#import "MutableDictionaryWrap.h"
+#import "MutableArrayWrap.h"
 
 @interface JSModel : NSObject{
     
-//    NSMutableDictionary *secondDict;
+//    MutableDictionaryWrap *secondDict;
 }
 
-@property (strong, nonatomic) NSMutableDictionary *jobSeekerAppliedJobsMutableDict;
-@property (strong, nonatomic) NSMutableDictionary *jobSeekerSavedJobsMutableDict;
+@property (strong, nonatomic) MutableDictionaryWrap *jobSeekerAppliedJobsMutableDict;
+@property (strong, nonatomic) MutableDictionaryWrap *jobSeekerSavedJobsMutableDict;
 
 +(JSModel*)sharedInstance;
 -(BOOL)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID;
 -(BOOL)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID;
--(NSMutableArray*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID;
--(NSMutableArray*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID;
+-(MutableArrayWrap*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID;
+-(MutableArrayWrap*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID;
 @end

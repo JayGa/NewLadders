@@ -18,10 +18,9 @@
     return [[JSModel sharedInstance] saveJob:job withJobseekerID:self.jobseekerID];
 }
 
--(NSArray*) seeSavedJobs{
+-(MutableArrayWrap*) seeSavedJobs{
 
     return [[JSModel sharedInstance] getSavedJobsForJobseekerID:self.jobseekerID];
-    
 }
 
 -(BOOL)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume{
@@ -33,7 +32,7 @@
     return returnStatus;
 }
 
--(NSArray *) seeAppliedJobs{
+-(MutableArrayWrap *) seeAppliedJobs{
 
     return [[JSModel sharedInstance] getAppliedJobsForJobseekerID:self.jobseekerID];
 }

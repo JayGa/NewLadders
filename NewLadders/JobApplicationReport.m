@@ -14,31 +14,31 @@
 
 @implementation JobApplicationReport
 
--(NSMutableArray*)prepareDailyJobReport:(NSString *)jobPostedDateString{
+-(MutableArrayWrap*)prepareDailyJobReport:(NSString *)jobPostedDateString{
     
     return [[[JAModel sharedInstance]dayApplicationsMutableDict] objectForKey:jobPostedDateString];
 }
 
--(NSMutableArray*)prepareAggregrateReportByJob:(IDentifer*)jobID{
+-(MutableArrayWrap*)prepareAggregrateReportByJob:(IDentifer*)jobID{
     
     return [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:jobID];
 }
 
--(NSMutableArray*)prepareAggregrateReportByEmployer:(IDentifer*)employerID {
+-(MutableArrayWrap*)prepareAggregrateReportByEmployer:(IDentifer*)employerID {
     
     return [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID];
 }
 
--(NSMutableArray*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID{
+-(MutableArrayWrap*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID{
     
-    NSMutableArray *jobApplicationArrayByEmployer = [[NSMutableArray alloc]init];
-    for(NSMutableArray *jobList in [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID]){
+    MutableArrayWrap *jobApplicationArrayByEmployer = [[MutableArrayWrap alloc]init];
+    for(MutableArrayWrap *jobList in [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID]){
         NSLog(@"In prepareJobApplicationReportByEmployer 1st joblist is: %@", jobList);
-//        for (id<IJob>job in jobList) {
-//            NSLog(@"In prepareJobApplicationReportByEmployer 2nd job is: %@", job);
-//            id<IJobApplication>jobApplication = [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:job.jobID];
-//            [jobApplicationArrayByEmployer addObject:jobApplication];
-//        }
+        for (id<IJob>job in jobList) {
+            NSLog(@"In prepareJobApplicationReportByEmployer 2nd job is: %@", job);
+            id<IJobApplication>jobApplication = [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:job.jobID];
+            [jobApplicationArrayByEmployer addObject:jobApplication];
+        }
     }
     return jobApplicationArrayByEmployer;
 }

@@ -10,10 +10,6 @@
 
 @implementation ATSJob
 
--(void)applyForJobWithResume:(Resume *)resume{
-        //        applyForATS
-//    return true;
-}
 -(IDentifer*)generateJobID{
     
     //ID generation mechanism;

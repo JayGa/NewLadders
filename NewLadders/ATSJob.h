@@ -14,7 +14,6 @@
 #import "JobMetaData.h"
 
 @interface ATSJob : NSObject <IJob>
-@property IDentifer *jobID;
-@property NSString *jobName;
+@property JobIDName *jobIDName;
 @property JobMetaData *jobMetaData;
 @end

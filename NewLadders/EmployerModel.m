@@ -23,12 +23,12 @@ static EmployerModel *sharedInstance;
 -(BOOL)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID{
     
     if(self.employerJobMutableDict == nil){
-        [self setEmployerJobMutableDict:[[NSMutableDictionary alloc]init]];
+        [self setEmployerJobMutableDict:[[MutableDictionaryWrap alloc]init]];
     }
     
-    NSMutableArray *tempArray;
+    MutableArrayWrap *tempArray;
     if([[self employerJobMutableDict] objectForKey:employerID] == nil){
-        tempArray = [[NSMutableArray alloc]init];
+        tempArray = [[MutableArrayWrap alloc]init];
         [[self employerJobMutableDict] setValue:tempArray forKey:employerID];
     }
     
@@ -37,7 +37,7 @@ static EmployerModel *sharedInstance;
     return true;
 }
 
--(NSMutableArray*)getPostedJobsForEmployerID:(IDentifer *)employerID{
+-(MutableArrayWrap*)getPostedJobsForEmployerID:(IDentifer *)employerID{
     return [[self employerJobMutableDict] objectForKey:employerID];
 }
 

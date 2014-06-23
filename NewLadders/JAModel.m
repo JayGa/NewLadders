@@ -7,6 +7,7 @@
 //
 
 #import "JAModel.h"
+#import "MutableArrayWrap.h"
 
 static JAModel *sharedInstance;
 @implementation JAModel
@@ -17,15 +18,15 @@ static JAModel *sharedInstance;
     return sharedInstance;
 }
 
--(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID{
-    
-    return true;
-}
--(NSMutableArray*)getApplicationForJobID:(IDentifer *)jobID{
+//-(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID{
+//    
+//    return true;
+//}
+-(MutableArrayWrap*)getApplicationForJobID:(IDentifer *)jobID{
     
     return [self.jobIDApplicationsMutableDict objectForKey:jobID];
 }
--(NSMutableArray*)getApplicationForDate:(JobPostedDate *)jobPostedDate{
+-(MutableArrayWrap*)getApplicationForDate:(JobPostedDate *)jobPostedDate{
     
     return [self.dayApplicationsMutableDict objectForKey:jobPostedDate];
 }

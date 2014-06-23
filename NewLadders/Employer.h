@@ -12,6 +12,7 @@
 #import "JobApplicationDate.h"
 #import "JobPostedDate.h"
 #import "IJob.h"
+#import "MutableArrayWrap.h"
 
 @interface Employer : NSObject{
 
@@ -19,9 +20,9 @@
 @property IDentifer *employerID;
 @property DisplayName *employerDisplayName;
 -(BOOL)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job;
--(NSArray*)seePostedJobListing;
--(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID;
--(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;
--(NSArray*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate;
--(NSArray*)seeApplicationsForAjobByDate:(JobPostedDate*)date ByJob:(id<IJob>)job;
+-(MutableArrayWrap*)seePostedJobListing;
+-(MutableArrayWrap*)seeApplicationsForAjob:(IDentifer *)jobID;
+-(MutableArrayWrap*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;
+-(MutableArrayWrap*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate;
+-(MutableArrayWrap*)seeApplicationsForAjobByDate:(JobPostedDate*)date ByJob:(id<IJob>)job;
 @end

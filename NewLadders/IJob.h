@@ -12,12 +12,10 @@
 #import "Resume.h"
 #import "JobPostedDate.h"
 #import "JobMetaData.h"
+#import "JobIDName.h"
 
 @protocol IJob <NSObject>
-
-@property IDentifer *jobID;
-@property NSString *jobName;
+@property JobIDName *jobIDName;
 @property JobMetaData *jobMetaData;
--(void)applyForJobWithResume:(Resume *)resume;
 -(IDentifer*)generateJobID;
 @end

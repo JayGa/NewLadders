@@ -10,12 +10,6 @@
 
 @implementation JreqJob
 
--(void)applyForJobWithResume:(Resume *)resume{
-
-//        applyForJReq
-    
-//    return true;
-}
 -(IDentifer*)generateJobID{
     
     //ID generation mechanism;

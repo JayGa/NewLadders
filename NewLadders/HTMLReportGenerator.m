@@ -11,7 +11,7 @@
 
 @implementation HTMLReportGenerator
 
--(NSString*)prepareReport:(NSMutableArray *)dataArray withTitle:(NSString *)title{
+-(NSString*)prepareReport:(MutableArrayWrap *)dataArray withTitle:(NSString *)title{
  
     return @"HTML Report";
 }

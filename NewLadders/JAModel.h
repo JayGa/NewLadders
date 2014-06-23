@@ -10,12 +10,14 @@
 #import "IJobApplication.h"
 #import "JobPostedDate.h"
 #import "IDentifer.h"
+#import "MutableDictionaryWrap.h"
+#import "MutableArrayWrap.h"
 
 @interface JAModel : NSObject
 +(JAModel*)sharedInstance;
-@property NSMutableDictionary *jobIDApplicationsMutableDict;
-@property NSMutableDictionary *dayApplicationsMutableDict;
+@property MutableDictionaryWrap *jobIDApplicationsMutableDict;
+@property MutableDictionaryWrap *dayApplicationsMutableDict;
 -(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID;
--(NSMutableArray*)getApplicationForJobID:(IDentifer *)jobID;
--(NSMutableArray*)getApplicationForDate:(JobPostedDate *)jobPostedDate;
+-(MutableArrayWrap*)getApplicationForJobID:(IDentifer *)jobID;
+-(MutableArrayWrap*)getApplicationForDate:(JobPostedDate *)jobPostedDate;
 @end

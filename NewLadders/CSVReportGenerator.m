@@ -8,10 +8,11 @@
 
 #import "CSVReportGenerator.h"
 #import "IReport.h"
+#import "MutableArrayWrap.h"
 
 @implementation CSVReportGenerator
 
--(NSString*)prepareReport:(NSMutableArray *)dataArray withTitle:(NSString *)title{
+-(NSString*)prepareReport:(MutableArrayWrap *)dataArray withTitle:(NSString *)title{
     
     
     return @"CSV Report";

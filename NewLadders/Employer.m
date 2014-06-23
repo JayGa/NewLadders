@@ -10,6 +10,7 @@
 #import "JreqJob.h"
 #import "ATSJob.h"
 #import "EmployerModel.h"
+#import "JobIDName.h"
 
 @implementation Employer
 //@synthesize employerID;
@@ -25,39 +26,39 @@
     JobMetaData *tempJobMetaData = [[JobMetaData alloc]init];
     [tempJobMetaData setJobPosterID:self.employerID];
     [tempJobMetaData setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    [job setJobID:[job generateJobID]];
-    [job setJobName:jobName];
+    [[job jobIDName]setJobID:[job generateJobID]];
+    [[job jobIDName]setJobName:jobName];
     [job setJobMetaData:tempJobMetaData];
     return job;
 }
 
--(NSArray*)seePostedJobListing{
+-(MutableArrayWrap*)seePostedJobListing{
     
     return [[EmployerModel sharedInstance] getPostedJobsForEmployerID:self.employerID];
 }
 
--(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID{
+-(MutableArrayWrap*)seeApplicationsForAjob:(IDentifer *)jobID{
 //    Fetch from DB, job Apllication where jobID == jobID;
-    NSArray *jobList = [NSArray new];
+    MutableArrayWrap *jobList = [MutableArrayWrap new];
     
     return jobList;
 //    Return the array to the UI to be displayed 
 }
 
--(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate{
+-(MutableArrayWrap*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate{
 //    Fetch from DB, where jobID == jobID and jobAppliedDate == jobApplicationDate ;
-    NSArray *jobList = [NSArray new];
+    MutableArrayWrap *jobList = [MutableArrayWrap new];
     return jobList;
 }
 
--(NSArray*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate{
+-(MutableArrayWrap*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate{
 //  Fetch fromDB where jobPosterID== employerID and applicationDate == jobApplicationDate
-    NSArray *jobList = [NSArray new];
+    MutableArrayWrap *jobList = [MutableArrayWrap new];
     return jobList;
 }
 
--(NSArray*)seeApplicationsForAjobByDate:(NSDate *)date ByJob:(id<IJob>)job{
-    NSArray *jobList = [NSArray new];
+-(MutableArrayWrap*)seeApplicationsForAjobByDate:(NSDate *)date ByJob:(id<IJob>)job{
+    MutableArrayWrap *jobList = [MutableArrayWrap new];
     return jobList;
 }
 @end
