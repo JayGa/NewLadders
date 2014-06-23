@@ -14,6 +14,8 @@
 #import "ATSJobApplication.h"
 #import "JReqJob.h"
 #import "ATSJob.h"
+#import "JobIDName.h"
+#import "MutableArrayWrap.h"
 
 @interface JobseekerTest : XCTestCase{
     
@@ -51,12 +53,13 @@
 
 - (void) testSaveJReqJob{
     job = [[JreqJob alloc]init];
-    job.jobID = jobID;
+    [[job jobIDName]setJobID:[job generateJobID]];
     JobMetaData *tempJobMetaData = [[JobMetaData alloc]init];
     [tempJobMetaData setJobPosterID:employerID];
     [tempJobMetaData setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    [job setJobID:[job generateJobID]];
-    [job setJobName:@"Save JReqJob"];
+
+    [[job jobIDName]setJobID:[job generateJobID]];
+    [[job jobIDName]setJobName:@"Save JReqJob"];
     [job setJobMetaData:tempJobMetaData];
     XCTAssertTrue([jobSeeker saveJob:job], @"Should return true");
 
@@ -65,12 +68,12 @@
 
 - (void) testSaveATSJob{
     job = [[ATSJob alloc]init];
-    job.jobID = jobID;
+    [[job jobIDName]setJobID:[job generateJobID]];
     JobMetaData *tempJobMetaData = [[JobMetaData alloc]init];
     [tempJobMetaData setJobPosterID:employerID];
     [tempJobMetaData setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    [job setJobID:[job generateJobID]];
-    [job setJobName:@"Save ATSJob"];
+    [[job jobIDName]setJobID:[job generateJobID]];
+    [[job jobIDName]setJobName:@"Save ATSJob"];
     [job setJobMetaData:tempJobMetaData];
     XCTAssertTrue([jobSeeker saveJob:job], @"Should return true");
     
@@ -78,7 +81,7 @@
 
 - (void) testSeeSavedJobs{
 
-     XCTAssert([[jobSeeker seeSavedJobs] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+     XCTAssert([[jobSeeker seeSavedJobs] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
 }
 
 - (void)testApplyForJreqJob{
@@ -97,7 +100,7 @@
 
 - (void) testSeeAppliedJobs{
 
-     XCTAssert([[jobSeeker seeAppliedJobs] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+     XCTAssert([[jobSeeker seeAppliedJobs] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
 }
 
 @end

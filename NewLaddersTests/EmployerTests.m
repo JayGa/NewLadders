@@ -40,16 +40,12 @@
 }
 
 - (void)testpostJReqJobWithNameType{
-    // This is an example of a functional test case.
-    
     job = [[JreqJob alloc]init];
     BOOL result = [employer postJobWithName:@"Test JReq Job" withJobType:job];
     XCTAssertTrue(result, @"Should return True");
 }
 
 - (void)testpostATSJobWithNameType{
-    // This is an example of a functional test case.
-    
     job = [[ATSJob alloc]init];
     BOOL result = [employer postJobWithName:@"Test ATS Job" withJobType:job];
     XCTAssertTrue(result, @"Should return True");
@@ -58,32 +54,32 @@
 
 -(void)testSeePostedJobListing{
     
-    XCTAssert([[employer seePostedJobListing] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+    XCTAssert([[employer seePostedJobListing] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
     
 }
 
 
 -(void)testSeeApplicationsForAjob{
 
-    XCTAssert([[employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"234"]] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+    XCTAssert([[employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"234"]] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
     
 }
 
 //-(void)testSeeApplicationsForAjobByDay{
-//    -(NSArray*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;
-//    XCTAssert([[employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"234"]ByDay:<#(JobApplicationDate *)#>] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+//    -(MutableArrayWrap*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;
+//    XCTAssert([[employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"234"]ByDay:<#(JobApplicationDate *)#>] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
 //    
 //}
 //
 //-(void)test{
-//    -(NSArray*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate;
-//    XCTAssert([[employer seePostedJobListing] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+//    -(MutableArrayWrap*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate;
+//    XCTAssert([[employer seePostedJobListing] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
 //    
 //}
 //
 //-(void)test{
-//    -(NSArray*)seeApplicationsForAjobByDate:(JobPostedDate*)date ByJob:(id<IJob>)job;
-//    XCTAssert([[employer seePostedJobListing] isKindOfClass:[NSArray class]], @"Should return a NSArray");
+//    -(MutableArrayWrap*)seeApplicationsForAjobByDate:(JobPostedDate*)date ByJob:(id<IJob>)job;
+//    XCTAssert([[employer seePostedJobListing] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
 //    
 //}
 

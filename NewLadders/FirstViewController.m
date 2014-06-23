@@ -7,9 +7,19 @@
 //
 
 #import "FirstViewController.h"
+#import "Employer.h"
+#import "IJob.h"
+#import "IJobApplication.h"
+#import "JreqJob.h"
+#import "ATSJob.h"
 
-@interface FirstViewController ()
-            
+@interface FirstViewController (){
+    
+    Employer *employer;
+    id<IJob> job;
+    id<IJobApplication> jobApplication;
+}
+
 
 @end
 
@@ -25,4 +35,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)postJReq:(id)sender{
+    employer = [[Employer alloc]init];
+    employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
+    job = [[JreqJob alloc]init];
+    BOOL result = [employer postJobWithName:@"Test JReq Job" withJobType:job];
+}
+
+-(IBAction)postATS:(id)sender{
+    employer = [[Employer alloc]init];
+    employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
+    job = [[ATSJob alloc]init];
+    BOOL result = [employer postJobWithName:@"Test ATS Job" withJobType:job];
+}
 @end
