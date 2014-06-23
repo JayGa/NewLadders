@@ -7,7 +7,12 @@
 //
 
 #import "HTMLReportGenerator.h"
+#import "IReport.h"
 
 @implementation HTMLReportGenerator
 
+-(NSString*)prepareReport:(NSMutableArray *)dataArray withTitle:(NSString *)title{
+ 
+    return @"HTML Report";
+}
 @end

@@ -7,34 +7,39 @@
 //
 
 #import "JobApplicationReport.h"
+#import "JAModel.h"
+#import "EmployerModel.h"
+#import "IJob.h"
+#import "IJobApplication.h"
 
 @implementation JobApplicationReport
 
--(id<IReport>)prepareDailyJobReport{
+-(NSMutableArray*)prepareDailyJobReport:(NSString *)jobPostedDateString{
     
-    id<IReport> report;
-//    [JobApplicationReport new];
-    
-    return report;
+    return [[[JAModel sharedInstance]dayApplicationsMutableDict] objectForKey:jobPostedDateString];
 }
 
--(id<IReport>)prepareAggregrateReportByJob:(id<IJob>)job{
+-(NSMutableArray*)prepareAggregrateReportByJob:(IDentifer*)jobID{
     
-    id<IReport> report;
-    
-    return report;
+    return [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:jobID];
 }
 
--(id<IReport>)prepareAggregrateReportByEmployer:(Employer*)employer{
+-(NSMutableArray*)prepareAggregrateReportByEmployer:(IDentifer*)employerID {
     
-    id<IReport> report;
-    
-    return report;
+    return [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID];
 }
--(id<IReport>)prepareJobApplication:(Employer*)employer{
+
+-(NSMutableArray*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID{
     
-    id<IReport> report;
-    
-    return report;
+    NSMutableArray *jobApplicationArrayByEmployer = [[NSMutableArray alloc]init];
+    for(NSMutableArray *jobList in [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID]){
+        NSLog(@"In prepareJobApplicationReportByEmployer 1st joblist is: %@", jobList);
+//        for (id<IJob>job in jobList) {
+//            NSLog(@"In prepareJobApplicationReportByEmployer 2nd job is: %@", job);
+//            id<IJobApplication>jobApplication = [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:job.jobID];
+//            [jobApplicationArrayByEmployer addObject:jobApplication];
+//        }
+    }
+    return jobApplicationArrayByEmployer;
 }
 @end

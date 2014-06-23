@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol IReportGenerator <NSObject>
-
+-(NSString*)prepareReport:(NSMutableArray *)dataArray withTitle:(NSString *)title;
 @end

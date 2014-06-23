@@ -14,7 +14,6 @@
 #import "ATSJob.h"
 #import "IDentifer.h"
 #import "IJobApplication.h"
-#import "DM.h"
 #import "EmployerModel.h"
 
 @interface EmployerTests : XCTestCase
@@ -30,14 +29,14 @@
 - (void)setUp {
     [super setUp];
     employer = [[Employer alloc]init];
-    employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
+    employer.employerID = [[IDentifer alloc]initWithString:@"333"];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
-    NSLog(@"In tear down array size is:%d ",[[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count] );
+//    NSLog(@"In tear down array size is:%d ",[[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count] );
 }
 
 - (void)testpostJReqJobWithNameType{

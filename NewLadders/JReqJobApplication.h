@@ -9,5 +9,7 @@
 #import "IJobApplication.h"
 
 @interface JReqJobApplication : NSObject <IJobApplication>
+@property IDentifer *jobseeker ;
+@property IDentifer *jobID;
 @property IDentifer *resumeID;
 @end

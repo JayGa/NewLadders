@@ -8,10 +8,12 @@
 
 #import "JAModel.h"
 
+static JAModel *sharedInstance;
 @implementation JAModel
 +(JAModel*)sharedInstance{
-    static JAModel *sharedInstance;
-    sharedInstance = [[JAModel alloc] init];
+    if(!sharedInstance){
+        sharedInstance = [[JAModel alloc] init];
+    }
     return sharedInstance;
 }
 

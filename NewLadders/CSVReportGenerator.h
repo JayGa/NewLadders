@@ -9,5 +9,4 @@
 #import "IReportGenerator.h"
 
 @interface CSVReportGenerator : NSObject  <IReportGenerator>
-
 @end

@@ -7,14 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IJobApplication.h"
 #import "IJob.h"
 
-@interface JSModel : NSObject
-@property NSMutableDictionary *jobSeekerSavedJobsMutableDict;
-@property NSMutableDictionary *jobSeekerAppliedJobsMutableDict;
+@interface JSModel : NSObject{
+    
+//    NSMutableDictionary *secondDict;
+}
+
+@property (strong, nonatomic) NSMutableDictionary *jobSeekerAppliedJobsMutableDict;
+@property (strong, nonatomic) NSMutableDictionary *jobSeekerSavedJobsMutableDict;
+
 +(JSModel*)sharedInstance;
--(void)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID;
--(void)applyJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID;
+-(BOOL)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID;
+-(BOOL)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID;
 -(NSMutableArray*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID;
 -(NSMutableArray*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID;
 @end

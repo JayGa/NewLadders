@@ -10,11 +10,11 @@
 #import "IJob.h"
 #import "IDentifer.h"
 
-@interface EmployerModel : NSObject
+@interface EmployerModel : NSObject{
+    NSString *testJay;
+}
 +(EmployerModel*)sharedInstance;
 @property (atomic, strong) NSMutableDictionary *employerJobMutableDict;
-@property (atomic, strong) NSString *testJay;
-@property (atomic, strong) NSMutableArray *employerJobMutableArray;
 -(BOOL)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID;
 -(NSMutableArray*)getPostedJobsForEmployerID:(IDentifer *)employerID;
 @end

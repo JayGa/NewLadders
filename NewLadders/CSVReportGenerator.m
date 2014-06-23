@@ -7,7 +7,13 @@
 //
 
 #import "CSVReportGenerator.h"
+#import "IReport.h"
 
 @implementation CSVReportGenerator
 
+-(NSString*)prepareReport:(NSMutableArray *)dataArray withTitle:(NSString *)title{
+    
+    
+    return @"CSV Report";
+}
 @end

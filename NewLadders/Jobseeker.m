@@ -8,22 +8,19 @@
 
 #import "Jobseeker.h"
 #import "JReqJobApplication.h"
+#import "JSModel.h"
+#import "IJob.h"
 
 @implementation Jobseeker
 
--(BOOL) saveJob:(IDentifer *)jobID{
-//    Insert the jobID into DB, in saved field for the given jobseeker.
-    
-    BOOL saveStatus = true;//True if saving is sucecessful
-    return saveStatus;
+-(BOOL) saveJob:(id<IJob>)job{
+
+    return [[JSModel sharedInstance] saveJob:job withJobseekerID:self.jobseekerID];
 }
 
 -(NSArray*) seeSavedJobs{
-//    Fetch from DB, where joobseekerId= jobseekerID;
-    NSArray *jobList = [NSArray new];
 
-    return jobList;
-//    return the array to UI
+    return [[JSModel sharedInstance] getSavedJobsForJobseekerID:self.jobseekerID];
     
 }
 
@@ -32,17 +29,13 @@
     if (resume!=nil) {
         [(JReqJobApplication*)jobApplication setResumeID:resume.resumeID];
     }
-    //  Do DB operations to insert an entry OR pass the object for validation.
-    BOOL dataBaseReturnStatus = true; //True if post successful.
-    return dataBaseReturnStatus;
+    BOOL returnStatus = [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:self.jobseekerID];
+    return returnStatus;
 }
 
 -(NSArray *) seeAppliedJobs{
-    //    Fetch from DB, where joobseekerId= jobseekerID;
-    NSArray *appliedJobList = [NSArray new];
-    
-    return appliedJobList;
-    //    return the array to UI
+
+    return [[JSModel sharedInstance] getAppliedJobsForJobseekerID:self.jobseekerID];
 }
 
 

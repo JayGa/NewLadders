@@ -15,10 +15,9 @@
 @interface Jobseeker : NSObject{
     
     //@property BOOL hasResume;
-    IDentifer *jobseekerID;
-    DisplayName *jobseekerDisplayName;
-    NSArray *resumeArray;
 }
+@property(nonatomic, strong) IDentifer *jobseekerID;
+@property(nonatomic, strong) NSArray *resumeArray;
 -(BOOL)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
 -(BOOL) saveJob:(IDentifer *)jobID;
 -(NSArray*) seeSavedJobs;

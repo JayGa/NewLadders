@@ -7,15 +7,22 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "JobApplicationReport.h"
+#import "IReport.h"
+#import "CSVReportGenerator.h"
+#import "HTMLReportGenerator.h"
 
 @interface ReportGenerationTests : XCTestCase
-
 @end
 
-@implementation ReportGenerationTests
+@implementation ReportGenerationTests{
+    
+    JobApplicationReport *jobApplicationReport;
+}
 
 - (void)setUp {
     [super setUp];
+    jobApplicationReport = [[JobApplicationReport alloc]init];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -24,12 +31,48 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+- (void)testPrepareDailyJobReport{
+    
+
+    NSString *jobPostedDateString = [self getTodayDateString];
+    NSMutableArray *returnArray = [jobApplicationReport prepareDailyJobReport:jobPostedDateString];
+    XCTAssert([returnArray isKindOfClass:[NSMutableArray class]], @"Should return array of jobs");
+    CSVReportGenerator *cSVReportGenerator = [[CSVReportGenerator alloc]init];
+    NSString *csvReportString = [cSVReportGenerator prepareReport:returnArray withTitle:jobPostedDateString];
+    NSLog(@"CSV Report is:%@", csvReportString);
+    HTMLReportGenerator *hTMLReportGenerator = [[HTMLReportGenerator alloc]init];
+    NSString* hTMLReportString = [hTMLReportGenerator prepareReport:returnArray withTitle:jobPostedDateString];
+    NSLog(@"HTML Report is:%@", hTMLReportString);
+    
 }
 
-- (void)testPerformanceExample {
+-(NSString *)getTodayDateString{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    JobPostedDate *jobPostedDate = [[JobPostedDate alloc]initByPostedDate:[NSDate date]];
+    formatter.dateFormat = @"yyyyMMdd";
+    return [formatter stringFromDate:jobPostedDate];
+}
+
+- (void)testPrepareAggregrateReportByJob{
+    
+    IDentifer *jobID = [[IDentifer alloc]initWithString:@"1345"];
+    
+    XCTAssert([[jobApplicationReport prepareAggregrateReportByJob:jobID] isKindOfClass:[NSMutableArray class]], @"Should return array of jobs");
+}
+
+- (void)testPrepareAggregrateReportByEmployer{
+    
+    IDentifer *employerID = [[IDentifer alloc]initWithString:@"333"];
+    
+    XCTAssert([[jobApplicationReport prepareAggregrateReportByEmployer:employerID] isKindOfClass:[NSMutableArray class]], @"Should return array of jobs");
 
 }
+
+- (void)testPrepareJobApplicationReportByEmployer{
+    IDentifer *employerID = [[IDentifer alloc]initWithString:@"333"];
+    
+    XCTAssert([[jobApplicationReport prepareJobApplicationReportByEmployer:employerID] isKindOfClass:[NSMutableArray class]], @"Should return array of jobs");
+    
+}
+
 @end
