@@ -29,7 +29,6 @@
 		82A728C019537E610039DF87 /* JAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A728BF19537E610039DF87 /* JAModel.m */; };
 		82A728C2195384900039DF87 /* ReportGenerationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A728C1195384900039DF87 /* ReportGenerationTests.m */; };
 		82A728C5195384D90039DF87 /* JobMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A728C4195384D90039DF87 /* JobMetaData.m */; };
-		82AFB9B1194B4FC1002ECF5A /* NSString+TLC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9B0194B4FC1002ECF5A /* NSString+TLC.m */; };
 		82AFB9B4194B7A82002ECF5A /* IDentifer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9B3194B7A82002ECF5A /* IDentifer.m */; };
 		82AFB9B8194B8F85002ECF5A /* JreqJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9B7194B8F85002ECF5A /* JreqJob.m */; };
 		82AFB9BB194B8F93002ECF5A /* ATSJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AFB9BA194B8F93002ECF5A /* ATSJob.m */; };
@@ -94,7 +93,6 @@
 		82A728C1195384900039DF87 /* ReportGenerationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportGenerationTests.m; sourceTree = "<group>"; };
 		82A728C3195384D90039DF87 /* JobMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobMetaData.h; sourceTree = "<group>"; };
 		82A728C4195384D90039DF87 /* JobMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobMetaData.m; sourceTree = "<group>"; };
-		82AFB9B0194B4FC1002ECF5A /* NSString+TLC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TLC.m"; sourceTree = "<group>"; };
 		82AFB9B2194B7A82002ECF5A /* IDentifer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDentifer.h; sourceTree = "<group>"; };
 		82AFB9B3194B7A82002ECF5A /* IDentifer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDentifer.m; sourceTree = "<group>"; };
 		82AFB9B6194B8F85002ECF5A /* JreqJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JreqJob.h; sourceTree = "<group>"; };
@@ -203,22 +201,11 @@
 		821CE375193F73A100E5447F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				820557121953766500E455FA /* EmployerModel.h */,
-				820557131953766500E455FA /* EmployerModel.m */,
-				82A728BB19537E3F0039DF87 /* JSModel.h */,
-				82A728BC19537E3F0039DF87 /* JSModel.m */,
-				82A728BE19537E610039DF87 /* JAModel.h */,
-				82A728BF19537E610039DF87 /* JAModel.m */,
-				82C8ED01194F779C009ED64F /* ReportGeneration */,
-				821CE366193F727200E5447F /* Employer.h */,
-				821CE367193F727200E5447F /* Employer.m */,
-				821CE369193F728500E5447F /* Jobseeker.h */,
-				821CE36A193F728500E5447F /* Jobseeker.m */,
-				821CE36F193F731E00E5447F /* Resume.h */,
-				821CE370193F731E00E5447F /* Resume.m */,
-				82C8ECFC194F6869009ED64F /* Jobs */,
+				82CDE9F01958A2AD00FD06E0 /* DataModel */,
+				82CDE9F11958A2CF00FD06E0 /* Entities */,
 				8201B63219507A450048CA56 /* JobApplication */,
-				82AFB9B0194B4FC1002ECF5A /* NSString+TLC.m */,
+				82C8ECFC194F6869009ED64F /* Jobs */,
+				82C8ED01194F779C009ED64F /* ReportGeneration */,
 				82C8ECFD194F687D009ED64F /* WrapperClasses */,
 			);
 			name = Model;
@@ -277,6 +264,32 @@
 				8201B640195080F70048CA56 /* JobApplicationReport.m */,
 			);
 			name = ReportGeneration;
+			sourceTree = "<group>";
+		};
+		82CDE9F01958A2AD00FD06E0 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				820557121953766500E455FA /* EmployerModel.h */,
+				820557131953766500E455FA /* EmployerModel.m */,
+				82A728BB19537E3F0039DF87 /* JSModel.h */,
+				82A728BC19537E3F0039DF87 /* JSModel.m */,
+				82A728BE19537E610039DF87 /* JAModel.h */,
+				82A728BF19537E610039DF87 /* JAModel.m */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		82CDE9F11958A2CF00FD06E0 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				821CE366193F727200E5447F /* Employer.h */,
+				821CE367193F727200E5447F /* Employer.m */,
+				821CE369193F728500E5447F /* Jobseeker.h */,
+				821CE36A193F728500E5447F /* Jobseeker.m */,
+				821CE36F193F731E00E5447F /* Resume.h */,
+				821CE370193F731E00E5447F /* Resume.m */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,7 +409,6 @@
 				821CE36B193F728500E5447F /* Jobseeker.m in Sources */,
 				8201B64A195090940048CA56 /* JobApplicationDate.m in Sources */,
 				821CE343193F723C00E5447F /* main.m in Sources */,
-				82AFB9B1194B4FC1002ECF5A /* NSString+TLC.m in Sources */,
 				8201B641195080F70048CA56 /* JobApplicationReport.m in Sources */,
 				820557141953766500E455FA /* EmployerModel.m in Sources */,
 				8201B63E19507D6D0048CA56 /* HTMLReportGenerator.m in Sources */,
