@@ -29,7 +29,7 @@ static EmployerModel *sharedInstance;
     MutableArrayWrap *tempArray;
     if([[self employerJobMutableDict] objectForKey:employerID] == nil){
         tempArray = [[MutableArrayWrap alloc]init];
-        [[self employerJobMutableDict] setValue:tempArray forKey:employerID];
+        [[self employerJobMutableDict] setObject:tempArray forKey:employerID];
     }
     
     tempArray = [[self employerJobMutableDict] objectForKey:employerID];

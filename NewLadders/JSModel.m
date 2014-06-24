@@ -35,7 +35,7 @@ static JSModel *sharedInstance;
     MutableArrayWrap *tempArray;
     if([self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID] == nil){
         tempArray = [[MutableArrayWrap alloc]init];
-        [ self.jobSeekerSavedJobsMutableDict setValue:tempArray forKey:jobseekerID];
+        [ self.jobSeekerSavedJobsMutableDict setObject:tempArray forKey:jobseekerID];
     }
     
     tempArray = [self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID];
@@ -58,7 +58,7 @@ static JSModel *sharedInstance;
         MutableArrayWrap *tempArray;
         if([[self jobSeekerAppliedJobsMutableDict] objectForKey:jobseekerID] == nil){
             tempArray = [[MutableArrayWrap alloc]init];
-            [[self jobSeekerAppliedJobsMutableDict] setValue:tempArray forKey:jobseekerID];
+            [[self jobSeekerAppliedJobsMutableDict] setObject:tempArray forKey:jobseekerID];
         }
         
         tempArray = [[self jobSeekerAppliedJobsMutableDict] objectForKey:jobseekerID];
@@ -78,7 +78,7 @@ static JSModel *sharedInstance;
         MutableArrayWrap *tempArray2;
         if([[JAModel sharedInstance].jobIDApplicationsMutableDict objectForKey:jobApplication.jobID] == nil){
             tempArray2 = [[MutableArrayWrap alloc]init];
-            [[[JAModel sharedInstance] jobIDApplicationsMutableDict] setValue:tempArray2 forKey:jobApplication.jobID];
+            [[[JAModel sharedInstance] jobIDApplicationsMutableDict] setObject:tempArray2 forKey:jobApplication.jobID];
         }
         
         tempArray2 = [[JAModel sharedInstance].jobIDApplicationsMutableDict objectForKey:jobApplication.jobID];
@@ -102,7 +102,7 @@ static JSModel *sharedInstance;
         NSString *jobPostedDateString = [formatter stringFromDate:jobPostedDate];
         if([[JAModel sharedInstance].dayApplicationsMutableDict objectForKey:jobPostedDateString] == nil){
             tempArray3 = [[MutableArrayWrap alloc]init];
-            [[[JAModel sharedInstance] dayApplicationsMutableDict] setValue:tempArray3 forKey:jobPostedDateString];
+            [[[JAModel sharedInstance] dayApplicationsMutableDict] setObject:tempArray3 forKey:jobPostedDateString];
         }
         
         tempArray3 = [[JAModel sharedInstance].dayApplicationsMutableDict objectForKey:jobPostedDateString];
