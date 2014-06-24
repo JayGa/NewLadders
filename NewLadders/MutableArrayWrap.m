@@ -20,7 +20,13 @@
     
     [maWrap addObject:anObject];
 }
+
 - (NSUInteger)count{
     return [maWrap count];
+}
+
+- (id)objectAtIndex:(NSUInteger)index{
+
+    return [maWrap objectAtIndex:index];
 }
 @end

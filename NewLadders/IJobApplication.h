@@ -10,6 +10,6 @@
 #import "IDentifer.h"
 
 @protocol IJobApplication <NSObject>
-@property IDentifer *jobseeker ;
+@property IDentifer *jobseekerID ;
 @property IDentifer *jobID;
 @end

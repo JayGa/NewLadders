@@ -15,4 +15,5 @@
 
 - (void)addObject:(id)anObject;
 - (NSUInteger)count;
+- (id)objectAtIndex:(NSUInteger)index;
 @end

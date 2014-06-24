@@ -9,6 +9,6 @@
 #import "IJobApplication.h"
 
 @interface ATSJobApplication : NSObject <IJobApplication>
-@property IDentifer *jobseeker ;
+@property IDentifer *jobseekerID ;
 @property IDentifer *jobID;
 @end
