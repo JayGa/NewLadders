@@ -26,7 +26,5 @@
 - (void)setValue:(id)value forKey:(NSString *)key{
     [mdWrap setValue:value forKey:key];
 }
-//+ (Class)class{
-//    return [MutableDictionaryWrap class];
-//}
+
 @end

@@ -20,4 +20,7 @@
     
     [maWrap addObject:anObject];
 }
+- (NSUInteger)count{
+    return [maWrap count];
+}
 @end
