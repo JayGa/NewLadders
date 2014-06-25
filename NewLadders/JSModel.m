@@ -116,11 +116,11 @@ static JSModel *sharedInstance;
 }
 
 -(SavedJobs*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID{
-//    NSLog(@"In getSavedJobsForJobseekerID :%@", [self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID]);
+    NSLog(@"In getSavedJobsForJobseekerID :%@", [self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID]);
     return [[self jobSeekerSavedJobsMutableDict] objectForKey:jobseekerID];
 }
 
--(AppliedJobs*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID{
+-(JobApplications*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID{
 //    NSLog(@"In getAppliedJobsForJobseekerID :%@", [self.jobSeekerAppliedJobsMutableDict objectForKey:jobseekerID]);
 
     return [[self jobSeekerAppliedJobsMutableDict] objectForKey:jobseekerID];

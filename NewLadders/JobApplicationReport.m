@@ -14,31 +14,31 @@
 
 @implementation JobApplicationReport
 
--(MutableArrayWrap*)prepareDailyJobReport:(NSString *)jobPostedDateString{
+-(JobApplications*)prepareDailyJobReport:(NSString *)jobPostedDateString{
     
     return [[[JAModel sharedInstance]dayApplicationsMutableDict] objectForKey:jobPostedDateString];
 }
 
--(MutableArrayWrap*)prepareAggregrateReportByJob:(IDentifer*)jobID{
+-(JobApplications*)prepareAggregrateReportByJob:(IDentifer*)jobID{
     
     return [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:jobID];
 }
 
--(MutableArrayWrap*)prepareAggregrateReportByEmployer:(IDentifer*)employerID {
+-(JobApplications*)prepareAggregrateReportByEmployer:(IDentifer*)employerID {
     
     return [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID];
 }
 
--(MutableArrayWrap*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID{
+-(JobApplications*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID{
     
-    MutableArrayWrap *jobApplicationArrayByEmployer = [[MutableArrayWrap alloc]init];
-    for(MutableArrayWrap *jobList in [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID]){
+    JobApplications *jobApplicationArrayByEmployer = [[JobApplications alloc]init];
+    for(PostedJobs *jobList in [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID]){
         NSLog(@"In prepareJobApplicationReportByEmployer 1st joblist is: %@", jobList);
         
         for (id<IJob>job in jobList) {
-            NSLog(@"In prepareJobApplicationReportByEmployer 2nd job is: %@", job);
-            id<IJobApplication>jobApplication = [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:job.jobIDName.jobID];
-            [jobApplicationArrayByEmployer addObject:jobApplication];
+//            NSLog(@"In prepareJobApplicationReportByEmployer 2nd job is: %@", job);
+//            id<IJobApplication>jobApplication = [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:job.jobIDName.jobID];
+//            [jobApplicationArrayByEmployer addObject:jobApplication];
         }
     }
     return jobApplicationArrayByEmployer;

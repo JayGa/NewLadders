@@ -12,7 +12,6 @@
 #import "IJob.h"
 #import "Employer.h"
 #import "JobApplicationDate.h"
-#import "MutableArrayWrap.h"
 
 @interface JobApplicationReport : NSObject   <IReport>{
     
@@ -22,8 +21,8 @@
     JobApplicationDate *jobApplicationDate;
 }
 
--(MutableArrayWrap*)prepareDailyJobReport:(NSString *)jobPostedDateString;
--(MutableArrayWrap*)prepareAggregrateReportByJob:(IDentifer*)jobID;
--(MutableArrayWrap*)prepareAggregrateReportByEmployer:(IDentifer*)employerID;
--(MutableArrayWrap*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID;
+-(JobApplications*)prepareDailyJobReport:(NSString *)jobPostedDateString;
+-(JobApplications*)prepareAggregrateReportByJob:(IDentifer*)jobID;
+-(JobApplications*)prepareAggregrateReportByEmployer:(IDentifer*)employerID;
+-(JobApplications*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID;
 @end

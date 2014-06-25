@@ -34,30 +34,30 @@
     return job;
 }
 
--(MutableArrayWrap*)seePostedJobListing{
+-(PostedJobs*)seePostedJobListing{
     
     return [[EmployerModel sharedInstance] getPostedJobsForEmployerID:self.employerID];
 }
 
--(MutableArrayWrap*)seeApplicationsForAjob:(IDentifer *)jobID{
+-(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID{
     return [[EmployerModel sharedInstance]getJobapplicationForJobsID:jobID];
 //    Return the array to the UI to be displayed 
 }
 
--(MutableArrayWrap*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate{
+-(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate{
 //    Fetch from DB, where jobID == jobID and jobAppliedDate == jobApplicationDate ;
-    MutableArrayWrap *jobList = [MutableArrayWrap new];
+    JobApplications *jobList = [JobApplications new];
     return jobList;
 }
 
--(MutableArrayWrap*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate{
+-(JobApplications*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate{
 //  Fetch fromDB where jobPosterID== employerID and applicationDate == jobApplicationDate
-    MutableArrayWrap *jobList = [MutableArrayWrap new];
+    JobApplications *jobList = [JobApplications new];
     return jobList;
 }
 
--(MutableArrayWrap*)seeApplicationsForAjobByDate:(NSDate *)date ByJob:(id<IJob>)job{
-    MutableArrayWrap *jobList = [MutableArrayWrap new];
+-(JobApplications*)seeApplicationsForAjobByDate:(NSDate *)date ByJob:(id<IJob>)job{
+    JobApplications *jobList = [JobApplications new];
     return jobList;
 }
 @end

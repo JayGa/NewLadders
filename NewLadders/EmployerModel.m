@@ -24,12 +24,12 @@ static EmployerModel *sharedInstance;
 -(NSString*)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID{
     
     if(self.employerJobMutableDict == nil){
-        [self setEmployerJobMutableDict:[[MutableDictionaryWrap alloc]init]];
+        [self setEmployerJobMutableDict:[[JobsForEmployers alloc]init]];
     }
     
-    MutableArrayWrap *tempArray;
+    PostedJobs *tempArray;
     if([[self employerJobMutableDict] objectForKey:employerID] == nil){
-        tempArray = [[MutableArrayWrap alloc]init];
+        tempArray = [[PostedJobs alloc]init];
         [[self employerJobMutableDict] setObject:tempArray forKey:employerID];
     }
     
@@ -38,11 +38,11 @@ static EmployerModel *sharedInstance;
     return job.jobIDName.jobName;
 }
 
--(MutableArrayWrap*)getPostedJobsForEmployerID:(IDentifer *)employerID{
+-(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID{
     return [[self employerJobMutableDict] objectForKey:employerID];
 }
 
--(MutableArrayWrap*)getJobapplicationForJobsID:(IDentifer *)jobID{
+-(JobApplications*)getJobapplicationForJobsID:(IDentifer *)jobID{
     return [[JAModel sharedInstance] getApplicationForJobID:jobID];
 }
 

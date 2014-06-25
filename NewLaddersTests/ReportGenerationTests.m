@@ -35,8 +35,8 @@
     
 
     NSString *jobPostedDateString = [self getTodayDateString];
-    MutableArrayWrap *returnArray = [jobApplicationReport prepareDailyJobReport:jobPostedDateString];
-    XCTAssert([returnArray isKindOfClass:[MutableArrayWrap class]], @"Should return array of jobs");
+    JobApplications *returnArray = [jobApplicationReport prepareDailyJobReport:jobPostedDateString];
+    XCTAssert([returnArray isKindOfClass:[JobApplications class]], @"Should return array of jobs");
     CSVReportGenerator *cSVReportGenerator = [[CSVReportGenerator alloc]init];
     NSString *csvReportString = [cSVReportGenerator prepareReport:returnArray withTitle:jobPostedDateString];
     NSLog(@"CSV Report is:%@", csvReportString);
@@ -57,14 +57,14 @@
     
     IDentifer *jobID = [[IDentifer alloc]initWithString:@"1345"];
     
-    XCTAssert([[jobApplicationReport prepareAggregrateReportByJob:jobID] isKindOfClass:[MutableArrayWrap class]], @"Should return array of jobs");
+    XCTAssert([[jobApplicationReport prepareAggregrateReportByJob:jobID] isKindOfClass:[JobApplications class]], @"Should return array of jobs");
 }
 
 - (void)testPrepareAggregrateReportByEmployer{
     
     IDentifer *employerID = [[IDentifer alloc]initWithString:@"333"];
     
-    XCTAssert([[jobApplicationReport prepareAggregrateReportByEmployer:employerID] isKindOfClass:[MutableArrayWrap class]], @"Should return array of jobs");
+    XCTAssert([[jobApplicationReport prepareAggregrateReportByEmployer:employerID] isKindOfClass:[JobApplications class]], @"Should return array of jobs");
 
 }
 

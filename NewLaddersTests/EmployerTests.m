@@ -19,6 +19,8 @@
 #import "ATSJobApplication.h"
 #import "Resume.h"
 #import "Jobseeker.h"
+#import "JSModel.h"
+#import "JAModel.h"
 
 @interface EmployerTests : XCTestCase
 
@@ -43,6 +45,9 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    [JSModel sharedInstance].jobSeekerAppliedJobsMutableDict = nil;
+    [JAModel sharedInstance].jobIDApplicationsMutableDict = nil;
+    [JAModel sharedInstance].dayApplicationsMutableDict = nil;
 //    NSLog(@"In tear down array size is:%d ",[[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count] );
 }
 
@@ -61,7 +66,7 @@
 }
 
 -(void)testSeePostedJobListing{
-    MutableArrayWrap *tempArray = [employer seePostedJobListing];
+    PostedJobs *tempArray = [employer seePostedJobListing];
     
     XCTAssert([tempArray count]==2, @"Should return a MutableArrayWrap");
 }
@@ -89,7 +94,7 @@
     [jobSeeker applyForJob:jobApplication WithResume:nil];
     
     
-    MutableArrayWrap *tempArray = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"1345"]];
+    JobApplications *tempArray = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"1345"]];
     XCTAssert([tempArray count]== 2, @"Should return a MutableArrayWrap");
     
 }

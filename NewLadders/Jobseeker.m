@@ -18,7 +18,7 @@
     return [[JSModel sharedInstance] saveJob:job withJobseekerID:self.jobseekerID];
 }
 
--(MutableArrayWrap*) seeSavedJobs{
+-(SavedJobs*) seeSavedJobs{
 
     return [[JSModel sharedInstance] getSavedJobsForJobseekerID:self.jobseekerID];
 }
@@ -32,7 +32,7 @@
     return returnStatus;
 }
 
--(MutableArrayWrap *) seeAppliedJobs{
+-(JobApplications *) seeAppliedJobs{
 
     return [[JSModel sharedInstance] getAppliedJobsForJobseekerID:self.jobseekerID];
 }

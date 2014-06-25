@@ -12,7 +12,7 @@
 #import "AppliedJobsForJobseeker.h"
 #import "SavedJobsForJobseeker.h"
 #import "SavedJobs.h"
-#import "AppliedJobs.h"
+#import "JobApplications.h"
 
 @interface JSModel : NSObject{
     
@@ -26,5 +26,5 @@
 -(NSString*)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID;
 -(NSString*)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID;
 -(SavedJobs*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID;
--(AppliedJobs*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID;
+-(JobApplications*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID;
 @end

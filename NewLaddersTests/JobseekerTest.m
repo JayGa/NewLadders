@@ -15,7 +15,6 @@
 #import "JReqJob.h"
 #import "ATSJob.h"
 #import "JobIDName.h"
-#import "MutableArrayWrap.h"
 #import "EmployerModel.h"
 
 @interface JobseekerTest : XCTestCase{
@@ -27,7 +26,7 @@
     Resume  *resume;
     IDentifer *jobID;
     id<IJob> job;
-    MutableArrayWrap *tempJobsArray;
+    PostedJobs *tempJobsArray;
 }
 
 @end
@@ -71,7 +70,14 @@
 
 - (void) testSeeSavedJobs{
 
-     XCTAssert([[jobSeeker seeSavedJobs] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
+    SavedJobs  *tempArray = [jobSeeker seeSavedJobs];
+    NSMutableArray *testArray = [[NSMutableArray alloc]initWithObjects:@"1345", @"2345", nil];
+    
+    for(int i=0; i< [tempArray count]; i++ ){
+//        NSLog(@"In testSeeAppliedJobs Element is:%@", [[(id<IJob>)[tempArray objectAtIndex:i] jobIDName] jobID]);
+        XCTAssert([[[(id<IJob>)[tempArray objectAtIndex:i ]jobIDName]jobID] isEqualToString:[testArray objectAtIndex:i]], @"Should be True");
+    }
+    
 }
 
 - (void)testApplyForJreqJob{
@@ -93,11 +99,12 @@
 }
 
 - (void) testSeeAppliedJobs{
-    MutableArrayWrap  *tempArray = [jobSeeker seeAppliedJobs];
-     XCTAssert([[jobSeeker seeAppliedJobs] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
-    NSLog(@"In testSeeAppliedJobs :%@", tempArray );
+    JobApplications  *tempArray = [jobSeeker seeAppliedJobs];
+    NSMutableArray *testArray = [[NSMutableArray alloc]initWithObjects:@"2345", @"1345", nil];
+
     for(int i=0; i< [tempArray count]; i++ ){
-//        NSLog(@"Element is:%@", [(id<IJob>)[tempArray objectAtIndex:i]jobID]);
+//        NSLog(@"In testSeeAppliedJobs Element is:%@", [(id<IJobApplication>)[tempArray objectAtIndex:i]jobID]);
+        XCTAssert([[(id<IJobApplication>)[tempArray objectAtIndex:i ]jobID] isEqualToString:[testArray objectAtIndex:i]], @"Should be True");
     }
 }
 
