@@ -12,7 +12,7 @@
 
 @implementation HTMLReportGenerator
 
--(NSString*)prepareReport:(MutableArrayWrap *)dataArray withTitle:(NSString *)title{
+-(NSString*)prepareReport:(JobApplications *)dataArray withTitle:(NSString *)title{
  
     NSString *returnString = [NSString stringWithFormat:@"<p>Job Application Report: %@</p><table><tr><th>JOB ID</th><th>JOB SEEKER</th></tr>", title];
     id<IJobApplication> jobApplication;

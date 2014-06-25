@@ -16,6 +16,7 @@
 #import "ATSJob.h"
 #import "JobIDName.h"
 #import "MutableArrayWrap.h"
+#import "EmployerModel.h"
 
 @interface JobseekerTest : XCTestCase{
     
@@ -26,6 +27,7 @@
     Resume  *resume;
     IDentifer *jobID;
     id<IJob> job;
+    MutableArrayWrap *tempJobsArray;
 }
 
 @end
@@ -38,7 +40,9 @@
     jobSeeker.jobseekerID = [[IDentifer alloc]initWithString:@"777"];
     resume = [[Resume alloc]init];
     resumeID = [[IDentifer alloc]initWithString:@"345"];
-    employerID = [[IDentifer alloc]initWithString:@"1234"];
+    employerID = [[IDentifer alloc]initWithString:@"333"];
+    tempJobsArray = [[EmployerModel sharedInstance].employerJobMutableDict objectForKey:employerID];
+    
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -52,31 +56,17 @@
 
 
 - (void) testSaveJReqJob{
-    job = [[JreqJob alloc]init];
-    [[job jobIDName]setJobID:[job generateJobID]];
-    JobMetaData *tempJobMetaData = [[JobMetaData alloc]init];
-    [tempJobMetaData setJobPosterID:employerID];
-    [tempJobMetaData setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-
-    [[job jobIDName]setJobID:[job generateJobID]];
-    [[job jobIDName]setJobName:@"Save JReqJob"];
-    [job setJobMetaData:tempJobMetaData];
-    XCTAssertTrue([jobSeeker saveJob:job], @"Should return true");
+    
+    NSString*returnString = [jobSeeker saveJob:[tempJobsArray objectAtIndex:0]];
+    XCTAssertTrue([returnString isEqualToString:@"2345"], @"Should return true");
 
 }
 
 
 - (void) testSaveATSJob{
-    job = [[ATSJob alloc]init];
-    [[job jobIDName]setJobID:[job generateJobID]];
-    JobMetaData *tempJobMetaData = [[JobMetaData alloc]init];
-    [tempJobMetaData setJobPosterID:employerID];
-    [tempJobMetaData setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    [[job jobIDName]setJobID:[job generateJobID]];
-    [[job jobIDName]setJobName:@"Save ATSJob"];
-    [job setJobMetaData:tempJobMetaData];
-    XCTAssertTrue([jobSeeker saveJob:job], @"Should return true");
-    
+
+    NSString*returnString = [jobSeeker saveJob:[tempJobsArray objectAtIndex:1]];
+    XCTAssertTrue([returnString isEqualToString:@"1345"], @"Should return true");
 }
 
 - (void) testSeeSavedJobs{
@@ -88,19 +78,27 @@
     jobID = [[IDentifer alloc]initWithString:@"1345"];
     jobApplication = [[JReqJobApplication alloc]init];
     jobApplication.jobID = jobID;
-    XCTAssertTrue([jobSeeker applyForJob: jobApplication WithResume:resume], @"Should return true");
+    jobApplication.jobseekerID = jobSeeker.jobseekerID;
+    NSString *returnString = [jobSeeker applyForJob: jobApplication WithResume:resume];
+    XCTAssertTrue([returnString isEqualToString:@"1345"] , @"Should return true");
 }
 
 - (void)testApplyForATSJob{
     jobID = [[IDentifer alloc]initWithString:@"2345"];
     jobApplication = [[ATSJobApplication alloc]init];
     jobApplication.jobID = jobID;
-    XCTAssertTrue([jobSeeker applyForJob:jobApplication WithResume:nil], @"Should return true");
+    jobApplication.jobseekerID = jobSeeker.jobseekerID;
+    NSString *returnString = [jobSeeker applyForJob:jobApplication WithResume:nil];
+    XCTAssertTrue([returnString isEqualToString:@"2345"], @"Should return true");
 }
 
 - (void) testSeeAppliedJobs{
-
+    MutableArrayWrap  *tempArray = [jobSeeker seeAppliedJobs];
      XCTAssert([[jobSeeker seeAppliedJobs] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
+    NSLog(@"In testSeeAppliedJobs :%@", tempArray );
+    for(int i=0; i< [tempArray count]; i++ ){
+//        NSLog(@"Element is:%@", [(id<IJob>)[tempArray objectAtIndex:i]jobID]);
+    }
 }
 
 @end

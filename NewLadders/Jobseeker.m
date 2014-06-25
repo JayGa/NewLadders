@@ -13,7 +13,7 @@
 
 @implementation Jobseeker
 
--(BOOL) saveJob:(id<IJob>)job{
+-(NSString*) saveJob:(id<IJob>)job{
 
     return [[JSModel sharedInstance] saveJob:job withJobseekerID:self.jobseekerID];
 }
@@ -23,12 +23,12 @@
     return [[JSModel sharedInstance] getSavedJobsForJobseekerID:self.jobseekerID];
 }
 
--(BOOL)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume{
+-(NSString*)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume{
     
     if (resume!=nil) {
         [(JReqJobApplication*)jobApplication setResumeID:resume.resumeID];
     }
-    BOOL returnStatus = [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:self.jobseekerID];
+    NSString *returnStatus = [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:self.jobseekerID];
     return returnStatus;
 }
 

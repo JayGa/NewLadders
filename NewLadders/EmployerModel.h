@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "IJob.h"
 #import "IDentifer.h"
-#import "MutableDictionaryWrap.h"
-#import "MutableArrayWrap.h"
+#import "JobsForEmployers.h"
+#import "PostedJobs.h"
+#import "JobApplications.h"
 
 @interface EmployerModel : NSObject{
     NSString *testJay;
 }
 +(EmployerModel*)sharedInstance;
-@property (atomic, strong) MutableDictionaryWrap *employerJobMutableDict;
--(BOOL)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID;
--(MutableArrayWrap*)getPostedJobsForEmployerID:(IDentifer *)employerID;
+@property (atomic, strong) JobsForEmployers *employerJobMutableDict;
+-(NSString*)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID;
+-(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID;
+-(JobApplications*)getJobapplicationForJobsID:(IDentifer *)jobID;
 @end

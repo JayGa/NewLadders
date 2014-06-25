@@ -19,8 +19,8 @@
 }
 @property(nonatomic, strong) IDentifer *jobseekerID;
 @property(nonatomic, strong) MutableArrayWrap *resumeArray;
--(BOOL)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
--(BOOL) saveJob:(IDentifer *)jobID;
+-(NSString*)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
+-(NSString*) saveJob:(IDentifer *)jobID;
 -(MutableArrayWrap*) seeSavedJobs;
 -(MutableArrayWrap *) seeAppliedJobs;
 @end

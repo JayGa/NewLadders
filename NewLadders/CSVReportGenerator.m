@@ -8,12 +8,12 @@
 
 #import "CSVReportGenerator.h"
 #import "IReport.h"
-#import "MutableArrayWrap.h"
+#import "JobApplications.h"
 #import "IJobApplication.h"
 
 @implementation CSVReportGenerator
 
--(NSString*)prepareReport:(MutableArrayWrap *)dataArray withTitle:(NSString *)title{
+-(NSString*)prepareReport:(JobApplications *)dataArray withTitle:(NSString *)title{
     NSString *returnString = [NSString stringWithFormat:@"Job Application Report,%@\nJOBID, JOBSEEKER\n ",title];
     id<IJobApplication> jobApplication;
     for (int i =0; i< [dataArray count]; i++) {

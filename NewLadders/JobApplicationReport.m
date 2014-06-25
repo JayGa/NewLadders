@@ -34,9 +34,10 @@
     MutableArrayWrap *jobApplicationArrayByEmployer = [[MutableArrayWrap alloc]init];
     for(MutableArrayWrap *jobList in [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID]){
         NSLog(@"In prepareJobApplicationReportByEmployer 1st joblist is: %@", jobList);
+        
         for (id<IJob>job in jobList) {
             NSLog(@"In prepareJobApplicationReportByEmployer 2nd job is: %@", job);
-            id<IJobApplication>jobApplication = [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:job.jobID];
+            id<IJobApplication>jobApplication = [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:job.jobIDName.jobID];
             [jobApplicationArrayByEmployer addObject:jobApplication];
         }
     }

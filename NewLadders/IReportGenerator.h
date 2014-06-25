@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MutableArrayWrap.h"
+#import "JobApplications.h"
 
 @protocol IReportGenerator <NSObject>
--(NSString*)prepareReport:(MutableArrayWrap *)dataArray withTitle:(NSString *)title;
+-(NSString*)prepareReport:(JobApplications *)dataArray withTitle:(NSString *)title;
 @end

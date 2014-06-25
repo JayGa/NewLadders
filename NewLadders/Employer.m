@@ -1,4 +1,4 @@
-//
+        //
 //  Employer.m
 //  NewLadders
 //
@@ -15,10 +15,10 @@
 @implementation Employer
 //@synthesize employerID;
 
--(BOOL)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
+-(NSString*)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
     
     job = [self setValueForJob:job WithJobName:jobName];
-    BOOL returnStatus = [[EmployerModel sharedInstance] postJob:job withEmployerID:self.employerID];
+    NSString *returnStatus = [[EmployerModel sharedInstance] postJob:job withEmployerID:self.employerID];
     return returnStatus;
 }
 
@@ -26,8 +26,10 @@
     JobMetaData *tempJobMetaData = [[JobMetaData alloc]init];
     [tempJobMetaData setJobPosterID:self.employerID];
     [tempJobMetaData setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    [[job jobIDName]setJobID:[job generateJobID]];
-    [[job jobIDName]setJobName:jobName];
+    JobIDName *jobIDName = [[JobIDName alloc]init];
+    [jobIDName setJobID:[job generateJobID]];
+    [jobIDName setJobName:jobName];
+    [job setJobIDName:jobIDName];
     [job setJobMetaData:tempJobMetaData];
     return job;
 }
@@ -38,10 +40,7 @@
 }
 
 -(MutableArrayWrap*)seeApplicationsForAjob:(IDentifer *)jobID{
-//    Fetch from DB, job Apllication where jobID == jobID;
-    MutableArrayWrap *jobList = [MutableArrayWrap new];
-    
-    return jobList;
+    return [[EmployerModel sharedInstance]getJobapplicationForJobsID:jobID];
 //    Return the array to the UI to be displayed 
 }
 

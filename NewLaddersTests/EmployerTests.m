@@ -15,21 +15,28 @@
 #import "IDentifer.h"
 #import "IJobApplication.h"
 #import "EmployerModel.h"
+#import "JReqJobApplication.h"
+#import "ATSJobApplication.h"
+#import "Resume.h"
+#import "Jobseeker.h"
 
 @interface EmployerTests : XCTestCase
 
 @end
 
 @implementation EmployerTests{
-        Employer *employer;
-        id<IJob> job;
+    Employer *employer;
+    id<IJob> job;
     id<IJobApplication> jobApplication;
+    Jobseeker *jobSeeker;
+    IDentifer *jobseekerID;
 }
 
 - (void)setUp {
     [super setUp];
     employer = [[Employer alloc]init];
     employer.employerID = [[IDentifer alloc]initWithString:@"333"];
+    jobseekerID = [[IDentifer alloc]initWithString:@"777"];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -40,28 +47,50 @@
 }
 
 - (void)testpostJReqJobWithNameType{
+    NSString *jobName = @"Test JReq Job";
     job = [[JreqJob alloc]init];
-    BOOL result = [employer postJobWithName:@"Test JReq Job" withJobType:job];
-    XCTAssertTrue(result, @"Should return True");
+    NSString *result = [employer postJobWithName:jobName withJobType:job];
+    XCTAssertTrue([result isEqualToString:jobName ], @"Should return True");
 }
 
 - (void)testpostATSJobWithNameType{
+    NSString *jobName = @"Test ATS Job";
     job = [[ATSJob alloc]init];
-    BOOL result = [employer postJobWithName:@"Test ATS Job" withJobType:job];
-    XCTAssertTrue(result, @"Should return True");
-    
+    NSString *result = [employer postJobWithName:jobName withJobType:job];
+    XCTAssertTrue([result isEqualToString:jobName ], @"Should return True");
 }
 
 -(void)testSeePostedJobListing{
+    MutableArrayWrap *tempArray = [employer seePostedJobListing];
     
-    XCTAssert([[employer seePostedJobListing] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
-    
+    XCTAssert([tempArray count]==2, @"Should return a MutableArrayWrap");
 }
-
 
 -(void)testSeeApplicationsForAjob{
 
-    XCTAssert([[employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"234"]] isKindOfClass:[MutableArrayWrap class]], @"Should return a MutableArrayWrap");
+    IDentifer *jobID = [[IDentifer alloc]initWithString:@"1345"];
+    jobApplication = [[JReqJobApplication alloc]init];
+    jobApplication.jobID = jobID;
+    jobApplication.jobseekerID = jobseekerID;
+    Resume *resume1 = [[Resume alloc]init];
+    jobSeeker = [[Jobseeker alloc]init];
+    jobSeeker.jobseekerID = jobseekerID = [[IDentifer alloc]initWithString:@"777"];
+    [jobSeeker applyForJob: jobApplication WithResume:resume1];
+    
+    Resume *resume2 = [[Resume alloc]init];
+    jobSeeker = [[Jobseeker alloc]init];
+    jobSeeker.jobseekerID = jobseekerID = [[IDentifer alloc]initWithString:@"778"];
+    [jobSeeker applyForJob: jobApplication WithResume:resume2];
+    
+    jobID = [[IDentifer alloc]initWithString:@"2345"];
+    jobApplication = [[ATSJobApplication alloc]init];
+    jobApplication.jobID = jobID;
+    jobApplication.jobseekerID = [[IDentifer alloc]initWithString:@"777"];
+    [jobSeeker applyForJob:jobApplication WithResume:nil];
+    
+    
+    MutableArrayWrap *tempArray = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"1345"]];
+    XCTAssert([tempArray count]== 2, @"Should return a MutableArrayWrap");
     
 }
 

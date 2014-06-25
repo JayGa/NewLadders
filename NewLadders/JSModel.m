@@ -10,6 +10,7 @@
 #import "IJobApplication.h"
 #import "JAModel.h"
 #import "IJob.h"
+#import "JobApplications.h"
 
 static JSModel *sharedInstance;
 
@@ -25,27 +26,27 @@ static JSModel *sharedInstance;
     return sharedInstance;
 }
 
--(BOOL)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID{
+-(NSString*)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID{
     
 //    NSLog(@"In saveJob BEFORE :%@",self.jobSeekerSavedJobsMutableDict);
     if ([self jobSeekerSavedJobsMutableDict]== nil) {
-        self.jobSeekerSavedJobsMutableDict = [[MutableDictionaryWrap alloc] init];
+        self.jobSeekerSavedJobsMutableDict = [[SavedJobsForJobseeker alloc] init];
     }
 
-    MutableArrayWrap *tempArray;
+    SavedJobs *tempArray;
     if([self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID] == nil){
-        tempArray = [[MutableArrayWrap alloc]init];
+        tempArray = [[SavedJobs alloc]init];
         [ self.jobSeekerSavedJobsMutableDict setObject:tempArray forKey:jobseekerID];
     }
     
     tempArray = [self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID];
     [tempArray addObject:job];
 //    NSLog(@"In saveJob AFTER :%@", [self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID]);
-    return true;
+    return job.jobIDName.jobID;
 
 }
 
--(BOOL)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID{
+-(NSString*)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID{
 
     
 //    Method 1
@@ -53,11 +54,11 @@ static JSModel *sharedInstance;
         //    NSLog(@"In applyJob1 BEFORE :%@" , [self.jobSeekerAppliedJobsMutableDict objectForKey:jobseekerID]);
         
         if(self.jobSeekerAppliedJobsMutableDict == nil){
-            [self setJobSeekerAppliedJobsMutableDict:[[MutableDictionaryWrap alloc]init]];
+            [self setJobSeekerAppliedJobsMutableDict:[[AppliedJobsForJobseeker alloc]init]];
         }
-        MutableArrayWrap *tempArray;
+        JobApplications *tempArray;
         if([[self jobSeekerAppliedJobsMutableDict] objectForKey:jobseekerID] == nil){
-            tempArray = [[MutableArrayWrap alloc]init];
+            tempArray = [[JobApplications alloc]init];
             [[self jobSeekerAppliedJobsMutableDict] setObject:tempArray forKey:jobseekerID];
         }
         
@@ -73,11 +74,11 @@ static JSModel *sharedInstance;
         //    NSLog(@"In applyJob2 BEFORE :%@" , [JAModel sharedInstance].jobIDApplicationsMutableDict );
         
         if([JAModel sharedInstance].jobIDApplicationsMutableDict == nil){
-            [[JAModel sharedInstance] setJobIDApplicationsMutableDict:[[MutableDictionaryWrap alloc]init]];
+            [[JAModel sharedInstance] setJobIDApplicationsMutableDict:[[JobApplicationsForJobIDs alloc]init]];
         }
-        MutableArrayWrap *tempArray2;
+        JobApplications *tempArray2;
         if([[JAModel sharedInstance].jobIDApplicationsMutableDict objectForKey:jobApplication.jobID] == nil){
-            tempArray2 = [[MutableArrayWrap alloc]init];
+            tempArray2 = [[JobApplications alloc]init];
             [[[JAModel sharedInstance] jobIDApplicationsMutableDict] setObject:tempArray2 forKey:jobApplication.jobID];
         }
         
@@ -93,15 +94,15 @@ static JSModel *sharedInstance;
         //    NSLog(@"In applyJob3 BEFORE :%@" , [JAModel sharedInstance].dayApplicationsMutableDict);
         
         if([JAModel sharedInstance].dayApplicationsMutableDict == nil){
-            [[JAModel sharedInstance] setDayApplicationsMutableDict:[[MutableDictionaryWrap alloc]init]];
+            [[JAModel sharedInstance] setDayApplicationsMutableDict:[[JobApplicationsForADay alloc]init]];
         }
-        MutableArrayWrap *tempArray3;
+        JobApplications *tempArray3;
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         JobPostedDate *jobPostedDate = [[JobPostedDate alloc]initByPostedDate:[NSDate date]];
         formatter.dateFormat = @"yyyyMMdd";
         NSString *jobPostedDateString = [formatter stringFromDate:jobPostedDate];
         if([[JAModel sharedInstance].dayApplicationsMutableDict objectForKey:jobPostedDateString] == nil){
-            tempArray3 = [[MutableArrayWrap alloc]init];
+            tempArray3 = [[JobApplications alloc]init];
             [[[JAModel sharedInstance] dayApplicationsMutableDict] setObject:tempArray3 forKey:jobPostedDateString];
         }
         
@@ -111,15 +112,15 @@ static JSModel *sharedInstance;
         
     }
 
-    return true;
+    return jobApplication.jobID;
 }
 
--(MutableArrayWrap*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID{
+-(SavedJobs*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID{
 //    NSLog(@"In getSavedJobsForJobseekerID :%@", [self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID]);
     return [[self jobSeekerSavedJobsMutableDict] objectForKey:jobseekerID];
 }
 
--(MutableArrayWrap*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID{
+-(AppliedJobs*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID{
 //    NSLog(@"In getAppliedJobsForJobseekerID :%@", [self.jobSeekerAppliedJobsMutableDict objectForKey:jobseekerID]);
 
     return [[self jobSeekerAppliedJobsMutableDict] objectForKey:jobseekerID];
