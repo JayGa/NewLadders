@@ -16,16 +16,16 @@
     return self;
 }
 
-- (void)addObject:(id)anObject{
+- (void)addJobApplication:(id<IJobApplication>)jobApplication{
     
-    [anArray addObject:anObject];
+    [anArray addObject:jobApplication];
 }
 
 - (NSUInteger)count{
     return [anArray count];
 }
 
-- (id)objectAtIndex:(NSUInteger)index{
+- (id<IJobApplication>)jobApplicationAtIndex:(NSUInteger)index{
 
     return [anArray objectAtIndex:index];
 }

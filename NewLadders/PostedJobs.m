@@ -16,16 +16,16 @@
     return self;
 }
 
-- (void)addObject:(id)anObject{
+- (void)addJob:(id<IJob>)job{
     
-    [anArray addObject:anObject];
+    [anArray addObject:job];
 }
 
 - (NSUInteger)count{
     return [anArray count];
 }
 
-- (id)objectAtIndex:(NSUInteger)index{
+- (id<IJob>)jobAtIndex:(NSUInteger)index{
     
     return [anArray objectAtIndex:index];
 }
