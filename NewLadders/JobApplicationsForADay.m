@@ -15,19 +15,18 @@
     aDictionary = [[NSMutableDictionary alloc]init];
     return self;
 }
-
-- (id)objectForKey:(id)aKey{
+- (JobApplications*)getJobApplicationsForDay:(JobApplicationDate*)jobApplicationDate{
     
-    return [aDictionary objectForKey:aKey];
+    return [aDictionary objectForKey:jobApplicationDate];
 }
 
-- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey{
-    
-    [aDictionary setObject:anObject forKey:aKey];
+- (void)setJobApplications:(JobApplications*)jobApplications forJobApplicationDate:(JobApplicationDate*)jobApplicationDate{
+
+    [aDictionary setObject:jobApplications forKey:jobApplicationDate];
 }
 
-- (void)setValue:(id)value forKey:(NSString *)key{
-    [aDictionary setValue:value forKey:key];
-}
+//- (void)setValue:(id)value forKey:(NSString *)key{
+//    [aDictionary setValue:value forKey:key];
+//}
 
 @end

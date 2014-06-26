@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Resume.h"
 
 @interface Resumes : NSObject{
     
     NSMutableArray *anArray;
 }
 
-- (void)addObject:(id)anObject;
+- (void)addReumes:(Resume*)resume;
 - (NSUInteger)count;
-- (id)objectAtIndex:(NSUInteger)index;
+- (Resume*)resumeAtIndex:(NSUInteger)index;
 
 @end

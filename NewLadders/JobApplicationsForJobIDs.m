@@ -16,18 +16,18 @@
     return self;
 }
 
-- (id)objectForKey:(id)aKey{
-    
-    return [aDictionary objectForKey:aKey];
+- (JobApplications*)getJobApplicationsForJobID:(IDentifer*)jobID{
+
+    return [aDictionary objectForKey:jobID];
 }
 
-- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey{
-    
-    [aDictionary setObject:anObject forKey:aKey];
+- (void)setJobApplicatons:(JobApplications*)jobApplications forJobID:(IDentifer*)jobID{
+
+    [aDictionary setObject:jobApplications forKey:jobID];
 }
 
-- (void)setValue:(id)value forKey:(NSString *)key{
-    [aDictionary setValue:value forKey:key];
-}
+//- (void)setValue:(id)value forKey:(NSString *)key{
+//    [aDictionary setValue:value forKey:key];
+//}
 
 @end

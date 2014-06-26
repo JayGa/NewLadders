@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobApplicationDate.h"
+#import "JobApplications.h"
 
 @interface JobApplicationsForADay : NSObject{
     
     NSMutableDictionary *aDictionary;
 }
-- (id)objectForKey:(id)aKey;
-- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey;
-- (void)setValue:(id)value forKey:(NSString *)key;
+- (JobApplications*)getJobApplicationsForDay:(JobApplicationDate*)jobApplicationDate;
+- (void)setJobApplications:(JobApplications*)jobApplications forJobApplicationDate:(JobApplicationDate*)jobApplicationDate;
+//- (void)setValue:(id)value forKey:(NSString *)key;
 
 @end

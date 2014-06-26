@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IJob.h"
+#import "IJobApplication.h"
 
 @interface SavedJobs : NSObject{
     
     NSMutableArray *anArray;
 }
 
-- (void)addObject:(id)anObject;
+- (void)addASavedJob:(id<IJob>)job;
 - (NSUInteger)count;
-- (id)objectAtIndex:(NSUInteger)index;
+- (id<IJob>)savedJobAtIndex:(NSUInteger)index;
 
 @end

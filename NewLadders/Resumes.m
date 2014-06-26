@@ -16,16 +16,16 @@
     return self;
 }
 
-- (void)addObject:(id)anObject{
+- (void)addResume:(Resume*)resume{
     
-    [anArray addObject:anObject];
+    [anArray addObject:resume];
 }
 
 - (NSUInteger)count{
     return [anArray count];
 }
 
-- (id)objectAtIndex:(NSUInteger)index{
+- (Resume*)resumeAtIndex:(NSUInteger)index{
     
     return [anArray objectAtIndex:index];
 }
