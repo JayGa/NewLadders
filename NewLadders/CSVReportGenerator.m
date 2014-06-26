@@ -17,7 +17,7 @@
     NSString *returnString = [NSString stringWithFormat:@"Job Application Report,%@\nJOBID, JOBSEEKER\n ",title];
     id<IJobApplication> jobApplication;
     for (int i =0; i< [dataArray count]; i++) {
-        jobApplication = [dataArray objectAtIndex:i];
+        jobApplication = [dataArray jobApplicationAtIndex:i];
         returnString = [NSString stringWithFormat:@"%@%@, %@\n",returnString, [jobApplication jobID], [jobApplication jobseekerID]];
     }
     NSLog(@"CVS report is:%@", returnString);

@@ -27,18 +27,18 @@ static EmployerModel *sharedInstance;
         [self setEmployerJobMutableDict:[[JobsForEmployers alloc]init]];
     }
     
-    PostedJobs *tempArray;
-    if([[self employerJobMutableDict] objectForKey:employerID] == nil){
-        tempArray = [[PostedJobs alloc]init];
-        [[self employerJobMutableDict] setObject:tempArray forKey:employerID];
+    PostedJobs *postedJobs;
+    if([[self employerJobMutableDict] getJobsPostedByEmployerWithID:employerID] == nil){
+        postedJobs = [[PostedJobs alloc]init];
+        [[self employerJobMutableDict] postJobs:postedJobs ByEmployerWithID:employerID];
     }
     
-    tempArray = [[self employerJobMutableDict] objectForKey:employerID];
-    [tempArray addObject:job];
+    postedJobs = [[self employerJobMutableDict] getJobsPostedByEmployerWithID:employerID];
+    [postedJobs addJob:job];
 }
 
 -(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID{
-    return [[self employerJobMutableDict] objectForKey:employerID];
+    return [[self employerJobMutableDict] getJobsPostedByEmployerWithID:employerID];
 }
 
 -(JobApplications*)getJobapplicationForJobsID:(IDentifer *)jobID{

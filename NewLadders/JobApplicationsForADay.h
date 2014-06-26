@@ -17,5 +17,5 @@
 - (JobApplications*)getJobApplicationsForDay:(JobApplicationDate*)jobApplicationDate;
 - (void)setJobApplications:(JobApplications*)jobApplications forJobApplicationDate:(JobApplicationDate*)jobApplicationDate;
 //- (void)setValue:(id)value forKey:(NSString *)key;
-
+-(NSString*)stringFromJobApplicationDate:(JobApplicationDate*)jobApplicationDate;
 @end

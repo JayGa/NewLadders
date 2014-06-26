@@ -17,7 +17,7 @@
     NSString *returnString = [NSString stringWithFormat:@"<p>Job Application Report: %@</p><table><tr><th>JOB ID</th><th>JOB SEEKER</th></tr>", title];
     id<IJobApplication> jobApplication;
     for (int i =0; i< [dataArray count]; i++) {
-        jobApplication = [dataArray objectAtIndex:i];
+        jobApplication = [dataArray jobApplicationAtIndex:i];
         returnString = [NSString stringWithFormat:@"%@<tr><td>%@</td><td>%@</td></tr>",returnString, [jobApplication jobID], [jobApplication jobseekerID]];
     }
     returnString = [NSString stringWithFormat:@"%@</table>",returnString];

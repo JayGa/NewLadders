@@ -11,5 +11,5 @@
 @interface JobApplicationDate : NSDate{
     JobApplicationDate *gJobApplicationDate;
 }
-
+-(JobApplicationDate*)initWithJobApplicationDate:(NSDate*)jobApplicationDate;
 @end

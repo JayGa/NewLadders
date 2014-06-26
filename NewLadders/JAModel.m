@@ -23,10 +23,10 @@ static JAModel *sharedInstance;
 //}
 -(JobApplications*)getApplicationForJobID:(IDentifer *)jobID{
     
-    return [self.jobIDApplicationsMutableDict objectForKey:jobID];
+    return [self.jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
 }
--(JobApplications*)getApplicationForDate:(JobPostedDate *)jobPostedDate{
+-(JobApplications*)getApplicationForDate:(JobApplicationDate *)jobApplicationDate{
     
-    return [self.dayApplicationsMutableDict objectForKey:jobPostedDate];
+    return [self.dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
 }
 @end

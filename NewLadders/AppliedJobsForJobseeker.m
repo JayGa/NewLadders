@@ -7,6 +7,7 @@
 //
 
 #import "AppliedJobsForJobseeker.h"
+#import "JobApplications.h"
 
 @implementation AppliedJobsForJobseeker
 
@@ -16,14 +17,14 @@
     return self;
 }
 
-- (AppliedJobs*)getAppliedJobForJobseekerWithID:(IDentifer*)jobSeekerID{
+- (JobApplications*)getAppliedJobForJobseekerWithID:(IDentifer*)jobSeekerID{
 
     return [aDictionary objectForKey:jobSeekerID];
 }
 
-- (void)setAppliedJobs:(AppliedJobs*)appliedJobs forJobseekerWithID:(IDentifer*)jobSeekerID{
+- (void)setAppliedJobs:(JobApplications*)jobApplications forJobseekerWithID:(IDentifer*)jobSeekerID{
 
-    [aDictionary setObject:appliedJobs forKey:jobSeekerID];
+    [aDictionary setObject:jobApplications forKey:jobSeekerID];
 }
 
 //- (void)setValue:(id)value forKey:(NSString *)key{

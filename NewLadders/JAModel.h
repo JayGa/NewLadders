@@ -20,5 +20,5 @@
 @property JobApplicationsForADay *dayApplicationsMutableDict;
 -(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID;
 -(JobApplications*)getApplicationForJobID:(IDentifer *)jobID;
--(JobApplications*)getApplicationForDate:(JobPostedDate *)jobPostedDate;
+-(JobApplications*)getApplicationForDate:(JobApplicationDate *)jobApplicationDate;
 @end

@@ -61,10 +61,10 @@
                                     
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
     
-    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count];
+    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employer.employerID] count];
     
     [employer postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count];
+    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employer.employerID] count];
 
     XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
 }

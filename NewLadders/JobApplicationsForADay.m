@@ -17,7 +17,7 @@
 }
 - (JobApplications*)getJobApplicationsForDay:(JobApplicationDate*)jobApplicationDate{
     
-    return [aDictionary objectForKey:jobApplicationDate];
+    return [aDictionary objectForKey:[self stringFromJobApplicationDate:jobApplicationDate]];
 }
 
 - (void)setJobApplications:(JobApplications*)jobApplications forJobApplicationDate:(JobApplicationDate*)jobApplicationDate{
@@ -29,4 +29,10 @@
 //    [aDictionary setValue:value forKey:key];
 //}
 
+-(NSString*)stringFromJobApplicationDate:(JobApplicationDate*)jobApplicationDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    JobPostedDate *jobPostedDate = [[JobPostedDate alloc]initByPostedDate:[NSDate date]];
+    formatter.dateFormat = @"yyyyMMdd";
+     return [formatter stringFromDate:jobApplicationDate];
+}
 @end

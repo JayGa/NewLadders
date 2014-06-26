@@ -16,31 +16,32 @@
 
 -(JobApplications*)prepareDailyJobReport:(NSString *)jobPostedDateString{
     
-    return [[[JAModel sharedInstance]dayApplicationsMutableDict] objectForKey:jobPostedDateString];
+    return [[[JAModel sharedInstance]dayApplicationsMutableDict] getJobApplicationsForDay:jobPostedDateString];
 }
 
 -(JobApplications*)prepareAggregrateReportByJob:(IDentifer*)jobID{
     
-    return [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:jobID];
+    return [[[JAModel sharedInstance]jobIDApplicationsMutableDict]getJobApplicationsForJobID:jobID];
 }
 
--(JobApplications*)prepareAggregrateReportByEmployer:(IDentifer*)employerID {
+-(PostedJobs*)prepareAggregrateReportByEmployer:(IDentifer*)employerID {
     
-    return [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID];
+    return [[[EmployerModel sharedInstance]employerJobMutableDict]getJobsPostedByEmployerWithID:employerID];
 }
 
 -(JobApplications*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID{
     
-    JobApplications *jobApplicationArrayByEmployer = [[JobApplications alloc]init];
-    for(PostedJobs *jobList in [[[EmployerModel sharedInstance]employerJobMutableDict]objectForKey:employerID]){
-        NSLog(@"In prepareJobApplicationReportByEmployer 1st joblist is: %@", jobList);
-        
-        for (id<IJob>job in jobList) {
+//    JobApplications *jobApplicationArrayByEmployer = [[JobApplications alloc]init];
+//    for(PostedJobs *jobList in [[[EmployerModel sharedInstance]employerJobMutableDict]getJobsPostedByEmployerWithID:employerID]){
+//        NSLog(@"In prepareJobApplicationReportByEmployer 1st joblist is: %@", jobList);
+//        
+//        for (id<IJob>job in jobList) {
 //            NSLog(@"In prepareJobApplicationReportByEmployer 2nd job is: %@", job);
 //            id<IJobApplication>jobApplication = [[[JAModel sharedInstance]jobIDApplicationsMutableDict]objectForKey:job.jobIDName.jobID];
 //            [jobApplicationArrayByEmployer addObject:jobApplication];
-        }
-    }
-    return jobApplicationArrayByEmployer;
+//        }
+//    }
+//    return jobApplicationArrayByEmployer;
+    return NULL;
 }
 @end
