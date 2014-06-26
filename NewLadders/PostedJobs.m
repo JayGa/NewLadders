@@ -16,7 +16,7 @@
     return self;
 }
 
-- (void)addJob:(id<IJob>)job{
+- (void)addPostedJob:(id<IJob>)job{
     
     [anArray addObject:job];
 }
@@ -25,7 +25,7 @@
     return [anArray count];
 }
 
-- (id<IJob>)jobAtIndex:(NSUInteger)index{
+- (id<IJob>)postedJobAtIndex:(NSUInteger)index{
     
     return [anArray objectAtIndex:index];
 }

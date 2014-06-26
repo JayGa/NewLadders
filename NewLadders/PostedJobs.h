@@ -14,8 +14,8 @@
     NSMutableArray *anArray;
 }
 
-- (void)addJob:(id<IJob>)job;
+- (void)addPostedJob:(id<IJob>)job;
 - (NSUInteger)count;
-- (id<IJob>)jobAtIndex:(NSUInteger)index;
+- (id<IJob>)postedJobAtIndex:(NSUInteger)index;
 
 @end

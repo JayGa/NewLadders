@@ -14,7 +14,7 @@
     NSMutableArray *anArray;
 }
 
-- (void)addReumes:(Resume*)resume;
+- (void)addResumes:(Resume*)resume;
 - (NSUInteger)count;
 - (Resume*)resumeAtIndex:(NSUInteger)index;
 

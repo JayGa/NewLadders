@@ -34,7 +34,7 @@ static EmployerModel *sharedInstance;
     }
     
     postedJobs = [[self employerJobMutableDict] getJobsPostedByEmployerWithID:employerID];
-    [postedJobs addJob:job];
+    [postedJobs addPostedJob:job];
 }
 
 -(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID{
