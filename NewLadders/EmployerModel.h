@@ -18,7 +18,7 @@
 }
 +(EmployerModel*)sharedInstance;
 @property (atomic, strong) JobsForEmployers *employerJobMutableDict;
--(NSString*)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID;
+-(void)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID;
 -(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID;
 -(JobApplications*)getJobapplicationForJobsID:(IDentifer *)jobID;
 @end

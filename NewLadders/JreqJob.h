@@ -13,7 +13,9 @@
 #import "Resume.h"
 #import "JobMetaData.h"
 
-@interface JreqJob : NSObject <IJob>
-@property JobIDName *jobIDName;
-@property JobMetaData *jobMetaData;
+@interface JreqJob : NSObject <IJob>{
+    JobIDName *ijobIDName;
+    JobMetaData *ijobMetaData;
+}
+-(id<IJob>)initWithIDName:(JobIDName*)jobIDName AndMetaData:(JobMetaData*)jobMetaData;
 @end

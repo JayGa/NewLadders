@@ -54,21 +54,37 @@
 - (void)testpostJReqJobWithNameType{
     NSString *jobName = @"Test JReq Job";
     job = [[JreqJob alloc]init];
-    NSString *result = [employer postJobWithName:jobName withJobType:job];
-    XCTAssertTrue([result isEqualToString:jobName ], @"Should return True");
+    
+    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employer.employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+
+    JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
+                                    
+    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
+    
+    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count];
+    
+    [employer postJobWithName:jobName withJobType:job];
+    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count];
+
+    XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
 }
 
 - (void)testpostATSJobWithNameType{
     NSString *jobName = @"Test ATS Job";
     job = [[ATSJob alloc]init];
-    NSString *result = [employer postJobWithName:jobName withJobType:job];
-    XCTAssertTrue([result isEqualToString:jobName ], @"Should return True");
+    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employer.employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
+    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
+    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employer.employerID] count];
+    [employer postJobWithName:jobName withJobType:job];
+    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employer.employerID] count];
+    XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
 }
 
 -(void)testSeePostedJobListing{
-    PostedJobs *tempArray = [employer seePostedJobListing];
+    PostedJobs *postedJobsArray = [employer seePostedJobListing];
     
-    XCTAssert([tempArray count]==2, @"Should return a MutableArrayWrap");
+    XCTAssert([postedJobsArray count]==2, @"Should return a MutableArrayWrap");
 }
 
 -(void)testSeeApplicationsForAjob{

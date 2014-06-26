@@ -26,7 +26,7 @@ static JSModel *sharedInstance;
     return sharedInstance;
 }
 
--(NSString*)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID{
+-(void)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID{
     
 //    NSLog(@"In saveJob BEFORE :%@",self.jobSeekerSavedJobsMutableDict);
     if ([self jobSeekerSavedJobsMutableDict]== nil) {
@@ -42,11 +42,11 @@ static JSModel *sharedInstance;
     tempArray = [self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID];
     [tempArray addObject:job];
 //    NSLog(@"In saveJob AFTER :%@", [self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID]);
-    return job.jobIDName.jobID;
+//    return job.jobIDName.jobID;
 
 }
 
--(NSString*)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID{
+-(void)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID{
 
     
 //    Method 1
@@ -112,7 +112,7 @@ static JSModel *sharedInstance;
         
     }
 
-    return jobApplication.jobID;
+//    return jobApplication.jobID;
 }
 
 -(SavedJobs*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID{

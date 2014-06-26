@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IDentifer.h"
+#import "PostedJobs.h"
 
 @interface JobsForEmployers : NSObject{
     
     NSMutableDictionary *aDictionary;
 }
-- (id)objectForKey:(id)aKey;
-- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey;
+- (PostedJobs*)getJobsPostedByEmployerWithID:(IDentifer*)employerID;
+- (void)postJobs:(PostedJobs*)postedJobs ByEmployerWithID:(IDentifer*)employerID;
+//- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey;
 - (void)setValue:(id)value forKey:(NSString *)key;
 
 @end

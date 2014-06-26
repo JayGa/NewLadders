@@ -21,7 +21,7 @@ static EmployerModel *sharedInstance;
     return sharedInstance;
 }
 
--(NSString*)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID{
+-(void)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID{
     
     if(self.employerJobMutableDict == nil){
         [self setEmployerJobMutableDict:[[JobsForEmployers alloc]init]];
@@ -35,7 +35,6 @@ static EmployerModel *sharedInstance;
     
     tempArray = [[self employerJobMutableDict] objectForKey:employerID];
     [tempArray addObject:job];
-    return job.jobIDName.jobName;
 }
 
 -(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID{

@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
 
-@interface JobIDName : NSObject
-@property IDentifer *jobID;
-@property NSString *jobName;
+@interface JobIDName : NSObject{
+    
+    IDentifer *ijobID;
+    NSString *ijobName;
+}
+- (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(NSString*)jobName;
 @end

@@ -13,9 +13,9 @@
 
 @implementation Jobseeker
 
--(NSString*) saveJob:(id<IJob>)job{
+-(void) saveJob:(id<IJob>)job{
 
-    return [[JSModel sharedInstance] saveJob:job withJobseekerID:self.jobseekerID];
+    [[JSModel sharedInstance] saveJob:job withJobseekerID:self.jobseekerID];
 }
 
 -(SavedJobs*) seeSavedJobs{
@@ -23,13 +23,13 @@
     return [[JSModel sharedInstance] getSavedJobsForJobseekerID:self.jobseekerID];
 }
 
--(NSString*)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume{
+-(void)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume{
     
     if (resume!=nil) {
         [(JReqJobApplication*)jobApplication setResumeID:resume.resumeID];
     }
-    NSString *returnStatus = [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:self.jobseekerID];
-    return returnStatus;
+    [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:self.jobseekerID];
+//    return returnStatus;
 }
 
 -(JobApplications *) seeAppliedJobs{

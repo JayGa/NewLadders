@@ -19,7 +19,7 @@
 }
 @property IDentifer *employerID;
 @property DisplayName *employerDisplayName;
--(NSString*)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job;
+-(void)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job;
 -(PostedJobs*)seePostedJobListing;
 -(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID;
 -(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;

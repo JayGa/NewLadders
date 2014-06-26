@@ -23,8 +23,8 @@
 @property (strong, nonatomic) SavedJobsForJobseeker *jobSeekerSavedJobsMutableDict;
 
 +(JSModel*)sharedInstance;
--(NSString*)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID;
--(NSString*)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID;
+-(void)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID;
+-(void)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID;
 -(SavedJobs*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID;
 -(JobApplications*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID;
 @end

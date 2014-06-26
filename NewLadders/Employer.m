@@ -15,24 +15,17 @@
 @implementation Employer
 //@synthesize employerID;
 
--(NSString*)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
+-(void)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
     
-    job = [self setValueForJob:job WithJobName:jobName];
-    NSString *returnStatus = [[EmployerModel sharedInstance] postJob:job withEmployerID:self.employerID];
-    return returnStatus;
+//    job = [self setValueForJob:job WithJobName:jobName];
+    [[EmployerModel sharedInstance] postJob:job withEmployerID:self.employerID];
+
 }
 
--(id<IJob>)setValueForJob:(id<IJob>)job WithJobName:(NSString *)jobName{
-    JobMetaData *tempJobMetaData = [[JobMetaData alloc]init];
-    [tempJobMetaData setJobPosterID:self.employerID];
-    [tempJobMetaData setJobPostedDate: [[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    JobIDName *jobIDName = [[JobIDName alloc]init];
-    [jobIDName setJobID:[job generateJobID]];
-    [jobIDName setJobName:jobName];
-    [job setJobIDName:jobIDName];
-    [job setJobMetaData:tempJobMetaData];
-    return job;
-}
+//-(id<IJob>)setValueForJob:(id<IJob>)job WithJobName:(NSString *)jobName{
+//
+//    return job;
+//}
 
 -(PostedJobs*)seePostedJobListing{
     

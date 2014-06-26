@@ -7,6 +7,7 @@
 //
 
 #import "JobsForEmployers.h"
+#import "IDentifer.h"
 
 @implementation JobsForEmployers
 
@@ -15,17 +16,18 @@
     aDictionary = [[NSMutableDictionary alloc]init];
     return self;
 }
-- (id)objectForKey:(id)aKey{
+- (PostedJobs*)getJobsPostedByEmployerWithID:(IDentifer*)employerID{
     
-    return [aDictionary objectForKey:aKey];
+    return [aDictionary objectForKey:employerID];
 }
-- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey{
+- (void)postJobs:(PostedJobs*)postedJobs ByEmployerWithID:(IDentifer*)employerID{
     
-    [aDictionary setObject:anObject forKey:aKey];
+    [aDictionary setObject:postedJobs forKey:employerID];
 }
-- (void)setValue:(id)value forKey:(NSString *)key{
-    [aDictionary setValue:value forKey:key];
-}
+
+//- (void)setValue:(id)value forKey:(NSString *)key{
+//    [aDictionary setValue:value forKey:key];
+//}
 
 
 @end

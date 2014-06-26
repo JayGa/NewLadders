@@ -21,8 +21,8 @@
 }
 @property(atomic, strong) IDentifer *jobseekerID;
 @property(atomic, strong) Resumes *resumeArray;
--(NSString*)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
--(NSString*) saveJob:(IDentifer *)jobID;
+-(void)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
+-(void) saveJob:(IDentifer *)jobID;
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
 @end

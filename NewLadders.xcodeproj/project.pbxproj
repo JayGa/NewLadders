@@ -264,9 +264,9 @@
 				82AFB9B9194B8F93002ECF5A /* ATSJob.h */,
 				82AFB9BA194B8F93002ECF5A /* ATSJob.m */,
 				82A728C3195384D90039DF87 /* JobMetaData.h */,
+				82A728C4195384D90039DF87 /* JobMetaData.m */,
 				82CDE9F21958B2E500FD06E0 /* JobIDName.h */,
 				82CDE9F31958B2E500FD06E0 /* JobIDName.m */,
-				82A728C4195384D90039DF87 /* JobMetaData.m */,
 			);
 			name = Jobs;
 			sourceTree = "<group>";

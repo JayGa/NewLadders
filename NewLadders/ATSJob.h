@@ -13,7 +13,9 @@
 #import "Resume.h"
 #import "JobMetaData.h"
 
-@interface ATSJob : NSObject <IJob>
-@property JobIDName *jobIDName;
-@property JobMetaData *jobMetaData;
+@interface ATSJob : NSObject <IJob>{
+    
+    JobIDName *ijobIDName;
+    JobMetaData *ijobMetaData;
+}
 @end

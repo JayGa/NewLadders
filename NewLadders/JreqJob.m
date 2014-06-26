@@ -7,9 +7,18 @@
 //
 
 #import "JreqJob.h"
+#import "JobIDName.h"
+#import "JobMetaData.h"
 
 @implementation JreqJob
 
+
+-(id<IJob>)initWithIDName:(JobIDName*)jobIDName AndMetaData:(JobMetaData*)jobMetaData{
+    self = [super init];
+    ijobIDName = jobIDName;
+    ijobMetaData = jobMetaData;
+    return self;
+}
 -(IDentifer*)generateJobID{
     
     //ID generation mechanism;

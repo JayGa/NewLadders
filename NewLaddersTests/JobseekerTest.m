@@ -16,6 +16,8 @@
 #import "ATSJob.h"
 #import "JobIDName.h"
 #import "EmployerModel.h"
+#import "JSModel.h"
+#import "JAModel.h"
 
 @interface JobseekerTest : XCTestCase{
     
@@ -26,7 +28,7 @@
     Resume  *resume;
     IDentifer *jobID;
     id<IJob> job;
-    PostedJobs *tempJobsArray;
+    PostedJobs *postedJobs;
 }
 
 @end
@@ -40,7 +42,7 @@
     resume = [[Resume alloc]init];
     resumeID = [[IDentifer alloc]initWithString:@"345"];
     employerID = [[IDentifer alloc]initWithString:@"333"];
-    tempJobsArray = [[EmployerModel sharedInstance].employerJobMutableDict objectForKey:employerID];
+    postedJobs = [[EmployerModel sharedInstance].employerJobMutableDict getJobsPostedByEmployerWithID:employerID];
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -85,8 +87,27 @@
     jobApplication = [[JReqJobApplication alloc]init];
     jobApplication.jobID = jobID;
     jobApplication.jobseekerID = jobSeeker.jobseekerID;
-    NSString *returnString = [jobSeeker applyForJob: jobApplication WithResume:resume];
-    XCTAssertTrue([returnString isEqualToString:@"1345"] , @"Should return true");
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    JobPostedDate *jobPostedDate = [[JobPostedDate alloc]initByPostedDate:[NSDate date]];
+    formatter.dateFormat = @"yyyyMMdd";
+    NSString *jobPostedDateString = [formatter stringFromDate:jobPostedDate];
+    
+    
+    NSUInteger beforeAppliedJobCount = [[[[JSModel sharedInstance]jobSeekerAppliedJobsMutableDict]objectForKey:jobSeeker.jobseekerID] count];
+    NSUInteger beforeJobApplicationCount = [[[[JAModel sharedInstance] jobIDApplicationsMutableDict]objectForKey:jobApplication.jobID] count];
+    NSUInteger beforeJobApplicationByDayCount = [[[[JAModel sharedInstance]dayApplicationsMutableDict]objectForKey:jobPostedDateString] count];
+    
+    [jobSeeker applyForJob: jobApplication WithResume:resume];
+    
+    NSUInteger afterAppliedJobCount = [[[[JSModel sharedInstance]jobSeekerAppliedJobsMutableDict]objectForKey:jobSeeker.jobseekerID] count];
+    NSUInteger afterJobApplicationCount = [[[[JAModel sharedInstance] jobIDApplicationsMutableDict]objectForKey:jobApplication.jobID] count];
+    NSUInteger afterJobApplicationByDayCount = [[[[JAModel sharedInstance]dayApplicationsMutableDict]objectForKey:jobPostedDateString] count];
+    
+    XCTAssertTrue( (afterAppliedJobCount - beforeAppliedJobCount)==1, @"Should return True");
+    XCTAssertTrue( (afterJobApplicationCount - beforeJobApplicationCount)==1, @"Should return True");
+    XCTAssertTrue( (afterJobApplicationByDayCount - beforeJobApplicationByDayCount)==1, @"Should return True");
 }
 
 - (void)testApplyForATSJob{
@@ -94,17 +115,36 @@
     jobApplication = [[ATSJobApplication alloc]init];
     jobApplication.jobID = jobID;
     jobApplication.jobseekerID = jobSeeker.jobseekerID;
-    NSString *returnString = [jobSeeker applyForJob:jobApplication WithResume:nil];
-    XCTAssertTrue([returnString isEqualToString:@"2345"], @"Should return true");
+    [jobSeeker applyForJob:jobApplication WithResume:nil];
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    JobPostedDate *jobPostedDate = [[JobPostedDate alloc]initByPostedDate:[NSDate date]];
+    formatter.dateFormat = @"yyyyMMdd";
+    NSString *jobPostedDateString = [formatter stringFromDate:jobPostedDate];
+    
+    
+    NSUInteger beforeAppliedJobCount = [[[[JSModel sharedInstance]jobSeekerAppliedJobsMutableDict]objectForKey:jobSeeker.jobseekerID] count];
+    NSUInteger beforeJobApplicationCount = [[[[JAModel sharedInstance] jobIDApplicationsMutableDict]objectForKey:jobApplication.jobID] count];
+    NSUInteger beforeJobApplicationByDayCount = [[[[JAModel sharedInstance]dayApplicationsMutableDict]objectForKey:jobPostedDateString] count];
+    
+    [jobSeeker applyForJob: jobApplication WithResume:resume];
+    
+    NSUInteger afterAppliedJobCount = [[[[JSModel sharedInstance]jobSeekerAppliedJobsMutableDict]objectForKey:jobSeeker.jobseekerID] count];
+    NSUInteger afterJobApplicationCount = [[[[JAModel sharedInstance] jobIDApplicationsMutableDict]objectForKey:jobApplication.jobID] count];
+    NSUInteger afterJobApplicationByDayCount = [[[[JAModel sharedInstance]dayApplicationsMutableDict]objectForKey:jobPostedDateString] count];
+    
+    XCTAssertTrue( (afterAppliedJobCount - beforeAppliedJobCount)==1, @"Should return True");
+    XCTAssertTrue( (afterJobApplicationCount - beforeJobApplicationCount)==1, @"Should return True");
+    XCTAssertTrue( (afterJobApplicationByDayCount - beforeJobApplicationByDayCount)==1, @"Should return True");
 }
 
 - (void) testSeeAppliedJobs{
-    JobApplications  *tempArray = [jobSeeker seeAppliedJobs];
+    JobApplications  *jobApplicationsArray = [jobSeeker seeAppliedJobs];
     NSMutableArray *testArray = [[NSMutableArray alloc]initWithObjects:@"2345", @"1345", nil];
 
-    for(int i=0; i< [tempArray count]; i++ ){
+    for(int i=0; i< [jobApplicationsArray count]; i++ ){
 //        NSLog(@"In testSeeAppliedJobs Element is:%@", [(id<IJobApplication>)[tempArray objectAtIndex:i]jobID]);
-        XCTAssert([[(id<IJobApplication>)[tempArray objectAtIndex:i ]jobID] isEqualToString:[testArray objectAtIndex:i]], @"Should be True");
+        XCTAssert([[(id<IJobApplication>)[jobApplicationsArray objectAtIndex:i ]jobID] isEqualToString:[testArray objectAtIndex:i]], @"Should be True");
     }
 }
 

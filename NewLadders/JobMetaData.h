@@ -10,7 +10,10 @@
 #import "IDentifer.h"
 #import "JobPostedDate.h"
 
-@interface JobMetaData : NSObject
-@property IDentifer *jobPosterID;
-@property JobPostedDate *jobPostedDate;
+@interface JobMetaData : NSObject{
+    
+    IDentifer *ijobPosterID;
+    JobPostedDate *ijobPostedDate;
+}
+- (JobMetaData*)initWithEmployerID:(IDentifer*)jobPosterID AndName:(JobPostedDate*)jobPostedDate;
 @end

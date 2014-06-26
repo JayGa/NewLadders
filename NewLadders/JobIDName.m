@@ -10,4 +10,12 @@
 
 @implementation JobIDName
 
+
+- (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(NSString*)jobName{
+    
+    self = [super init];
+    ijobID = jobID;
+    ijobName = jobName;
+    return self;
+}
 @end
