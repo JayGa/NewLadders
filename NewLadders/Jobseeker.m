@@ -15,26 +15,26 @@
 
 -(void) saveJob:(id<IJob>)job{
 
-    [[JSModel sharedInstance] saveJob:job withJobseekerID:self.jobseekerID];
+    [[JSModel sharedInstance] saveJob:job withJobseekerID:jobseekerID];
 }
 
 -(SavedJobs*) seeSavedJobs{
 
-    return [[JSModel sharedInstance] getSavedJobsForJobseekerID:self.jobseekerID];
+    return [[JSModel sharedInstance] getSavedJobsForJobseekerID:jobseekerID];
 }
 
 -(void)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume{
     
     if (resume!=nil) {
-        [(JReqJobApplication*)jobApplication setResumeID:resume.resumeID];
+        [(JReqJobApplication*)jobApplication setResumeID:resume->resumeID];
     }
-    [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:self.jobseekerID];
+    [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:jobseekerID];
 //    return returnStatus;
 }
 
 -(JobApplications *) seeAppliedJobs{
 
-    return [[JSModel sharedInstance] getAppliedJobsForJobseekerID:self.jobseekerID];
+    return [[JSModel sharedInstance] getAppliedJobsForJobseekerID:jobseekerID];
 }
 
 

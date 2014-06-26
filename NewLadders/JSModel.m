@@ -70,23 +70,7 @@ static JSModel *sharedInstance;
 
     
 //    Method 2
-    {
-        //    NSLog(@"In applyJob2 BEFORE :%@" , [JAModel sharedInstance].jobIDApplicationsMutableDict );
-        
-        if([JAModel sharedInstance].jobIDApplicationsMutableDict == nil){
-            [[JAModel sharedInstance] setJobIDApplicationsMutableDict:[[JobApplicationsForJobIDs alloc]init]];
-        }
-        JobApplications *jobApplications;
-        if([[JAModel sharedInstance].jobIDApplicationsMutableDict getJobApplicationsForJobID:jobApplication.jobID] == nil){
-            jobApplications = [[JobApplications alloc]init];
-            [[[JAModel sharedInstance] jobIDApplicationsMutableDict] setJobApplicatons:jobApplications forJobID:jobApplication.jobID];
-        }
-        
-        jobApplications = [[JAModel sharedInstance].jobIDApplicationsMutableDict getJobApplicationsForJobID:jobApplication.jobID];
-        [jobApplications addJobApplication:jobApplication];
-        //    NSLog(@"In applyJob2 AFTER :%@", [JAModel sharedInstance].jobIDApplicationsMutableDict );
-        
-    }
+    [jobApplication  updateJobApplicationModel];
 
     
 //    Method 3

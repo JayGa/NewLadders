@@ -14,15 +14,15 @@
 @implementation CSVReportGenerator
 
 -(NSString*)prepareReport:(JobApplications *)dataArray withTitle:(NSString *)title{
-    NSString *returnString = [NSString stringWithFormat:@"Job Application Report,%@\nJOBID, JOBSEEKER\n ",title];
+    NSString *cVSReportString = [NSString stringWithFormat:@"Job Application Report,%@\nJOBID, JOBSEEKER\n ",title];
     id<IJobApplication> jobApplication;
     for (int i =0; i< [dataArray count]; i++) {
         jobApplication = [dataArray jobApplicationAtIndex:i];
-        returnString = [NSString stringWithFormat:@"%@%@, %@\n",returnString, [jobApplication jobID], [jobApplication jobseekerID]];
+        [jobApplication appendJobApplicationReportRecordTo:cVSReportString];
     }
-    NSLog(@"CVS report is:%@", returnString);
-    [self writeReport:returnString ToFile:title];
-    return returnString;
+    NSLog(@"CVS report is:%@", cVSReportString);
+    [self writeReport:cVSReportString ToFile:title];
+    return cVSReportString;
 }
 
 -(void)writeReport:(NSString *)content ToFile:(NSString *)title{

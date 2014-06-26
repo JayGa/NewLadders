@@ -16,11 +16,9 @@
 #import "Resumes.h"
 
 @interface Jobseeker : NSObject{
-    
-    //@property BOOL hasResume;
+    IDentifer *jobseekerID;
+    Resumes *resumeArray;
 }
-@property(atomic, strong) IDentifer *jobseekerID;
-@property(atomic, strong) Resumes *resumeArray;
 -(void)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
 -(void) saveJob:(IDentifer *)jobID;
 -(SavedJobs*) seeSavedJobs;

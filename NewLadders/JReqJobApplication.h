@@ -8,8 +8,12 @@
 
 #import "IJobApplication.h"
 
-@interface JReqJobApplication : NSObject <IJobApplication>
-@property IDentifer *jobseekerID ;
-@property IDentifer *jobID;
-@property IDentifer *resumeID;
+@interface JReqJobApplication : NSObject <IJobApplication>{
+    
+    IDentifer *jobseekerID ;
+    IDentifer *jobID;
+    IDentifer *resumeID;
+}
+-(void)updateJobApplicationModel;
+-(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
 @end
