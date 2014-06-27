@@ -31,14 +31,15 @@
     id<IJob> job;
     id<IJobApplication> jobApplication;
     Jobseeker *jobSeeker;
-    IDentifer *jobseekerID;
+    IDentifer *jobSeekerID;
+    IDentifer *employerID;
 }
 
 - (void)setUp {
     [super setUp];
     employer = [[Employer alloc]init];
-    employer.employerID = [[IDentifer alloc]initWithString:@"333"];
-    jobseekerID = [[IDentifer alloc]initWithString:@"777"];
+    employerID = [[IDentifer alloc]initWithString:@"333"];
+    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -88,25 +89,22 @@
 }
 
 -(void)testSeeApplicationsForAjob{
-
-    IDentifer *jobID = [[IDentifer alloc]initWithString:@"1345"];
-    jobApplication = [[JReqJobApplication alloc]init];
-    jobApplication.jobID = jobID;
-    jobApplication.jobseekerID = jobseekerID;
-    Resume *resume1 = [[Resume alloc]init];
-    jobSeeker = [[Jobseeker alloc]init];
-    jobSeeker.jobseekerID = jobseekerID = [[IDentifer alloc]initWithString:@"777"];
-    [jobSeeker applyForJob: jobApplication WithResume:resume1];
     
-    Resume *resume2 = [[Resume alloc]init];
-    jobSeeker = [[Jobseeker alloc]init];
-    jobSeeker.jobseekerID = jobseekerID = [[IDentifer alloc]initWithString:@"778"];
-    [jobSeeker applyForJob: jobApplication WithResume:resume2];
+    IDentifer *jobID = [[IDentifer alloc]initWithString:@"1345"];
+
+    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
+    jobApplication = [[JReqJobApplication alloc]initWithJobseekerId:jobSeekerID forJObID:jobID withOptionalResumeID:resumeID1];
+    [jobApplication applyForJob];
+    
+    jobSeekerID = [[IDentifer alloc]initWithString:@"778"];
+    IDentifer *resumeID2 = [[IDentifer alloc]initWithString:@"441"];
+    jobApplication = [[JReqJobApplication alloc]initWithJobseekerId:jobSeekerID forJObID:jobID withOptionalResumeID:resumeID2];
+    [jobApplication applyForJob];
     
     jobID = [[IDentifer alloc]initWithString:@"2345"];
-    jobApplication = [[ATSJobApplication alloc]init];
-    jobApplication.jobID = jobID;
-    jobApplication.jobseekerID = [[IDentifer alloc]initWithString:@"777"];
+    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
+    jobApplication = [[ATSJobApplication alloc]initWithJobseekerId:jobSeekerID forJObID:jobID withOptionalResumeID:nil];
     [jobSeeker applyForJob:jobApplication WithResume:nil];
     
     

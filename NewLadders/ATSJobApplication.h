@@ -9,9 +9,12 @@
 #import "IJobApplication.h"
 
 @interface ATSJobApplication : NSObject <IJobApplication>{
-    IDentifer *jobseekerID ;
-    IDentifer *jobID;
+    IDentifer *gjobSeekerID ;
+    IDentifer *gjobID;
+    IDentifer *gresumeID;
 }
+-(void)applyForJob;
 -(void)updateJobApplicationModel;
 -(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
+-(id<IJobApplication>)initWithJobseekerId:(IDentifer*)jobSeekerID forJObID:(IDentifer*)jobID withOptionalResumeID:(IDentifer*)resumeID;
 @end

@@ -26,7 +26,7 @@
 		821CE36B193F728500E5447F /* Jobseeker.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE36A193F728500E5447F /* Jobseeker.m */; };
 		821CE371193F731E00E5447F /* Resume.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE370193F731E00E5447F /* Resume.m */; };
 		8228BE69195B0C4C000A7E90 /* Resumes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228BE68195B0C4C000A7E90 /* Resumes.m */; };
-		82976768195CC66100A5CE96 /* CVSReportString.m in Sources */ = {isa = PBXBuildFile; fileRef = 82976767195CC66100A5CE96 /* CVSReportString.m */; };
+		82976768195CC66100A5CE96 /* CSVReportString.m in Sources */ = {isa = PBXBuildFile; fileRef = 82976767195CC66100A5CE96 /* CSVReportString.m */; };
 		8297676B195CC66E00A5CE96 /* HTMLReportString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8297676A195CC66E00A5CE96 /* HTMLReportString.m */; };
 		82A728BD19537E3F0039DF87 /* JSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A728BC19537E3F0039DF87 /* JSModel.m */; };
 		82A728C019537E610039DF87 /* JAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A728BF19537E610039DF87 /* JAModel.m */; };
@@ -101,8 +101,8 @@
 		821CE372193F732F00E5447F /* IJobApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJobApplication.h; sourceTree = "<group>"; };
 		8228BE67195B0C4C000A7E90 /* Resumes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resumes.h; sourceTree = "<group>"; };
 		8228BE68195B0C4C000A7E90 /* Resumes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resumes.m; sourceTree = "<group>"; };
-		82976766195CC66100A5CE96 /* CVSReportString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVSReportString.h; sourceTree = "<group>"; };
-		82976767195CC66100A5CE96 /* CVSReportString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVSReportString.m; sourceTree = "<group>"; };
+		82976766195CC66100A5CE96 /* CSVReportString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSVReportString.h; sourceTree = "<group>"; };
+		82976767195CC66100A5CE96 /* CSVReportString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVReportString.m; sourceTree = "<group>"; };
 		82976769195CC66E00A5CE96 /* HTMLReportString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLReportString.h; sourceTree = "<group>"; };
 		8297676A195CC66E00A5CE96 /* HTMLReportString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLReportString.m; sourceTree = "<group>"; };
 		82A728BB19537E3F0039DF87 /* JSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSModel.h; sourceTree = "<group>"; };
@@ -261,6 +261,28 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
+		8297676C195CC7BE00A5CE96 /* Reporting */ = {
+			isa = PBXGroup;
+			children = (
+				82976766195CC66100A5CE96 /* CSVReportString.h */,
+				82976767195CC66100A5CE96 /* CSVReportString.m */,
+				82976769195CC66E00A5CE96 /* HTMLReportString.h */,
+				8297676A195CC66E00A5CE96 /* HTMLReportString.m */,
+			);
+			name = Reporting;
+			sourceTree = "<group>";
+		};
+		8297676D195CC7CB00A5CE96 /* Dates */ = {
+			isa = PBXGroup;
+			children = (
+				8201B64519508FC10048CA56 /* JobPostedDate.h */,
+				8201B64619508FC10048CA56 /* JobPostedDate.m */,
+				8201B648195090940048CA56 /* JobApplicationDate.h */,
+				8201B649195090940048CA56 /* JobApplicationDate.m */,
+			);
+			name = Dates;
+			sourceTree = "<group>";
+		};
 		82C8ECFC194F6869009ED64F /* Jobs */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,14 +306,8 @@
 				82C8ECFA194F601B009ED64F /* DisplayName.m */,
 				82AFB9B2194B7A82002ECF5A /* IDentifer.h */,
 				82AFB9B3194B7A82002ECF5A /* IDentifer.m */,
-				8201B64519508FC10048CA56 /* JobPostedDate.h */,
-				8201B64619508FC10048CA56 /* JobPostedDate.m */,
-				8201B648195090940048CA56 /* JobApplicationDate.h */,
-				8201B649195090940048CA56 /* JobApplicationDate.m */,
-				82976766195CC66100A5CE96 /* CVSReportString.h */,
-				82976767195CC66100A5CE96 /* CVSReportString.m */,
-				82976769195CC66E00A5CE96 /* HTMLReportString.h */,
-				8297676A195CC66E00A5CE96 /* HTMLReportString.m */,
+				8297676D195CC7CB00A5CE96 /* Dates */,
+				8297676C195CC7BE00A5CE96 /* Reporting */,
 				82FF924E195AE7CF0087C3E7 /* ForEmployer */,
 				82FF9252195AE8730087C3E7 /* JobApplication */,
 				82FF9253195AE8930087C3E7 /* ForJobseeker */,
@@ -508,7 +524,7 @@
 				821CE36B193F728500E5447F /* Jobseeker.m in Sources */,
 				8201B64A195090940048CA56 /* JobApplicationDate.m in Sources */,
 				82FF9251195AE8570087C3E7 /* JobApplicationsForADay.m in Sources */,
-				82976768195CC66100A5CE96 /* CVSReportString.m in Sources */,
+				82976768195CC66100A5CE96 /* CSVReportString.m in Sources */,
 				821CE343193F723C00E5447F /* main.m in Sources */,
 				8201B641195080F70048CA56 /* JobApplicationReport.m in Sources */,
 				820557141953766500E455FA /* EmployerModel.m in Sources */,

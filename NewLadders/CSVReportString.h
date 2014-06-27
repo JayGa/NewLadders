@@ -1,5 +1,5 @@
 //
-//  HTMLReportString.h
+//  CVSReportString.h
 //  NewLadders
 //
 //  Created by Jay Gaonkar on 6/26/14.
@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HTMLReportString : NSString{
+@interface CSVReportString : NSString{
     NSString *aString;
 }
-+ (HTMLReportString*)appedReportWith:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
+
++ (CSVReportString*)appedReportWith:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
 @end
+

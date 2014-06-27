@@ -7,13 +7,19 @@
 //
 
 #import "IJobApplication.h"
+#import "CSVReportString.h"
+#import "HTMLReportString.h"
 
 @interface JReqJobApplication : NSObject <IJobApplication>{
     
-    IDentifer *jobseekerID ;
-    IDentifer *jobID;
-    IDentifer *resumeID;
+    IDentifer *gjobSeekerID ;
+    IDentifer *gjobID;
+    IDentifer *gresumeID;
 }
+-(void)applyForJob;
 -(void)updateJobApplicationModel;
--(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
+-(id<IJobApplication>)initWithJobseekerId:(IDentifer*)jobSeekerID forJObID:(IDentifer*)jobID withOptionalResumeID:(IDentifer*)resumeID;
+//-(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
+-(CSVReportString*)appendJobApplicationReportRecordTo:(CSVReportString*)cSVReportString;
+-(HTMLReportString*)appendJobApplicationHTMLReportRecordTo:(HTMLReportString*)hTMLReportString;
 @end

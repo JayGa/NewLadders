@@ -12,8 +12,11 @@
 @protocol IJobApplication <NSObject>
 //{
 //    
-//    IDentifer *jobseekerID ;
+//    IDentifer *jobSeekerID ;
 //    IDentifer *jobID;
 //}
+-(id<IJobApplication>)initWithJobseekerId:(IDentifer*)jobSeekerID forJObID:(IDentifer*)jobID withOptionalResumeID:(IDentifer*)resumeID;
+-(void)applyForJob;
 -(void)updateJobApplicationModel;
--(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;@end
+-(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
+@end
