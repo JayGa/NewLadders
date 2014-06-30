@@ -12,5 +12,8 @@
     
     DisplayName *gdisplayName;
 }
+-(DisplayName*)initWithFirstName:(NSString *)firstname andLastName:(NSString *)lastname;
+
+-(DisplayName*)initWithJob:(NSString *)jobName andPoster:(NSString *)postersName;
 
 @end

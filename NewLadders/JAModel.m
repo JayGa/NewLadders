@@ -23,10 +23,47 @@ static JAModel *sharedInstance;
 //}
 -(JobApplications*)getApplicationForJobID:(IDentifer *)jobID{
     
-    return [self.jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
+    return [jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
 }
 -(JobApplications*)getApplicationForDate:(JobApplicationDate *)jobApplicationDate{
     
-    return [self.dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
+    return [dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
+}
+
+-(void)updateModelWithJobApplication:(id<IJobApplication>)jobApplication withJobID:(IDentifer*)jobID
+{
+    
+    if(jobIDApplicationsMutableDict == nil){
+        jobIDApplicationsMutableDict = [[JobApplicationsForJobIDs alloc]init];
+    }
+    JobApplications *jobAppliations1;
+    if([jobIDApplicationsMutableDict getJobApplicationsForJobID: jobID] == nil){
+        jobAppliations1 = [[JobApplications alloc]init];
+        [jobIDApplicationsMutableDict setJobApplicatons:jobAppliations1 forJobID:jobID];
+    }
+    
+    jobAppliations1 = [jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
+    [jobAppliations1 addJobApplication:jobApplication];
+    //    NSLog(@"In applyJob2 AFTER :%@", [JAModel sharedInstance].jobIDApplicationsMutableDict );
+    
+    if(dayApplicationsMutableDict == nil){
+        dayApplicationsMutableDict=[[JobApplicationsForADay alloc]init];
+    }
+    JobApplications *jobApplications2;
+    JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    if([dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate] == nil){
+        jobApplications2 = [[JobApplications alloc]init];
+        [dayApplicationsMutableDict setJobApplications:jobApplications2 forJobApplicationDate:jobApplicationDate];
+    }
+    
+    jobApplications2 = [dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
+    [jobApplications2 addJobApplication:jobApplication];
+}
+-(NSUInteger)getNumberOfApplicationsByJobID:(IDentifer*)jobID{
+    return [[jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID]count];
+
+}
+-(NSUInteger)getNumberOfApplicationsAppllicationDate:(JobApplicationDate*)appliedDate{
+    return [[dayApplicationsMutableDict getJobApplicationsForDay:appliedDate]count];
 }
 @end

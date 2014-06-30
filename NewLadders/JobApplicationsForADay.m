@@ -35,4 +35,7 @@
     formatter.dateFormat = @"yyyyMMdd";
      return [formatter stringFromDate:jobApplicationDate];
 }
+- (NSUInteger)count{
+    return [aDictionary count];
+}
 @end

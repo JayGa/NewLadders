@@ -12,41 +12,25 @@
 
 @implementation ATSJobApplication
 
--(ATSJobApplication*)initWithJobseekerId:(IDentifer*)jobSeekerID forJObID:(IDentifer*)jobID withOptionalResumeID:(IDentifer*)resumeID{
+-(ATSJobApplication*)initWithJobseekerId:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID{
     
-    if(jobID!= nil && jobSeekerID!=nil){
+    if(jobApplicationCoreFields!=nil){
         self = [super init];
-        gjobSeekerID = jobSeekerID;
-        gjobID = jobID;
+        gjobApplicationCoreFields = jobApplicationCoreFields;
         gresumeID = resumeID;
         return self;
     }
     return nil;
 }
--(void)applyForJob{
+
+
+-(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString{
     
-}
--(void)updateJobApplicationModel
-{
-    //    NSLog(@"In applyJob2 BEFORE :%@" , [JAModel sharedInstance].jobIDApplicationsMutableDict );
-    
-    if([JAModel sharedInstance].jobIDApplicationsMutableDict == nil){
-        [[JAModel sharedInstance] setJobIDApplicationsMutableDict:[[JobApplicationsForJobIDs alloc]init]];
-    }
-    JobApplications *jobApplications;
-    if([[JAModel sharedInstance].jobIDApplicationsMutableDict getJobApplicationsForJobID: gjobID] == nil){
-        jobApplications = [[JobApplications alloc]init];
-        [[[JAModel sharedInstance] jobIDApplicationsMutableDict] setJobApplicatons:jobApplications forJobID:gjobID];
-    }
-    
-    jobApplications = [[JAModel sharedInstance].jobIDApplicationsMutableDict getJobApplicationsForJobID:gjobID];
-    [jobApplications addJobApplication:self];
-    //    NSLog(@"In applyJob2 AFTER :%@", [JAModel sharedInstance].jobIDApplicationsMutableDict );
-    
+    return [gjobApplicationCoreFields appendJobApplicationReportRecordTo:reportString];
 }
 
--(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString{
-    
-    return [NSString stringWithFormat:@"%@%@, %@\n",reportString, gjobID, gjobSeekerID];
+
+-(void)callUpdateJobApplicationModel{
+    [gjobApplicationCoreFields updateJobApplicationModel:self];
 }
 @end

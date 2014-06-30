@@ -15,7 +15,5 @@
 #import "JobIDName.h"
 
 @protocol IJob <NSObject>
-//@property JobIDName *jobIDName;
-//@property JobMetaData *jobMetaData;
 -(IDentifer*)generateJobID;
 @end

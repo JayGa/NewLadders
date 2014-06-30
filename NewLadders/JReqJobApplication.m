@@ -11,68 +11,32 @@
 #import "JAModel.h"
 #import "CSVReportString.h"
 #import "HTMLReportString.h"
+#import "IReportStringGenerator.h"
 
 @implementation JReqJobApplication
 
--(id<IJobApplication>)initWithJobseekerId:(IDentifer*)jobSeekerID forJObID:(IDentifer*)jobID withOptionalResumeID:(IDentifer*)resumeID{
+-(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID{
     
-    if(jobSeekerID!=nil && jobID!=nil && resumeID !=nil){
+    if(jobApplicationCoreFields!= nil && resumeID !=nil){
         
         self = [super init];
-        gjobSeekerID = jobSeekerID;
-        gjobID = jobID;
-        if(resumeID!=nil){
-            gresumeID = resumeID;
-        }
+        gJobApplicationCoreFields = jobApplicationCoreFields;
+        gresumeID = resumeID;
+
         return self;
     }
     return nil;
 }
--(void)applyForJob{
-    
+
+
+-(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString{
+
+        return [gJobApplicationCoreFields appendJobApplicationReportRecordTo:reportString];
 }
 
--(void)updateJobApplicationModel
-{
-    //    NSLog(@"In applyJob2 BEFORE :%@" , [JAModel sharedInstance].jobIDApplicationsMutableDict );
+-(void)callUpdateJobApplicationModel{
     
-    if([JAModel sharedInstance].jobIDApplicationsMutableDict == nil){
-        [[JAModel sharedInstance] setJobIDApplicationsMutableDict:[[JobApplicationsForJobIDs alloc]init]];
-    }
-    JobApplications *jobApplications;
-    if([[JAModel sharedInstance].jobIDApplicationsMutableDict getJobApplicationsForJobID: gjobID] == nil){
-        jobApplications = [[JobApplications alloc]init];
-        [[[JAModel sharedInstance] jobIDApplicationsMutableDict] setJobApplicatons:jobApplications forJobID:gjobID];
-    }
-    
-    jobApplications = [[JAModel sharedInstance].jobIDApplicationsMutableDict getJobApplicationsForJobID:gjobID];
-    [jobApplications addJobApplication:self];
-    //    NSLog(@"In applyJob2 AFTER :%@", [JAModel sharedInstance].jobIDApplicationsMutableDict );
-    
+    [gJobApplicationCoreFields updateJobApplicationModel:self];
 }
-
--(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString{
-
-    if([reportString isKindOfClass:[CSVReportString class]]){
-        
-        return [CSVReportString appedReportWith:@"%@%@, %@\n",reportString, gjobID, gjobSeekerID];
-    }else {
-        
-        return [HTMLReportString appedReportWith:@"%@<tr><td>%@</td><td>%@</td></tr>",reportString, gjobID, gjobSeekerID];
-    }
-}
-
-
-//-(CSVReportString*)appendJobApplicationReportRecordTo:(CSVReportString*)cSVReportString{
-//    
-//    return [CSVReportString appedReportWith:@"%@%@, %@\n",cSVReportString, jobID, jobseekerID];
-//}
-//
-//-(HTMLReportString*)appendJobApplicationReportRecordTo:(HTMLReportString*)hTMLReportString{
-//    
-//    return [HTMLReportString appedReportWith:@"%@<tr><td>%@</td><td>%@</td></tr>",hTMLReportString, jobID, jobseekerID];
-//}
-
-
 
 @end

@@ -14,11 +14,16 @@
 #import "JobApplicationsForADay.h"
 #import "JobApplications.h"
 
-@interface JAModel : NSObject
+@interface JAModel : NSObject{
+    
+    JobApplicationsForJobIDs *jobIDApplicationsMutableDict;
+    JobApplicationsForADay *dayApplicationsMutableDict;
+}
 +(JAModel*)sharedInstance;
-@property JobApplicationsForJobIDs *jobIDApplicationsMutableDict;
-@property JobApplicationsForADay *dayApplicationsMutableDict;
 -(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID;
 -(JobApplications*)getApplicationForJobID:(IDentifer *)jobID;
 -(JobApplications*)getApplicationForDate:(JobApplicationDate *)jobApplicationDate;
+-(void)updateModelWithJobApplication:(id<IJobApplication>)jobApplication withJobID:(IDentifer*)jobID;
+-(NSUInteger)getNumberOfApplicationsByJobID:(IDentifer*)jobID;
+-(NSUInteger)getNumberOfApplicationsAppllicationDate:(JobApplicationDate*)appliedDate;
 @end

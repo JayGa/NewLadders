@@ -16,5 +16,5 @@
 - (SavedJobs*)getSavedJobsForJobseekerWithID:(IDentifer*)jobseekerID;
 - (void)setSavedJobs:(SavedJobs*)savedJobs forJobseekerWithID:(IDentifer *)jobseekerID;
 //- (void)setValue:(id)value forKey:(NSString *)key;
-
+- (NSUInteger)count;
 @end

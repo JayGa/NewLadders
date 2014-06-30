@@ -23,12 +23,10 @@
     return [[JSModel sharedInstance] getSavedJobsForJobseekerID:jobseekerID];
 }
 
--(void)applyForJob:(id<IJobApplication>)jobApplication{
-    
-//        [(JReqJobApplication*)jobApplication setResumeID:resume->resumeID];
-    [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:jobseekerID];
-//    return returnStatus;
-}
+//-(void)applyForJob:(id<IJobApplication>)jobApplication{
+//    
+//
+//}
 
 -(JobApplications *) seeAppliedJobs{
 

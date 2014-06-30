@@ -16,9 +16,10 @@
 #import "JobApplications.h"
 @interface Employer : NSObject{
 
+    IDentifer *gemployerID;
+    DisplayName *gemployerDisplayName;
 }
-@property IDentifer *employerID;
-@property DisplayName *employerDisplayName;
+-(Employer*)initWithEmployerID:(IDentifer*)employerID andDisplayName:(DisplayName*)displayName;
 -(void)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job;
 -(PostedJobs*)seePostedJobListing;
 -(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID;

@@ -18,5 +18,5 @@
 
 - (void)setAppliedJobs:(JobApplications*)jobApplications forJobseekerWithID:(IDentifer*)jobSeekerID;
 //- (void)setValue:(id)value forKey:(NSString *)key;
-
+- (NSUInteger)count;
 @end

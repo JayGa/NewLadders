@@ -18,4 +18,5 @@
 - (void)setJobApplications:(JobApplications*)jobApplications forJobApplicationDate:(JobApplicationDate*)jobApplicationDate;
 //- (void)setValue:(id)value forKey:(NSString *)key;
 -(NSString*)stringFromJobApplicationDate:(JobApplicationDate*)jobApplicationDate;
+- (NSUInteger)count;
 @end

@@ -15,16 +15,15 @@
 #import "JobApplications.h"
 
 @interface JSModel : NSObject{
-    
-//    MutableDictionaryWrap *secondDict;
+    AppliedJobsForJobseeker *jobSeekerAppliedJobsMutableDict;
+    SavedJobsForJobseeker *jobSeekerSavedJobsMutableDict;
 }
-
-@property (strong, nonatomic) AppliedJobsForJobseeker *jobSeekerAppliedJobsMutableDict;
-@property (strong, nonatomic) SavedJobsForJobseeker *jobSeekerSavedJobsMutableDict;
 
 +(JSModel*)sharedInstance;
 -(void)saveJob:(id<IJob>)job withJobseekerID:(IDentifer *)jobseekerID;
 -(void)applyJob:(id<IJobApplication>)jobApplication withJobseekerID:(IDentifer *)jobseekerID;
 -(SavedJobs*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID;
 -(JobApplications*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID;
+-(NSUInteger)getNumberOfSavedJobsForJobSeekerID:(IDentifer*)jobSeekerID;
+-(NSUInteger)getNumberOfAppliedJobsForJobSeekerID:(IDentifer*)jobSeekerID;
 @end

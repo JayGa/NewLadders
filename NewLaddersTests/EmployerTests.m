@@ -21,6 +21,7 @@
 #import "Jobseeker.h"
 #import "JSModel.h"
 #import "JAModel.h"
+#import "DisplayName.h"
 
 @interface EmployerTests : XCTestCase
 
@@ -37,8 +38,9 @@
 
 - (void)setUp {
     [super setUp];
-    employer = [[Employer alloc]init];
+    DisplayName *displayName = [[DisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Ga"];
     employerID = [[IDentifer alloc]initWithString:@"333"];
+    employer = [[Employer alloc]initWithEmployerID:employerID andDisplayName:displayName];
     jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -56,16 +58,16 @@
     NSString *jobName = @"Test JReq Job";
     job = [[JreqJob alloc]init];
     
-    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employer.employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
 
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
                                     
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
     
-    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employer.employerID] count];
+    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employerID] count];
     
     [employer postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employer.employerID] count];
+    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employerID] count];
 
     XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
 }
@@ -73,12 +75,12 @@
 - (void)testpostATSJobWithNameType{
     NSString *jobName = @"Test ATS Job";
     job = [[ATSJob alloc]init];
-    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employer.employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
-    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employer.employerID] count];
+    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employerID] count];
     [employer postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employer.employerID] count];
+    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employerID] count];
     XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
 }
 

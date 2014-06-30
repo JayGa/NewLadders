@@ -15,9 +15,9 @@
 
 @interface EmployerModel : NSObject{
     NSString *testJay;
+    JobsForEmployers *employerJobMutableDict;
 }
 +(EmployerModel*)sharedInstance;
-@property (atomic, strong) JobsForEmployers *employerJobMutableDict;
 -(void)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID;
 -(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID;
 -(JobApplications*)getJobapplicationForJobsID:(IDentifer *)jobID;

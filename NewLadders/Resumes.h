@@ -17,5 +17,5 @@
 - (void)addResumes:(Resume*)resume;
 - (NSUInteger)count;
 - (Resume*)resumeAtIndex:(NSUInteger)index;
-
+- (NSUInteger)count;
 @end

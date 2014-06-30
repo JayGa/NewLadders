@@ -10,10 +10,10 @@
 
 @implementation CSVReportString
 
-//+ (CSVReportString*)appedReportWith:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2){
++ (CSVReportString*)appedReportWith:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2){
 
-//    [NSString stringWithFormat:<#(NSString *), ...#>];
-//}
+    [NSString stringWithFormat:<#(NSString *), ...#>];
+}
 
 
 @end

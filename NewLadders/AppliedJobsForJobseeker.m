@@ -30,5 +30,8 @@
 //- (void)setValue:(id)value forKey:(NSString *)key{
 //    [aDictionary setValue:value forKey:key];
 //}
+- (NSUInteger)count{
+    return [aDictionary count];
+}
 
 @end

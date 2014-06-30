@@ -17,5 +17,5 @@
 - (void)addAAppliedJob:(id<IJob>)job;
 - (NSUInteger)count;
 - (id<IJob>)appliedJobAtIndex:(NSUInteger)index;
-
+- (NSUInteger)count;
 @end

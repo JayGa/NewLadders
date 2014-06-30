@@ -7,14 +7,15 @@
 //
 
 #import "IJobApplication.h"
+#import "JobApplicationCoreFields.h"
 
 @interface ATSJobApplication : NSObject <IJobApplication>{
-    IDentifer *gjobSeekerID ;
-    IDentifer *gjobID;
+    JobApplicationCoreFields *gjobApplicationCoreFields;
     IDentifer *gresumeID;
 }
 -(void)applyForJob;
--(void)updateJobApplicationModel;
+
 -(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
--(id<IJobApplication>)initWithJobseekerId:(IDentifer*)jobSeekerID forJObID:(IDentifer*)jobID withOptionalResumeID:(IDentifer*)resumeID;
+-(ATSJobApplication*)initWithJobseekerId:(IDentifer*)jobSeekerID forJObID:(IDentifer*)jobID withOptionalResumeID:(IDentifer*)resumeID;
+-(void)callUpdateJobApplicationModel;
 @end
