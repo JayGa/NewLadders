@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IDentifer.h"
 
 @protocol IReportStringGenerator <NSObject>
+
+-(id<IReportStringGenerator>)initWithString:(NSString*)aString;
+- (NSString*)appendJobApplicationReportWithJobID:(IDentifer*)jobID andJobseekerID:(IDentifer*)jobseekerID;
 
 @end

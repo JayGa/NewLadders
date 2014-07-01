@@ -11,18 +11,22 @@
 #import "JobApplications.h"
 #import "IJobApplication.h"
 #import "CSVReportString.h"
+#import "CSVReportStringGenerator.h"
+
 @implementation CSVReportGenerator
 
--(CSVReportString*)prepareReport:(JobApplications *)dataArray withTitle:(NSString *)title{
-    CSVReportString *cSVReportString = [CSVReportString appedReportWith:@"Job Application Report,%@\nJOBID, JOBSEEKER\n ",title];
-    id<IJobApplication> jobApplication;
-    for (int i =0; i< [dataArray count]; i++) {
-        jobApplication = [dataArray jobApplicationAtIndex:i];
-        [jobApplication appendJobApplicationReportRecordTo:cSVReportString];
-    }
-    NSLog(@"CVS report is:%@", cSVReportString);
+-(NSString*)prepareReport:(JobApplications *)jobApplications withTitle:(NSString *)title{
+    NSString *cSVString = [NSString stringWithFormat:@"Job Application Report,%@\nJOBID, JOBSEEKER\n ",title];
+
+    id<IReportStringGenerator> csvReportString = [[CSVReportStringGenerator alloc]initWithString:cSVString];
+    
+    
+    [jobApplications generateReportBodyForString:(id<IReportStringGenerator>)reportGeneratorString];
+
+    
+    NSLog(@"CVS report is:%@", csvReportString);
 //    [self writeReport:cVSReportString ToFile:title];
-    return cSVReportString;
+    return csvReportString;
 }
 
 //-(void)writeReport:(CSVReportString*)content ToFile:(NSString *)title{

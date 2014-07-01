@@ -10,4 +10,5 @@
 
 @interface HTMLReportGenerator : NSObject  <IReportGenerator>
 
+-(NSString*)prepareReport:(JobApplications *)dataArray withTitle:(NSString *)title;
 @end

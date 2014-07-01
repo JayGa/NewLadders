@@ -32,6 +32,6 @@
 
 -(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString{
  
-    [reportString appendJobApplicationReportWithJobID:(IDentifer*)jobID andJobseekerID:(IDentifer*)jobseekerID];
+    return [reportString appendJobApplicationReportWithJobID:gjobID andJobseekerID:gjobSeekerID];
 }
 @end

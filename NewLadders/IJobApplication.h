@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
+#import "IReportStringGenerator.h"
 
 @protocol IJobApplication <NSObject>
 //{
@@ -17,6 +18,6 @@
 //}
 -(id<IJobApplication>)initWithJobseekerId:(IDentifer*)jobSeekerID forJObID:(IDentifer*)jobID withOptionalResumeID:(IDentifer*)resumeID;
 -(void)applyForJob;
--(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
+-(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
 -(void)callUpdateJobApplicationModel;
 @end

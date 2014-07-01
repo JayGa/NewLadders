@@ -10,21 +10,24 @@
 #import "IReport.h"
 #import "IJobApplication.h"
 #import "HTMLReportString.h"
+#import "IReportStringGenerator.h"
+#import "HTMLReportStringGenerator.h"
 
 @implementation HTMLReportGenerator
 
--(HTMLReportString*)prepareReport:(JobApplications *)dataArray withTitle:(NSString *)title{
+-(NSString*)prepareReport:(JobApplications *)dataArray withTitle:(NSString *)title{
  
-    HTMLReportString *hTMLReportString = [HTMLReportString appedReportWith:@"<p>Job Application Report: %@</p><table><tr><th>JOB ID</th><th>JOB SEEKER</th></tr>", title];
+    HTMLReportString *htmlString = [HTMLReportString appedReportWith:@"<p>Job Application Report: %@</p><table><tr><th>JOB ID</th><th>JOB SEEKER</th></tr>", title];
     id<IJobApplication> jobApplication;
+    id<IReportStringGenerator> htmlReportString = [[HTMLReportStringGenerator alloc]initWithString:htmlString];
     for (int i =0; i< [dataArray count]; i++) {
         jobApplication = [dataArray jobApplicationAtIndex:i];
-        [jobApplication appendJobApplicationReportRecordTo:hTMLReportString];
+        [jobApplication appendJobApplicationReportRecordTo:htmlReportString];
     }
-    hTMLReportString = [HTMLReportString appedReportWith:@"%@</table>",hTMLReportString];
-    NSLog(@"CVS report is:%@", hTMLReportString);
+    htmlReportString = [NSString stringWithFormat:@"%@</table>",htmlReportString];
+    NSLog(@"CVS report is:%@", htmlReportString);
 //    [self writeReport:hTMLReportString ToFile:title];
-    return hTMLReportString;
+    return htmlReportString;
 }
 
 //-(void)writeReport:(HTMLReportString *)content ToFile:(NSString *)title{

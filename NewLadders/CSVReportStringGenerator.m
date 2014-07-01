@@ -11,9 +11,14 @@
 @implementation CSVReportStringGenerator
 
 
--(CSVReportStringGenerator)initWithString:(NSString)
--(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString{
+-(id<IReportStringGenerator>)initWithString:(NSString*)aString{
+self = [super init];
+    gReportString = aString;
+    return self;
+}
 
-    return [NSString stringWithFormat:@"%@%@, %@\n",reportString, jobID, jobseekerID];
+- (NSString*)appendJobApplicationReportWithJobID:(IDentifer*)jobID andJobseekerID:(IDentifer*)jobseekerID{
+
+    return [NSString stringWithFormat:@"%@%@, %@\n",gReportString, jobID, jobseekerID];
 }
 @end

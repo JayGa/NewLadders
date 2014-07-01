@@ -48,9 +48,9 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
-    [JSModel sharedInstance].jobSeekerAppliedJobsMutableDict = nil;
-    [JAModel sharedInstance].jobIDApplicationsMutableDict = nil;
-    [JAModel sharedInstance].dayApplicationsMutableDict = nil;
+//    [JSModel sharedInstance].jobSeekerAppliedJobsMutableDict = nil;
+//    [JAModel sharedInstance].jobIDApplicationsMutableDict = nil;
+//    [JAModel sharedInstance].dayApplicationsMutableDict = nil;
 //    NSLog(@"In tear down array size is:%d ",[[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count] );
 }
 

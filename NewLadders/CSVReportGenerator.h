@@ -9,4 +9,5 @@
 #import "IReportGenerator.h"
 
 @interface CSVReportGenerator : NSObject  <IReportGenerator>
+-(NSString*)prepareReport:(JobApplications *)jobApplications withTitle:(NSString *)title;
 @end

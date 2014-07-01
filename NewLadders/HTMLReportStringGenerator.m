@@ -10,8 +10,13 @@
 
 @implementation HTMLReportStringGenerator
 
--(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString{
+-(id<IReportStringGenerator>)initWithString:(NSString*)aString{
+    self = [super init];
+    gReportString = aString;
+    return self;
+}
 
-    return [NSString stringWithFormat:@"%@<tr><td>%@</td><td>%@</td></tr>",reportString, jobID, jobseekerID];
+- (NSString*)appendJobApplicationReportWithJobID:(IDentifer*)jobID andJobseekerID:(IDentifer*)jobseekerID{
+    return [NSString stringWithFormat:@"%@<tr><td>%@</td><td>%@</td></tr>",gReportString, jobID, jobseekerID];
 }
 @end

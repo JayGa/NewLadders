@@ -10,5 +10,5 @@
 #import "JobApplications.h"
 
 @protocol IReportGenerator <NSObject>
--(NSString*)prepareReport:(JobApplications *)dataArray withTitle:(NSString *)title;
+-(NSString*)prepareReport:(JobApplications *)jobApplications withTitle:(NSString *)title;
 @end

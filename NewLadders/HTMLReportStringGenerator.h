@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "IReportStringGenerator.h"
+#import "IDentifer.h"
 
-@interface HTMLReportStringGenerator : NSObject <IReportStringGenerator>
-
-- (NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
-
+@interface HTMLReportStringGenerator : NSObject <IReportStringGenerator>{
+    NSString *gReportString;
+}
+-(id<IReportStringGenerator>)initWithString:(NSString*)aString;
+//- (NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
+- (NSString*)appendJobApplicationReportWithJobID:(IDentifer*)jobID andJobseekerID:(IDentifer*)jobseekerID;
 @end
