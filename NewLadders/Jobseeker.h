@@ -14,14 +14,15 @@
 #import "SavedJobs.h"
 #import "JobApplications.h"
 #import "Resumes.h"
+#import "JobSeekerIDName.h"
 
 @interface Jobseeker : NSObject{
-    IDentifer *gjobseekerID;
+    JobSeekerIDName *gjobSeekerIDName;
     Resumes *gresumeArray;
 }
--(void)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
+-(Jobseeker*) initWithID:(JobSeekerIDName*)jobSeekerIDName andResumeArray:(Resumes*)resumes;
+-(void) applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
 -(void) saveJob:(id<IJob>)job;
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
--(Jobseeker*) initWithID:(IDentifer*)jobSeekerID andResumeArray:(Resumes*)resumes;
 @end
