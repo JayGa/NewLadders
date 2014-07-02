@@ -36,7 +36,10 @@
 
     NSString *jobPostedDateString = [self getTodayDateString];
     JobApplications *returnArray = [jobApplicationReport prepareDailyJobReport:jobPostedDateString];
+    
     XCTAssert([returnArray isKindOfClass:[JobApplications class]], @"Should return array of jobs");
+    
+    
     CSVReportGenerator *cSVReportGenerator = [[CSVReportGenerator alloc]init];
     NSString *csvReportString = [cSVReportGenerator prepareReport:returnArray withTitle:jobPostedDateString];
     NSLog(@"CSV Report is:%@", csvReportString);

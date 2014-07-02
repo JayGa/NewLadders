@@ -37,6 +37,7 @@ static EmployerModel *sharedInstance;
 }
 
 -(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID{
+    NSLog(@"In getPostedJobsForEmployerID job array is:%@", [employerJobMutableDict getJobsPostedByEmployerWithID:employerID]);
     return [employerJobMutableDict getJobsPostedByEmployerWithID:employerID];
 }
 
@@ -47,5 +48,14 @@ static EmployerModel *sharedInstance;
 //-(MutableArrayWrap*)getPostedJobsForEmployerID:(IDentifer *)employerID{
 //    return [[self employerJobMutableDict] objectForKey:employerID];
 //}
+-(PostedJobs*)jobsPostedByEmployerWithID:(IDentifer*)employerID{
+    return [employerJobMutableDict getJobsPostedByEmployerWithID:employerID];
+}
+
+-(NSUInteger)getNumberOfPostedJobsByEmployerWithId:(IDentifer*)employerID{
+    
+    return [[employerJobMutableDict getJobsPostedByEmployerWithID:employerID] count];
+}
+
 
 @end

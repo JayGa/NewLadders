@@ -14,19 +14,19 @@
 
 @implementation JobApplicationReport
 
--(JobApplications*)prepareDailyJobReport:(NSString *)jobPostedDateString{
+-(JobApplications*)prepareDailyJobReport:(JobApplicationDate *)jobApplicationDate{
     
-    return [[[JAModel sharedInstance]dayApplicationsMutableDict] getJobApplicationsForDay:jobPostedDateString];
+    return [[JAModel sharedInstance]jobApplicationsForADay:jobApplicationDate];
 }
 
 -(JobApplications*)prepareAggregrateReportByJob:(IDentifer*)jobID{
     
-    return [[[JAModel sharedInstance]jobIDApplicationsMutableDict]getJobApplicationsForJobID:jobID];
+    return [[JAModel sharedInstance]jobApplicationsForJobWithID:jobID];
 }
 
 -(PostedJobs*)prepareAggregrateReportByEmployer:(IDentifer*)employerID {
     
-    return [[[EmployerModel sharedInstance]employerJobMutableDict]getJobsPostedByEmployerWithID:employerID];
+    return [[EmployerModel sharedInstance]jobsPostedByEmployerWithID:employerID];
 }
 
 -(JobApplications*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID{

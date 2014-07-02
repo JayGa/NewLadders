@@ -11,8 +11,10 @@
 
 @interface Resume : NSObject{
     
-    IDentifer *resumeID;
-    BOOL isComplete;
+    IDentifer *gresumeID;
+    BOOL gisComplete;
 }
+
+-(Resume*)initWithID:(IDentifer*)resumeID;
 
 @end

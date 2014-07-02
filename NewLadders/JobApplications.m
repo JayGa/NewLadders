@@ -29,7 +29,7 @@
 
     return [anArray objectAtIndex:index];
 }
-- (id<IReportStringGenerator>)generateReportBodyForString:(id<IReportStringGenerator>)reportGeneratorString{
+- (NSString*)generateReportBodyForString:(id<IReportStringGenerator>)reportGeneratorString{
     id<IJobApplication> jobApplication;
     for (int i =0; i< [self count]; i++) {
         jobApplication = [self jobApplicationAtIndex:i];

@@ -26,4 +26,6 @@
 -(void)updateModelWithJobApplication:(id<IJobApplication>)jobApplication withJobID:(IDentifer*)jobID;
 -(NSUInteger)getNumberOfApplicationsByJobID:(IDentifer*)jobID;
 -(NSUInteger)getNumberOfApplicationsAppllicationDate:(JobApplicationDate*)appliedDate;
+-(JobApplications*)jobApplicationsForJobWithID:(IDentifer*)jobID;
+-(JobApplications*)jobApplicationsForADay:(JobPostedDate*)jobPostedDate;
 @end

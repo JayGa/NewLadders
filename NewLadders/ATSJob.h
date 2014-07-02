@@ -18,4 +18,6 @@
     JobIDName *ijobIDName;
     JobMetaData *ijobMetaData;
 }
+-(id<IJob>)initWithIDName:(JobIDName*)jobIDName AndMetaData:(JobMetaData*)jobMetaData;
+
 @end

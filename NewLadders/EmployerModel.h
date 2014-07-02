@@ -21,4 +21,6 @@
 -(void)postJob:(id<IJob>)job withEmployerID:(IDentifer *)employerID;
 -(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID;
 -(JobApplications*)getJobapplicationForJobsID:(IDentifer *)jobID;
+-(PostedJobs*)jobsPostedByEmployerWithID:(IDentifer*)employerID;
+-(NSUInteger)getNumberOfPostedJobsByEmployerWithId:(IDentifer*)employerID;
 @end

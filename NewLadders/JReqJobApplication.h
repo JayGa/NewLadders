@@ -7,8 +7,6 @@
 //
 
 #import "IJobApplication.h"
-#import "CSVReportString.h"
-#import "HTMLReportString.h"
 #import "JobApplicationCoreFields.h"
 
 @interface JReqJobApplication : NSObject <IJobApplication>{
@@ -19,7 +17,7 @@
 -(void)applyForJob;
 -(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID;
 //-(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
--(CSVReportString*)appendJobApplicationReportRecordTo:(CSVReportString*)cSVReportString;
--(HTMLReportString*)appendJobApplicationHTMLReportRecordTo:(HTMLReportString*)hTMLReportString;
+//-(CSVReportString*)appendJobApplicationReportRecordTo:(CSVReportString*)cSVReportString;
+//-(HTMLReportString*)appendJobApplicationHTMLReportRecordTo:(HTMLReportString*)hTMLReportString;
 -(void)callUpdateJobApplicationModel;
 @end

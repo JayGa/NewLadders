@@ -8,12 +8,9 @@
 
 //#import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
-#import "Employer.h"
-#import "IJob.h"
 #import "JreqJob.h"
 #import "ATSJob.h"
 #import "IDentifer.h"
-#import "IJobApplication.h"
 #import "EmployerModel.h"
 #import "JReqJobApplication.h"
 #import "ATSJobApplication.h"
@@ -22,6 +19,13 @@
 #import "JSModel.h"
 #import "JAModel.h"
 #import "DisplayName.h"
+#import "JobApplicationCoreFields.h"
+#import "Employer.h"
+#import "IJob.h"
+#import "IJobApplication.h"
+
+@class Employer;
+@class IDentifer;
 
 @interface EmployerTests : XCTestCase
 
@@ -57,18 +61,13 @@
 - (void)testpostJReqJobWithNameType{
     NSString *jobName = @"Test JReq Job";
     job = [[JreqJob alloc]init];
-    
     JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
-                                    
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
-    
-    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employerID] count];
-    
+    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employerID] count];
-
+    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
+    
     XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
 }
 
@@ -77,14 +76,23 @@
     job = [[ATSJob alloc]init];
     JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
-    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
-    NSUInteger beforePostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employerID] count];
+    job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
+    NSUInteger beforePostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount = [[[[EmployerModel sharedInstance] employerJobMutableDict] getJobsPostedByEmployerWithID:employerID] count];
+    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
 }
 
 -(void)testSeePostedJobListing{
+    
+    NSString *jobName = @"Test JReq Job";
+    job = [[JreqJob alloc]init];
+    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
+    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
+
+    [employer postJobWithName:jobName withJobType:job];
+    
     PostedJobs *postedJobsArray = [employer seePostedJobListing];
     
     XCTAssert([postedJobsArray count]==2, @"Should return a MutableArrayWrap");
@@ -93,25 +101,28 @@
 -(void)testSeeApplicationsForAjob{
     
     IDentifer *jobID = [[IDentifer alloc]initWithString:@"1345"];
-
+    
     jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
     IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
-    jobApplication = [[JReqJobApplication alloc]initWithJobseekerId:jobSeekerID forJObID:jobID withOptionalResumeID:resumeID1];
-    [jobApplication applyForJob];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
+    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
+    [jobApplicationCoreFields1 applyForJob:jobApplication];
     
     jobSeekerID = [[IDentifer alloc]initWithString:@"778"];
     IDentifer *resumeID2 = [[IDentifer alloc]initWithString:@"441"];
-    jobApplication = [[JReqJobApplication alloc]initWithJobseekerId:jobSeekerID forJObID:jobID withOptionalResumeID:resumeID2];
-    [jobApplication applyForJob];
+    JobApplicationCoreFields *jobApplicationCoreFields2 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
+    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields2 withOptionalResumeID:resumeID2];
+    [jobApplicationCoreFields2 applyForJob:jobApplication];
     
     jobID = [[IDentifer alloc]initWithString:@"2345"];
     jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
-    jobApplication = [[ATSJobApplication alloc]initWithJobseekerId:jobSeekerID forJObID:jobID withOptionalResumeID:nil];
-    [jobSeeker applyForJob:jobApplication WithResume:nil];
+    JobApplicationCoreFields *jobApplicationCoreFields3 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
+    ATSJobApplication *atsJobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields3 withOptionalResumeID:nil];
+    [jobApplicationCoreFields3 applyForJob:atsJobApplication];
     
     
-    JobApplications *tempArray = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"1345"]];
-    XCTAssert([tempArray count]== 2, @"Should return a MutableArrayWrap");
+    JobApplications *returnedJobApplications = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"1345"]];
+    XCTAssert([returnedJobApplications count]== 2, @"Should return a MutableArrayWrap");
     
 }
 

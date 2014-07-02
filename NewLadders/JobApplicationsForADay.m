@@ -22,7 +22,7 @@
 
 - (void)setJobApplications:(JobApplications*)jobApplications forJobApplicationDate:(JobApplicationDate*)jobApplicationDate{
 
-    [aDictionary setObject:jobApplications forKey:jobApplicationDate];
+    [aDictionary setObject:jobApplications forKey:[self stringFromJobApplicationDate:jobApplicationDate]];
 }
 
 //- (void)setValue:(id)value forKey:(NSString *)key{

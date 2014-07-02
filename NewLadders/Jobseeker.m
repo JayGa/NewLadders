@@ -12,15 +12,21 @@
 #import "IJob.h"
 
 @implementation Jobseeker
-
+-(Jobseeker*) initWithID:(IDentifer*)jobSeekerID andResumeArray:(Resumes*)resumes{
+    
+    self = [super init];
+    gjobseekerID = jobSeekerID;
+    gresumeArray = resumes;
+    return self;
+}
 -(void) saveJob:(id<IJob>)job{
 
-    [[JSModel sharedInstance] saveJob:job withJobseekerID:jobseekerID];
+    [[JSModel sharedInstance] saveJob:job withJobseekerID:gjobseekerID];
 }
 
 -(SavedJobs*) seeSavedJobs{
 
-    return [[JSModel sharedInstance] getSavedJobsForJobseekerID:jobseekerID];
+    return [[JSModel sharedInstance] getSavedJobsForJobseekerID:gjobseekerID];
 }
 
 //-(void)applyForJob:(id<IJobApplication>)jobApplication{
@@ -30,7 +36,7 @@
 
 -(JobApplications *) seeAppliedJobs{
 
-    return [[JSModel sharedInstance] getAppliedJobsForJobseekerID:jobseekerID];
+    return [[JSModel sharedInstance] getAppliedJobsForJobseekerID:gjobseekerID];
 }
 
 

@@ -16,11 +16,12 @@
 #import "Resumes.h"
 
 @interface Jobseeker : NSObject{
-    IDentifer *jobseekerID;
-    Resumes *resumeArray;
+    IDentifer *gjobseekerID;
+    Resumes *gresumeArray;
 }
 -(void)applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
--(void) saveJob:(IDentifer *)jobID;
+-(void) saveJob:(id<IJob>)job;
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
+-(Jobseeker*) initWithID:(IDentifer*)jobSeekerID andResumeArray:(Resumes*)resumes;
 @end

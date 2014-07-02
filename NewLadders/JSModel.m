@@ -68,11 +68,11 @@ static JSModel *sharedInstance;
 
 
 -(NSUInteger)getNumberOfSavedJobsForJobSeekerID:(IDentifer*)jobSeekerID{
-    return [[jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobSeekerID]count];
+    return [[jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobSeekerID]count];
 }
 
 -(NSUInteger)getNumberOfAppliedJobsForJobSeekerID:(IDentifer*)jobSeekerID{
-    return [[jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobSeekerID]count];
+    return [[jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobSeekerID]count];
 }
 
 -(SavedJobs*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID{

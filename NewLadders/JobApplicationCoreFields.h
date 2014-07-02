@@ -8,15 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
-#import "IJobApplication.h"
 #import "IReportStringGenerator.h"
 
+
+
+#include "IJobApplication.h"
+
+//@protocol  IJobApplication
+//@end
 @interface JobApplicationCoreFields : NSObject{
         IDentifer *gjobSeekerID ;
         IDentifer *gjobID;
 }
 
 -(JobApplicationCoreFields*) initWithJobID:(IDentifer*)jobID andJobSeekerID:(IDentifer*)jobSeekerID;
--(void)updateJobApplicationModel:(id<IJobApplication>)jobApplication;
+-(void) updateJobApplicationModel:(id<IJobApplication>)jobApplication;
 -(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
+-(void)applyForJob:(id<IJobApplication>)jobApplication;
 @end

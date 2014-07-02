@@ -10,4 +10,10 @@
 
 @implementation Resume
 
+-(Resume*)initWithID:(IDentifer*)resumeID{
+    
+    self = [super init];
+    gresumeID = resumeID;
+    return self;
+}
 @end

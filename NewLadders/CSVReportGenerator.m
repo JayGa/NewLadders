@@ -10,7 +10,6 @@
 #import "IReport.h"
 #import "JobApplications.h"
 #import "IJobApplication.h"
-#import "CSVReportString.h"
 #import "CSVReportStringGenerator.h"
 
 @implementation CSVReportGenerator
@@ -21,7 +20,7 @@
     id<IReportStringGenerator> csvReportString = [[CSVReportStringGenerator alloc]initWithString:cSVString];
     
     
-    [jobApplications generateReportBodyForString:(id<IReportStringGenerator>)reportGeneratorString];
+    [jobApplications generateReportBodyForString:csvReportString];
 
     
     NSLog(@"CVS report is:%@", csvReportString);

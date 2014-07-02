@@ -66,4 +66,10 @@ static JAModel *sharedInstance;
 -(NSUInteger)getNumberOfApplicationsAppllicationDate:(JobApplicationDate*)appliedDate{
     return [[dayApplicationsMutableDict getJobApplicationsForDay:appliedDate]count];
 }
+-(JobApplications*)jobApplicationsForJobWithID:(IDentifer*)jobID{
+    return [jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
+}
+-(JobApplications*)jobApplicationsForADay:(JobApplicationDate*)jobApplicationDate{
+    return [dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
+}
 @end

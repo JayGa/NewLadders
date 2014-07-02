@@ -26,4 +26,5 @@
 -(JobApplications*)getAppliedJobsForJobseekerID:(IDentifer *)jobseekerID;
 -(NSUInteger)getNumberOfSavedJobsForJobSeekerID:(IDentifer*)jobSeekerID;
 -(NSUInteger)getNumberOfAppliedJobsForJobSeekerID:(IDentifer*)jobSeekerID;
+
 @end

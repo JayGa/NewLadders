@@ -12,16 +12,19 @@
 
 @implementation ATSJobApplication
 
--(ATSJobApplication*)initWithJobseekerId:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID{
+-(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID{
     
-    if(jobApplicationCoreFields!=nil){
+    if(jobApplicationCoreFields!= nil){
+        
         self = [super init];
         gjobApplicationCoreFields = jobApplicationCoreFields;
         gresumeID = resumeID;
+        
         return self;
     }
     return nil;
 }
+
 
 
 -(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString{

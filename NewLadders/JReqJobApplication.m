@@ -9,8 +9,6 @@
 #import "JReqJobApplication.h"
 #import "JobApplications.h"
 #import "JAModel.h"
-#import "CSVReportString.h"
-#import "HTMLReportString.h"
 #import "IReportStringGenerator.h"
 
 @implementation JReqJobApplication
