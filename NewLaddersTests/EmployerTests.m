@@ -52,18 +52,14 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
-//    [JSModel sharedInstance].jobSeekerAppliedJobsMutableDict = nil;
-//    [JAModel sharedInstance].jobIDApplicationsMutableDict = nil;
-//    [JAModel sharedInstance].dayApplicationsMutableDict = nil;
-//    NSLog(@"In tear down array size is:%d ",[[[[EmployerModel sharedInstance] employerJobMutableDict] objectForKey:employer.employerID] count] );
 }
 
 - (void)testpostJReqJobWithNameType{
     NSString *jobName = @"Test JReq Job";
     job = [[JreqJob alloc]init];
-    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
-    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
+    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
@@ -74,20 +70,20 @@
 - (void)testpostATSJobWithNameType{
     NSString *jobName = @"Test ATS Job";
     job = [[ATSJob alloc]init];
-    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
     NSUInteger beforePostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
-    XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
+    XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return a count of 1");
 }
 
 -(void)testSeePostedJobListing{
     
     NSString *jobName = @"Test JReq Job";
     job = [[JreqJob alloc]init];
-    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:tempJobMetaData];
 
@@ -95,7 +91,7 @@
     
     PostedJobs *postedJobsArray = [employer seePostedJobListing];
     
-    XCTAssert([postedJobsArray count]==2, @"Should return a MutableArrayWrap");
+    XCTAssert([postedJobsArray count]==2, @"");
 }
 
 -(void)testSeeApplicationsForAjob{
@@ -122,7 +118,7 @@
     
     
     JobApplications *returnedJobApplications = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"1345"]];
-    XCTAssert([returnedJobApplications count]== 2, @"Should return a MutableArrayWrap");
+    XCTAssert([returnedJobApplications count]== 2, @"Should return a count of 2");
     
 }
 

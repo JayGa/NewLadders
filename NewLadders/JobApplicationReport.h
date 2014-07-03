@@ -21,7 +21,7 @@
     JobApplicationDate *jobApplicationDate;
 }
 
--(JobApplications*)prepareDailyJobReport:(NSString *)jobPostedDate;
+-(JobApplications*)prepareDailyJobReport:(JobApplicationDate *)jobApplicationDate;
 -(JobApplications*)prepareAggregrateReportByJob:(IDentifer*)jobID;
 -(JobApplications*)prepareAggregrateReportByEmployer:(IDentifer*)employerID;
 -(JobApplications*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID;

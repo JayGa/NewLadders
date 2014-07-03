@@ -19,30 +19,26 @@
 
     id<IReportStringGenerator> csvReportString = [[CSVReportStringGenerator alloc]initWithString:cSVString];
     
-    
-    [jobApplications generateReportBodyForString:csvReportString];
-
-    
-    NSLog(@"CVS report is:%@", csvReportString);
-//    [self writeReport:cVSReportString ToFile:title];
-    return csvReportString;
+    NSString* csvStringToReturn = [jobApplications generateReportBodyForString:csvReportString];
+    [self writeReport:csvStringToReturn ToFile:title];
+    return csvStringToReturn;
 }
 
-//-(void)writeReport:(CSVReportString*)content ToFile:(NSString *)title{
-//    //get the documents directory:
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains
-//    (NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    
-//    //make a file name to write the data to using the documents directory:
-//    NSString *fileName = [NSString stringWithFormat:@"%@/JobApplicationReport_%@.csv",
-//                          documentsDirectory, title];
-//    //save content to the documents directory
-//    [content writeToFile:fileName
-//              atomically:NO
-//                encoding:NSStringEncodingConversionAllowLossy
-//                   error:nil];
-//    
-//}
+-(void)writeReport:(NSString*)content ToFile:(NSString *)title{
+    //get the documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/JobApplicationReport_%@.csv",
+                          documentsDirectory, title];
+    //save content to the documents directory
+    [content writeToFile:fileName
+              atomically:NO
+                encoding:NSStringEncodingConversionAllowLossy
+                   error:nil];
+    
+}
 
 @end

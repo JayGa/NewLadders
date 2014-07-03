@@ -11,7 +11,7 @@
 @implementation JobMetaData
 
 
-- (JobMetaData*)initWithEmployerID:(IDentifer*)jobPosterID AndName:(JobPostedDate*)jobPostedDate{
+- (JobMetaData*)initWithEmployerID:(IDentifer*)jobPosterID AndPostedDate:(JobPostedDate*)jobPostedDate{
     
     self = [super init];
     ijobPosterID = jobPosterID;

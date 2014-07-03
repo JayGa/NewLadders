@@ -20,28 +20,27 @@
 
     id<IReportStringGenerator> htmlReportString = [[HTMLReportStringGenerator alloc]initWithString:htmlString];
 
-    htmlReportString = [NSString stringWithFormat:@"%@</table>",[jobApplications generateReportBodyForString:htmlReportString]];
-    NSLog(@"CVS report is:%@", htmlReportString);
-//    [self writeReport:hTMLReportString ToFile:title];
-    return htmlReportString;
+    NSString *htmlReportStringToReturn = [NSString stringWithFormat:@"%@</table>",[jobApplications generateReportBodyForString:htmlReportString]];
+    [self writeReport:htmlReportStringToReturn ToFile:title];
+    return htmlReportStringToReturn;
 }
 
-//-(void)writeReport:(HTMLReportString *)content ToFile:(NSString *)title{
-//    //get the documents directory:
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains
-//    (NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    
-//    //make a file name to write the data to using the documents directory:
-//    NSString *fileName = [NSString stringWithFormat:@"%@/JobApplicationReport_%@.html",
-//                          documentsDirectory, title];
-//    //save content to the documents directory
-//    [content writeToFile:fileName
-//              atomically:NO
-//                encoding:NSStringEncodingConversionAllowLossy
-//                   error:nil];
-//    
-//}
+-(void)writeReport:(NSString *)content ToFile:(NSString *)title{
+    //get the documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains
+    (NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/JobApplicationReport_%@.html",
+                          documentsDirectory, title];
+    //save content to the documents directory
+    [content writeToFile:fileName
+              atomically:NO
+                encoding:NSStringEncodingConversionAllowLossy
+                   error:nil];
+    
+}
 
 
 @end

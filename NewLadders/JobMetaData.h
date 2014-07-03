@@ -15,5 +15,5 @@
     IDentifer *ijobPosterID;
     JobPostedDate *ijobPostedDate;
 }
-- (JobMetaData*)initWithEmployerID:(IDentifer*)jobPosterID AndName:(JobPostedDate*)jobPostedDate;
+- (JobMetaData*)initWithEmployerID:(IDentifer*)jobPosterID AndPostedDate:(JobPostedDate*)jobPostedDate;
 @end

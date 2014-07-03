@@ -35,7 +35,7 @@
     
 
     NSString *jobPostedDateString = [self getTodayDateString];
-    JobApplications *returnArray = [jobApplicationReport prepareDailyJobReport:jobPostedDateString];
+    JobApplications *returnArray = [jobApplicationReport prepareDailyJobReport:[[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]]];
     
     XCTAssert([returnArray isKindOfClass:[JobApplications class]], @"Should return array of jobs");
     
@@ -67,14 +67,16 @@
     
     IDentifer *employerID = [[IDentifer alloc]initWithString:@"333"];
     
-    XCTAssert([[jobApplicationReport prepareAggregrateReportByEmployer:employerID] isKindOfClass:[JobApplications class]], @"Should return array of jobs");
+    JobApplications *listOfJobApplications = [jobApplicationReport prepareAggregrateReportByEmployer:employerID];
+    
+    XCTAssertTrue(false, @"Should return array of jobs");
 
 }
 
 - (void)testPrepareJobApplicationReportByEmployer{
     IDentifer *employerID = [[IDentifer alloc]initWithString:@"333"];
-    
-//    XCTAssert([[jobApplicationReport prepareJobApplicationReportByEmployer:employerID] isKindOfClass:[MutableArrayWrap class]], @"Should return array of jobs");
+//    [[jobApplicationReport prepareJobApplicationReportByEmployer:employerID] isKindOfClass:[MutableArrayWrap class]
+    XCTAssertTrue(false, @"Should return array of jobs");
     
 }
 
