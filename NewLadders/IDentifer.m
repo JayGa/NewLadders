@@ -35,6 +35,11 @@
 - (BOOL)isEqual:(id)anObject {
     if (![anObject isKindOfClass:[IDentifer class]]) return NO;
     IDentifer *identifier = (IDentifer *)anObject;
-    return gIdentifier == identifier->gIdentifier;
+    BOOL returnValue = ([gIdentifier isEqualToString: identifier->gIdentifier]);
+    return returnValue;
+}
+- (NSUInteger)hash{
+    
+    return arc4random_uniform(100000) + 1;
 }
 @end
