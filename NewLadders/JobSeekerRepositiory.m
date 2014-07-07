@@ -67,7 +67,7 @@ static JobSeekerRepositiory *sharedInstance;
     Jobseeker *jobseeker = [[Jobseeker alloc]init];
     jobseeker = (Jobseeker*)[jobSeekersCollection getJobSeekerForJobSeekerID:jobSeekerID];
     Resumes *resumes = (Resumes*)[jobseeker getAllResumeForJobseeker];
-    return [[[jobSeekersCollection getJobSeekerForJobSeekerID:jobSeekerID] getAllResumeForJobseeker] containsResumeWithID:resumeID];
+    return [resumes containsResumeWithID:resumeID];
 }
 
 -(Jobseeker*) getJobSeekerAtIndex:(NSUInteger)index{

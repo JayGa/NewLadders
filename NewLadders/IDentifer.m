@@ -40,6 +40,6 @@
 }
 - (NSUInteger)hash{
     
-    return arc4random_uniform(100000) + 1;
+    return arc4random_uniform(10000);
 }
 @end

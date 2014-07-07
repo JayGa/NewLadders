@@ -119,7 +119,7 @@
     
 }
 
-- (void)testApplyForJreqJobWithCorrectResueme{
+- (void)testApplyForJreqJobWithCorrectResume{
     jobID = [[IDentifer alloc]initWithString:@"1345"];
 
     jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
@@ -142,6 +142,31 @@
     XCTAssertTrue( (afterAppliedJobCount - beforeAppliedJobCount)==1, @"Should return True");
     XCTAssertTrue( (afterJobApplicationCount - beforeJobApplicationCount)==1, @"Should return True");
     XCTAssertTrue( (afterJobApplicationByDayCount - beforeJobApplicationByDayCount)==1, @"Should return True");
+}
+
+- (void)testApplyForJreqJobWithNOResume{
+    jobID = [[IDentifer alloc]initWithString:@"1345"];
+    
+    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
+    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:nil];
+    
+    JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    
+    NSUInteger beforeAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
+    NSUInteger beforeJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
+    NSUInteger beforeJobApplicationByDayCount = [[JAModel sharedInstance]getNumberOfApplicationsAppllicationDate:jobApplicationDate];
+    
+    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:nil];
+    
+    NSUInteger afterAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
+    NSUInteger afterJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
+    NSUInteger afterJobApplicationByDayCount = [[JAModel sharedInstance]getNumberOfApplicationsAppllicationDate:jobApplicationDate];
+    
+    XCTAssertTrue( (afterAppliedJobCount - beforeAppliedJobCount)==0, @"Should return True");
+    XCTAssertTrue( (afterJobApplicationCount - beforeJobApplicationCount)==0, @"Should return True");
+    XCTAssertTrue( (afterJobApplicationByDayCount - beforeJobApplicationByDayCount)==0, @"Should return True");
 }
 
 - (void)testApplyForJreqJobWithOthersResume{
