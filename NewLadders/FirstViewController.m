@@ -14,12 +14,10 @@
 #import "ATSJob.h"
 
 @interface FirstViewController (){
-    
     Employer *employer;
     id<IJob> job;
     id<IJobApplication> jobApplication;
 }
-
 
 @end
 
@@ -36,16 +34,14 @@
 }
 
 -(IBAction)postJReq:(id)sender{
-    employer = [[Employer alloc]init];
-    employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
+    employer = [[Employer alloc]initWithEmployerID:[[IDentifer alloc] initWithString:@"1234"] andDisplayName:[[DisplayName alloc] initWithString:@"TheLadders"]];
     job = [[JreqJob alloc]init];
-    BOOL result = [employer postJobWithName:@"Test JReq Job" withJobType:job];
+    [employer postJobWithName:@"Test JReq Job" withJobType:job];
 }
 
 -(IBAction)postATS:(id)sender{
-    employer = [[Employer alloc]init];
-    employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
+    employer = [[Employer alloc]initWithEmployerID:[[IDentifer alloc] initWithString:@"1234"] andDisplayName:[[DisplayName alloc] initWithString:@"TheLadders"]];
     job = [[ATSJob alloc]init];
-    BOOL result = [employer postJobWithName:@"Test ATS Job" withJobType:job];
+    [employer postJobWithName:@"Test ATS Job" withJobType:job];
 }
 @end
