@@ -14,7 +14,7 @@
     JobApplicationCoreFields *gJobApplicationCoreFields ;
     IDentifer *gresumeID;
 }
--(void)applyForJob;
+
 -(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID;
 //-(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
 //-(CSVReportString*)appendJobApplicationReportRecordTo:(CSVReportString*)cSVReportString;
