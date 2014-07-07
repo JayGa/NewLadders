@@ -24,9 +24,7 @@
 }
 -(void)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
     
-//    job = [self setValueForJob:job WithJobName:jobName];
     [[EmployerModel sharedInstance] postJob:job withEmployerID:gemployerID];
-
 }
 
 //-(id<IJob>)setValueForJob:(id<IJob>)job WithJobName:(NSString *)jobName{

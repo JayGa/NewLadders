@@ -16,11 +16,10 @@
     
     self = [super init];
     gjobSeekerIDName = jobSeekerIDName;
-    gresumeArray = resumes;
+    gresumes = resumes;
     return self;
 }
 -(void) saveJob:(id<IJob>)job{
-
     [gjobSeekerIDName saveJob:job];
 }
 
@@ -39,5 +38,9 @@
     return [gjobSeekerIDName seeAppliedJobs];
 }
 
+-(Resumes*)getAllResumeForJobseeker{
+    
+    return gresumes;
+}
 
 @end

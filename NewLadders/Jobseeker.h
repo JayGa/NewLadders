@@ -18,11 +18,12 @@
 
 @interface Jobseeker : NSObject{
     JobSeekerIDName *gjobSeekerIDName;
-    Resumes *gresumeArray;
+    Resumes *gresumes;
 }
 -(Jobseeker*) initWithID:(JobSeekerIDName*)jobSeekerIDName andResumeArray:(Resumes*)resumes;
 -(void) applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume;
 -(void) saveJob:(id<IJob>)job;
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
+-(Resumes*)getAllResumeForJobseeker;
 @end

@@ -30,14 +30,13 @@ static JSModel *sharedInstance;
     if (jobSeekerSavedJobsMutableDict== nil) {
         jobSeekerSavedJobsMutableDict = [[SavedJobsForJobseeker alloc] init];
     }
-
-    SavedJobs *savedJobsArray;
+    SavedJobs *savedJobsArray = [jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobseekerID];
     if([jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobseekerID] == nil){
         savedJobsArray = [[SavedJobs alloc]init];
         [jobSeekerSavedJobsMutableDict setSavedJobs:savedJobsArray forJobseekerWithID:jobseekerID];
+        savedJobsArray = [jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobseekerID];
     }
     
-    savedJobsArray = [jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobseekerID];
     [savedJobsArray addASavedJob:job];
 //    NSLog(@"In saveJob AFTER :%@", [self.jobSeekerSavedJobsMutableDict objectForKey:jobseekerID]);
 //    return job.jobIDName.jobID;
@@ -51,13 +50,13 @@ static JSModel *sharedInstance;
         if(jobSeekerAppliedJobsMutableDict == nil){
             jobSeekerAppliedJobsMutableDict=[[AppliedJobsForJobseeker alloc]init];
         }
-        JobApplications *jobApplications;
+        JobApplications *jobApplications = [jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobseekerID];
         if([jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobseekerID] == nil){
             jobApplications = [[JobApplications alloc]init];
             [jobSeekerAppliedJobsMutableDict setAppliedJobs:jobApplications forJobseekerWithID:jobseekerID];
+            jobApplications = [jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobseekerID];
         }
-        
-        jobApplications = [jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobseekerID];
+    
         [jobApplications addJobApplication:jobApplication];
         //    NSLog(@"In applyJob1 AFTER :%@", [self.jobSeekerAppliedJobsMutableDict objectForKey:jobseekerID]);
     
@@ -68,11 +67,20 @@ static JSModel *sharedInstance;
 
 
 -(NSUInteger)getNumberOfSavedJobsForJobSeekerID:(IDentifer*)jobSeekerID{
-    return [[jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobSeekerID]count];
+    if([jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobSeekerID] == nil || [[jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobSeekerID]count]==0){
+        return 0;
+    }
+    else{
+        return [[jobSeekerSavedJobsMutableDict getSavedJobsForJobseekerWithID:jobSeekerID]count];
+    }
 }
 
 -(NSUInteger)getNumberOfAppliedJobsForJobSeekerID:(IDentifer*)jobSeekerID{
-    return [[jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobSeekerID]count];
+    if ([jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobSeekerID] == nil || [jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobSeekerID] == NULL) {
+        return 0;
+    }else{
+        return [[jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobSeekerID]count];
+    }
 }
 
 -(SavedJobs*)getSavedJobsForJobseekerID:(IDentifer *)jobseekerID{
@@ -84,6 +92,11 @@ static JSModel *sharedInstance;
 //    NSLog(@"In getAppliedJobsForJobseekerID :%@", [self.jobSeekerAppliedJobsMutableDict objectForKey:jobseekerID]);
 
     return [jobSeekerAppliedJobsMutableDict getAppliedJobForJobseekerWithID:jobseekerID];
+}
+
+-(void)reset{
+    jobSeekerSavedJobsMutableDict = nil;
+    jobSeekerAppliedJobsMutableDict = nil;
 }
 
 @end

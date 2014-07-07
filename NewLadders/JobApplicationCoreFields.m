@@ -9,6 +9,7 @@
 #import "JobApplicationCoreFields.h"
 #import "JAModel.h"
 #import "JSModel.h"
+#import "JobSeekerRepositiory.h"
 
 @implementation JobApplicationCoreFields
 
@@ -19,9 +20,12 @@
     gjobSeekerID = jobSeekerID;
     return self;
 }
--(void)applyForJob:(id<IJobApplication>)jobApplication{
+-(void)applyForJob:(id<IJobApplication>)jobApplication withResumeID:(IDentifer*)resumeID{
+
     
-    [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:gjobSeekerID];
+    if ([[JobSeekerRepositiory sharedInstance]verifyTheResumeWithID:resumeID belongsToJobSeekerWithID:gjobSeekerID]) {
+        [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:gjobSeekerID];
+    }
 }
 
 -(void)updateJobApplicationModel:(id<IJobApplication>)jobApplication

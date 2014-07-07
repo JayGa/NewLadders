@@ -21,6 +21,7 @@
 #import "Employer.h"
 #import "JobSeekerIDName.h"
 #import "DisplayName.h"
+#import "JobSeekerRepositiory.h"
 
 @interface JobseekerTest : XCTestCase{
     
@@ -45,15 +46,9 @@
 - (void)setUp {
     [super setUp];
     
+    [[JobSeekerRepositiory sharedInstance]initTheJobSeekerRepo];
     
-    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
-    resumeID = [[IDentifer alloc]initWithString:@"440"];
-    resume = [[Resume alloc]initWithID:resumeID];
-    Resumes *resumes = [[Resumes alloc]init];
-    [resumes addResume:resume];
-    DisplayName *jobSeekerdisplayName = [[DisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Ga"];
-    JobSeekerIDName *jobSeekerIDName = [[JobSeekerIDName alloc]initWithID:jobSeekerID andName:jobSeekerdisplayName];
-    jobSeeker = [[Jobseeker alloc]initWithID:jobSeekerIDName andResumeArray:resumes];
+    jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     employerID = [[IDentifer alloc]initWithString:@"333"];
     postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID];
     DisplayName *employerDisplayName = [[DisplayName alloc]initWithFirstName:@"Employer" andLastName:@"Jay"];
@@ -74,8 +69,6 @@
     job2 = [[ATSJob alloc]initWithIDName:jobIDName2 AndMetaData:tempJobMetaData2];
     [employer postJobWithName:jobName2 withJobType:job2];
     
-    
-    
     postedJobs = [[EmployerModel sharedInstance]jobsPostedByEmployerWithID:employerID];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -90,29 +83,35 @@
 
 
 - (void) testSaveJReqJob{
-    
-//    NSString *jobName1 = @"Test JReq Job";
-//    JreqJob *job1 = [[JreqJob alloc]init];
-//    JobMetaData *tempJobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndName:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-//    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:[job1 generateJobID] AndName:jobName1];
-//    job1 = [[JreqJob alloc]initWithIDName:jobIDName1 AndMetaData:tempJobMetaData1];
-//    
+    jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
+    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
     NSUInteger beforeSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
     [jobSeeker saveJob:[postedJobs postedJobAtIndex:0]];
     NSUInteger afterSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
-    XCTAssertTrue((afterSavedJobs-beforeSavedJobs==1), @"Should return count of 1");
-
+    XCTAssertTrue(afterSavedJobs- beforeSavedJobs == 1, @"Should return count of 1");
 }
 
 
 - (void) testSaveATSJob{
+    jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
+    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
     NSUInteger beforeSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
     [jobSeeker saveJob:[postedJobs postedJobAtIndex:1]];
     NSUInteger afterSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
-    XCTAssertTrue((afterSavedJobs-beforeSavedJobs==1), @"Should return count of 1");}
+    XCTAssertTrue(afterSavedJobs- beforeSavedJobs == 1, @"Should return count of 1");
+}
+
 
 - (void) testSeeSavedJobs{
+    jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
+    jobSeekerID = [[IDentifer alloc]initWithString:@"778"];
+    [jobSeeker saveJob:[postedJobs postedJobAtIndex:0]];
 
+    jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
+    jobSeekerID = [[IDentifer alloc]initWithString:@"778"];
+    [jobSeeker saveJob:[postedJobs postedJobAtIndex:1]];
+
+    jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
 //    NSMutableArray *testArray = [[NSMutableArray alloc]initWithObjects:@"1345", @"2345", nil];
 
@@ -120,7 +119,7 @@
     
 }
 
-- (void)testApplyForJreqJob{
+- (void)testApplyForJreqJobWithCorrectResueme{
     jobID = [[IDentifer alloc]initWithString:@"1345"];
 
     jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
@@ -134,7 +133,7 @@
     NSUInteger beforeJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
     NSUInteger beforeJobApplicationByDayCount = [[JAModel sharedInstance]getNumberOfApplicationsAppllicationDate:jobApplicationDate];
     
-    [jobApplicationCoreFields1 applyForJob:jobApplication];
+    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:resumeID1];
     
     NSUInteger afterAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
     NSUInteger afterJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
@@ -143,6 +142,31 @@
     XCTAssertTrue( (afterAppliedJobCount - beforeAppliedJobCount)==1, @"Should return True");
     XCTAssertTrue( (afterJobApplicationCount - beforeJobApplicationCount)==1, @"Should return True");
     XCTAssertTrue( (afterJobApplicationByDayCount - beforeJobApplicationByDayCount)==1, @"Should return True");
+}
+
+- (void)testApplyForJreqJobWithOthersResume{
+    jobID = [[IDentifer alloc]initWithString:@"1345"];
+    
+    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"450"];//This resume does not belong to job seeker 777
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
+    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
+    
+    JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    
+    NSUInteger beforeAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
+    NSUInteger beforeJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
+    NSUInteger beforeJobApplicationByDayCount = [[JAModel sharedInstance]getNumberOfApplicationsAppllicationDate:jobApplicationDate];
+    
+    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:resumeID1];
+    
+    NSUInteger afterAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
+    NSUInteger afterJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
+    NSUInteger afterJobApplicationByDayCount = [[JAModel sharedInstance]getNumberOfApplicationsAppllicationDate:jobApplicationDate];
+    
+    XCTAssertTrue( (afterAppliedJobCount - beforeAppliedJobCount)==0, @"Should return True");
+    XCTAssertTrue( (afterJobApplicationCount - beforeJobApplicationCount)==0, @"Should return True");
+    XCTAssertTrue( (afterJobApplicationByDayCount - beforeJobApplicationByDayCount)==0, @"Should return True");
 }
 
 - (void)testApplyForATSJob{
@@ -159,7 +183,7 @@
     NSUInteger beforeJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
     NSUInteger beforeJobApplicationByDayCount = [[JAModel sharedInstance]getNumberOfApplicationsAppllicationDate:jobApplicationDate];
     
-    [jobApplicationCoreFields1 applyForJob:jobApplication];
+    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:NULL];
     
     NSUInteger afterAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
     NSUInteger afterJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];

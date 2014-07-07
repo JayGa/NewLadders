@@ -12,13 +12,14 @@
 
 -(DisplayName*)initWithFirstName:(NSString *)firstname andLastName:(NSString *)lastname{
     
+    self = [super init];
     gdisplayName = [NSString stringWithFormat:(@"%@ %@",[lastname uppercaseString], firstname)];
-    return gdisplayName;
+    return self;
 }
 
 -(DisplayName*)initWithJob:(NSString *)jobName andPoster:(NSString *)postersName{
-    
+    self = [super init];
     gdisplayName = [NSString stringWithFormat:(@"%@-%@", jobName, postersName)];
-    return gdisplayName;
+    return self;
 }
 @end

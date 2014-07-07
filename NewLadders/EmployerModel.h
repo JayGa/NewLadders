@@ -23,4 +23,5 @@
 -(JobApplications*)getJobapplicationForJobsID:(IDentifer *)jobID;
 -(PostedJobs*)jobsPostedByEmployerWithID:(IDentifer*)employerID;
 -(NSUInteger)getNumberOfPostedJobsByEmployerWithId:(IDentifer*)employerID;
+-(void)reset;
 @end

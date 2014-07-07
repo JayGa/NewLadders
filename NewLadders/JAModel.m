@@ -36,27 +36,27 @@ static JAModel *sharedInstance;
     if(jobIDApplicationsMutableDict == nil){
         jobIDApplicationsMutableDict = [[JobApplicationsForJobIDs alloc]init];
     }
-    JobApplications *jobAppliations1;
+    JobApplications *jobAppliations1 = [jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
     if([jobIDApplicationsMutableDict getJobApplicationsForJobID: jobID] == nil){
         jobAppliations1 = [[JobApplications alloc]init];
         [jobIDApplicationsMutableDict setJobApplicatons:jobAppliations1 forJobID:jobID];
+        jobAppliations1 = [jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
     }
     
-    jobAppliations1 = [jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
     [jobAppliations1 addJobApplication:jobApplication];
     //    NSLog(@"In applyJob2 AFTER :%@", [JAModel sharedInstance].jobIDApplicationsMutableDict );
     
     if(dayApplicationsMutableDict == nil){
         dayApplicationsMutableDict=[[JobApplicationsForADay alloc]init];
     }
-    JobApplications *jobApplications2;
     JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    JobApplications *jobApplications2 = [dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
     if([dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate] == nil){
         jobApplications2 = [[JobApplications alloc]init];
         [dayApplicationsMutableDict setJobApplications:jobApplications2 forJobApplicationDate:jobApplicationDate];
+        jobApplications2 = [dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
     }
     
-    jobApplications2 = [dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
     [jobApplications2 addJobApplication:jobApplication];
 }
 -(NSUInteger)getNumberOfApplicationsByJobID:(IDentifer*)jobID{
@@ -71,5 +71,9 @@ static JAModel *sharedInstance;
 }
 -(JobApplications*)jobApplicationsForADay:(JobApplicationDate*)jobApplicationDate{
     return [dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
+}
+-(void)reset{
+    jobIDApplicationsMutableDict = nil;
+    dayApplicationsMutableDict = nil;
 }
 @end

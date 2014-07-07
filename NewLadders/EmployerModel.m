@@ -25,15 +25,14 @@ static EmployerModel *sharedInstance;
     if(employerJobMutableDict == nil){
         employerJobMutableDict=[[JobsForEmployers alloc]init];
     }
-    
-    PostedJobs *postedJobs;
-    if([employerJobMutableDict getJobsPostedByEmployerWithID:employerID] == nil){
+    PostedJobs *postedJobs = [employerJobMutableDict getJobsPostedByEmployerWithID:employerID];
+    if(postedJobs == nil){
         postedJobs = [[PostedJobs alloc]init];
         [employerJobMutableDict postJobs:postedJobs ByEmployerWithID:employerID];
+        postedJobs = [employerJobMutableDict getJobsPostedByEmployerWithID:employerID];
     }
-    
-    postedJobs = [employerJobMutableDict getJobsPostedByEmployerWithID:employerID];
     [postedJobs addPostedJob:job];
+    
 }
 
 -(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID{
@@ -54,8 +53,13 @@ static EmployerModel *sharedInstance;
 
 -(NSUInteger)getNumberOfPostedJobsByEmployerWithId:(IDentifer*)employerID{
     
+    if([employerJobMutableDict getJobsPostedByEmployerWithID:employerID] == nil || [employerJobMutableDict getJobsPostedByEmployerWithID:employerID] == NULL){
+        return 0;
+    }
     return [[employerJobMutableDict getJobsPostedByEmployerWithID:employerID] count];
 }
 
-
+-(void)reset{
+    employerJobMutableDict = nil;
+}
 @end

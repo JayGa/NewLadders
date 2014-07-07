@@ -18,4 +18,5 @@
 - (NSUInteger)count;
 - (Resume*)resumeAtIndex:(NSUInteger)index;
 - (NSUInteger)count;
+- (BOOL)containsResumeWithID:(IDentifer*)resumeId;
 @end

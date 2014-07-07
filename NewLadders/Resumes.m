@@ -29,4 +29,9 @@
     
     return [anArray objectAtIndex:index];
 }
+
+- (BOOL)containsResumeWithID:(IDentifer*)resumeId{
+    
+    return [anArray containsObject:resumeId];
+}
 @end

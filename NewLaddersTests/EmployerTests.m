@@ -23,6 +23,7 @@
 #import "Employer.h"
 #import "IJob.h"
 #import "IJobApplication.h"
+#import "JobSeekerRepositiory.h"
 
 @class Employer;
 @class IDentifer;
@@ -42,6 +43,8 @@
 
 - (void)setUp {
     [super setUp];
+    
+    [[JobSeekerRepositiory sharedInstance] initTheJobSeekerRepo];
     DisplayName *displayName = [[DisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Ga"];
     employerID = [[IDentifer alloc]initWithString:@"333"];
     employer = [[Employer alloc]initWithEmployerID:employerID andDisplayName:displayName];
@@ -54,7 +57,7 @@
     [super tearDown];
 }
 
-- (void)testpostJReqJobWithNameType{
+- (void)testJReqJobPosting{
     NSString *jobName = @"Test JReq Job";
     job = [[JreqJob alloc]init];
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
@@ -63,11 +66,12 @@
     NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
-    
     XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
+    
+
 }
 
-- (void)testpostATSJobWithNameType{
+- (void)testATSJobPosting{
     NSString *jobName = @"Test ATS Job";
     job = [[ATSJob alloc]init];
     JobMetaData *tempJobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
@@ -79,7 +83,7 @@
     XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return a count of 1");
 }
 
--(void)testSeePostedJobListing{
+-(void)testPostedJobListing{
     
     NSString *jobName = @"Test JReq Job";
     job = [[JreqJob alloc]init];
@@ -92,9 +96,12 @@
     PostedJobs *postedJobsArray = [employer seePostedJobListing];
     
     XCTAssert([postedJobsArray count]==2, @"");
+    [[EmployerModel sharedInstance]reset];
+    
 }
 
 -(void)testSeeApplicationsForAjob{
+    
     
     IDentifer *jobID = [[IDentifer alloc]initWithString:@"1345"];
     
@@ -102,19 +109,19 @@
     IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
-    [jobApplicationCoreFields1 applyForJob:jobApplication];
+    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:resumeID1];
     
     jobSeekerID = [[IDentifer alloc]initWithString:@"778"];
     IDentifer *resumeID2 = [[IDentifer alloc]initWithString:@"441"];
     JobApplicationCoreFields *jobApplicationCoreFields2 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields2 withOptionalResumeID:resumeID2];
-    [jobApplicationCoreFields2 applyForJob:jobApplication];
+    [jobApplicationCoreFields2 applyForJob:jobApplication withResumeID:resumeID2];
     
     jobID = [[IDentifer alloc]initWithString:@"2345"];
     jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
     JobApplicationCoreFields *jobApplicationCoreFields3 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     ATSJobApplication *atsJobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields3 withOptionalResumeID:nil];
-    [jobApplicationCoreFields3 applyForJob:atsJobApplication];
+    [jobApplicationCoreFields3 applyForJob:atsJobApplication withResumeID:NULL];
     
     
     JobApplications *returnedJobApplications = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"1345"]];

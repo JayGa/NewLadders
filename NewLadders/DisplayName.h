@@ -10,7 +10,7 @@
 
 @interface DisplayName : NSString{
     
-    DisplayName *gdisplayName;
+    NSString *gdisplayName;
 }
 -(DisplayName*)initWithFirstName:(NSString *)firstname andLastName:(NSString *)lastname;
 

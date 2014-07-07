@@ -13,8 +13,28 @@
 
 -(IDentifer*)initWithString:(NSString *)identifier{
  
-    
+    self = [super init];
     gIdentifier = identifier;
-    return gIdentifier;
+    return self;
+}
+
+- (IDentifer*)copyWithZone:(NSZone *)zone
+{
+    IDentifer *iDentifier = [[[self class] allocWithZone:zone] init];
+
+    if (iDentifier) {
+        iDentifier->gIdentifier = gIdentifier;
+    }
+    return iDentifier;
+}
+
+-(void)printID{
+    NSLog(@"PRINTING ID:%@", gIdentifier);
+}
+
+- (BOOL)isEqual:(id)anObject {
+    if (![anObject isKindOfClass:[IDentifer class]]) return NO;
+    IDentifer *identifier = (IDentifer *)anObject;
+    return gIdentifier == identifier->gIdentifier;
 }
 @end

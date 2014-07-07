@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IDentifer : NSString{
+@interface IDentifer : NSObject <NSCopying>{
     
-    IDentifer *gIdentifier;
+    NSString *gIdentifier;
 }
-
+-(IDentifer*)initWithString:(NSString *)identifier;
+-(void)printID;
 @end

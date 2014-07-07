@@ -21,13 +21,19 @@
     return [aDictionary objectForKey:employerID];
 }
 - (void)postJobs:(PostedJobs*)postedJobs ByEmployerWithID:(IDentifer*)employerID{
-    
+    NSLog(@"In Post jobs: empoyer ID is:%@ adn posted job is:%@",employerID, postedJobs);
+    [employerID printID];
     [aDictionary setObject:postedJobs forKey:employerID];
+    NSLog(@"In getJobsPostedByEmployerWithID printing employer ID%@:", [aDictionary allKeys] );
 }
 
-//- (void)setValue:(id)value forKey:(NSString *)key{
-//    [aDictionary setValue:value forKey:key];
-//}
+- (void)setValue:(id)value forKey:(NSString *)key{
+    [aDictionary setValue:value forKey:key];
+}
 
+- (NSUInteger)numberOfEmployer{
+    
+    return [aDictionary count];
+}
 
 @end
