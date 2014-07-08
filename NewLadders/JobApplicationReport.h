@@ -25,5 +25,5 @@
 -(JobApplications*)prepareAggregrateReportByJob:(IDentifer*)jobID;
 -(JobApplications*)prepareAggregrateReportByEmployer:(IDentifer*)employerID;
 -(JobApplications*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID;
--(JobApplications*)jobApplicationsForADay:(JobApplicationDate*)jobApplicationDate;
+
 @end

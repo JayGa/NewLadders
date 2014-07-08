@@ -16,7 +16,7 @@
     return self;
 }
 
-- (void)addObject:(id<IJob>)job{
+- (void)addAAppliedJob:(id<IJob>)job{
     
     [anArray addObject:job];
 }

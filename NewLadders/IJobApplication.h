@@ -15,7 +15,6 @@
 @protocol IJobApplication <NSObject>
 
 - (id<IJobApplication>)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID;
-- (void) applyForJob;
 - (NSString*) appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
 - (void) callUpdateJobApplicationModel;
 @end

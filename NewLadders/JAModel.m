@@ -17,10 +17,11 @@ static JAModel *sharedInstance;
     return sharedInstance;
 }
 
-//-(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID{
-//    
-//    return true;
-//}
+-(BOOL)jobApplication:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID{
+    
+    return true;
+}
+
 -(JobApplications*)getApplicationForJobID:(IDentifer *)jobID{
     
     return [jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];

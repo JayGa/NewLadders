@@ -20,13 +20,13 @@
     JobApplicationsForADay *dayApplicationsMutableDict;
 }
 +(JAModel*)sharedInstance;
--(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID;
+-(BOOL)jobApplication:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID;
 -(JobApplications*)getApplicationForJobID:(IDentifer *)jobID;
 -(JobApplications*)getApplicationForDate:(JobApplicationDate *)jobApplicationDate;
 -(void)updateModelWithJobApplication:(id<IJobApplication>)jobApplication withJobID:(IDentifer*)jobID;
 -(NSUInteger)getNumberOfApplicationsByJobID:(IDentifer*)jobID;
 -(NSUInteger)getNumberOfApplicationsAppllicationDate:(JobApplicationDate*)appliedDate;
 -(JobApplications*)jobApplicationsForJobWithID:(IDentifer*)jobID;
--(JobApplications*)jobApplicationsForADay:(JobPostedDate*)jobPostedDate;
+-(JobApplications*)jobApplicationsForADay:(JobApplicationDate*)jobPostedDate;
 -(void)reset;
 @end
