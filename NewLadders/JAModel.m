@@ -17,7 +17,7 @@ static JAModel *sharedInstance;
     return sharedInstance;
 }
 
--(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID{
+-(BOOL)jobApplication:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID{
     
     return true;
 }

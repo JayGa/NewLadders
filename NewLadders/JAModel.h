@@ -20,7 +20,7 @@
     JobApplicationsForADay *dayApplicationsMutableDict;
 }
 +(JAModel*)sharedInstance;
--(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID;
+-(BOOL)jobApplication:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID;
 -(JobApplications*)getApplicationForJobID:(IDentifer *)jobID;
 -(JobApplications*)getApplicationForDate:(JobApplicationDate *)jobApplicationDate;
 -(void)updateModelWithJobApplication:(id<IJobApplication>)jobApplication withJobID:(IDentifer*)jobID;
