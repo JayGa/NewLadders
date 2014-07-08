@@ -67,6 +67,20 @@
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
+
+}
+
+- (void)testPostingJReqJobWithSameName{
+    NSString *jobName = @"Test JReq Job";
+    job = [[JreqJob alloc]init];
+    JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:[job generateJobID] AndName:jobName];
+    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
+    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
+    [employer postJobWithName:jobName withJobType:job];
+    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
+    XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
+
     
 
 }
