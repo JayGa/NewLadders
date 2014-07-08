@@ -17,10 +17,16 @@ static JAModel *sharedInstance;
     return sharedInstance;
 }
 
-//-(BOOL)jobAppliation:(id<IJobApplication>)jobApplication WithJobID:(IDentifer *)jobID{
-//    
-//    return true;
-//}
+-(IDentifer*)generateJReqJobID{
+    
+    return [[IDentifer alloc]initWithString: [NSString stringWithFormat:@"%d", arc4random_uniform(5000)]];
+}
+
+-(IDentifer*)generateATSJobID{
+    
+    return [[IDentifer alloc]initWithString: [NSString stringWithFormat:@"%d", arc4random_uniform(10000)+5000]];
+}
+
 -(JobApplications*)getApplicationForJobID:(IDentifer *)jobID{
     
     return [jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
