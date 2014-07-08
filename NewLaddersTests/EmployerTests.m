@@ -66,7 +66,7 @@
     NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
-    XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
+    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"Should return True");
 
 }
 
@@ -79,7 +79,7 @@
     NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
-    XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return True");
+    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"Should return True");
 
     
 
@@ -94,7 +94,7 @@
     NSUInteger beforePostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
-    XCTAssertTrue( (afterPostArrayCount - beforePostArrayCount)==1, @"Should return a count of 1");
+    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"Should return a count of 1");
 }
 
 -(void)testPostedJobListing{
@@ -109,7 +109,7 @@
     
     PostedJobs *postedJobsArray = [employer seePostedJobListing];
     
-    XCTAssert([postedJobsArray count]==2, @"");
+    XCTAssertEqual([postedJobsArray count], 3, @"Should return ");
     [[EmployerModel sharedInstance]reset];
     
 }
@@ -139,7 +139,7 @@
     
     
     JobApplications *returnedJobApplications = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithString:@"1345"]];
-    XCTAssert([returnedJobApplications count]== 2, @"Should return a count of 2");
+    XCTAssertEqual([returnedJobApplications count], 2, @"Should return a count of 2");
     
 }
 

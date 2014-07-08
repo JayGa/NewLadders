@@ -23,7 +23,7 @@
 -(void)applyForJob:(id<IJobApplication>)jobApplication withResumeID:(IDentifer*)resumeID{
 
     
-    if ([[JobSeekerRepositiory sharedInstance]verifyTheResumeWithID:resumeID belongsToJobSeekerWithID:gjobSeekerID]) {
+    if ( resumeID == 0 || [[JobSeekerRepositiory sharedInstance]verifyTheResumeWithID:resumeID belongsToJobSeekerWithID:gjobSeekerID]) {
         [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:gjobSeekerID];
     }
 }

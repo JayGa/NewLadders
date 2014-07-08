@@ -32,6 +32,7 @@
 
 - (BOOL)containsResumeWithID:(IDentifer*)resumeId{
     
-    return [anArray containsObject:resumeId];
+     BOOL retVal = [anArray containsObject:resumeId];
+    return retVal;
 }
 @end

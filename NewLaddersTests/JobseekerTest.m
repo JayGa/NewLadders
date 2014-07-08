@@ -224,7 +224,7 @@
     NSUInteger beforeJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
     NSUInteger beforeJobApplicationByDayCount = [[JAModel sharedInstance]getNumberOfApplicationsAppllicationDate:jobApplicationDate];
     
-    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:NULL];
+    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:0];
     
     NSUInteger afterAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
     NSUInteger afterJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
@@ -239,9 +239,9 @@
     jobID = [[IDentifer alloc]initWithString:@"246"];
     
     jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
-    //    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
+        IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
-    jobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:nil];
+    jobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
     
     JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
     
