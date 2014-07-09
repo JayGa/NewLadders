@@ -96,7 +96,7 @@
     XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
 }
 
--(void)testPostedJobListing{
+-(void)testPostedJreqJobListing{
     
     [[EmployerModel sharedInstance]reset];
     IDentifer *jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
@@ -130,7 +130,46 @@
     
     PostedJobs *postedJobsArray = [employer seePostedJobListing];
     
-    XCTAssertEqual([postedJobsArray count], 2, @"");
+    XCTAssertEqual([postedJobsArray count], 3, @"");
+    [[EmployerModel sharedInstance]reset];
+    
+}
+
+-(void)testPostedATSJobListing{
+    
+    [[EmployerModel sharedInstance]reset];
+    IDentifer *jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
+    NSString *jobName = @"Test ATS Job";
+    JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
+    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
+    [employer postJobWithName:jobName withJobType:job];
+    
+    jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
+    jobName = @"Test ATS Job";
+    jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
+    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
+    [employer postJobWithName:jobName withJobType:job];
+    
+    
+    jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
+    jobName = @"Test ATS Job";
+    jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
+    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
+    [employer postJobWithName:jobName withJobType:job];
+    
+    jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
+    jobName = @"Test ATS Job";
+    jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
+    job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
+    [employer postJobWithName:jobName withJobType:job];
+    
+    PostedJobs *postedJobsArray = [employer seePostedJobListing];
+    
+    XCTAssertEqual([postedJobsArray count], 3, @"");
     [[EmployerModel sharedInstance]reset];
     
 }
