@@ -10,6 +10,7 @@
 #import "JAModel.h"
 #import "JSModel.h"
 #import "JobSeekerRepositiory.h"
+#import "IDentifer.h"
 
 @implementation JobApplicationCoreFields
 
@@ -23,7 +24,7 @@
 -(void)applyForJob:(id<IJobApplication>)jobApplication withResumeID:(IDentifer*)resumeID{
 
     
-    if ( resumeID == 1 || [[JobSeekerRepositiory sharedInstance]verifyTheResumeWithID:resumeID belongsToJobSeekerWithID:gjobSeekerID]) {
+    if ( [resumeID isEqual:[[IDentifer alloc]initWithInteger:0]] || [[JobSeekerRepositiory sharedInstance]verifyTheResumeWithID:resumeID belongsToJobSeekerWithID:gjobSeekerID]) {
         [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:gjobSeekerID];
     }
 }

@@ -234,8 +234,8 @@
     IDentifer *jobID2 = [[IDentifer alloc]initWithInteger:2345];
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
     JobApplicationCoreFields *jobApplicationCoreFields3 = [[JobApplicationCoreFields alloc]initWithJobID:jobID2 andJobSeekerID:jobSeekerID];
-    ATSJobApplication *atsJobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields3 withOptionalResumeID:nil];
-    [jobApplicationCoreFields3 applyForJob:atsJobApplication withResumeID:NULL];
+    ATSJobApplication *atsJobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields3 withOptionalResumeID:[[IDentifer alloc]initWithInteger:0]];
+    [jobApplicationCoreFields3 applyForJob:atsJobApplication withResumeID:[[IDentifer alloc]initWithInteger:0]];
     
     JobApplications *returnedJobApplications = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithInteger:1345]];
     XCTAssertEqual([returnedJobApplications count], 2, @"Should return a count of 2");
