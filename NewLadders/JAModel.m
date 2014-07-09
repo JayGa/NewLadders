@@ -19,12 +19,12 @@ static JAModel *sharedInstance;
 
 -(IDentifer*)generateJReqJobID{
     
-    return [[IDentifer alloc]initWithString: [NSString stringWithFormat:@"%d", arc4random_uniform(5000)]];
+    return [[IDentifer alloc]initWithInteger: [NSString stringWithFormat:@"%d", arc4random_uniform(5000)]];
 }
 
 -(IDentifer*)generateATSJobID{
     
-    return [[IDentifer alloc]initWithString: [NSString stringWithFormat:@"%d", arc4random_uniform(10000)+5000]];
+    return [[IDentifer alloc]initWithInteger: [NSString stringWithFormat:@"%d", arc4random_uniform(10000)+5000]];
 }
 
 -(JobApplications*)getApplicationForJobID:(IDentifer *)jobID{

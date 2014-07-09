@@ -18,7 +18,7 @@
  
     NSString *htmlString = [NSString stringWithFormat:@"<p>Job Application Report: %@</p><table><tr><th>JOB ID</th><th>JOB SEEKER</th></tr>", title];
 
-    id<IReportStringGenerator> htmlReportString = [[HTMLReportStringGenerator alloc]initWithString:htmlString];
+    id<IReportStringGenerator> htmlReportString = [[HTMLReportStringGenerator alloc]initWithInteger:htmlString];
 
     NSString *htmlReportStringToReturn = [NSString stringWithFormat:@"%@</table>",[jobApplications generateReportBodyForString:htmlReportString]];
     [self writeReport:htmlReportStringToReturn ToFile:title];

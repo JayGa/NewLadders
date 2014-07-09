@@ -58,14 +58,14 @@
 
 - (void)testPrepareAggregrateReportByJob{
     
-    IDentifer *jobID = [[IDentifer alloc]initWithString:@"1345"];
+    IDentifer *jobID = [[IDentifer alloc]initWithInteger:1345];
     
     XCTAssert([[jobApplicationReport prepareAggregrateReportByJob:jobID] isKindOfClass:[JobApplications class]], @"Should return array of jobs");
 }
 
 - (void)testPrepareAggregrateReportByEmployer{
     
-    IDentifer *employerID = [[IDentifer alloc]initWithString:@"333"];
+    IDentifer *employerID = [[IDentifer alloc]initWithInteger:333];
     
     JobApplications *listOfJobApplications = [jobApplicationReport prepareAggregrateReportByEmployer:employerID];
     
@@ -74,7 +74,7 @@
 }
 
 - (void)testPrepareJobApplicationReportByEmployer{
-    IDentifer *employerID = [[IDentifer alloc]initWithString:@"333"];
+    IDentifer *employerID = [[IDentifer alloc]initWithInteger:333];
 //    [[jobApplicationReport prepareJobApplicationReportByEmployer:employerID] isKindOfClass:[MutableArrayWrap class]
     XCTAssertTrue(false, @"Should return array of jobs");
     

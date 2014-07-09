@@ -11,10 +11,10 @@
 
 @interface Resume : NSObject{
     
-    IDentifer *gresumeID;
     BOOL gisComplete;
 }
 
 -(Resume*)initWithID:(IDentifer*)resumeID;
+@property (nonatomic, strong) IDentifer *gresumeID;
 
 @end

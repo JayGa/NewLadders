@@ -36,16 +36,16 @@
 }
 
 -(IBAction)postJReq:(id)sender{
-    employer = [[Employer alloc]init];
-    employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
-    job = [[JreqJob alloc]init];
-    BOOL result = [employer postJobWithName:@"Test JReq Job" withJobType:job];
+//    employer = [[Employer alloc]init];
+//    employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
+//    job = [[JreqJob alloc]init];
+//    BOOL result = [employer postJobWithName:@"Test JReq Job" withJobType:job];
 }
 
 -(IBAction)postATS:(id)sender{
-    employer = [[Employer alloc]init];
-    employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
-    job = [[ATSJob alloc]init];
-    BOOL result = [employer postJobWithName:@"Test ATS Job" withJobType:job];
+//    employer = [[Employer alloc]init];
+//    employer.employerID = [[IDentifer alloc]initWithString:@"1234"];
+//    job = [[ATSJob alloc]init];
+//    BOOL result = [employer postJobWithName:@"Test ATS Job" withJobType:job];
 }
 @end

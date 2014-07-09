@@ -11,10 +11,10 @@
 @implementation IDentifer
 
 
--(IDentifer*)initWithString:(NSString *)identifier{
+-(IDentifer*)initWithInteger:(int)identifier{
  
     self = [super init];
-    gIdentifier = identifier;
+    self.gIdentifier = identifier;
     return self;
 }
 
@@ -23,23 +23,27 @@
     IDentifer *iDentifier = [[[self class] allocWithZone:zone] init];
 
     if (iDentifier) {
-        iDentifier->gIdentifier = gIdentifier;
+        iDentifier.gIdentifier = self.gIdentifier;
     }
     return iDentifier;
 }
 
 -(void)printID{
-    NSLog(@"PRINTING ID:%@", gIdentifier);
+    NSLog(@"PRINTING ID:%unsigned", self.gIdentifier);
 }
 
 - (BOOL)isEqual:(id)anObject {
     if (![anObject isKindOfClass:[IDentifer class]]) return NO;
     IDentifer *identifier = (IDentifer *)anObject;
-    BOOL returnValue = ([gIdentifier isEqualToString: identifier->gIdentifier]);
-    return returnValue;
+//    NSInteger int1 = [self.gIdentifier integerValue];
+//    NSInteger int2 = [identifier.gIdentifier integerValue];
+    if(self.gIdentifier==identifier.gIdentifier)
+        return true;
+    else
+        return false;
 }
 - (NSUInteger)hash{
     
-    return [gIdentifier hash];
+    return self.gIdentifier;
 }
 @end

@@ -19,11 +19,4 @@
     ijobMetaData = jobMetaData;
     return self;
 }
--(IDentifer*)generateJobID{
-    
-    //ID generation mechanism;
-    IDentifer *jobID = [[IDentifer alloc]initWithString:@"1345"];
-    
-    return jobID;
-}
 @end

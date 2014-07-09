@@ -30,9 +30,9 @@
     return [anArray objectAtIndex:index];
 }
 
-- (BOOL)containsResumeWithID:(IDentifer*)resumeId{
+- (BOOL)containsResumeWithID:(Resume*)resume{
     
-     BOOL retVal = [anArray containsObject:resumeId];
-    return retVal;
+//     BOOL retVal = [anArray containsObject:resumeId];
+    return [anArray containsObject:resume];
 }
 @end

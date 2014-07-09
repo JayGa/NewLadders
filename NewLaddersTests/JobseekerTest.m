@@ -22,6 +22,8 @@
 #import "JobSeekerIDName.h"
 #import "DisplayName.h"
 #import "JobSeekerRepositiory.h"
+#import "JobIDGenerator.h"
+
 @class Jobseeker;
 
 @interface JobseekerTest : XCTestCase{
@@ -50,37 +52,37 @@
     [[JobSeekerRepositiory sharedInstance]initTheJobSeekerRepo];
     
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
-    employerID = [[IDentifer alloc]initWithString:@"333"];
+    employerID = [[IDentifer alloc]initWithInteger:333];
     postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID];
     DisplayName *employerDisplayName = [[DisplayName alloc]initWithFirstName:@"Employer" andLastName:@"Jay"];
-    employerID = [[IDentifer alloc]initWithString:@"333"];
+    employerID = [[IDentifer alloc]initWithInteger:333];
     employer = [[Employer alloc]initWithEmployerID:employerID andDisplayName:employerDisplayName];
     
     NSString *jobName1 = @"Test JReq Job";
     JreqJob *job1 = [[JreqJob alloc]init];
     JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithString:@"135"] AndName:jobName1];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithInteger:135] AndName:jobName1];
     job1 = [[JreqJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
     [employer postJobWithName:jobName1 withJobType:job1];
     
     NSString *jobName2 = @"Test ATS Job";
     ATSJob *job2 = [[ATSJob alloc]init];
     JobMetaData *jobMetaData2 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    JobIDName *jobIDName2 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithString:@"246"] AndName:jobName2];
+    JobIDName *jobIDName2 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithInteger:246] AndName:jobName2];
     job2 = [[ATSJob alloc]initWithIDName:jobIDName2 AndMetaData:jobMetaData2];
     [employer postJobWithName:jobName2 withJobType:job2];
     
     NSString *jobName3 = @"Second Test JReq Job";
     JreqJob *job3 = [[JreqJob alloc]init];
     JobMetaData *jobMetaData3 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    JobIDName *jobIDName3 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithString:@"579"] AndName:jobName3];
+    JobIDName *jobIDName3 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithInteger:579] AndName:jobName3];
     job3 = [[JreqJob alloc]initWithIDName:jobIDName3 AndMetaData:jobMetaData3];
     [employer postJobWithName:jobName3 withJobType:job3];
     
     NSString *jobName4 = @"Second Test ATS Job";
     ATSJob *job4 = [[ATSJob alloc]init];
     JobMetaData *jobMetaData4 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    JobIDName *jobIDName4 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithString:@"680"] AndName:jobName4];
+    JobIDName *jobIDName4 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithInteger:680] AndName:jobName4];
     job4 = [[ATSJob alloc]initWithIDName:jobIDName4 AndMetaData:jobMetaData4];
     [employer postJobWithName:jobName4 withJobType:job4];
     
@@ -99,7 +101,7 @@
 
 - (void) testSaveJReqJob{
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
-    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
     NSUInteger beforeSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
     [jobSeeker saveJob:[postedJobs postedJobAtIndex:0]];
     NSUInteger afterSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
@@ -109,7 +111,7 @@
 
 - (void) testSaveATSJob{
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
-    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
     NSUInteger beforeSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
     [jobSeeker saveJob:[postedJobs postedJobAtIndex:1]];
     NSUInteger afterSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
@@ -119,11 +121,11 @@
 
 - (void) testSeeSavedJobs{
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
-    jobSeekerID = [[IDentifer alloc]initWithString:@"778"];
+    jobSeekerID = [[IDentifer alloc]initWithInteger:778];
     [jobSeeker saveJob:[postedJobs postedJobAtIndex:0]];
 
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
-    jobSeekerID = [[IDentifer alloc]initWithString:@"778"];
+    jobSeekerID = [[IDentifer alloc]initWithInteger:778];
     [jobSeeker saveJob:[postedJobs postedJobAtIndex:1]];
 
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
@@ -135,10 +137,10 @@
 }
 
 - (void)testApplyForJreqJobWithCorrectResume{
-    jobID = [[IDentifer alloc]initWithString:@"135"];
-
-    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
-    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
+    jobID = [[IDentifer alloc]initWithInteger:135];
+    
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:440];
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
 
@@ -161,9 +163,9 @@
 
 
 - (void)testApplyForJreqJobWithNOResume{
-    jobID = [[IDentifer alloc]initWithString:@"135"];
+    jobID = [[IDentifer alloc]initWithInteger:135];
     
-    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
 //    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:nil];//NO RESUME
@@ -186,10 +188,10 @@
 }
 
 - (void)testApplyForDifferentJreqJobWithDifferentResume{
-    jobID = [[IDentifer alloc]initWithString:@"579"];//Different JREQ JOB
+    jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];//Different JREQ JOB
     
-    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
-    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"441"];//Different resume but belogs to the right jobseeker.
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:441];//Different resume but belogs to the right jobseeker.
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
     
@@ -211,9 +213,9 @@
 }
 
 - (void)testApplyForATSJob{
-    jobID = [[IDentifer alloc]initWithString:@"246"];
+    jobID = [[IDentifer alloc]initWithInteger:246;
     
-    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
 //    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     jobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:nil];
@@ -236,10 +238,10 @@
 }
 
 - (void)testApplyForATSJobWithResume{
-    jobID = [[IDentifer alloc]initWithString:@"246"];
+    jobID = [[IDentifer alloc]initWithInteger:246];
     
-    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
-        IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
+        IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:440];
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     jobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
     
@@ -261,9 +263,9 @@
 }
 
 - (void)testApplyForDifferentATSJob{
-    jobID = [[IDentifer alloc]initWithString:@"680"];
+    jobID = [[IDentifer alloc]initWithInteger:680];
     
-    jobSeekerID = [[IDentifer alloc]initWithString:@"777"];
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
     //    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     jobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:nil];

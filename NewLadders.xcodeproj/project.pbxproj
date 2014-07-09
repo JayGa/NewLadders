@@ -25,6 +25,7 @@
 		821CE368193F727200E5447F /* Employer.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE367193F727200E5447F /* Employer.m */; };
 		821CE36B193F728500E5447F /* Jobseeker.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE36A193F728500E5447F /* Jobseeker.m */; };
 		821CE371193F731E00E5447F /* Resume.m in Sources */ = {isa = PBXBuildFile; fileRef = 821CE370193F731E00E5447F /* Resume.m */; };
+		82211B93196D60D300B0369B /* JobIDGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 82211B92196D60D300B0369B /* JobIDGenerator.m */; };
 		822181DE19659C3A00993891 /* JobSeekerRepositiory.m in Sources */ = {isa = PBXBuildFile; fileRef = 822181DD19659C3A00993891 /* JobSeekerRepositiory.m */; };
 		822181E11965A81600993891 /* JobSeekersCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 822181E01965A81600993891 /* JobSeekersCollection.m */; };
 		8228BE69195B0C4C000A7E90 /* Resumes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228BE68195B0C4C000A7E90 /* Resumes.m */; };
@@ -102,6 +103,8 @@
 		821CE36A193F728500E5447F /* Jobseeker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jobseeker.m; sourceTree = "<group>"; };
 		821CE36F193F731E00E5447F /* Resume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resume.h; sourceTree = "<group>"; };
 		821CE370193F731E00E5447F /* Resume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resume.m; sourceTree = "<group>"; };
+		82211B91196D60D300B0369B /* JobIDGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobIDGenerator.h; sourceTree = "<group>"; };
+		82211B92196D60D300B0369B /* JobIDGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobIDGenerator.m; sourceTree = "<group>"; };
 		822181DC19659C3A00993891 /* JobSeekerRepositiory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobSeekerRepositiory.h; sourceTree = "<group>"; };
 		822181DD19659C3A00993891 /* JobSeekerRepositiory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobSeekerRepositiory.m; sourceTree = "<group>"; };
 		822181DF1965A81600993891 /* JobSeekersCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobSeekersCollection.h; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 				82A728BC19537E3F0039DF87 /* JSModel.m */,
 				82A728BE19537E610039DF87 /* JAModel.h */,
 				82A728BF19537E610039DF87 /* JAModel.m */,
+				82211B91196D60D300B0369B /* JobIDGenerator.h */,
+				82211B92196D60D300B0369B /* JobIDGenerator.m */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				82CDE9F41958B2E500FD06E0 /* JobIDName.m in Sources */,
 				82A728C5195384D90039DF87 /* JobMetaData.m in Sources */,
 				825CA21D195DF5DF00FFD5B0 /* JobApplicationCoreFields.m in Sources */,
+				82211B93196D60D300B0369B /* JobIDGenerator.m in Sources */,
 				8201B63B19507D590048CA56 /* CSVReportGenerator.m in Sources */,
 				82AFB9B8194B8F85002ECF5A /* JreqJob.m in Sources */,
 				82FF9256195AE8B60087C3E7 /* SavedJobs.m in Sources */,
