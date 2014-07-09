@@ -15,7 +15,6 @@
 }
 
 - (void)addResume:(Resume*)resume;
-- (NSUInteger)count;
 - (Resume*)resumeAtIndex:(NSUInteger)index;
 - (NSUInteger)count;
 - (BOOL)containsResumeWithID:(Resume*)resume;

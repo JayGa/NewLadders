@@ -10,7 +10,7 @@
 
 @interface FirstViewController : UIViewController
 
--(void)postJReq;
--(void)postATS;
+-(void)postJReq:(id)sender;
+-(void)postATS:(id)sender;
 @end
 

@@ -28,10 +28,9 @@
     return [gjobSeekerIDName seeSavedJobs];
 }
 
-//-(void)applyForJob:(id<IJobApplication>)jobApplication{
-//    
-//
-//}
+-(void) applyForJob:(id<IJobApplication>)jobApplication WithResume:(Resume *)resume{
+    
+}
 
 -(JobApplications *) seeAppliedJobs{
 

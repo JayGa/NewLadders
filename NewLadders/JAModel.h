@@ -29,6 +29,6 @@
 -(NSUInteger)getNumberOfApplicationsByJobID:(IDentifer*)jobID;
 -(NSUInteger)getNumberOfApplicationsAppllicationDate:(JobApplicationDate*)appliedDate;
 -(JobApplications*)jobApplicationsForJobWithID:(IDentifer*)jobID;
--(JobApplications*)jobApplicationsForADay:(JobPostedDate*)jobPostedDate;
+-(JobApplications*)jobApplicationsForADay:(JobApplicationDate*)jobPostedDate;
 -(void)reset;
 @end

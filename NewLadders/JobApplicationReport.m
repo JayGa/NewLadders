@@ -14,9 +14,9 @@
 
 @implementation JobApplicationReport
 
--(JobApplications*)prepareDailyJobReport:(JobApplicationDate *)jobApplicationDate{
+-(JobApplications*)prepareDailyJobReport:(JobApplicationDate *)jobApplicationDateToReport{
     
-    return [[JAModel sharedInstance]jobApplicationsForADay:jobApplicationDate];
+    return [[JAModel sharedInstance]jobApplicationsForADay:jobApplicationDateToReport];
 }
 
 -(JobApplications*)prepareAggregrateReportByJob:(IDentifer*)jobID{

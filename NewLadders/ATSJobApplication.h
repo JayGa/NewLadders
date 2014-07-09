@@ -14,7 +14,6 @@
     JobApplicationCoreFields *gjobApplicationCoreFields;
     IDentifer *gresumeID;
 }
--(void)applyForJob;
 
 -(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID;
 -(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;

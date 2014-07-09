@@ -67,6 +67,7 @@
     NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
+<<<<<<< HEAD
     XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
 
 }
@@ -81,8 +82,6 @@
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
-
-    
 
 }
 
@@ -132,7 +131,7 @@
     
     PostedJobs *postedJobsArray = [employer seePostedJobListing];
     
-    XCTAssertEqual([postedJobsArray count], 4, @"");
+    XCTAssertEqual([postedJobsArray count], 2, @"");
     [[EmployerModel sharedInstance]reset];
     
 }
@@ -159,7 +158,6 @@
     JobApplicationCoreFields *jobApplicationCoreFields3 = [[JobApplicationCoreFields alloc]initWithJobID:jobID2 andJobSeekerID:jobSeekerID];
     ATSJobApplication *atsJobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields3 withOptionalResumeID:nil];
     [jobApplicationCoreFields3 applyForJob:atsJobApplication withResumeID:NULL];
-    
     
     JobApplications *returnedJobApplications = [employer seeApplicationsForAjob:[[IDentifer alloc]initWithInteger:1345]];
     XCTAssertEqual([returnedJobApplications count], 2, @"Should return a count of 2");

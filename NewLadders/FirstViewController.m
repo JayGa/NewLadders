@@ -14,12 +14,10 @@
 #import "ATSJob.h"
 
 @interface FirstViewController (){
-    
     Employer *employer;
     id<IJob> job;
     id<IJobApplication> jobApplication;
 }
-
 
 @end
 
@@ -48,4 +46,5 @@
 //    job = [[ATSJob alloc]init];
 //    BOOL result = [employer postJobWithName:@"Test ATS Job" withJobType:job];
 }
+
 @end
