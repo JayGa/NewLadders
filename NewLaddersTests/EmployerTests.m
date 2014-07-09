@@ -67,7 +67,6 @@
     NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
     [employer postJobWithName:jobName withJobType:job];
     NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID];
-<<<<<<< HEAD
     XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
 
 }
