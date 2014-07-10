@@ -10,8 +10,8 @@
 
 @interface IDentifer : NSObject <NSCopying>{
     
+    int gIdentifier;
 }
-@property int gIdentifier;
 -(IDentifer*)initWithInteger:(int)identifier;
 -(void)printID;
 -(int)getIDInteger;

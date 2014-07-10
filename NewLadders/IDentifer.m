@@ -14,7 +14,7 @@
 -(IDentifer*)initWithInteger:(int)identifier{
  
     self = [super init];
-    self.gIdentifier = identifier;
+    gIdentifier = identifier;
     return self;
 }
 
@@ -23,13 +23,13 @@
     IDentifer *iDentifier = [[[self class] allocWithZone:zone] init];
 
     if (iDentifier) {
-        iDentifier.gIdentifier = self.gIdentifier;
+        iDentifier->gIdentifier = gIdentifier;
     }
     return iDentifier;
 }
 
 -(void)printID{
-    NSLog(@"PRINTING ID:%unsigned", self.gIdentifier);
+    NSLog(@"PRINTING ID:%unsigned", gIdentifier);
 }
 
 - (BOOL)isEqual:(id)anObject {
@@ -37,18 +37,18 @@
     IDentifer *identifier = (IDentifer *)anObject;
 //    NSInteger int1 = [self.gIdentifier integerValue];
 //    NSInteger int2 = [identifier.gIdentifier integerValue];
-    if(self.gIdentifier==identifier.gIdentifier)
+    if(gIdentifier==identifier->gIdentifier)
         return true;
     else
         return false;
 }
 - (NSUInteger)hash{
     
-    return self.gIdentifier;
+    return gIdentifier;
 }
 
 -(int)getIDInteger{
     
-    return self.gIdentifier;
+    return gIdentifier;
 }
 @end
