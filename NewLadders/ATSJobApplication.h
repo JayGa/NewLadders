@@ -18,4 +18,5 @@
 -(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID;
 -(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
 -(void)callUpdateJobApplicationModel;
+-(NSString*)prepareJobApplicationReport;
 @end

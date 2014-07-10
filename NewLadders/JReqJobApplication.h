@@ -16,8 +16,6 @@
 }
 
 -(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID;
-//-(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
-//-(CSVReportString*)appendJobApplicationReportRecordTo:(CSVReportString*)cSVReportString;
-//-(HTMLReportString*)appendJobApplicationHTMLReportRecordTo:(HTMLReportString*)hTMLReportString;
 -(void)callUpdateJobApplicationModel;
+-(NSString*)prepareJobApplicationReport;
 @end

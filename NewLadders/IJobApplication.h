@@ -17,4 +17,5 @@
 - (id<IJobApplication>)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID;
 - (NSString*) appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
 - (void) callUpdateJobApplicationModel;
+-(NSString*)prepareJobApplicationReport;
 @end

@@ -13,21 +13,19 @@
 -(Resume*)initWithID:(IDentifer*)resumeID{
     
     self = [super init];
-    self.gresumeID = resumeID;
+    gresumeID = resumeID;
     return self;
 }
 
 - (NSComparisonResult)compare:(Resume *)otherResume {
     
-    return [self.gresumeID isEqual:otherResume.gresumeID];
+    return [gresumeID isEqual:otherResume->gresumeID];
 }
 
 - (BOOL)isEqual:(id)anObject {
     if (![anObject isKindOfClass:[Resume class]]) return NO;
     Resume *resume = (Resume *)anObject;
-    int int1 = self.gresumeID.gIdentifier;
-    int int2 = resume.gresumeID.gIdentifier;
-    if(int1==int2)
+    if([gresumeID isEqual:resume->gresumeID])
         return true;
     else
         return false;

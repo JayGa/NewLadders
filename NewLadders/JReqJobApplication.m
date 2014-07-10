@@ -37,4 +37,7 @@
     [gJobApplicationCoreFields updateJobApplicationModel:self];
 }
 
+-(NSString*)prepareJobApplicationReport{
+    return [gJobApplicationCoreFields getJobID];
+}
 @end

@@ -21,21 +21,22 @@
     gjobSeekerID = jobSeekerID;
     return self;
 }
+
 -(void)applyForJob:(id<IJobApplication>)jobApplication withResumeID:(IDentifer*)resumeID{
-    
     if ( [resumeID isEqual:[[IDentifer alloc]initWithInteger:0]] || [[JobSeekerRepositiory sharedInstance]verifyTheResumeWithID:resumeID belongsToJobSeekerWithID:gjobSeekerID]) {
         [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:gjobSeekerID];
     }
 }
 
--(void)updateJobApplicationModel:(id<IJobApplication>)jobApplication
-{
+-(void)updateJobApplicationModel:(id<IJobApplication>)jobApplication{
     [[JAModel sharedInstance]updateModelWithJobApplication:jobApplication withJobID:gjobID];
-
 }
 
 -(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString{
- 
     return [reportString appendJobApplicationReportWithJobID:gjobID andJobseekerID:gjobSeekerID];
+}
+
+-(NSString*)prepareJobApplicationReport{
+    return  [NSString stringWithFormat:@"%d,%d", [gjobID getIDInteger], [gjobSeekerID getIDInteger]] ;
 }
 @end

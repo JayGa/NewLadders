@@ -21,5 +21,5 @@
 -(void) updateJobApplicationModel:(id<IJobApplication>)jobApplication;
 -(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
 -(void)applyForJob:(id<IJobApplication>)jobApplication withResumeID:(IDentifer*)resumeID;
-
+-(NSString*)prepareJobApplicationReport;
 @end

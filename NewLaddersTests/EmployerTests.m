@@ -193,14 +193,14 @@
     
     UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"First"];
     IDentifer *jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job1" andPoster:jobPosterName];
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
 
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job2" andPoster:jobPosterName];
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
@@ -208,14 +208,14 @@
     
     
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName] ;
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job3" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
     
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job4" andPoster:jobPosterName];
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
@@ -223,14 +223,22 @@
     
     PostedJobs *postedJobsCollection = [employer1 seePostedJobListing];
     
-    for (int i = 0; i< [postedJobsCollection count]; i++) {
-        id<IJob> postedJob = [postedJobsCollection postedJobAtIndex:i];
-        NSLog(@"Posted jobs are: %@", [postedJob getJobDisplayName]);
-        XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-FIRST Jay"], @"");
-    }
-//    for (id<IJob>postedJob in postedJobsArray) {
-//        NSLog(@"Posted jobs are: %@", [postedJob getJobDisplayName]);
-//    }
+    id<IJob> postedJob1 = [postedJobsCollection postedJobAtIndex:0];
+    NSLog(@"Posted jobs are: %@", [postedJob1 getJobDisplayName]);
+    XCTAssertTrue([[postedJob1 getJobDisplayName] isEqualToString: @"Test JReq Job1-FIRST Jay"], @"");
+
+    id<IJob> postedJob2 = [postedJobsCollection postedJobAtIndex:1];
+    NSLog(@"Posted jobs are: %@", [postedJob2 getJobDisplayName]);
+    XCTAssertTrue([[postedJob2 getJobDisplayName] isEqualToString: @"Test JReq Job2-FIRST Jay"], @"");
+
+    id<IJob> postedJob3 = [postedJobsCollection postedJobAtIndex:2];
+    NSLog(@"Posted jobs are: %@", [postedJob3 getJobDisplayName]);
+    XCTAssertTrue([[postedJob3 getJobDisplayName] isEqualToString: @"Test JReq Job3-FIRST Jay"], @"");
+    
+    id<IJob> postedJob4 = [postedJobsCollection postedJobAtIndex:3];
+    NSLog(@"Posted jobs are: %@", [postedJob4 getJobDisplayName]);
+    XCTAssertTrue([[postedJob4 getJobDisplayName] isEqualToString: @"Test JReq Job4-FIRST Jay"], @"");
+    
     [[EmployerModel sharedInstance]reset];
     
 }
@@ -240,14 +248,14 @@
     [[EmployerModel sharedInstance]reset];
     UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"First"];
     IDentifer *jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job1" andPoster:jobPosterName] ;
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
     
     jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job2" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
@@ -255,14 +263,14 @@
     
     
     jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job3" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
     
     jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job4" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
@@ -271,14 +279,24 @@
     PostedJobs *postedJobsArray = [employer1 seePostedJobListing];
     
     
-    for (int i = 0; i< [postedJobsArray count]; i++) {
-        id<IJob> postedJob = [postedJobsArray postedJobAtIndex:i];
-        NSLog(@"Posted jobs are: %@", [postedJob getJobDisplayName]);
-        XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test ATS Job-FIRST Jay"], @"");
-    }
+    id<IJob> postedJob1 = [postedJobsArray postedJobAtIndex:0];
+    NSLog(@"Posted jobs are: %@", [postedJob1 getJobDisplayName]);
+    XCTAssertTrue([[postedJob1 getJobDisplayName] isEqualToString: @"Test ATS Job1-FIRST Jay"], @"");
+
+    id<IJob> postedJob2 = [postedJobsArray postedJobAtIndex:1];
+    NSLog(@"Posted jobs are: %@", [postedJob2 getJobDisplayName]);
+    XCTAssertTrue([[postedJob2 getJobDisplayName] isEqualToString: @"Test ATS Job2-FIRST Jay"], @"");
+
     
+    id<IJob> postedJob3 = [postedJobsArray postedJobAtIndex:2];
+    NSLog(@"Posted jobs are: %@", [postedJob3 getJobDisplayName]);
+    XCTAssertTrue([[postedJob3 getJobDisplayName] isEqualToString: @"Test ATS Job3-FIRST Jay"], @"");
+
     
-//    XCTAssertEqual([postedJobsArray count], 4, @"");
+    id<IJob> postedJob4 = [postedJobsArray postedJobAtIndex:3];
+    NSLog(@"Posted jobs are: %@", [postedJob4 getJobDisplayName]);
+    XCTAssertTrue([[postedJob4 getJobDisplayName] isEqualToString: @"Test ATS Job4-FIRST Jay"], @"");
+
     [[EmployerModel sharedInstance]reset];
     
 }
@@ -331,8 +349,6 @@
    
         }
     }
-    
-//    XCTAssertEqual([postedJobsArray count], 4, @"");
     [[EmployerModel sharedInstance]reset];
     
 }
@@ -361,8 +377,16 @@
     ATSJobApplication *atsJobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields3 withOptionalResumeID:[[IDentifer alloc]initWithInteger:0]];
     [jobApplicationCoreFields3 applyForJob:atsJobApplication withResumeID:[[IDentifer alloc]initWithInteger:0]];
     
+    
+    
     JobApplications *returnedJobApplications = [employer1 seeApplicationsForAjob:[[IDentifer alloc]initWithInteger:1345]];
-    XCTAssertEqual([returnedJobApplications count], 2, @"Should return a count of 2");
+    
+    for (int i = 0; i<[returnedJobApplications count]; i++) {
+        id<IJobApplication> jobApplication = [returnedJobApplications jobApplicationAtIndex:i];
+        
+        XCTAssertEqual([jobApplication prepareJobApplicationReport], @"something here", @"");
+    }
+    
     
 }
 

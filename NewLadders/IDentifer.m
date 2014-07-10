@@ -42,6 +42,7 @@
     else
         return false;
 }
+
 - (NSUInteger)hash{
     
     return gIdentifier;
