@@ -18,7 +18,6 @@
 #import "Jobseeker.h"
 #import "JSModel.h"
 #import "JAModel.h"
-#import "DisplayName.h"
 #import "JobApplicationCoreFields.h"
 #import "Employer.h"
 #import "IJob.h"
@@ -49,11 +48,11 @@
     
     [[JobSeekerRepositiory sharedInstance] initTheJobSeekerRepo];
     
-    DisplayName *displayName1 = [[DisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Ga"];
+    UserDisplayName *displayName1 = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Ga"];
     employerID1 = [[IDentifer alloc]initWithInteger:333];
     employer1 = [[Employer alloc]initWithEmployerID:employerID1 andDisplayName:displayName1];
     
-    DisplayName *displayName2 = [[DisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Ga"];
+    UserDisplayName *displayName2 = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Ga"];
     employerID2 = [[IDentifer alloc]initWithInteger:334];
     employer2 = [[Employer alloc]initWithEmployerID:employerID2 andDisplayName:displayName2];
     
@@ -68,95 +67,140 @@
 }
 
 - (void)testJReqJobPostingByEmployer1{
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"First"];
+
     IDentifer *jobID = [[IDentifer alloc]initWithInteger:135];
-    NSString *jobName = @"Test JReq Job";
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
-    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
+//    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
     [employer1 postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
-    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
-
+//    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
+//    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+    PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID1];
+    id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
+    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
+    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-FIRST Jay"], @"");
 }
 
 - (void)testPostingJReqJobWithSameNameByEmployer1{
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"First"];
+
     IDentifer *jobID = [[IDentifer alloc]initWithInteger:137];
-    NSString *jobName = @"Test JReq Job";
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
-    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
+//    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
     [employer1 postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
-    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
-
+//    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
+//    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+    PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID1];
+    id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
+    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
+    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-FIRST Jay"], @"");
 }
 
 - (void)testATSJobPostingByEmployer1{
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"First"];
+
     IDentifer *jobID = [[IDentifer alloc]initWithInteger:139];
-    NSString *jobName = @"Test ATS Job";
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName];
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
-    NSUInteger beforePostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
+//    NSUInteger beforePostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
     [employer1 postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
-    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+//    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID1];
+//    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+    PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID1];
+    id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
+    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
+    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test ATS Job-FIRST Jay"], @"");
 }
 
 
 - (void)testJReqJobPostingByEmployer2{
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Second"];
+
     IDentifer *jobID = [[IDentifer alloc]initWithInteger:135];
-    NSString *jobName = @"Test JReq Job";
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID2 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
-    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
+//    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
     [employer2 postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
-    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+//    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
+//    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+    
+    PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID2];
+    id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
+    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
+    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-SECOND Jay"], @"");
     
 }
 
 - (void)testPostingJReqJobWithSameNameByEmployer2{
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Second"];
+
     IDentifer *jobID = [[IDentifer alloc]initWithInteger:137];
-    NSString *jobName = @"Test JReq Job";
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID2 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
-    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
+//    NSUInteger beforePostArrayCount = [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
     [employer2 postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
-    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+//    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
+//    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+    PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID2];
+    id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
+    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
+    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-SECOND Jay"], @"");
+
     
 }
 
 - (void)testATSJobPostingByEmployer2{
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"Second"];
+
     IDentifer *jobID = [[IDentifer alloc]initWithInteger:139];
-    NSString *jobName = @"Test ATS Job";
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName];
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID2 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
-    NSUInteger beforePostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
+//    NSUInteger beforePostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
     [employer2 postJobWithName:jobName withJobType:job];
-    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
-    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+//    NSUInteger afterPostArrayCount =  [[EmployerModel sharedInstance] getNumberOfPostedJobsByEmployerWithId:employerID2];
+//    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
+    PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID2];
+    id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
+    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
+    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test ATS Job-SECOND Jay"], @"");
+    
 }
 
 
 -(void)testPostedJreqJobListing{
     
     [[EmployerModel sharedInstance]reset];
+    
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"First"];
     IDentifer *jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    NSString *jobName = @"Test JReq Job";
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
 
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    jobName = @"Test JReq Job";
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
@@ -164,22 +208,29 @@
     
     
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    jobName = @"Test JReq Job";
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
     
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    jobName = @"Test JReq Job";
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
     
-    PostedJobs *postedJobsArray = [employer1 seePostedJobListing];
+    PostedJobs *postedJobsCollection = [employer1 seePostedJobListing];
     
-    XCTAssertEqual([postedJobsArray count], 4, @"");
+    for (int i = 0; i< [postedJobsCollection count]; i++) {
+        id<IJob> postedJob = [postedJobsCollection postedJobAtIndex:i];
+        NSLog(@"Posted jobs are: %@", [postedJob getJobDisplayName]);
+        XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-FIRST Jay"], @"");
+    }
+//    for (id<IJob>postedJob in postedJobsArray) {
+//        NSLog(@"Posted jobs are: %@", [postedJob getJobDisplayName]);
+//    }
     [[EmployerModel sharedInstance]reset];
     
 }
@@ -187,15 +238,16 @@
 -(void)testPostedATSJobListing{
     
     [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"First"];
     IDentifer *jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    NSString *jobName = @"Test ATS Job";
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
     
     jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    jobName = @"Test ATS Job";
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
@@ -203,14 +255,14 @@
     
     
     jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    jobName = @"Test ATS Job";
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
     
     jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    jobName = @"Test ATS Job";
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
@@ -218,37 +270,48 @@
     
     PostedJobs *postedJobsArray = [employer1 seePostedJobListing];
     
-    XCTAssertEqual([postedJobsArray count], 4, @"");
+    
+    for (int i = 0; i< [postedJobsArray count]; i++) {
+        id<IJob> postedJob = [postedJobsArray postedJobAtIndex:i];
+        NSLog(@"Posted jobs are: %@", [postedJob getJobDisplayName]);
+        XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test ATS Job-FIRST Jay"], @"");
+    }
+    
+    
+//    XCTAssertEqual([postedJobsArray count], 4, @"");
     [[EmployerModel sharedInstance]reset];
     
 }
 
 -(void)testPostedATS_JreqJobListing{
     
+    
     [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"First"];
     IDentifer *jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    NSString *jobName = @"Test ATS Job";
+    JobDisplayName *jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
     JobMetaData *jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
     
-    jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
-    jobName = @"Test ATS Job";
-    jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
-    jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
-    job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
-    [employer1 postJobWithName:jobName withJobType:job];
     
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    jobName = @"Test JReq Job";
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
     [employer1 postJobWithName:jobName withJobType:job];
     
+    jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
+    jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
+    job = [[ATSJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
+    [employer1 postJobWithName:jobName withJobType:job];
+
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
-    jobName = @"Test JReq Job";
+    jobName = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName] ;
     jobMetaData = [[JobMetaData alloc]initWithEmployerID:employerID1 AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     jobIDName = [[JobIDName alloc]initWithJobID:jobID AndName:jobName];
     job = [[JreqJob alloc]initWithIDName:jobIDName AndMetaData:jobMetaData];
@@ -257,7 +320,19 @@
     
     PostedJobs *postedJobsArray = [employer1 seePostedJobListing];
     
-    XCTAssertEqual([postedJobsArray count], 4, @"");
+    for (int i = 0; i< [postedJobsArray count]; i++) {
+        id<IJob> postedJob = [postedJobsArray postedJobAtIndex:i];
+        NSLog(@"Posted jobs are: %@", [postedJob getJobDisplayName]);
+        if(i%2==0){
+            XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test ATS Job-FIRST Jay"], @"");
+            
+        }else{
+            XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-FIRST Jay"], @"");
+   
+        }
+    }
+    
+//    XCTAssertEqual([postedJobsArray count], 4, @"");
     [[EmployerModel sharedInstance]reset];
     
 }

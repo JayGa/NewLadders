@@ -8,22 +8,25 @@
 
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
-#import "DisplayName.h"
 #import "JobApplicationDate.h"
 #import "JobPostedDate.h"
 #import "IJob.h"
 #import "PostedJobs.h"
 #import "JobApplications.h"
+#import "UserDisplayName.h"
+
 @interface Employer : NSObject{
 
     IDentifer *gemployerID;
-    DisplayName *gemployerDisplayName;
+    UserDisplayName *gemployerDisplayName;
 }
--(Employer*)initWithEmployerID:(IDentifer*)employerID andDisplayName:(DisplayName*)displayName;
--(void)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job;
+-(Employer*)initWithEmployerID:(IDentifer*)employerID andDisplayName:(UserDisplayName*)displayName;
+-(void)postJobWithName:(JobDisplayName *)jobName withJobType:(id<IJob>)job;
 -(PostedJobs*)seePostedJobListing;
 -(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID;
 -(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;
 -(JobApplications*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate;
 -(JobApplications*)seeApplicationsForAjobByDate:(JobPostedDate*)date ByJob:(id<IJob>)job;
+-(UserDisplayName*)getJobDisplayName;
+
 @end

@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "IJob.h"
+//#import "IJob.h"
 #import "Resume.h"
 #import "JReqJobApplication.h"
 #import "ATSJobApplication.h"
@@ -20,11 +20,12 @@
 #import "JAModel.h"
 #import "Employer.h"
 #import "JobSeekerIDName.h"
-#import "DisplayName.h"
+#import "UserDisplayName.h"
 #import "JobSeekerRepositiory.h"
 #import "JobIDGenerator.h"
 
 @class Jobseeker;
+@class IJob;
 
 @interface JobseekerTest : XCTestCase{
     
@@ -38,7 +39,7 @@
     IDentifer *jobID;
     id<IJob> job;
     PostedJobs *postedJobs;
-    SavedJobs *savedJobs;
+//    SavedJobs *savedJobs;
     NSString *jobName;
 }
 
@@ -54,32 +55,36 @@
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     employerID = [[IDentifer alloc]initWithInteger:333];
     postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID];
-    DisplayName *employerDisplayName = [[DisplayName alloc]initWithFirstName:@"Employer" andLastName:@"Jay"];
+    UserDisplayName *employerDisplayName = [[UserDisplayName alloc]initWithFirstName:@"Employer" andLastName:@"Jay"];
     employerID = [[IDentifer alloc]initWithInteger:333];
     employer = [[Employer alloc]initWithEmployerID:employerID andDisplayName:employerDisplayName];
+
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"First"];
+#warning Use id generate method or hard code job IDs.
+    IDentifer *jobID = [[JobIDGenerator sharedInstance]generateATSJobID];
     
-    NSString *jobName1 = @"Test JReq Job";
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName];
     JreqJob *job1 = [[JreqJob alloc]init];
     JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithInteger:135] AndName:jobName1];
     job1 = [[JreqJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
     [employer postJobWithName:jobName1 withJobType:job1];
     
-    NSString *jobName2 = @"Test ATS Job";
+    JobDisplayName *jobName2 = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName];
     ATSJob *job2 = [[ATSJob alloc]init];
     JobMetaData *jobMetaData2 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName2 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithInteger:246] AndName:jobName2];
     job2 = [[ATSJob alloc]initWithIDName:jobIDName2 AndMetaData:jobMetaData2];
     [employer postJobWithName:jobName2 withJobType:job2];
     
-    NSString *jobName3 = @"Second Test JReq Job";
+    JobDisplayName *jobName3 = [[JobDisplayName alloc]initWithJob:@"Second Test JReq Job" andPoster:jobPosterName];
     JreqJob *job3 = [[JreqJob alloc]init];
     JobMetaData *jobMetaData3 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName3 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithInteger:579] AndName:jobName3];
     job3 = [[JreqJob alloc]initWithIDName:jobIDName3 AndMetaData:jobMetaData3];
     [employer postJobWithName:jobName3 withJobType:job3];
     
-    NSString *jobName4 = @"Second Test ATS Job";
+    JobDisplayName *jobName4 = [[JobDisplayName alloc]initWithJob:@"Second test ATS Job" andPoster:jobPosterName];
     ATSJob *job4 = [[ATSJob alloc]init];
     JobMetaData *jobMetaData4 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName4 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithInteger:680] AndName:jobName4];
@@ -137,7 +142,7 @@
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
 //    NSMutableArray *testArray = [[NSMutableArray alloc]initWithObjects:@"1345", @"2345", nil];
-   XCTAssertTrue( [savedJobs count]== 2, @"");
+   XCTAssertEqual([savedJobs count], 2, @"");
 }
 
 - (void)testApplyForJreqJobWithCorrectResume{
@@ -292,13 +297,33 @@
 }
 
 - (void) testSeeAppliedJobs{
+    
+    [self resetJAAndJSModel];
+    
+    IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:135];
+    
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:440];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID];
+    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
+    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:resumeID1];
+    
+    
+    IDentifer *jobID2 = [[IDentifer alloc]initWithInteger:246];
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
+    JobApplicationCoreFields *jobApplicationCoreFields3 = [[JobApplicationCoreFields alloc]initWithJobID:jobID2 andJobSeekerID:jobSeekerID];
+    ATSJobApplication *atsJobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields3 withOptionalResumeID:[[IDentifer alloc]initWithInteger:0]];
+    [jobApplicationCoreFields3 applyForJob:atsJobApplication withResumeID:[[IDentifer alloc]initWithInteger:0]];
+    
+    
+    
     JobApplications  *jobApplicationsArray = [jobSeeker seeAppliedJobs];
-    NSMutableArray *testArray = [[NSMutableArray alloc]initWithObjects:@"135", @"579", @"246", @"680", nil];
+    NSMutableArray *testArray = [[NSMutableArray alloc]initWithObjects:@"135", @"246", nil];
 
-    for(int i=0; i< [jobApplicationsArray count]; i++ ){
+//    for(int i=0; i< [jobApplicationsArray count]; i++ ){
 //        NSLog(@"In testSeeAppliedJobs Element is:%@", [(id<IJobApplication>)[tempArray objectAtIndex:i]jobID]);
-        XCTAssertEqual([jobApplicationsArray count], 4, @"Should be True");
-    }
+        XCTAssertEqual([jobApplicationsArray count], 2, @"Should be True");
+//    }
 }
 
 -(void)resetJAAndJSModel{

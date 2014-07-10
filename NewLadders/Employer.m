@@ -15,14 +15,14 @@
 @implementation Employer
 //@synthesize employerID;
 
--(Employer*)initWithEmployerID:(IDentifer*)employerID andDisplayName:(DisplayName*)displayName{
+-(Employer*)initWithEmployerID:(IDentifer*)employerID andDisplayName:(UserDisplayName*)displayName{
     self = [super init];
     gemployerID = employerID;
     gemployerDisplayName = displayName;
     
     return self;
 }
--(void)postJobWithName:(NSString *)jobName withJobType:(id<IJob>)job{
+-(void)postJobWithName:(JobDisplayName *)jobName withJobType:(id<IJob>)job{
     
     [[EmployerModel sharedInstance] postJob:job withEmployerID:gemployerID];
 }
@@ -57,5 +57,9 @@
 -(JobApplications*)seeApplicationsForAjobByDate:(NSDate *)date ByJob:(id<IJob>)job{
     JobApplications *jobList = [JobApplications new];
     return jobList;
+}
+
+-(UserDisplayName*)getJobDisplayName{
+    return gemployerDisplayName;
 }
 @end

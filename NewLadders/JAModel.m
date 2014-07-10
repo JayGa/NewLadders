@@ -62,7 +62,6 @@ static JAModel *sharedInstance;
         [dayApplicationsMutableDict setJobApplications:jobApplications2 forJobApplicationDate:jobApplicationDate];
         jobApplications2 = [dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
     }
-    
     [jobApplications2 addJobApplication:jobApplication];
 }
 -(NSUInteger)getNumberOfApplicationsByJobID:(IDentifer*)jobID{

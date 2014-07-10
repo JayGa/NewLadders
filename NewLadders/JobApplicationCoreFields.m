@@ -22,7 +22,6 @@
     return self;
 }
 -(void)applyForJob:(id<IJobApplication>)jobApplication withResumeID:(IDentifer*)resumeID{
-
     
     if ( [resumeID isEqual:[[IDentifer alloc]initWithInteger:0]] || [[JobSeekerRepositiory sharedInstance]verifyTheResumeWithID:resumeID belongsToJobSeekerWithID:gjobSeekerID]) {
         [[JSModel sharedInstance]applyJob:jobApplication withJobseekerID:gjobSeekerID];

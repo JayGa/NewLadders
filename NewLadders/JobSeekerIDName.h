@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
-#import "DisplayName.h"
+#import "UserDisplayName.h"
 #import "IJobApplication.h"
 #import "IJob.h"
 #import "SavedJobs.h"
@@ -17,12 +17,13 @@
 @interface JobSeekerIDName : NSObject{
     
     IDentifer *gjobSeekerID;
-    DisplayName *gjobSeekerName;
+    UserDisplayName *gjobSeekerName;
 }
--(JobSeekerIDName*)initWithID:(IDentifer*)jobSeekerID andName:(DisplayName*)displayName;
+-(JobSeekerIDName*)initWithID:(IDentifer*)jobSeekerID andName:(UserDisplayName*)jobSeekerDisplayName;
 
 -(void) saveJob:(id<IJob>)job;
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
+-(UserDisplayName*)getJobSeekerDisplayName;
 
 @end

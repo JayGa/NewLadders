@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Resume.h"
 #import "IDentifer.h"
-#import "DisplayName.h"
 #import "IJobApplication.h"
 #import "SavedJobs.h"
 #import "JobApplications.h"

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
-#import "DisplayName.h"
 #import "IJob.h"
 #import "Resume.h"
 #import "JobMetaData.h"
@@ -19,5 +18,5 @@
     JobMetaData *ijobMetaData;
 }
 -(id<IJob>)initWithIDName:(JobIDName*)jobIDName AndMetaData:(JobMetaData*)jobMetaData;
-
+-(NSString*)getJobDisplayName;
 @end

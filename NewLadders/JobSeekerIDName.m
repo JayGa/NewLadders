@@ -12,11 +12,11 @@
 @implementation JobSeekerIDName
 
 
--(JobSeekerIDName*)initWithID:(IDentifer*)jobSeekerID andName:(DisplayName*)displayName{
+-(JobSeekerIDName*)initWithID:(IDentifer*)jobSeekerID andName:(UserDisplayName*)jobSeekerDisplayName{
     
     self = [super init];
     gjobSeekerID = jobSeekerID;
-    gjobSeekerName = displayName;
+    gjobSeekerName = jobSeekerDisplayName;
     return self;
 }
 
@@ -35,6 +35,9 @@
 -(JobApplications *) seeAppliedJobs{
     
     return [[JSModel sharedInstance] getAppliedJobsForJobseekerID:gjobSeekerID];
+}
+-(JobDisplayName*)getJobSeekerDisplayName{
+    return gjobSeekerName;
 }
 
 @end

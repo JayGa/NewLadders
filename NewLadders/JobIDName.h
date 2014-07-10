@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
+#import "JobDisplayName.h"
 
 @interface JobIDName : NSObject{
     
     IDentifer *ijobID;
-    NSString *ijobName;
+    JobDisplayName *ijobName;
 }
-- (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(NSString*)jobName;
+- (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(JobDisplayName*)jobName;
+- (NSString*)getJobDisplayName;
 @end

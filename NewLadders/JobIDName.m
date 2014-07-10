@@ -7,15 +7,20 @@
 //
 
 #import "JobIDName.h"
+#import "UserDisplayName.h"
 
 @implementation JobIDName
 
 
-- (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(NSString*)jobName{
+- (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(JobDisplayName*)jobName{
     
     self = [super init];
     ijobID = jobID;
     ijobName = jobName;
     return self;
+}
+
+-(NSString*)getJobDisplayName{
+    return [ijobName getJobDisplayNameString];
 }
 @end

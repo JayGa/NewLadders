@@ -37,7 +37,7 @@ static JobSeekerRepositiory *sharedInstance;
     [resumes1 addResume:resume12];
 
     
-    DisplayName *jobSeekerdisplayName1 = [[DisplayName alloc]initWithFirstName:@"First" andLastName:@"Jay"];
+    UserDisplayName *jobSeekerdisplayName1 = [[UserDisplayName alloc]initWithFirstName:@"First" andLastName:@"Jay"];
     JobSeekerIDName *jobSeekerIDName1 = [[JobSeekerIDName alloc]initWithID:jobSeekerID1 andName:jobSeekerdisplayName1];
     Jobseeker *jobSeeker1 = [[Jobseeker alloc]initWithID:jobSeekerIDName1 andResumeArray:resumes1];
     
@@ -56,7 +56,7 @@ static JobSeekerRepositiory *sharedInstance;
 
 
     
-    DisplayName *jobSeekerdisplayName2 = [[DisplayName alloc]initWithFirstName:@"Second" andLastName:@"Jay"];
+    UserDisplayName *jobSeekerdisplayName2 = [[UserDisplayName alloc]initWithFirstName:@"Second" andLastName:@"Jay"];
     JobSeekerIDName *jobSeekerIDName2 = [[JobSeekerIDName alloc]initWithID:jobSeekerID2 andName:jobSeekerdisplayName2];
     Jobseeker *jobSeeker2 = [[Jobseeker alloc]initWithID:jobSeekerIDName2 andResumeArray:resumes2];
     

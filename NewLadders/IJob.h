@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
-#import "DisplayName.h"
 #import "Resume.h"
 #import "JobPostedDate.h"
 #import "JobMetaData.h"
 #import "JobIDName.h"
 
 @protocol IJob <NSObject>
--(IDentifer*)generateJobID;
+-(NSString*)getJobDisplayName;
 @end

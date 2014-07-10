@@ -19,4 +19,10 @@
     ijobMetaData = jobMetaData;
     return self;
 }
+
+-(NSString*)getJobDisplayName{
+    
+    return [ijobIDName getJobDisplayName];
+}
+
 @end
