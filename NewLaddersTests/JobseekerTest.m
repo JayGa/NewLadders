@@ -186,6 +186,31 @@
     XCTAssertEqual((afterJobApplicationByDayCount - beforeJobApplicationByDayCount), 1, @"Should return True");
 }
 
+- (void)testApplyForJreqJobWithOtherPersonsResume{
+    jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
+    
+    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:450];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
+    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];//Resume belongs to different user.
+    
+    JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    
+    NSUInteger beforeAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
+    NSUInteger beforeJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
+    NSUInteger beforeJobApplicationByDayCount = [[JAModel sharedInstance]getNumberOfApplicationsAppllicationDate:jobApplicationDate];
+    
+    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:resumeID1];
+    
+    NSUInteger afterAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
+    NSUInteger afterJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
+    NSUInteger afterJobApplicationByDayCount = [[JAModel sharedInstance]getNumberOfApplicationsAppllicationDate:jobApplicationDate];
+    
+    XCTAssertEqual(afterAppliedJobCount - beforeAppliedJobCount, 0, @"");
+    XCTAssertEqual(afterJobApplicationCount - beforeJobApplicationCount, 0, @"");
+    XCTAssertEqual(afterJobApplicationByDayCount - beforeJobApplicationByDayCount, 0, @"");
+}
+
 
 - (void)testApplyForJreqJobWithNOResume{
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
@@ -216,7 +241,7 @@
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];//Different JREQ JOB
     
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:441];//Different resume but belogs to the right jobseeker.
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:441];//Different resume but belongs to the right jobseeker.
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
     jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
     
