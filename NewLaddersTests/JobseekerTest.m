@@ -84,7 +84,7 @@
     job3 = [[JreqJob alloc]initWithIDName:jobIDName3 AndMetaData:jobMetaData3];
     [employer postJobWithName:jobName3 withJobType:job3];
     
-    JobDisplayName *jobName4 = [[JobDisplayName alloc]initWithJob:@"Second test ATS Job" andPoster:jobPosterName];
+    JobDisplayName *jobName4 = [[JobDisplayName alloc]initWithJob:@"Second Test ATS Job" andPoster:jobPosterName];
     ATSJob *job4 = [[ATSJob alloc]init];
     JobMetaData *jobMetaData4 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
     JobIDName *jobIDName4 = [[JobIDName alloc]initWithJobID:[[IDentifer alloc]initWithInteger:680] AndName:jobName4];
@@ -108,10 +108,14 @@
     [self resetJAAndJSModel];
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    NSUInteger beforeSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
+//    NSUInteger beforeSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
     [jobSeeker saveJob:[postedJobs postedJobAtIndex:0]];
-    NSUInteger afterSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
-    XCTAssertTrue(afterSavedJobs- beforeSavedJobs == 1, @"");
+//    NSUInteger afterSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
+//    XCTAssertTrue(afterSavedJobs- beforeSavedJobs == 1, @"");
+    SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
+    id<IJob> savedJob1 = [savedJobs savedJobAtIndex:0];
+    NSLog(@"Saved job1 is: %@", [savedJob1 getJobDisplayName]);
+    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test JReq Job-FIRST Jay"], @"");
 }
 
 
@@ -119,10 +123,15 @@
     [self resetJAAndJSModel];
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    NSUInteger beforeSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
+//    NSUInteger beforeSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
     [jobSeeker saveJob:[postedJobs postedJobAtIndex:1]];
-    NSUInteger afterSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
-    XCTAssertTrue(afterSavedJobs- beforeSavedJobs == 1, @"");
+//    NSUInteger afterSavedJobs = [[JSModel sharedInstance]getNumberOfSavedJobsForJobSeekerID:jobSeekerID];
+//    XCTAssertTrue(afterSavedJobs- beforeSavedJobs == 1, @"");
+    SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
+    id<IJob> savedJob1 = [savedJobs savedJobAtIndex:0];
+    NSLog(@"Saved job1 is: %@", [savedJob1 getJobDisplayName]);
+    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test ATS Job-FIRST Jay"], @"");
+
 }
 
 
@@ -131,18 +140,25 @@
     
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    [jobSeeker saveJob:[postedJobs postedJobAtIndex:0]];
+    [jobSeeker saveJob:[postedJobs postedJobAtIndex:2]];
     
     
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    [jobSeeker saveJob:[postedJobs postedJobAtIndex:1]];
+    [jobSeeker saveJob:[postedJobs postedJobAtIndex:3]];
     
 
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
-//    NSMutableArray *testArray = [[NSMutableArray alloc]initWithObjects:@"1345", @"2345", nil];
-   XCTAssertEqual([savedJobs count], 2, @"");
+
+    id<IJob> savedJob1 = [savedJobs savedJobAtIndex:0];
+    NSLog(@"Saved job1 is: %@", [savedJob1 getJobDisplayName]);
+    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Second Test JReq Job-FIRST Jay"], @"");
+
+    id<IJob> savedJob2 = [savedJobs savedJobAtIndex:1];
+    NSLog(@"Saved job2 is: %@", [savedJob2 getJobDisplayName]);
+    XCTAssertTrue([[savedJob2 getJobDisplayName] isEqualToString: @"Second Test ATS Job-FIRST Jay"], @"");
+//    XCTAssertEqual([savedJobs count], 2, @"");
 }
 
 - (void)testApplyForJreqJobWithCorrectResume{
