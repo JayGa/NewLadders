@@ -14,4 +14,5 @@
 @property int gIdentifier;
 -(IDentifer*)initWithInteger:(int)identifier;
 -(void)printID;
+-(int)getIDInteger;
 @end

@@ -46,4 +46,9 @@
     
     return self.gIdentifier;
 }
+
+-(int)getIDInteger{
+    
+    return self.gIdentifier;
+}
 @end
