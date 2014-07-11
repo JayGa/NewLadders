@@ -21,7 +21,7 @@
     UserDisplayName *gemployerDisplayName;
 }
 -(Employer*)initWithEmployerID:(IDentifer*)employerID andDisplayName:(UserDisplayName*)displayName;
--(void)postJobWithName:(JobDisplayName *)jobName withJobType:(id<IJob>)job;
+-(void)postJobWithName:(JobDisplayName *)jobName withJobType:(id<IJob>)job andID:(IDentifer*)jobID;
 -(PostedJobs*)seePostedJobListing;
 -(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID;
 -(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;

@@ -8,6 +8,7 @@
 
 #import "EmployerModel.h"
 #import "JAModel.h"
+#import "JobsModel.h"
 
 static EmployerModel *sharedInstance;
 
@@ -32,7 +33,7 @@ static EmployerModel *sharedInstance;
         postedJobs = [employerJobMutableDict getJobsPostedByEmployerWithID:employerID];
     }
     [postedJobs addPostedJob:job];
-    
+
 }
 
 -(PostedJobs*)getPostedJobsForEmployerID:(IDentifer *)employerID{

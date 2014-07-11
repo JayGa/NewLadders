@@ -31,6 +31,8 @@
 		822181DE19659C3A00993891 /* JobSeekerRepositiory.m in Sources */ = {isa = PBXBuildFile; fileRef = 822181DD19659C3A00993891 /* JobSeekerRepositiory.m */; };
 		822181E11965A81600993891 /* JobSeekersCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 822181E01965A81600993891 /* JobSeekersCollection.m */; };
 		8228BE69195B0C4C000A7E90 /* Resumes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8228BE68195B0C4C000A7E90 /* Resumes.m */; };
+		822C7EB8196F1920003EB958 /* JobsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C7EB7196F1920003EB958 /* JobsModel.m */; };
+		822C7EBB196F19CD003EB958 /* PostedJobsForJobID.m in Sources */ = {isa = PBXBuildFile; fileRef = 822C7EBA196F19CD003EB958 /* PostedJobsForJobID.m */; };
 		825CA21D195DF5DF00FFD5B0 /* JobApplicationCoreFields.m in Sources */ = {isa = PBXBuildFile; fileRef = 825CA21C195DF5DF00FFD5B0 /* JobApplicationCoreFields.m */; };
 		825CA222195DFCBA00FFD5B0 /* CSVReportStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 825CA221195DFCBA00FFD5B0 /* CSVReportStringGenerator.m */; };
 		825CA225195DFCC800FFD5B0 /* HTMLReportStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 825CA224195DFCC800FFD5B0 /* HTMLReportStringGenerator.m */; };
@@ -116,6 +118,10 @@
 		822181E01965A81600993891 /* JobSeekersCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobSeekersCollection.m; sourceTree = "<group>"; };
 		8228BE67195B0C4C000A7E90 /* Resumes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resumes.h; sourceTree = "<group>"; };
 		8228BE68195B0C4C000A7E90 /* Resumes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resumes.m; sourceTree = "<group>"; };
+		822C7EB6196F1920003EB958 /* JobsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsModel.h; sourceTree = "<group>"; };
+		822C7EB7196F1920003EB958 /* JobsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsModel.m; sourceTree = "<group>"; };
+		822C7EB9196F19CD003EB958 /* PostedJobsForJobID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostedJobsForJobID.h; sourceTree = "<group>"; };
+		822C7EBA196F19CD003EB958 /* PostedJobsForJobID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostedJobsForJobID.m; sourceTree = "<group>"; };
 		825CA21B195DF5DF00FFD5B0 /* JobApplicationCoreFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobApplicationCoreFields.h; sourceTree = "<group>"; };
 		825CA21C195DF5DF00FFD5B0 /* JobApplicationCoreFields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobApplicationCoreFields.m; sourceTree = "<group>"; };
 		825CA21F195DFC9900FFD5B0 /* IReportStringGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IReportStringGenerator.h; sourceTree = "<group>"; };
@@ -287,6 +293,15 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
+		822C7EBC196F3BC6003EB958 /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				822C7EB9196F19CD003EB958 /* PostedJobsForJobID.h */,
+				822C7EBA196F19CD003EB958 /* PostedJobsForJobID.m */,
+			);
+			name = Jobs;
+			sourceTree = "<group>";
+		};
 		8297676D195CC7CB00A5CE96 /* Dates */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +338,7 @@
 				821DE481196DFD960012969D /* JobDisplayName.m */,
 				82AFB9B2194B7A82002ECF5A /* IDentifer.h */,
 				82AFB9B3194B7A82002ECF5A /* IDentifer.m */,
+				822C7EBC196F3BC6003EB958 /* Jobs */,
 				8297676D195CC7CB00A5CE96 /* Dates */,
 				82FF924E195AE7CF0087C3E7 /* ForEmployer */,
 				82FF9252195AE8730087C3E7 /* JobApplication */,
@@ -353,6 +369,8 @@
 				822181DD19659C3A00993891 /* JobSeekerRepositiory.m */,
 				820557121953766500E455FA /* EmployerModel.h */,
 				820557131953766500E455FA /* EmployerModel.m */,
+				822C7EB6196F1920003EB958 /* JobsModel.h */,
+				822C7EB7196F1920003EB958 /* JobsModel.m */,
 				82A728BB19537E3F0039DF87 /* JSModel.h */,
 				82A728BC19537E3F0039DF87 /* JSModel.m */,
 				82A728BE19537E610039DF87 /* JAModel.h */,
@@ -536,6 +554,7 @@
 				82FF9256195AE8B60087C3E7 /* SavedJobs.m in Sources */,
 				8201B63819507AFD0048CA56 /* ATSJobApplication.m in Sources */,
 				821CE34C193F723C00E5447F /* SecondViewController.m in Sources */,
+				822C7EBB196F19CD003EB958 /* PostedJobsForJobID.m in Sources */,
 				82FF924A195A1CC10087C3E7 /* AppliedJobsForJobseeker.m in Sources */,
 				821CE368193F727200E5447F /* Employer.m in Sources */,
 				821DE47F196DFD770012969D /* UserDisplayName.m in Sources */,
@@ -557,6 +576,7 @@
 				825CA225195DFCC800FFD5B0 /* HTMLReportStringGenerator.m in Sources */,
 				821CE343193F723C00E5447F /* main.m in Sources */,
 				8201B641195080F70048CA56 /* JobApplicationReport.m in Sources */,
+				822C7EB8196F1920003EB958 /* JobsModel.m in Sources */,
 				820557141953766500E455FA /* EmployerModel.m in Sources */,
 				82FF9247195A1C160087C3E7 /* JobApplicationsForJobIDs.m in Sources */,
 				8201B63E19507D6D0048CA56 /* HTMLReportGenerator.m in Sources */,

@@ -11,6 +11,7 @@
 #import "ATSJob.h"
 #import "EmployerModel.h"
 #import "JobIDName.h"
+#import "JobsModel.h"
 
 @implementation Employer
 //@synthesize employerID;
@@ -22,9 +23,10 @@
     
     return self;
 }
--(void)postJobWithName:(JobDisplayName *)jobName withJobType:(id<IJob>)job{
+-(void)postJobWithName:(JobDisplayName *)jobName withJobType:(id<IJob>)job andID:(IDentifer*)jobID{
     
     [[EmployerModel sharedInstance] postJob:job withEmployerID:gemployerID];
+    [[JobsModel sharedInstance] addJob:job withJobID:jobID];
 }
 
 //-(id<IJob>)setValueForJob:(id<IJob>)job WithJobName:(NSString *)jobName{
