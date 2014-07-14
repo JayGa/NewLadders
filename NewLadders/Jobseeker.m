@@ -41,5 +41,8 @@
     
     return gresumes;
 }
+-(NSString*)getJobApplicationReportElements{
+    return [gjobSeekerIDName getJobApplicationReportElements];
+}
 
 @end

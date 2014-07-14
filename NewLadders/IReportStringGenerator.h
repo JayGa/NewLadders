@@ -12,6 +12,6 @@
 @protocol IReportStringGenerator <NSObject>
 
 -(id<IReportStringGenerator>)initWithString:(NSString*)aString;
-- (NSString*)appendJobApplicationReportWithJobID:(IDentifer*)jobID andJobseekerID:(IDentifer*)jobseekerID;
+- (NSString*)appendJobApplicationReportWithJobseekerDetail:(NSString*)jobseekerDetail andJobDetail:(NSString*)jobDetail;
 
 @end

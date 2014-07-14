@@ -8,14 +8,15 @@
 
 #import "IJobApplication.h"
 #import "JobApplicationCoreFields.h"
+#import "JobAppliedDateResume.h"
 
 @interface JReqJobApplication : NSObject <IJobApplication>{
     
-    JobApplicationCoreFields *gJobApplicationCoreFields ;
-    IDentifer *gresumeID;
+    JobApplicationCoreFields *gJobApplicationCoreFields;
+    JobAppliedDateResume *gJobAppliedDateResume;
 }
 
--(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID;
+-(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume;
 -(void)callUpdateJobApplicationModel;
 -(NSString*)prepareJobApplicationReport;
 @end

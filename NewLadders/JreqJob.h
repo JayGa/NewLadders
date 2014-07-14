@@ -13,9 +13,10 @@
 #import "JobMetaData.h"
 
 @interface JreqJob : NSObject <IJob>{
-    JobIDName *ijobIDName;
-    JobMetaData *ijobMetaData;
+    JobIDName *gjobIDName;
+    JobMetaData *gjobMetaData;
 }
 -(id<IJob>)initWithIDName:(JobIDName*)jobIDName AndMetaData:(JobMetaData*)jobMetaData;
 -(NSString*)getJobDisplayName;
+-(NSString*)getJobApplicationReportElements;
 @end

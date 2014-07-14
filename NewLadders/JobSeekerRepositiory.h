@@ -17,4 +17,5 @@
 -(void)initTheJobSeekerRepo;
 -(BOOL)verifyTheResumeWithID:(IDentifer*)resumeID belongsToJobSeekerWithID:(IDentifer*)jobSeekerID;
 -(Jobseeker*)getJobSeekerAtIndex:(NSUInteger)index;
+-(Jobseeker*)getJobSeekerWithID:(IDentifer*)jobSeekerID;
 @end

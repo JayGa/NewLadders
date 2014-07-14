@@ -15,4 +15,5 @@
 -(void)addJobSeeker:(Jobseeker*)jobSeeker forJobseekerID:(IDentifer*)jobSeekerID;
 -(Jobseeker*)getJobSeekerForJobSeekerID:(IDentifer*)jobSeekerID;
 -(Jobseeker*)jobSeekerAtIndex:(NSUInteger)index;
+-(Jobseeker*)jobSeekerWithID:(IDentifer*)jobSeekerID;
 @end

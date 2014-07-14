@@ -12,9 +12,10 @@
 
 @interface JobIDName : NSObject{
     
-    IDentifer *ijobID;
-    JobDisplayName *ijobName;
+    IDentifer *gjobID;
+    JobDisplayName *gjobName;
 }
 - (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(JobDisplayName*)jobName;
-- (NSString*)getJobDisplayName;
+- (NSString*)getJobApplicationReportElements;
+-(NSString*)getJobDisplayName;
 @end

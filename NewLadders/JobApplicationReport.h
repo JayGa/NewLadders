@@ -15,9 +15,6 @@
 
 @interface JobApplicationReport : NSObject   <IReport>{
     
-    Jobseeker *jobseeker;
-    id<IJob> job;
-    Employer *employer;
     JobApplicationDate *jobApplicationDate;
 }
 

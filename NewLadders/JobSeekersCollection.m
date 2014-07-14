@@ -31,4 +31,8 @@
     
     return [[aDictionary allValues]objectAtIndex:index];
 }
+
+-(Jobseeker*)jobSeekerWithID:(IDentifer*)jobSeekerID{
+    return [aDictionary objectForKey:jobSeekerID];
+}
 @end

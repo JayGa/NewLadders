@@ -11,6 +11,7 @@
 #import "JSModel.h"
 #import "JobSeekerRepositiory.h"
 #import "IDentifer.h"
+#import "JobsModel.h"
 
 @implementation JobApplicationCoreFields
 
@@ -33,10 +34,19 @@
 }
 
 -(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString{
-    return [reportString appendJobApplicationReportWithJobID:gjobID andJobseekerID:gjobSeekerID];
+    
+    id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
+    
+    Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
+    
+    return [reportString appendJobApplicationReportWithJobseekerDetail:[jobseeker getJobApplicationReportElements] andJobDetail:[job getJobApplicationReportElements]];
 }
 
--(NSString*)prepareJobApplicationReport{
-    return  [NSString stringWithFormat:@"%d,%d", [gjobID getIDInteger], [gjobSeekerID getIDInteger]] ;
+-(NSString*)prepareJobApplicationReportElements{
+    id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
+    
+    Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
+    
+    return  [NSString stringWithFormat:@"%@,%@", [jobseeker getJobApplicationReportElements], [job getJobApplicationReportElements]] ;
 }
 @end

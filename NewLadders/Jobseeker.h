@@ -25,4 +25,5 @@
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
 -(Resumes*)getAllResumeForJobseeker;
+-(NSString*)getJobApplicationReportElements;
 @end

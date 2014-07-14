@@ -26,6 +26,9 @@ static JobsModel *sharedInstance;
 }
 
 -(void)addJob:(id<IJob>)job withJobID:(IDentifer*)jobID{
+    if(postedJobsForJobID==nil){
+        postedJobsForJobID = [[PostedJobsForJobID alloc]init];
+    }
     [postedJobsForJobID setPostedJobs:job forJobWithID:jobID];
 }
 @end

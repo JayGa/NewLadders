@@ -9,13 +9,14 @@
 #import "IJobApplication.h"
 #import "JobApplicationCoreFields.h"
 #import "IDentifer.h"
+#import "JobAppliedDateResume.h"
 
 @interface ATSJobApplication : NSObject <IJobApplication>{
     JobApplicationCoreFields *gjobApplicationCoreFields;
-    IDentifer *gresumeID;
+    JobAppliedDateResume *gJobAppliedDateResume;
 }
 
--(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID;
+-(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume;
 -(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
 -(void)callUpdateJobApplicationModel;
 -(NSString*)prepareJobApplicationReport;

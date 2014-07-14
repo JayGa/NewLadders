@@ -13,13 +13,13 @@
 
 @implementation JReqJobApplication
 
--(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID{
+-(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume{
     
-    if(jobApplicationCoreFields!= nil && resumeID !=nil){
+    if(jobApplicationCoreFields!= nil && jobAppliedDateResume !=nil){
         
         self = [super init];
         gJobApplicationCoreFields = jobApplicationCoreFields;
-        gresumeID = resumeID;
+        gJobAppliedDateResume = jobAppliedDateResume;
 
         return self;
     }
@@ -38,6 +38,6 @@
 }
 
 -(NSString*)prepareJobApplicationReport{
-    return [gJobApplicationCoreFields getJobID];
+    return [gJobApplicationCoreFields prepareJobApplicationReportElements];
 }
 @end

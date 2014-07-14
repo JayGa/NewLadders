@@ -40,4 +40,8 @@
     return gjobSeekerName;
 }
 
+-(NSString*)getJobApplicationReportElements{
+    
+    return [gjobSeekerName getJobApplicationReportElements];
+}
 @end

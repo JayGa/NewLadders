@@ -14,13 +14,17 @@
 
 -(id<IJob>)initWithIDName:(JobIDName*)jobIDName AndMetaData:(JobMetaData*)jobMetaData{
     self = [super init];
-    ijobIDName = jobIDName;
-    ijobMetaData = jobMetaData;
+    gjobIDName = jobIDName;
+    gjobMetaData = jobMetaData;
     return self;
 }
 
 -(NSString*)getJobDisplayName{
     
-    return [ijobIDName getJobDisplayName];
+    return [gjobIDName getJobDisplayName];
+}
+-(NSString*)getJobApplicationReportElements{
+    
+    return [gjobIDName getJobApplicationReportElements];
 }
 @end

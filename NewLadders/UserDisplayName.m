@@ -17,8 +17,10 @@
     return self;
 }
 
+-(NSString*)getJobApplicationReportElements{
+    return gdisplayName;
+}
 -(NSString*)getUserDisplayNameString{
     return gdisplayName;
 }
-
 @end

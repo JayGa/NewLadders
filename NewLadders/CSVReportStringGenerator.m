@@ -17,8 +17,8 @@ self = [super init];
     return self;
 }
 
-- (NSString*)appendJobApplicationReportWithJobID:(IDentifer*)jobID andJobseekerID:(IDentifer*)jobseekerID{
+- (NSString*)appendJobApplicationReportWithJobseekerDetail:(NSString*)jobseekerDetail andJobDetail:(NSString*)jobDetail{
 
-    return [NSString stringWithFormat:@"%@%@, %@\n",gReportString, jobID, jobseekerID];
+    return [NSString stringWithFormat:@"%@%@, %@\n",gReportString, jobseekerDetail, jobDetail];
 }
 @end

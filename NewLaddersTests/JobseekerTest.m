@@ -107,73 +107,138 @@
 
 - (void) testSaveJReqJob{
     [self resetJAAndJSModel];
+    [[EmployerModel sharedInstance]reset];
+
+    
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"EMPFirst"];
+    
+    //    POSTING JOB
+    IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:135];
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test JReq Job1" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName1];
+    job = [[JreqJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
+    [employer postJobWithName:jobName1 withJobType:job andID:jobID1];
+    
+    [[EmployerModel sharedInstance]reset];
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    [jobSeeker saveJob:[postedJobs postedJobAtIndex:0]];
+    [jobSeeker saveJob:job];
+    
     SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
     id<IJob> savedJob1 = [savedJobs savedJobAtIndex:0];
     NSLog(@"Saved job1 is: %@", [savedJob1 getJobDisplayName]);
-    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test JReq Job-FIRST Jay"], @"");
+    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test JReq Job1-EMPFIRST Jay"], @"");
 }
 
 
 - (void) testSaveATSJob{
     [self resetJAAndJSModel];
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"EMPFirst"];
+    
+    //    POSTING JOB
+    IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:246];
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test ATS Job1" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName1];
+    job = [[ATSJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
+    [employer postJobWithName:jobName1 withJobType:job andID:jobID1];
+    
+    
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    [jobSeeker saveJob:[postedJobs postedJobAtIndex:1]];
+    [jobSeeker saveJob:job];
     SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
     id<IJob> savedJob1 = [savedJobs savedJobAtIndex:0];
     NSLog(@"Saved job1 is: %@", [savedJob1 getJobDisplayName]);
-    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test ATS Job-FIRST Jay"], @"");
+    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test ATS Job1-EMPFIRST Jay"], @"");
 
 }
 
 
 - (void) testSeeSavedJobs{
     [self resetJAAndJSModel];
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"EMPFirst"];
     
+    //    POSTING JOB
+    IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:246];
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName1];
+    job = [[ATSJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
+    [employer postJobWithName:jobName1 withJobType:job andID:jobID1];
+    //SAVE JOB
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    [jobSeeker saveJob:[postedJobs postedJobAtIndex:2]];
+    [jobSeeker saveJob:job];
     
-    
+    //    POSTING JOB
+    IDentifer *jobID2 = [[IDentifer alloc]initWithInteger:135];
+    JobDisplayName *jobName2 = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData2 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName2 = [[JobIDName alloc]initWithJobID:jobID2 AndName:jobName2];
+    job = [[JreqJob alloc]initWithIDName:jobIDName2 AndMetaData:jobMetaData2];
+    [employer postJobWithName:jobName2 withJobType:job andID:jobID2];
+    //SAVE JOB
     jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    [jobSeeker saveJob:[postedJobs postedJobAtIndex:3]];
+    [jobSeeker saveJob:job];
     
-
-    jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
     SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
-
+    
     id<IJob> savedJob1 = [savedJobs savedJobAtIndex:0];
     NSLog(@"Saved job1 is: %@", [savedJob1 getJobDisplayName]);
-    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Second Test JReq Job-FIRST Jay"], @"");
+    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test ATS Job-EMPFIRST Jay"], @"");
 
     id<IJob> savedJob2 = [savedJobs savedJobAtIndex:1];
     NSLog(@"Saved job2 is: %@", [savedJob2 getJobDisplayName]);
-    XCTAssertTrue([[savedJob2 getJobDisplayName] isEqualToString: @"Second Test ATS Job-FIRST Jay"], @"");
+    XCTAssertTrue([[savedJob2 getJobDisplayName] isEqualToString: @"Test JReq Job-EMPFIRST Jay"], @"");
 //    XCTAssertEqual([savedJobs count], 2, @"");
 }
 
 - (void)testApplyForJreqJobWithCorrectResume{
-    [self resetJAAndJSModel];
-    
-    jobID = [[IDentifer alloc]initWithInteger:135];
-    
-    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:440];
-    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
-    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
 
+    [self resetJAAndJSModel];
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"EMPFirst"];
+    
+    //    POSTING JOB
+    IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:135];
+    
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test JReq Job1" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName1];
+    job = [[JreqJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
+    [employer postJobWithName:jobName1 withJobType:job andID:jobID1];
+    
+    
+    //    APPLYING FOR JOB
+    Jobseeker *jobSeeker1 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
+    IDentifer *jobSeekerID1 = [[IDentifer alloc]initWithInteger:777];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID1];
     JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:440];
+    JobAppliedDateResume *jobAppliedDateResume1 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID1];
+    id<IJobApplication> jobApplication1 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withJobAppliedDateResumeID:jobAppliedDateResume1];
+    [jobApplicationCoreFields1 applyForJob:jobApplication1 withResumeID:resumeID1];
     
-    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:resumeID1];
+    Jobseeker *jobSeeker2 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
+    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:778];
+    JobApplicationCoreFields *jobApplicationCoreFields2 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID2];
+    IDentifer *resumeID2 = [[IDentifer alloc]initWithInteger:450];
+    JobAppliedDateResume *jobAppliedDateResume2 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID2];
+     id<IJobApplication> jobApplication2 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields2 withJobAppliedDateResumeID:jobAppliedDateResume2];
+    [jobApplicationCoreFields2 applyForJob:jobApplication2 withResumeID:resumeID2];
+
+
+    JobApplications  *jobApplicationsCollection = [jobSeeker1 seeAppliedJobs];
     
-    JobApplications  *jobApplicationsCollection = [jobSeeker seeAppliedJobs];
-    id<IJobApplication> jobApplication1 = [jobApplicationsCollection jobApplicationAtIndex:0];
-    NSLog(@"In testSeeAppliedJobs JOB1ID is:%d", [jobApplication1 prepareJobApplicationReport]);
-    XCTAssertEqual([jobApplication1 prepareJobApplicationReport], 135, @"Should be True");
+    id<IJobApplication> testJobApplication = [jobApplicationsCollection jobApplicationAtIndex:0];
+    NSLog(@"Applied jobs are:%@", [testJobApplication prepareJobApplicationReport]);
+    XCTAssertTrue([[testJobApplication prepareJobApplicationReport] isEqualToString:@"JSFIRST Jay,Test JReq Job1-EMPFIRST Jay"], @"Should be True");
+
 }
 
 - (void)testApplyForJreqJobWithOtherPersonsResume{
@@ -185,9 +250,10 @@
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
     IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:450];
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
-    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];//Resume belongs to different user.
-    
     JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+        JobAppliedDateResume *jobAppliedDateResume1 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID1];
+    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withJobAppliedDateResumeID:jobAppliedDateResume1];//Resume belongs to different user.
+    
     
     NSUInteger beforeAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
     NSUInteger beforeJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
@@ -209,15 +275,15 @@
     
     [self resetJAAndJSModel];
     
-//    jobID = [[IDentifer alloc]initWithInteger:135];
     jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];
     
     jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-//    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
+//    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:440];
     JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
-    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:nil];//NO RESUME
-    
     JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+           JobAppliedDateResume *jobAppliedDateResume1 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:nil];
+    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withJobAppliedDateResumeID:jobAppliedDateResume1];//NO RESUME
+    
     
     NSUInteger beforeAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
     NSUInteger beforeJobApplicationCount = [[JAModel sharedInstance] getNumberOfApplicationsByJobID:jobID];
@@ -238,118 +304,241 @@
 - (void)testApplyForDifferentJreqJobWithDifferentResume{
     
     [self resetJAAndJSModel];
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"EMPFirst"];
     
-    jobID = [[IDentifer alloc]initWithInteger:137];
-//    jobID = [[JobIDGenerator sharedInstance]generateJReqJobID];//Different JREQ JOB
+    //    POSTING JOB
+    IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:135];
     
-    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:441];//Different resume but belongs to the right jobseeker.
-    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
-    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test JReq Job1" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName1];
+    job = [[JreqJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
+    [employer postJobWithName:jobName1 withJobType:job andID:jobID1];
+
+    IDentifer *jobID2 = [[IDentifer alloc]initWithInteger:137];//DIFFERENT JOB
     
+    JobDisplayName *jobName2 = [[JobDisplayName alloc]initWithJob:@"Second Test JReq Job2" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData2 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName2 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName2];
+    job = [[JreqJob alloc]initWithIDName:jobIDName2 AndMetaData:jobMetaData2];
+    [employer postJobWithName:jobName2 withJobType:job andID:jobID2];
+    
+    
+    //    APPLYING FOR JOB
+    Jobseeker *jobSeeker1 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
+    IDentifer *jobSeekerID1 = [[IDentifer alloc]initWithInteger:777];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID2 andJobSeekerID:jobSeekerID1];
     JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:441];//DIFFERENT RESUME
+    JobAppliedDateResume *jobAppliedDateResume1 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID1];
+    id<IJobApplication> jobApplication1 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withJobAppliedDateResumeID:jobAppliedDateResume1];
+    [jobApplicationCoreFields1 applyForJob:jobApplication1 withResumeID:resumeID1];
     
-    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:resumeID1];
+    Jobseeker *jobSeeker2 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
+    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:778];
+    JobApplicationCoreFields *jobApplicationCoreFields2 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID2];
+    IDentifer *resumeID2 = [[IDentifer alloc]initWithInteger:450];
+    JobAppliedDateResume *jobAppliedDateResume2 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID2];
+    id<IJobApplication> jobApplication2 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields2 withJobAppliedDateResumeID:jobAppliedDateResume2];
+    [jobApplicationCoreFields2 applyForJob:jobApplication2 withResumeID:resumeID2];
     
-    JobApplications  *jobApplicationsCollection = [jobSeeker seeAppliedJobs];
-    id<IJobApplication> jobApplication1 = [jobApplicationsCollection jobApplicationAtIndex:0];
-    NSLog(@"In testSeeAppliedJobs JOB1ID is:%d", [jobApplication1 prepareJobApplicationReport]);
-    XCTAssertEqual([jobApplication1 prepareJobApplicationReport], 137, @"Should be True");
+    
+    JobApplications  *jobApplicationsCollection = [jobSeeker1 seeAppliedJobs];
+    
+    id<IJobApplication> testJobApplication = [jobApplicationsCollection jobApplicationAtIndex:0];
+    NSLog(@"Applied jobs are:%@", [testJobApplication prepareJobApplicationReport]);
+    XCTAssertTrue([[testJobApplication prepareJobApplicationReport] isEqualToString:@"JSFIRST Jay,Second Test JReq Job2-EMPFIRST Jay"], @"Should be True");
+
 }
 
 - (void)testApplyForATSJob{
     
     [self resetJAAndJSModel];
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"EMPFirst"];
     
-    jobID = [[IDentifer alloc]initWithInteger:246];
+    //    POSTING JOB
+    IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:246];
     
-    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-//    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
-    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
-    jobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:[[IDentifer alloc]initWithInteger:0]];
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test ATS Job1" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName1];
+    job = [[ATSJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
+    [employer postJobWithName:jobName1 withJobType:job andID:jobID1];
     
+    
+    //    APPLYING FOR JOB
+    Jobseeker *jobSeeker1 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
+    IDentifer *jobSeekerID1 = [[IDentifer alloc]initWithInteger:777];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID1];
     JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:0];
+    JobAppliedDateResume *jobAppliedDateResume1 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID1];
+    id<IJobApplication> jobApplication1 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withJobAppliedDateResumeID:jobAppliedDateResume1];
+    [jobApplicationCoreFields1 applyForJob:jobApplication1 withResumeID:resumeID1];
     
-    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:[[IDentifer alloc]initWithInteger:0]];
+    Jobseeker *jobSeeker2 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
+    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:778];
+    JobApplicationCoreFields *jobApplicationCoreFields2 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID2];
+    IDentifer *resumeID2 = [[IDentifer alloc]initWithInteger:0];
+    JobAppliedDateResume *jobAppliedDateResume2 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID2];
+    id<IJobApplication> jobApplication2 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields2 withJobAppliedDateResumeID:jobAppliedDateResume2];
+    [jobApplicationCoreFields2 applyForJob:jobApplication2 withResumeID:resumeID2];
     
-    JobApplications  *jobApplicationsCollection = [jobSeeker seeAppliedJobs];
-    id<IJobApplication> jobApplication1 = [jobApplicationsCollection jobApplicationAtIndex:0];
-    NSLog(@"In testSeeAppliedJobs JOB1ID is:%d", [jobApplication1 prepareJobApplicationReport]);
-    XCTAssertEqual([jobApplication1 prepareJobApplicationReport], 246, @"Should be True");
+    
+    JobApplications  *jobApplicationsCollection = [jobSeeker1 seeAppliedJobs];
+    
+    id<IJobApplication> testJobApplication = [jobApplicationsCollection jobApplicationAtIndex:0];
+    NSLog(@"Applied ATS job is:%@", [testJobApplication prepareJobApplicationReport]);
+    XCTAssertTrue([[testJobApplication prepareJobApplicationReport] isEqualToString:@"JSFIRST Jay,Test ATS Job1-EMPFIRST Jay"], @"Should be True");
 }
 
 - (void)testApplyForATSJobWithResume{
     
     [self resetJAAndJSModel];
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"EMPFirst"];
     
-    jobID = [[IDentifer alloc]initWithInteger:246];
+    //    POSTING JOB
+    IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:246];
     
-    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-        IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:440];
-    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
-    jobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test ATS Job1" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName1];
+    job = [[ATSJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
+    [employer postJobWithName:jobName1 withJobType:job andID:jobID1];
     
+    
+    //    APPLYING FOR JOB
+    Jobseeker *jobSeeker1 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
+    IDentifer *jobSeekerID1 = [[IDentifer alloc]initWithInteger:777];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID1];
     JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:440];//WITH RESUMR FOR ATS
+    JobAppliedDateResume *jobAppliedDateResume1 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID1];
+    id<IJobApplication> jobApplication1 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withJobAppliedDateResumeID:jobAppliedDateResume1];
+    [jobApplicationCoreFields1 applyForJob:jobApplication1 withResumeID:resumeID1];
     
-    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:resumeID1];
+    Jobseeker *jobSeeker2 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
+    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:778];
+    JobApplicationCoreFields *jobApplicationCoreFields2 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID2];
+    IDentifer *resumeID2 = [[IDentifer alloc]initWithInteger:0];
+    JobAppliedDateResume *jobAppliedDateResume2 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID2];
+    id<IJobApplication> jobApplication2 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields2 withJobAppliedDateResumeID:jobAppliedDateResume2];
+    [jobApplicationCoreFields2 applyForJob:jobApplication2 withResumeID:resumeID2];
     
-    NSUInteger afterAppliedJobCount = [[JSModel sharedInstance]getNumberOfAppliedJobsForJobSeekerID:jobSeekerID];
-
-    JobApplications  *jobApplicationsCollection = [jobSeeker seeAppliedJobs];
-    id<IJobApplication> jobApplication1 = [jobApplicationsCollection jobApplicationAtIndex:0];
-    NSLog(@"In testSeeAppliedJobs JOB1ID is:%d", [jobApplication1 prepareJobApplicationReport]);
-    XCTAssertEqual([jobApplication1 prepareJobApplicationReport], 246, @"Should be True");
-
+    
+    JobApplications  *jobApplicationsCollection = [jobSeeker1 seeAppliedJobs];
+    
+    id<IJobApplication> testJobApplication = [jobApplicationsCollection jobApplicationAtIndex:0];
+    NSLog(@"Applied ATS job is:%@", [testJobApplication prepareJobApplicationReport]);
+    XCTAssertTrue([[testJobApplication prepareJobApplicationReport] isEqualToString:@"JSFIRST Jay,Test ATS Job1-EMPFIRST Jay"], @"Should be True");
 }
 
 - (void)testApplyForDifferentATSJob{
     [self resetJAAndJSModel];
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"EMPFirst"];
     
-    jobID = [[IDentifer alloc]initWithInteger:680];
+    //    POSTING JOB
+    IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:246];
     
-    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-//    IDentifer *resumeID1 = [[IDentifer alloc]initWithString:@"440"];
-    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID andJobSeekerID:jobSeekerID];
-    jobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:[[IDentifer alloc]initWithInteger:0]];
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test ATS Job1" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName1];
+    job = [[ATSJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
+    [employer postJobWithName:jobName1 withJobType:job andID:jobID1];
     
+    IDentifer *jobID2 = [[IDentifer alloc]initWithInteger:248];//DIFFERENT JOB
+    
+    JobDisplayName *jobName2 = [[JobDisplayName alloc]initWithJob:@"Second Test ATS Job2" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData2 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName2 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName2];
+    job = [[ATSJob alloc]initWithIDName:jobIDName2 AndMetaData:jobMetaData2];
+    [employer postJobWithName:jobName2 withJobType:job andID:jobID2];
+    
+    
+    //    APPLYING FOR JOB
+    Jobseeker *jobSeeker1 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
+    IDentifer *jobSeekerID1 = [[IDentifer alloc]initWithInteger:777];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID2 andJobSeekerID:jobSeekerID1];
     JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
+    IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:0];//DIFFERENT RESUME
+    JobAppliedDateResume *jobAppliedDateResume1 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID1];
+    id<IJobApplication> jobApplication1 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withJobAppliedDateResumeID:jobAppliedDateResume1];
+    [jobApplicationCoreFields1 applyForJob:jobApplication1 withResumeID:resumeID1];
     
-    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:[[IDentifer alloc]initWithInteger:0]];
+    Jobseeker *jobSeeker2 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
+    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:778];
+    JobApplicationCoreFields *jobApplicationCoreFields2 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID2];
+    IDentifer *resumeID2 = [[IDentifer alloc]initWithInteger:0];//NO RESUME
+    JobAppliedDateResume *jobAppliedDateResume2 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID2];
+    id<IJobApplication> jobApplication2 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields2 withJobAppliedDateResumeID:jobAppliedDateResume2];
+    [jobApplicationCoreFields2 applyForJob:jobApplication2 withResumeID:resumeID2];
     
-    JobApplications  *jobApplicationsCollection = [jobSeeker seeAppliedJobs];
-    id<IJobApplication> jobApplication1 = [jobApplicationsCollection jobApplicationAtIndex:0];
-    NSLog(@"In testSeeAppliedJobs JOB1ID is:%d", [jobApplication1 prepareJobApplicationReport]);
-    XCTAssertEqual([jobApplication1 prepareJobApplicationReport], 680, @"Should be True");
+    
+    JobApplications  *jobApplicationsCollection = [jobSeeker1 seeAppliedJobs];
+    
+    id<IJobApplication> testJobApplication = [jobApplicationsCollection jobApplicationAtIndex:0];
+    NSLog(@"Applied jobs are:%@", [testJobApplication prepareJobApplicationReport]);
+    XCTAssertTrue([[testJobApplication prepareJobApplicationReport] isEqualToString:@"JSFIRST Jay,Second Test ATS Job2-EMPFIRST Jay"], @"Should be True");
     
 }
 
 - (void) testSeeAppliedJobs{
     
     [self resetJAAndJSModel];
+    [[EmployerModel sharedInstance]reset];
+    UserDisplayName *jobPosterName = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"EMPFirst"];
     
+    //    POSTING JOB
     IDentifer *jobID1 = [[IDentifer alloc]initWithInteger:135];
     
-    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
+    JobDisplayName *jobName1 = [[JobDisplayName alloc]initWithJob:@"Test JReq Job" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData1 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName1 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName1];
+    job = [[JreqJob alloc]initWithIDName:jobIDName1 AndMetaData:jobMetaData1];
+    [employer postJobWithName:jobName1 withJobType:job andID:jobID1];
+    
+    IDentifer *jobID2 = [[IDentifer alloc]initWithInteger:246];//DIFFERENT JOB
+    
+    JobDisplayName *jobName2 = [[JobDisplayName alloc]initWithJob:@"Test ATS Job" andPoster:jobPosterName] ;
+    JobMetaData *jobMetaData2 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
+    JobIDName *jobIDName2 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName2];
+    job = [[ATSJob alloc]initWithIDName:jobIDName2 AndMetaData:jobMetaData2];
+    [employer postJobWithName:jobName2 withJobType:job andID:jobID2];
+    
+    
+    //    APPLYING FOR JOB
+    Jobseeker *jobSeeker1 = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:0];
+    IDentifer *jobSeekerID1 = [[IDentifer alloc]initWithInteger:777];
+    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID2 andJobSeekerID:jobSeekerID1];
+    JobApplicationDate *jobApplicationDate = [[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]];
     IDentifer *resumeID1 = [[IDentifer alloc]initWithInteger:440];
-    JobApplicationCoreFields *jobApplicationCoreFields1 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID];
-    jobApplication = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withOptionalResumeID:resumeID1];
-    [jobApplicationCoreFields1 applyForJob:jobApplication withResumeID:resumeID1];
+    JobAppliedDateResume *jobAppliedDateResume1 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID1];
+    id<IJobApplication> jobApplication1 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields1 withJobAppliedDateResumeID:jobAppliedDateResume1];
+    [jobApplicationCoreFields1 applyForJob:jobApplication1 withResumeID:resumeID1];
     
-    IDentifer *jobID2 = [[IDentifer alloc]initWithInteger:246];
-    jobSeekerID = [[IDentifer alloc]initWithInteger:777];
-    JobApplicationCoreFields *jobApplicationCoreFields3 = [[JobApplicationCoreFields alloc]initWithJobID:jobID2 andJobSeekerID:jobSeekerID];
-    ATSJobApplication *atsJobApplication = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields3 withOptionalResumeID:[[IDentifer alloc]initWithInteger:0]];
-    [jobApplicationCoreFields3 applyForJob:atsJobApplication withResumeID:[[IDentifer alloc]initWithInteger:0]];
-    
-    JobApplications  *jobApplicationsCollection = [jobSeeker seeAppliedJobs];
-    
-    id<IJobApplication> jobApplication1 = [jobApplicationsCollection jobApplicationAtIndex:0];
-    NSLog(@"In testSeeAppliedJobs JOB1ID is:%d", [jobApplication1 prepareJobApplicationReport]);
-    XCTAssertEqual([jobApplication1 prepareJobApplicationReport], 135, @"Should be True");
 
-    id<IJobApplication> jobApplication2 = [jobApplicationsCollection jobApplicationAtIndex:1];
-    NSLog(@"In testSeeAppliedJobs JOB2ID is:%d", [jobApplication2 prepareJobApplicationReport]);
-    XCTAssertEqual([jobApplication2 prepareJobApplicationReport], 246, @"Should be True");
+    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:777];
+    JobApplicationCoreFields *jobApplicationCoreFields2 = [[JobApplicationCoreFields alloc]initWithJobID:jobID1 andJobSeekerID:jobSeekerID2];
+    IDentifer *resumeID2 = [[IDentifer alloc]initWithInteger:0];//NO RESUME
+    JobAppliedDateResume *jobAppliedDateResume2 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID2];
+    id<IJobApplication> jobApplication2 = [[JReqJobApplication alloc]initWithCoreFields:jobApplicationCoreFields2 withJobAppliedDateResumeID:jobAppliedDateResume2];
+    [jobApplicationCoreFields2 applyForJob:jobApplication2 withResumeID:resumeID2];
+    
+    
+    JobApplications  *jobApplicationsCollection = [jobSeeker1 seeAppliedJobs];
+    
+    
+    id<IJobApplication> testJobApplication1 = [jobApplicationsCollection jobApplicationAtIndex:0];
+    NSLog(@"Applied jobs are:%@", [testJobApplication1 prepareJobApplicationReport]);
+    XCTAssertTrue([[testJobApplication1 prepareJobApplicationReport] isEqualToString:@"JSFIRST Jay,Test ATS Job-EMPFIRST Jay"], @"Should be True");
+
+    id<IJobApplication> testJobApplication2 = [jobApplicationsCollection jobApplicationAtIndex:1];
+    NSLog(@"Applied jobs are:%@", [testJobApplication2 prepareJobApplicationReport]);
+    XCTAssertTrue([[testJobApplication2 prepareJobApplicationReport] isEqualToString:@"JSFIRST Jay,Test JReq Job-EMPFIRST Jay"], @"Should be True");
 }
 
 -(void)resetJAAndJSModel{

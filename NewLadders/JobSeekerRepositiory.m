@@ -37,7 +37,7 @@ static JobSeekerRepositiory *sharedInstance;
     [resumes1 addResume:resume12];
 
     
-    UserDisplayName *jobSeekerdisplayName1 = [[UserDisplayName alloc]initWithFirstName:@"First" andLastName:@"Jay"];
+    UserDisplayName *jobSeekerdisplayName1 = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"JSFirst"];
     JobSeekerIDName *jobSeekerIDName1 = [[JobSeekerIDName alloc]initWithID:jobSeekerID1 andName:jobSeekerdisplayName1];
     Jobseeker *jobSeeker1 = [[Jobseeker alloc]initWithID:jobSeekerIDName1 andResumeArray:resumes1];
     
@@ -56,7 +56,7 @@ static JobSeekerRepositiory *sharedInstance;
 
 
     
-    UserDisplayName *jobSeekerdisplayName2 = [[UserDisplayName alloc]initWithFirstName:@"Second" andLastName:@"Jay"];
+    UserDisplayName *jobSeekerdisplayName2 = [[UserDisplayName alloc]initWithFirstName:@"Jay" andLastName:@"JSSecond"];
     JobSeekerIDName *jobSeekerIDName2 = [[JobSeekerIDName alloc]initWithID:jobSeekerID2 andName:jobSeekerdisplayName2];
     Jobseeker *jobSeeker2 = [[Jobseeker alloc]initWithID:jobSeekerIDName2 andResumeArray:resumes2];
     
@@ -75,8 +75,13 @@ static JobSeekerRepositiory *sharedInstance;
     return retVal;
 }
 
--(Jobseeker*) getJobSeekerAtIndex:(NSUInteger)index{
+-(Jobseeker*)getJobSeekerAtIndex:(NSUInteger)index{
     
     return [jobSeekersCollection jobSeekerAtIndex:index];
+}
+
+-(Jobseeker*)getJobSeekerWithID:(IDentifer*)jobSeekerID{
+    
+    return [jobSeekersCollection jobSeekerWithID:jobSeekerID];
 }
 @end

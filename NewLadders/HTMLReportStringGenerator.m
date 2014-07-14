@@ -15,8 +15,7 @@
     gReportString = aString;
     return self;
 }
-
-- (NSString*)appendJobApplicationReportWithJobID:(IDentifer*)jobID andJobseekerID:(IDentifer*)jobseekerID{
-    return [NSString stringWithFormat:@"%@<tr><td>%@</td><td>%@</td></tr>",gReportString, jobID, jobseekerID];
+- (NSString*)appendJobApplicationReportWithJobseekerDetail:(NSString*)jobseekerDetail andJobDetail:(NSString*)jobDetail{
+    return [NSString stringWithFormat:@"%@<tr><td>%@</td><td>%@</td></tr>",gReportString, jobseekerDetail, jobDetail];
 }
 @end

@@ -12,13 +12,13 @@
 
 @implementation ATSJobApplication
 
--(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withOptionalResumeID:(IDentifer*)resumeID{
+-(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume{
     
     if(jobApplicationCoreFields!= nil){
         
         self = [super init];
         gjobApplicationCoreFields = jobApplicationCoreFields;
-        gresumeID = resumeID;
+        gJobAppliedDateResume = jobAppliedDateResume;
         
         return self;
     }
@@ -37,6 +37,6 @@
     [gjobApplicationCoreFields updateJobApplicationModel:self];
 }
 -(NSString*)prepareJobApplicationReport{
-    return [gjobApplicationCoreFields getJobID];
+    return [gjobApplicationCoreFields prepareJobApplicationReportElements];
 }
 @end

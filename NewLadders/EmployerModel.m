@@ -62,5 +62,6 @@ static EmployerModel *sharedInstance;
 
 -(void)reset{
     employerJobMutableDict = nil;
+    [[JobsModel sharedInstance]reset];
 }
 @end

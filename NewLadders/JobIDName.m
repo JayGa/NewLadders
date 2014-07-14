@@ -15,12 +15,18 @@
 - (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(JobDisplayName*)jobName{
     
     self = [super init];
-    ijobID = jobID;
-    ijobName = jobName;
+    gjobID = jobID;
+    gjobName = jobName;
     return self;
 }
 
--(NSString*)getJobDisplayName{
-    return [ijobName getJobDisplayNameString];
+-(NSString*)getJobApplicationReportElements{
+    return [gjobName getJobDisplayNameString];
 }
+
+-(NSString*)getJobDisplayName{
+    
+    return [gjobName getJobDisplayNameString];
+}
+
 @end
