@@ -15,5 +15,5 @@
 }
 -(id<IReportStringGenerator>)initWithString:(NSString*)aString;
 //- (NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
-- (NSString*)appendJobApplicationReportWithJobseekerDetail:(IDentifer*)jobID andJobDetail:(IDentifer*)jobseekerID;
+- (NSString*)appendJobApplicationReportWithJobseekerDetail:(NSString*)jobseekerDetail jobDetail:(NSString*)jobDetail jobAppliedDate:(NSString*)applicationDateString;
 @end

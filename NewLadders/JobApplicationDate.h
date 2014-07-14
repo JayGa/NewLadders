@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JobApplicationDate : NSDate{
-    JobApplicationDate *gJobApplicationDate;
+@interface JobApplicationDate : NSObject{
 }
+@property (nonatomic, strong) NSDate *gJobApplicationDate;
 -(JobApplicationDate*)initWithJobApplicationDate:(NSDate*)jobApplicationDate;
+-(NSString*)prepareJobApplicationDateString;
+-(NSString*)jobApplicationDateKeyString;
 @end

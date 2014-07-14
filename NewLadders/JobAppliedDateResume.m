@@ -18,4 +18,19 @@
     return self;
 }
 
+-(NSString*)jobApplicationDateReport{
+    return [self jobApplicationDateKeyString:gJobApplicationDate.gJobApplicationDate];
+}
+
+-(NSString*)jobApplicationDateKeyString:(NSDate*)gJobApplicationDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMdd";
+    return [formatter stringFromDate:gJobApplicationDate];
+}
+
+-(NSString*)prepareJobApplicationDateString:(NSDate*)gJobApplicationDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-mmm-yyyy";
+    return [formatter stringFromDate:gJobApplicationDate];
+}
 @end

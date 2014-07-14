@@ -12,6 +12,7 @@
 #import "JobSeekerRepositiory.h"
 #import "IDentifer.h"
 #import "JobsModel.h"
+#import "JobApplicationDate.h"
 
 @implementation JobApplicationCoreFields
 
@@ -33,13 +34,11 @@
     [[JAModel sharedInstance]updateModelWithJobApplication:jobApplication withJobID:gjobID];
 }
 
--(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString{
+-(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString jobAppliedDate:(NSString*)jobApplicationDateString{
     
     id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
-    
     Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
-    
-    return [reportString appendJobApplicationReportWithJobseekerDetail:[jobseeker getJobApplicationReportElements] andJobDetail:[job getJobApplicationReportElements]];
+    return [reportString appendJobApplicationReportWithJobseekerDetail:[jobseeker getJobApplicationReportElements] jobDetail:[job getJobApplicationReportElements] jobAppliedDate:jobApplicationDateString];
 }
 
 -(NSString*)prepareJobApplicationReportElements{

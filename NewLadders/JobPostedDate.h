@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface JobPostedDate : NSDate{
-    JobPostedDate *gJobPostedDate;
+    NSDate *gJobPostedDate;
 }
 -(JobPostedDate*)initByPostedDate:(NSDate*)postedDate;
 @end

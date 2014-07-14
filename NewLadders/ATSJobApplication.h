@@ -17,7 +17,8 @@
 }
 
 -(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume;
--(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
+//-(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString jobAppliedDate:(JobApplicationDate*)jobApplicationDate;
+-(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
 -(void)callUpdateJobApplicationModel;
 -(NSString*)prepareJobApplicationReport;
 @end

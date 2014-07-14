@@ -8,10 +8,24 @@
 
 #import "JobApplicationDate.h"
 
+
 @implementation JobApplicationDate
+@synthesize gJobApplicationDate;
 -(JobApplicationDate*)initWithJobApplicationDate:(NSDate*)jobApplicationDate{
     
     gJobApplicationDate = jobApplicationDate;
     return gJobApplicationDate;
+}
+
+-(NSString*)prepareJobApplicationDateString{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-mmm-yyyy";
+    return [formatter stringFromDate:gJobApplicationDate];
+}
+
+-(NSString*)jobApplicationDateKeyString{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMdd";
+    return [formatter stringFromDate:gJobApplicationDate];
 }
 @end

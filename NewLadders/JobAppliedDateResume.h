@@ -17,7 +17,9 @@
     
 }
 
-- (JobAppliedDateResume*)initWithAppliedDate:(JobApplicationDate*)jobApplicationDate andResumeID:(IDentifer*)resumeID;
-
+-(JobAppliedDateResume*)initWithAppliedDate:(JobApplicationDate*)jobApplicationDate andResumeID:(IDentifer*)resumeID;
+-(NSString*)jobApplicationDateReport;
+-(NSString*)jobApplicationDateKeyString:(NSDate*)gJobApplicationDate;
+-(NSString*)prepareJobApplicationDateString:(NSDate*)gJobApplicationDate;
 @end
 

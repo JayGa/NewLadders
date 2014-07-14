@@ -204,11 +204,6 @@
 				825CA21C195DF5DF00FFD5B0 /* JobApplicationCoreFields.m */,
 				82C31BF819703265002662F9 /* JobAppliedDateResume.h */,
 				82C31BF919703265002662F9 /* JobAppliedDateResume.m */,
-				825CA21F195DFC9900FFD5B0 /* IReportStringGenerator.h */,
-				825CA220195DFCBA00FFD5B0 /* CSVReportStringGenerator.h */,
-				825CA221195DFCBA00FFD5B0 /* CSVReportStringGenerator.m */,
-				825CA223195DFCC800FFD5B0 /* HTMLReportStringGenerator.h */,
-				825CA224195DFCC800FFD5B0 /* HTMLReportStringGenerator.m */,
 			);
 			name = JobApplication;
 			sourceTree = "<group>";
@@ -363,6 +358,11 @@
 				8201B642195083110048CA56 /* IReport.h */,
 				8201B63F195080F70048CA56 /* JobApplicationReport.h */,
 				8201B640195080F70048CA56 /* JobApplicationReport.m */,
+				825CA21F195DFC9900FFD5B0 /* IReportStringGenerator.h */,
+				825CA220195DFCBA00FFD5B0 /* CSVReportStringGenerator.h */,
+				825CA221195DFCBA00FFD5B0 /* CSVReportStringGenerator.m */,
+				825CA223195DFCC800FFD5B0 /* HTMLReportStringGenerator.h */,
+				825CA224195DFCC800FFD5B0 /* HTMLReportStringGenerator.m */,
 			);
 			name = ReportGeneration;
 			sourceTree = "<group>";

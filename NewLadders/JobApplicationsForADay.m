@@ -1,5 +1,5 @@
 //
-//  JobApplicationsForADay.m
+//
 //  NewLadders
 //
 //  Created by Jay Gaonkar on 6/25/14.
@@ -31,10 +31,18 @@
 
 -(NSString*)stringFromJobApplicationDate:(JobApplicationDate*)jobApplicationDate{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    JobPostedDate *jobPostedDate = [[JobPostedDate alloc]initByPostedDate:[NSDate date]];
     formatter.dateFormat = @"yyyyMMdd";
-     return [formatter stringFromDate:jobApplicationDate];
+    return [formatter stringFromDate:jobApplicationDate];
+//    return [jobApplicationDate jobApplicationDateKeyString];
 }
+
+-(NSString*)jobApplicationDateKeyString:(NSDate*)gJobApplicationDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMdd";
+    return [formatter stringFromDate:gJobApplicationDate];
+}
+
+
 - (NSUInteger)count{
     return [aDictionary count];
 }

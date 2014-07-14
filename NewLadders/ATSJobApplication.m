@@ -29,7 +29,8 @@
 
 -(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString{
     
-    return [gjobApplicationCoreFields appendJobApplicationReportRecordTo:reportString];
+    NSString *appliedDateString = [gJobAppliedDateResume jobApplicationDateReport];
+    return [gjobApplicationCoreFields appendJobApplicationReportRecordTo:reportString jobAppliedDate:appliedDateString];
 }
 
 

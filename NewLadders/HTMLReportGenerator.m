@@ -16,7 +16,7 @@
 
 -(NSString*)prepareReport:(JobApplications *)jobApplications withTitle:(NSString *)title{
  
-    NSString *htmlString = [NSString stringWithFormat:@"<p>Job Application Report: %@</p><table><tr><th>JOB ID</th><th>JOB SEEKER</th></tr>", title];
+    NSString *htmlString = [NSString stringWithFormat:@"<p>Job Application Report: %@</p><table><tr><th>JOB SEEKER</th><th>JOB DETAILS</th><th>APP DATE</th></tr>", title];
 
     id<IReportStringGenerator> htmlReportString = [[HTMLReportStringGenerator alloc]initWithString:htmlString];
 

@@ -15,7 +15,7 @@
 @implementation CSVReportGenerator
 
 -(NSString*)prepareReport:(JobApplications *)jobApplications withTitle:(NSString *)title{
-    NSString *cSVString = [NSString stringWithFormat:@"Job Application Report,%@\nJOBID, JOBSEEKER\n ",title];
+    NSString *cSVString = [NSString stringWithFormat:@"Job Application Report,%@\n JOB SEEKER, JOB DETAILS, APP DATE\n",title];
 
     id<IReportStringGenerator> csvReportString = [[CSVReportStringGenerator alloc]initWithString:cSVString];
     
