@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IJobApplication.h"
+
 #import "JobPostedDate.h"
 #import "IDentifer.h"
 #import "JobApplicationsForJobIDs.h"

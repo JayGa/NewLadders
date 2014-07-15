@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IJobApplication.h"
 #import "IJob.h"
 #import "AppliedJobsForJobseeker.h"
 #import "SavedJobsForJobseeker.h"
 #import "SavedJobs.h"
+#import "IDentifer.h"
+#import "JAModel.h"
 #import "JobApplications.h"
+#import "IJobApplication.h"
 
 @interface JSModel : NSObject{
     AppliedJobsForJobseeker *jobSeekerAppliedJobsMutableDict;

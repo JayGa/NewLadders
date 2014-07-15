@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IDentifer.h"
 #import "IReportStringGenerator.h"
-#import "JobApplicationCoreFields.h"
-#import "JobAppliedDateResume.h"
+
+@class JobAppliedDateResume;
+@class IDentifer;
 @class JobApplicationCoreFields;
 
 

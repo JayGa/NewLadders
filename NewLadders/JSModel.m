@@ -7,10 +7,6 @@
 //
 
 #import "JSModel.h"
-#import "IJobApplication.h"
-#import "JAModel.h"
-#import "IJob.h"
-#import "JobApplications.h"
 
 static JSModel *sharedInstance;
 
