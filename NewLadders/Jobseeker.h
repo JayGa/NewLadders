@@ -18,7 +18,6 @@
 #import "IJob.h"
 #import "IJobApplication.h"
 
-@class IJobApplication;
 @class JReqJobApplication;
 
 @interface Jobseeker : NSObject{

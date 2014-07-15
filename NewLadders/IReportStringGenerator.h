@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IDentifer.h"
+#import "IJob.h"
 #import "Jobseeker.h"
 
 @protocol IReportStringGenerator <NSObject>

@@ -9,6 +9,7 @@
 #import "IJobApplication.h"
 #import "JobApplicationCoreFields.h"
 #import "JobAppliedDateResume.h"
+#import "IReportStringGenerator.h"
 
 @interface JReqJobApplication : NSObject <IJobApplication>{
     

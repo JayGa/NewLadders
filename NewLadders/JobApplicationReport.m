@@ -24,7 +24,7 @@
     return [[JAModel sharedInstance]prepareJobAggregrateReport];
 }
 
--(PostedJobs*)prepareAggregrateReportByEmployer{
+-(NSString*)prepareAggregrateReportByEmployer{
     
     return [[EmployerModel sharedInstance]prepareJobAggregrateReport];
 }
