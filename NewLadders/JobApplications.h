@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IJobApplication.h"
+#import "IReportStringGenerator.h"
 
 @interface JobApplications : NSObject{
  
