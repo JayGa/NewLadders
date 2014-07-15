@@ -21,4 +21,5 @@
 - (id<IJobApplication>)jobApplicationAtIndex:(NSUInteger)index;
 - (NSUInteger)count;
 - (NSString*)generateReportBodyForString:(id<IReportStringGenerator>)reportGeneratorString;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

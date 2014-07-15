@@ -8,7 +8,10 @@
 
 #import "JobApplications.h"
 
-@implementation JobApplications
+@implementation JobApplications{
+    NSString *greportStringToReturn;
+
+}
 
 -(JobApplications*)init{
     self = [super init];
@@ -37,6 +40,10 @@
         reportStringToReturn = [reportStringToReturn stringByAppendingString:[jobApplication appendJobApplicationReportRecordTo:reportGeneratorString]];
     }
     return reportStringToReturn;
+}
+
+-(void)appendToReportString:(NSString*)reportSubString{
+    [greportStringToReturn stringByAppendingString:reportSubString];
 }
 
 @end
