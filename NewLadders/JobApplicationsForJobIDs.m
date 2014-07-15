@@ -7,6 +7,7 @@
 //
 
 #import "JobApplicationsForJobIDs.h"
+#import "JobIDs.h"
 
 @implementation JobApplicationsForJobIDs
 
@@ -31,5 +32,8 @@
 //}
 - (NSUInteger)count{
     return [aDictionary count];
+}
+-(NSArray*)allJobIDs{
+    return [aDictionary allKeys];
 }
 @end

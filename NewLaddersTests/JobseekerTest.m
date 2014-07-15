@@ -26,6 +26,7 @@
 
 @class Jobseeker;
 @class IJob;
+@class IJobApplication;
 
 @interface JobseekerTest : XCTestCase{
     

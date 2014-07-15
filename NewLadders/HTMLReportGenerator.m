@@ -18,11 +18,12 @@
  
     NSString *htmlString = [NSString stringWithFormat:@"<p>Job Application Report: %@</p><table><tr><th>JOB SEEKER</th><th>JOB DETAILS</th><th>APP DATE</th></tr>", title];
 
-    id<IReportStringGenerator> htmlReportString = [[HTMLReportStringGenerator alloc]initWithString:htmlString];
+    id<IReportStringGenerator> htmlReportString = [[HTMLReportStringGenerator alloc]initWithString:@""];
 
     NSString *htmlReportStringToReturn = [NSString stringWithFormat:@"%@</table>",[jobApplications generateReportBodyForString:htmlReportString]];
-    [self writeReport:htmlReportStringToReturn ToFile:title];
-    return htmlReportStringToReturn;
+    NSString *finalHTMLString = [htmlString stringByAppendingString:htmlReportStringToReturn];
+    [self writeReport:finalHTMLString ToFile:title];
+    return finalHTMLString;
 }
 
 -(void)writeReport:(NSString *)content ToFile:(NSString *)title{

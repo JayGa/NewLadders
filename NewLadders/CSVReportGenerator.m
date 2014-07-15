@@ -16,12 +16,11 @@
 
 -(NSString*)prepareReport:(JobApplications *)jobApplications withTitle:(NSString *)title{
     NSString *cSVString = [NSString stringWithFormat:@"Job Application Report,%@\n JOB SEEKER, JOB DETAILS, APP DATE\n",title];
-
-    id<IReportStringGenerator> csvReportString = [[CSVReportStringGenerator alloc]initWithString:cSVString];
-    
+    id<IReportStringGenerator> csvReportString = [[CSVReportStringGenerator alloc]initWithString:@""];
     NSString* csvStringToReturn = [jobApplications generateReportBodyForString:csvReportString];
-    [self writeReport:csvStringToReturn ToFile:title];
-    return csvStringToReturn;
+    NSString*finalString = [cSVString stringByAppendingString:csvStringToReturn];
+    [self writeReport:finalString ToFile:title];
+    return finalString;
 }
 
 -(void)writeReport:(NSString*)content ToFile:(NSString *)title{

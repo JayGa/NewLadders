@@ -60,6 +60,18 @@ static EmployerModel *sharedInstance;
     return [[employerJobMutableDict getJobsPostedByEmployerWithID:employerID] count];
 }
 
+-(NSString*)prepareJobAggregrateReport{
+    NSArray *employerIDArray = [employerJobMutableDict allEmployerIDs];
+    NSString *reportString = @"";
+    for (int i =0 ; i<[employerIDArray count]; i++) {
+        
+        IDentifer *employerID = [employerIDArray objectAtIndex:i];
+        
+        [reportString stringByAppendingString:[NSString stringWithFormat:@"%@,%d\n", [employerID appendIdentifier:reportString], [self getNumberOfPostedJobsByEmployerWithId:employerID]]];
+    }
+    return reportString;
+}
+
 -(void)reset{
     employerJobMutableDict = nil;
     [[JobsModel sharedInstance]reset];

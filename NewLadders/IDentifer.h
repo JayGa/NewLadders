@@ -14,5 +14,6 @@
 }
 -(IDentifer*)initWithInteger:(int)identifier;
 -(void)printID;
--(int)getIDInteger;
+-(NSString*)appendIdentifier:(NSString*)prefix;
+-(int)reportIDInteger;
 @end

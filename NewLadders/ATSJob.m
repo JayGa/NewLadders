@@ -23,7 +23,7 @@
     
     return [gjobIDName getJobDisplayName];
 }
--(NSString*)getJobApplicationReportElements{
+-(NSString*)appendJobApplicationReportElements:(NSString*)prefix{
     
     return [gjobIDName getJobApplicationReportElements];
 }

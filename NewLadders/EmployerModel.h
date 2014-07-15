@@ -23,5 +23,6 @@
 -(JobApplications*)getJobapplicationForJobsID:(IDentifer *)jobID;
 -(PostedJobs*)jobsPostedByEmployerWithID:(IDentifer*)employerID;
 -(NSUInteger)getNumberOfPostedJobsByEmployerWithId:(IDentifer*)employerID;
+-(NSString*)prepareJobAggregrateReport;
 -(void)reset;
 @end

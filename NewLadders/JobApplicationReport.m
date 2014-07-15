@@ -19,14 +19,14 @@
     return [[JAModel sharedInstance]jobApplicationsForADay:jobApplicationDateToReport];
 }
 
--(JobApplications*)prepareAggregrateReportByJob:(IDentifer*)jobID{
+-(NSString*)prepareAggregrateReportByJob:(IDentifer*)jobID{
     
-    return [[JAModel sharedInstance]jobApplicationsForJobWithID:jobID];
+    return [[JAModel sharedInstance]prepareJobAggregrateReport];
 }
 
--(PostedJobs*)prepareAggregrateReportByEmployer:(IDentifer*)employerID {
+-(PostedJobs*)prepareAggregrateReportByEmployer{
     
-    return [[EmployerModel sharedInstance]jobsPostedByEmployerWithID:employerID];
+    return [[EmployerModel sharedInstance]prepareJobAggregrateReport];
 }
 
 -(JobApplications*)prepareJobApplicationReportByEmployer:(IDentifer*)employerID{

@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
 #import "IReportStringGenerator.h"
-
-#include "IJobApplication.h"
+#import "IJobApplication.h"
 
 @interface JobApplicationCoreFields : NSObject{
         IDentifer *gjobSeekerID ;

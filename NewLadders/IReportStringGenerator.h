@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
+#import "Jobseeker.h"
 
 @protocol IReportStringGenerator <NSObject>
 
 -(id<IReportStringGenerator>)initWithString:(NSString*)aString;
-- (NSString*)appendJobApplicationReportWithJobseekerDetail:(NSString*)jobseekerDetail jobDetail:(NSString*)jobDetail jobAppliedDate:(NSString*)applicationDateString;
+-(NSString*)appendJobApplicationReportWithJobseeker:(Jobseeker*)aJobseeker job:(id<IJob>)aJob jobAppliedDate:(NSString*)applicationDateString;
 @end

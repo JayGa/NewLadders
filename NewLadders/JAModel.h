@@ -30,5 +30,6 @@
 -(NSUInteger)getNumberOfApplicationsAppllicationDate:(JobApplicationDate*)appliedDate;
 -(JobApplications*)jobApplicationsForJobWithID:(IDentifer*)jobID;
 -(JobApplications*)jobApplicationsForADay:(JobApplicationDate*)jobPostedDate;
+-(NSString*)prepareJobAggregrateReport;
 -(void)reset;
 @end

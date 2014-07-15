@@ -9,14 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
 #import "IReportStringGenerator.h"
-//#import "JobApplicationCoreFields.h"
+#import "JobApplicationCoreFields.h"
 #import "JobAppliedDateResume.h"
-
 @class JobApplicationCoreFields;
+
+
 @protocol IJobApplication <NSObject>
 
-- (id<IJobApplication>)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume;
-- (NSString*) appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
-- (void) callUpdateJobApplicationModel;
+-(id<IJobApplication>)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume;
+-(NSString*) appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
+-(void) callUpdateJobApplicationModel;
 -(NSString*)prepareJobApplicationReport;
 @end

@@ -19,4 +19,6 @@
 -(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume;
 -(void)callUpdateJobApplicationModel;
 -(NSString*)prepareJobApplicationReport;
+-(NSString*) appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
+
 @end

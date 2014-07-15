@@ -7,9 +7,6 @@
 //
 
 #import "Jobseeker.h"
-#import "JReqJobApplication.h"
-#import "JSModel.h"
-#import "IJob.h"
 
 @implementation Jobseeker
 -(Jobseeker*) initWithID:(JobSeekerIDName*)jobSeekerIDName andResumeArray:(Resumes*)resumes{
@@ -41,8 +38,9 @@
     
     return gresumes;
 }
--(NSString*)getJobApplicationReportElements{
-    return [gjobSeekerIDName getJobApplicationReportElements];
+-(NSString*)appendJobApplicationReportElements:(NSString*)prefix{
+    
+    return [gjobSeekerIDName getJobApplicationReportElements:prefix];
 }
 
 @end

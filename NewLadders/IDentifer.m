@@ -48,7 +48,10 @@
     return gIdentifier;
 }
 
--(int)getIDInteger{
+-(NSString*)appendIdentifier:(NSString*)prefix{
+    return [prefix stringByAppendingString:[NSString stringWithFormat:@"%d",gIdentifier]];
+}
+-(int)reportIDInteger{
     
     return gIdentifier;
 }

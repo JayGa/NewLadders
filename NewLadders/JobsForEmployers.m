@@ -36,4 +36,8 @@
     return [aDictionary count];
 }
 
+-(NSArray*)allEmployerIDs{
+    return [aDictionary allKeys];
+}
+
 @end

@@ -15,5 +15,5 @@
 
 @protocol IJob <NSObject>
 -(NSString*)getJobDisplayName;
--(NSString*)getJobApplicationReportElements;
+-(NSString*)appendJobApplicationReportElements:(NSString*)prefix;
 @end

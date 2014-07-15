@@ -17,10 +17,10 @@
     return self;
 }
 
--(NSString*)getJobApplicationReportElements{
-    return gdisplayName;
+-(NSString*)appendJobApplicationReportElements:(NSString*)prefix{
+    return [prefix stringByAppendingString: gdisplayName];
 }
--(NSString*)getUserDisplayNameString{
-    return gdisplayName;
+-(NSString*)getUserDisplayNameString:(NSString*)prefix{
+    return [prefix stringByAppendingString: gdisplayName];
 }
 @end

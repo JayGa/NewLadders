@@ -36,9 +36,10 @@
 
 -(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString jobAppliedDate:(NSString*)jobApplicationDateString{
     
+#warning USE -
     id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
     Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
-    return [reportString appendJobApplicationReportWithJobseekerDetail:[jobseeker getJobApplicationReportElements] jobDetail:[job getJobApplicationReportElements] jobAppliedDate:jobApplicationDateString];
+    return [reportString appendJobApplicationReportWithJobseeker:jobseeker job:job jobAppliedDate:jobApplicationDateString];
 }
 
 -(NSString*)prepareJobApplicationReportElements{
@@ -46,6 +47,6 @@
     
     Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
     
-    return  [NSString stringWithFormat:@"%@,%@", [jobseeker getJobApplicationReportElements], [job getJobApplicationReportElements]] ;
+    return  [NSString stringWithFormat:@"%@,%@", [jobseeker getJobApplicationReportElements], [job appendJobApplicationReportElements]] ;
 }
 @end

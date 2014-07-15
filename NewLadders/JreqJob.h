@@ -18,5 +18,5 @@
 }
 -(id<IJob>)initWithIDName:(JobIDName*)jobIDName AndMetaData:(JobMetaData*)jobMetaData;
 -(NSString*)getJobDisplayName;
--(NSString*)getJobApplicationReportElements;
+-(NSString*)appendJobApplicationReportElements;
 @end

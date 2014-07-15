@@ -36,6 +36,7 @@
 		825CA21D195DF5DF00FFD5B0 /* JobApplicationCoreFields.m in Sources */ = {isa = PBXBuildFile; fileRef = 825CA21C195DF5DF00FFD5B0 /* JobApplicationCoreFields.m */; };
 		825CA222195DFCBA00FFD5B0 /* CSVReportStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 825CA221195DFCBA00FFD5B0 /* CSVReportStringGenerator.m */; };
 		825CA225195DFCC800FFD5B0 /* HTMLReportStringGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 825CA224195DFCC800FFD5B0 /* HTMLReportStringGenerator.m */; };
+		826132C91975480000E633A0 /* JobIDs.m in Sources */ = {isa = PBXBuildFile; fileRef = 826132C81975480000E633A0 /* JobIDs.m */; };
 		827ADE13196451060070045F /* JobSeekerIDName.m in Sources */ = {isa = PBXBuildFile; fileRef = 827ADE12196451060070045F /* JobSeekerIDName.m */; };
 		82A728BD19537E3F0039DF87 /* JSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A728BC19537E3F0039DF87 /* JSModel.m */; };
 		82A728C019537E610039DF87 /* JAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A728BF19537E610039DF87 /* JAModel.m */; };
@@ -130,6 +131,8 @@
 		825CA221195DFCBA00FFD5B0 /* CSVReportStringGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSVReportStringGenerator.m; sourceTree = "<group>"; };
 		825CA223195DFCC800FFD5B0 /* HTMLReportStringGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLReportStringGenerator.h; sourceTree = "<group>"; };
 		825CA224195DFCC800FFD5B0 /* HTMLReportStringGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLReportStringGenerator.m; sourceTree = "<group>"; };
+		826132C71975480000E633A0 /* JobIDs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobIDs.h; sourceTree = "<group>"; };
+		826132C81975480000E633A0 /* JobIDs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobIDs.m; sourceTree = "<group>"; };
 		827ADE11196451060070045F /* JobSeekerIDName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobSeekerIDName.h; sourceTree = "<group>"; };
 		827ADE12196451060070045F /* JobSeekerIDName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobSeekerIDName.m; sourceTree = "<group>"; };
 		8297851E19633ED000D750EC /* IJobApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJobApplication.h; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 			children = (
 				822C7EB9196F19CD003EB958 /* PostedJobsForJobID.h */,
 				822C7EBA196F19CD003EB958 /* PostedJobsForJobID.m */,
+				826132C71975480000E633A0 /* JobIDs.h */,
+				826132C81975480000E633A0 /* JobIDs.m */,
 			);
 			name = Jobs;
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 				82A728BD19537E3F0039DF87 /* JSModel.m in Sources */,
 				82CDE9F41958B2E500FD06E0 /* JobIDName.m in Sources */,
 				82A728C5195384D90039DF87 /* JobMetaData.m in Sources */,
+				826132C91975480000E633A0 /* JobIDs.m in Sources */,
 				825CA21D195DF5DF00FFD5B0 /* JobApplicationCoreFields.m in Sources */,
 				82211B93196D60D300B0369B /* JobIDGenerator.m in Sources */,
 				8201B63B19507D590048CA56 /* CSVReportGenerator.m in Sources */,
@@ -707,7 +713,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = NewLadders/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -719,7 +725,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = NewLadders/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -12,8 +12,9 @@
 #import "IJobApplication.h"
 #import "IJob.h"
 #import "SavedJobs.h"
-#import "JobApplications.h"
+//#import "JobApplications.h"
 
+@class JobApplications;
 @interface JobSeekerIDName : NSObject{
     
     IDentifer *gjobSeekerID;
@@ -25,5 +26,5 @@
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
 -(UserDisplayName*)getJobSeekerDisplayName;
--(NSString*)getJobApplicationReportElements;
+-(NSString*)appendJobApplicationReportElements:(NSString*)prefix;
 @end

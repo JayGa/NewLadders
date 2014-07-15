@@ -19,5 +19,5 @@
 //- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey;
 - (void)setValue:(id)value forKey:(NSString *)key;
 - (NSUInteger)numberOfEmployer;
-
+-(NSArray*)allEmployerIDs;
 @end

@@ -31,10 +31,10 @@
 }
 - (NSString*)generateReportBodyForString:(id<IReportStringGenerator>)reportGeneratorString{
     id<IJobApplication> jobApplication;
-    NSString *reportStringToReturn;
+    NSString *reportStringToReturn = @"";
     for (int i =0; i< [self count]; i++) {
         jobApplication = [self jobApplicationAtIndex:i];
-        reportStringToReturn = [jobApplication appendJobApplicationReportRecordTo:reportGeneratorString];
+        reportStringToReturn = [reportStringToReturn stringByAppendingString:[jobApplication appendJobApplicationReportRecordTo:reportGeneratorString]];
     }
     return reportStringToReturn;
 }

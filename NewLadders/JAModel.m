@@ -77,6 +77,16 @@ static JAModel *sharedInstance;
 -(JobApplications*)jobApplicationsForADay:(JobApplicationDate*)jobApplicationDate{
     return [dayApplicationsMutableDict getJobApplicationsForDay:jobApplicationDate];
 }
+-(NSString*)prepareJobAggregrateReport{
+    NSArray *jobIDArray = [jobIDApplicationsMutableDict allJobIDs];
+    NSString *reportString = @"";
+    for (int i =0 ; i<[jobIDArray count]; i++) {
+        
+        IDentifer *jobID = [jobIDArray objectAtIndex:i];
+        [reportString stringByAppendingString:[NSString stringWithFormat:@"%d,%@\n", [jobID reportIDInteger], [self getApplicationForJobID:jobID]]];
+    }
+    return reportString;
+}
 -(void)reset{
     jobIDApplicationsMutableDict = nil;
     dayApplicationsMutableDict = nil;

@@ -17,4 +17,5 @@
 - (void)setJobApplicatons:(JobApplications*)jobApplications forJobID:(IDentifer*)jobID;
 //- (void)setValue:(id)value forKey:(NSString *)key;
 - (NSUInteger)count;
+- (NSArray*)allJobIDs;
 @end
