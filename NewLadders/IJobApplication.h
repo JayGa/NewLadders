@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Jay Gaonkar. All rights reserved.
 //
 
+@protocol IReportStringGenerator;
 #import <Foundation/Foundation.h>
-#import "IReportStringGenerator.h"
 
 @class JobAppliedDateResume;
 @class IDentifer;

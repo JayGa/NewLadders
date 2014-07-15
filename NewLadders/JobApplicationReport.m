@@ -19,7 +19,7 @@
     return [[JAModel sharedInstance]jobApplicationsForADay:jobApplicationDateToReport];
 }
 
--(NSString*)prepareAggregrateReportByJob:(IDentifer*)jobID{
+-(NSString*)prepareAggregrateReportByJob{
     
     return [[JAModel sharedInstance]prepareJobAggregrateReport];
 }

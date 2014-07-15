@@ -41,20 +41,61 @@
     jobApplicationReport = [[JobApplicationReport alloc]init];
     
     [[JobSeekerRepositiory sharedInstance]initTheJobSeekerRepo];
-    
-
-
-    
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
 - (void)testPrepareDailyJobReport{
     
+    [self prepareForTest];
+    
+    NSString *jobPostedDateString = [self getTodayDateString];
+    jobApplicationReport = [[JobApplicationReport alloc]init];
+    JobApplications *jobApplications = [jobApplicationReport prepareDailyJobReport:[[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]]];
+    CSVReportGenerator *cSVReportGenerator = [[CSVReportGenerator alloc]init];
+    NSString *csvReportString = [cSVReportGenerator prepareReport:jobApplications withTitle:jobPostedDateString];
+    NSLog(@"CSV Report is:%@", csvReportString);
+//    XCTAssertTrue([csvReportString isEqualToString:@"Job Application Report,20140714\nJOB SEEKER, JOB DETAILS, APP DATE\nJSFIRST Jay, Test JReq Job-EMPFIRST Jay, 14Jul2014"],@"");
+    HTMLReportGenerator *hTMLReportGenerator = [[HTMLReportGenerator alloc]init];
+    NSString* hTMLReportString = [hTMLReportGenerator prepareReport:jobApplications withTitle:jobPostedDateString];
+    NSLog(@"HTML Report is:%@", hTMLReportString);
+//    XCTAssertTrue([hTMLReportString isEqualToString:@"<p>Job Application Report: 20140714</p><table><tr><th>JOB SEEKER</th><th>JOB DETAILS</th><th>APP DATE</th></tr><tr><td>JSFIRST Jay</td><td>Test JReq Job-EMPFIRST Jay</td><td>14Jul2014</td></tr></table>"],@"");
+    
+}
+
+-(NSString *)getTodayDateString{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    JobPostedDate *jobPostedDate = [[JobPostedDate alloc]initByPostedDate:[NSDate date]];
+    formatter.dateFormat = @"yyyyMMdd";
+    return [formatter stringFromDate:jobPostedDate];
+}
+
+- (void)testPrepareAggregrateReportByJob{
+    [self prepareForTest];
+    jobApplicationReport = [[JobApplicationReport alloc]init];
+    NSString *reportString = [jobApplicationReport prepareAggregrateReportByJob];
+ 
+    NSLog(@"AggregrateReportByJob is: %@", reportString);
+}
+
+- (void)testPrepareAggregrateReportByJobByEmployer{
+  
+    [self prepareForTest];
+    jobApplicationReport = [[JobApplicationReport alloc]init];
+    NSString *reportString = [jobApplicationReport prepareAggregrateReportByEmployer];
+    
+    NSLog(@"AggregrateReportByJobByEmployer is: %@", reportString);
+}
+
+-(void)resetJAAndJSModel{
+    [[JAModel sharedInstance]reset];
+    [[JSModel sharedInstance]reset];
+}
+
+-(void)prepareForTest{
     [self resetJAAndJSModel];
     [[EmployerModel sharedInstance]reset];
     
@@ -77,7 +118,7 @@
     JobIDName *jobIDName2 = [[JobIDName alloc]initWithJobID:jobID1 AndName:jobName2];
     id<IJob>job2 = [[ATSJob alloc]initWithIDName:jobIDName2 AndMetaData:jobMetaData2];
     [employer postJobWithName:jobName2 withJobType:job2 andID:jobID2];
-
+    
     IDentifer *jobID3 = [[IDentifer alloc]initWithInteger:137];//DIFFERENT JOB
     JobDisplayName *jobName3 = [[JobDisplayName alloc]initWithJob:@"Test JReq Job2" andPoster:jobPosterName] ;
     JobMetaData *jobMetaData3 = [[JobMetaData alloc]initWithEmployerID:employerID AndPostedDate:[[JobPostedDate alloc]initByPostedDate:[NSDate date]]];
@@ -105,14 +146,14 @@
     [jobApplicationCoreFields1 applyForJob:jobApplication1 withResumeID:resumeID1];
     
     
-//    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:777];
+    //    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:777];
     JobApplicationCoreFields *jobApplicationCoreFields2 = [[JobApplicationCoreFields alloc]initWithJobID:jobID2 andJobSeekerID:jobSeekerID1];
     IDentifer *resumeID2 = [[IDentifer alloc]initWithInteger:0];//NO RESUME
     JobAppliedDateResume *jobAppliedDateResume2 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID2];
     id<IJobApplication> jobApplication2 = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields2 withJobAppliedDateResumeID:jobAppliedDateResume2];
     [jobApplicationCoreFields2 applyForJob:jobApplication2 withResumeID:resumeID2];
-
-//    IDentifer *jobSeekerID1 = [[IDentifer alloc]initWithInteger:777];
+    
+    //    IDentifer *jobSeekerID1 = [[IDentifer alloc]initWithInteger:777];
     JobApplicationCoreFields *jobApplicationCoreFields3 = [[JobApplicationCoreFields alloc]initWithJobID:jobID3 andJobSeekerID:jobSeekerID1];
     IDentifer *resumeID3 = [[IDentifer alloc]initWithInteger:440];
     JobAppliedDateResume *jobAppliedDateResume3 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID3];
@@ -120,58 +161,21 @@
     [jobApplicationCoreFields3 applyForJob:jobApplication3 withResumeID:resumeID3];
     
     
-//    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:777];
+    //    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:777];
     JobApplicationCoreFields *jobApplicationCoreFields4 = [[JobApplicationCoreFields alloc]initWithJobID:jobID4 andJobSeekerID:jobSeekerID1];
     IDentifer *resumeID4 = [[IDentifer alloc]initWithInteger:0];//NO RESUME
     JobAppliedDateResume *jobAppliedDateResume4 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID4];
     id<IJobApplication> jobApplication4 = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields4 withJobAppliedDateResumeID:jobAppliedDateResume4];
     [jobApplicationCoreFields4 applyForJob:jobApplication4 withResumeID:resumeID4];
-    
-    
-    NSString *jobPostedDateString = [self getTodayDateString];
-    jobApplicationReport = [[JobApplicationReport alloc]init];
-    JobApplications *jobApplications = [jobApplicationReport prepareDailyJobReport:[[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]]];
-    CSVReportGenerator *cSVReportGenerator = [[CSVReportGenerator alloc]init];
-    NSString *csvReportString = [cSVReportGenerator prepareReport:jobApplications withTitle:jobPostedDateString];
-    NSLog(@"CSV Report is:%@", csvReportString);
-//    XCTAssertTrue([csvReportString isEqualToString:@"Job Application Report,20140714\nJOB SEEKER, JOB DETAILS, APP DATE\nJSFIRST Jay, Test JReq Job-EMPFIRST Jay, 14Jul2014"],@"");
-    HTMLReportGenerator *hTMLReportGenerator = [[HTMLReportGenerator alloc]init];
-    NSString* hTMLReportString = [hTMLReportGenerator prepareReport:jobApplications withTitle:jobPostedDateString];
-    NSLog(@"HTML Report is:%@", hTMLReportString);
-//    XCTAssertTrue([hTMLReportString isEqualToString:@"<p>Job Application Report: 20140714</p><table><tr><th>JOB SEEKER</th><th>JOB DETAILS</th><th>APP DATE</th></tr><tr><td>JSFIRST Jay</td><td>Test JReq Job-EMPFIRST Jay</td><td>14Jul2014</td></tr></table>"],@"");
+
+    jobSeeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerAtIndex:1];
+    IDentifer *jobSeekerID2 = [[IDentifer alloc]initWithInteger:778];
+    JobApplicationCoreFields *jobApplicationCoreFields5 = [[JobApplicationCoreFields alloc]initWithJobID:jobID4 andJobSeekerID:jobSeekerID2];
+    IDentifer *resumeID5 = [[IDentifer alloc]initWithInteger:0];//NO RESUME
+    JobAppliedDateResume *jobAppliedDateResume5 = [[JobAppliedDateResume alloc]initWithAppliedDate:jobApplicationDate andResumeID:resumeID5];
+    id<IJobApplication> jobApplication5 = [[ATSJobApplication alloc]initWithCoreFields:jobApplicationCoreFields5 withJobAppliedDateResumeID:jobAppliedDateResume5];
+    [jobApplicationCoreFields5 applyForJob:jobApplication5 withResumeID:resumeID5];
     
 }
-
--(NSString *)getTodayDateString{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    JobPostedDate *jobPostedDate = [[JobPostedDate alloc]initByPostedDate:[NSDate date]];
-    formatter.dateFormat = @"yyyyMMdd";
-    return [formatter stringFromDate:jobPostedDate];
-}
-
-- (void)testPrepareAggregrateReportByJob{
-    
-
-    
-    
-    
-    NSString *jobPostedDateString = [self getTodayDateString];
-    jobApplicationReport = [[JobApplicationReport alloc]init];
-    JobApplications *jobApplications = [jobApplicationReport prepareAggregrateReportByJob:[[IDentifer alloc]initWithInteger:135]];
- 
-    
-    
-}
-
-- (void)testPrepareAggregrateReportByJobByEmployer{
-  
-    
-}
-
--(void)resetJAAndJSModel{
-    [[JAModel sharedInstance]reset];
-    [[JSModel sharedInstance]reset];
-}
-
 
 @end

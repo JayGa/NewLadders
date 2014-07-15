@@ -16,7 +16,6 @@
     JobDisplayName *gjobName;
 }
 - (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(JobDisplayName*)jobName;
--(NSString*)getJobApplicationReportElements;
-
--(NSString*)getJobDisplayName;
+//-(NSString*)getJobApplicationReportElements;
+-(NSString*)appendJobDisplayName;
 @end

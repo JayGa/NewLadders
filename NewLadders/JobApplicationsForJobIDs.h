@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JobApplications.h"
 
+@class JobApplications;
+@class IDentifer;
 @interface JobApplicationsForJobIDs : NSObject{
     
     NSMutableDictionary *aDictionary;

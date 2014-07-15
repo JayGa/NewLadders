@@ -36,12 +36,12 @@
     
     return [[JSModel sharedInstance] getAppliedJobsForJobseekerID:gjobSeekerID];
 }
-//-(JobDisplayName*)getJobSeekerDisplayName:(NSString*)prefix{
+//-(JobDisplayName*)getJobSeekerDisplayName:(NSString*)reportString{
 //    return gjobSeekerName;
 //}
 
--(NSString*)appendJobApplicationReportElements:(NSString*)prefix{
+-(NSString*)appendJobApplicationReportElements:(NSString*)reportString{
     
-    return [gjobSeekerName appendJobApplicationReportElements:prefix];
+    return [gjobSeekerName appendJobApplicationReportElements:reportString];
 }
 @end

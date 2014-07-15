@@ -10,16 +10,19 @@
 #import "Resume.h"
 #import "IDentifer.h"
 #import "SavedJobs.h"
-#import "JobApplications.h"
+//#import "JobApplications.h"
 #import "Resumes.h"
 #import "JobSeekerIDName.h"
 #import "JReqJobApplication.h"
 #import "JSModel.h"
 #import "IJob.h"
 #import "IJobApplication.h"
+#import "JobSeekerIDName.h"
 
 @class JReqJobApplication;
-
+@class JobApplications;
+@class JobSeekerIDName;
+@class SavedJobs;
 @interface Jobseeker : NSObject{
     JobSeekerIDName *gjobSeekerIDName;
     Resumes *gresumes;
@@ -30,5 +33,5 @@
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
 -(Resumes*)getAllResumeForJobseeker;
--(NSString*)appendJobApplicationReportElements:(NSString*)prefix;
+-(NSString*)appendJobApplicationReportElements:(NSString*)reportString;
 @end

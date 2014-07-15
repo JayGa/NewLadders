@@ -27,6 +27,6 @@
 -(JobApplications*)seeApplicationsForAjob:(IDentifer *)jobID ByDay:(JobApplicationDate*)jobApplicationDate;
 -(JobApplications*)seeApplicationsForAjobByApplicationDate:(JobApplicationDate*)jobApplicationDate;
 -(JobApplications*)seeApplicationsForAjobByDate:(JobPostedDate*)date ByJob:(id<IJob>)job;
--(UserDisplayName*)getJobDisplayName;
+-(UserDisplayName*)appendJobDisplayName;
 
 @end

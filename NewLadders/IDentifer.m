@@ -29,7 +29,7 @@
 }
 
 -(void)printID{
-    NSLog(@"PRINTING ID:%unsigned", gIdentifier);
+//    NSLog(@"PRINTING ID:%unsigned", gIdentifier);
 }
 
 - (BOOL)isEqual:(id)anObject {
@@ -48,8 +48,8 @@
     return gIdentifier;
 }
 
--(NSString*)appendIdentifier:(NSString*)prefix{
-    return [prefix stringByAppendingString:[NSString stringWithFormat:@"%d",gIdentifier]];
+-(NSString*)appendIdentifier:(NSString*)reportString{
+    return [reportString stringByAppendingString:[NSString stringWithFormat:@"%d",gIdentifier]];
 }
 -(int)reportIDInteger{
     

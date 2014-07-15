@@ -7,7 +7,7 @@
 //
 
 #import "JobSeekerRepositiory.h"
-#import "Jobseeker.h"
+
 
 static JobSeekerRepositiory *sharedInstance;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Jay Gaonkar. All rights reserved.
 //
 
+@protocol IJobApplication;
 #import <Foundation/Foundation.h>
 #import "IJobApplication.h"
-
 #import "JobPostedDate.h"
 #import "IDentifer.h"
 #import "JobApplicationsForJobIDs.h"

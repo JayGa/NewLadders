@@ -26,5 +26,5 @@
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
 -(UserDisplayName*)getJobSeekerDisplayName;
--(NSString*)appendJobApplicationReportElements:(NSString*)prefix;
+-(NSString*)appendJobApplicationReportElements:(NSString*)reportString;
 @end

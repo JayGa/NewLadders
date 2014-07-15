@@ -67,7 +67,7 @@ static EmployerModel *sharedInstance;
         
         IDentifer *employerID = [employerIDArray objectAtIndex:i];
         
-        [reportString stringByAppendingString:[NSString stringWithFormat:@"%@,%lu\n", [employerID appendIdentifier:reportString], (unsigned long)[self getNumberOfPostedJobsByEmployerWithId:employerID]]];
+        reportString = [reportString stringByAppendingString:[NSString stringWithFormat:@"%@,%lu\n", [employerID appendIdentifier:reportString],[self getNumberOfPostedJobsByEmployerWithId:employerID]]];
     }
     return reportString;
 }

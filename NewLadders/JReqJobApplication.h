@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Jay Gaonkar. All rights reserved.
 //
 
+@protocol IJobApplication;
+@protocol IReportStringGenerator;
 #import "IJobApplication.h"
 #import "JobApplicationCoreFields.h"
 #import "JobAppliedDateResume.h"

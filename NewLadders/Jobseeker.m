@@ -38,9 +38,9 @@
     
     return gresumes;
 }
--(NSString*)appendJobApplicationReportElements:(NSString*)prefix{
+-(NSString*)appendJobApplicationReportElements:(NSString*)reportString{
     
-    return [gjobSeekerIDName getJobApplicationReportElements:prefix];
+    return [gjobSeekerIDName appendJobApplicationReportElements:reportString];
 }
 
 @end

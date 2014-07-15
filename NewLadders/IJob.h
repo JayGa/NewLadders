@@ -14,6 +14,7 @@
 #import "JobIDName.h"
 
 @protocol IJob <NSObject>
--(NSString*)getJobDisplayName;
--(NSString*)appendJobApplicationReportElements:(NSString*)prefix;
+-(NSString*)appendJobDisplayName;
+-(NSString*)appendJobApplicationReportElements:(NSString*)reportString;
+
 @end

@@ -83,7 +83,7 @@ static JAModel *sharedInstance;
     for (int i =0 ; i<[jobIDArray count]; i++) {
         
         IDentifer *jobID = [jobIDArray objectAtIndex:i];
-        [reportString stringByAppendingString:[NSString stringWithFormat:@"%d,%@\n", [jobID reportIDInteger], [self getApplicationForJobID:jobID]]];
+        reportString = [reportString stringByAppendingString:[NSString stringWithFormat:@"%d,%lu\n", [jobID reportIDInteger], (unsigned long)[self getNumberOfApplicationsByJobID:jobID]]];
     }
     return reportString;
 }

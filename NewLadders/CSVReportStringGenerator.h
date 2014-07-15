@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "IReportStringGenerator.h"
 #import "IDentifer.h"
+#import "Jobseeker.h"
 
 @interface CSVReportStringGenerator : NSObject <IReportStringGenerator>{
     NSString *gReportString;

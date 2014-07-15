@@ -61,7 +61,7 @@
     return jobList;
 }
 
--(UserDisplayName*)getJobDisplayName{
+-(UserDisplayName*)appendJobDisplayName{
     return gemployerDisplayName;
 }
 @end

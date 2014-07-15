@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IJob.h"
-#import "Jobseeker.h"
+@class Jobseeker;
 
 @protocol IReportStringGenerator <NSObject>
 

@@ -98,8 +98,8 @@
 //    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
     PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID1];
     id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
-    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
-    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-EMPFIRST Jay"], @"");
+    NSLog(@"Posted job ATS job is: %@", [postedJob appendJobDisplayName]);
+    XCTAssertTrue([[postedJob appendJobDisplayName] isEqualToString: @"Test JReq Job-EMPFIRST Jay"], @"");
 }
 
 - (void)testPostingJReqJobWithSameNameByEmployer1{
@@ -117,8 +117,8 @@
 //    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
     PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID1];
     id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
-    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
-    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-EMPFIRST Jay"], @"");
+    NSLog(@"Posted job ATS job is: %@", [postedJob appendJobDisplayName]);
+    XCTAssertTrue([[postedJob appendJobDisplayName] isEqualToString: @"Test JReq Job-EMPFIRST Jay"], @"");
 }
 
 - (void)testATSJobPostingByEmployer1{
@@ -136,8 +136,8 @@
 //    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
     PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID1];
     id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
-    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
-    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test ATS Job-EMPFIRST Jay"], @"");
+    NSLog(@"Posted job ATS job is: %@", [postedJob appendJobDisplayName]);
+    XCTAssertTrue([[postedJob appendJobDisplayName] isEqualToString: @"Test ATS Job-EMPFIRST Jay"], @"");
 }
 
 
@@ -157,8 +157,8 @@
     
     PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID2];
     id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
-    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
-    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-EMPSECOND Jay"], @"");
+    NSLog(@"Posted job ATS job is: %@", [postedJob appendJobDisplayName]);
+    XCTAssertTrue([[postedJob appendJobDisplayName] isEqualToString: @"Test JReq Job-EMPSECOND Jay"], @"");
     
 }
 
@@ -177,8 +177,8 @@
 //    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
     PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID2];
     id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
-    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
-    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-EMPSECOND Jay"], @"");
+    NSLog(@"Posted job ATS job is: %@", [postedJob appendJobDisplayName]);
+    XCTAssertTrue([[postedJob appendJobDisplayName] isEqualToString: @"Test JReq Job-EMPSECOND Jay"], @"");
 
     
 }
@@ -198,8 +198,8 @@
 //    XCTAssertEqual(afterPostArrayCount - beforePostArrayCount, 1, @"");
     PostedJobs *postedJobs = [[EmployerModel sharedInstance] getPostedJobsForEmployerID:employerID2];
     id<IJob> postedJob = [postedJobs postedJobAtIndex:0];
-    NSLog(@"Posted job ATS job is: %@", [postedJob getJobDisplayName]);
-    XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test ATS Job-EMPSECOND Jay"], @"");
+    NSLog(@"Posted job ATS job is: %@", [postedJob appendJobDisplayName]);
+    XCTAssertTrue([[postedJob appendJobDisplayName] isEqualToString: @"Test ATS Job-EMPSECOND Jay"], @"");
     
 }
 
@@ -241,20 +241,20 @@
     PostedJobs *postedJobsCollection = [employer1 seePostedJobListing];
     
     id<IJob> postedJob1 = [postedJobsCollection postedJobAtIndex:0];
-    NSLog(@"Posted jobs are: %@", [postedJob1 getJobDisplayName]);
-    XCTAssertTrue([[postedJob1 getJobDisplayName] isEqualToString: @"Test JReq Job1-EMPFIRST Jay"], @"");
+    NSLog(@"Posted jobs are: %@", [postedJob1 appendJobDisplayName]);
+    XCTAssertTrue([[postedJob1 appendJobDisplayName] isEqualToString: @"Test JReq Job1-EMPFIRST Jay"], @"");
 
     id<IJob> postedJob2 = [postedJobsCollection postedJobAtIndex:1];
-    NSLog(@"Posted jobs are: %@", [postedJob2 getJobDisplayName]);
-    XCTAssertTrue([[postedJob2 getJobDisplayName] isEqualToString: @"Test JReq Job2-EMPFIRST Jay"], @"");
+    NSLog(@"Posted jobs are: %@", [postedJob2 appendJobDisplayName]);
+    XCTAssertTrue([[postedJob2 appendJobDisplayName] isEqualToString: @"Test JReq Job2-EMPFIRST Jay"], @"");
 
     id<IJob> postedJob3 = [postedJobsCollection postedJobAtIndex:2];
-    NSLog(@"Posted jobs are: %@", [postedJob3 getJobDisplayName]);
-    XCTAssertTrue([[postedJob3 getJobDisplayName] isEqualToString: @"Test JReq Job3-EMPFIRST Jay"], @"");
+    NSLog(@"Posted jobs are: %@", [postedJob3 appendJobDisplayName]);
+    XCTAssertTrue([[postedJob3 appendJobDisplayName] isEqualToString: @"Test JReq Job3-EMPFIRST Jay"], @"");
     
     id<IJob> postedJob4 = [postedJobsCollection postedJobAtIndex:3];
-    NSLog(@"Posted jobs are: %@", [postedJob4 getJobDisplayName]);
-    XCTAssertTrue([[postedJob4 getJobDisplayName] isEqualToString: @"Test JReq Job4-EMPFIRST Jay"], @"");
+    NSLog(@"Posted jobs are: %@", [postedJob4 appendJobDisplayName]);
+    XCTAssertTrue([[postedJob4 appendJobDisplayName] isEqualToString: @"Test JReq Job4-EMPFIRST Jay"], @"");
     
     [[EmployerModel sharedInstance]reset];
     
@@ -297,22 +297,22 @@
     
     
     id<IJob> postedJob1 = [postedJobsArray postedJobAtIndex:0];
-    NSLog(@"Posted jobs are: %@", [postedJob1 getJobDisplayName]);
-    XCTAssertTrue([[postedJob1 getJobDisplayName] isEqualToString: @"Test ATS Job1-EMPFIRST Jay"], @"");
+    NSLog(@"Posted jobs are: %@", [postedJob1 appendJobDisplayName]);
+    XCTAssertTrue([[postedJob1 appendJobDisplayName] isEqualToString: @"Test ATS Job1-EMPFIRST Jay"], @"");
 
     id<IJob> postedJob2 = [postedJobsArray postedJobAtIndex:1];
-    NSLog(@"Posted jobs are: %@", [postedJob2 getJobDisplayName]);
-    XCTAssertTrue([[postedJob2 getJobDisplayName] isEqualToString: @"Test ATS Job2-EMPFIRST Jay"], @"");
+    NSLog(@"Posted jobs are: %@", [postedJob2 appendJobDisplayName]);
+    XCTAssertTrue([[postedJob2 appendJobDisplayName] isEqualToString: @"Test ATS Job2-EMPFIRST Jay"], @"");
 
     
     id<IJob> postedJob3 = [postedJobsArray postedJobAtIndex:2];
-    NSLog(@"Posted jobs are: %@", [postedJob3 getJobDisplayName]);
-    XCTAssertTrue([[postedJob3 getJobDisplayName] isEqualToString: @"Test ATS Job3-EMPFIRST Jay"], @"");
+    NSLog(@"Posted jobs are: %@", [postedJob3 appendJobDisplayName]);
+    XCTAssertTrue([[postedJob3 appendJobDisplayName] isEqualToString: @"Test ATS Job3-EMPFIRST Jay"], @"");
 
     
     id<IJob> postedJob4 = [postedJobsArray postedJobAtIndex:3];
-    NSLog(@"Posted jobs are: %@", [postedJob4 getJobDisplayName]);
-    XCTAssertTrue([[postedJob4 getJobDisplayName] isEqualToString: @"Test ATS Job4-EMPFIRST Jay"], @"");
+    NSLog(@"Posted jobs are: %@", [postedJob4 appendJobDisplayName]);
+    XCTAssertTrue([[postedJob4 appendJobDisplayName] isEqualToString: @"Test ATS Job4-EMPFIRST Jay"], @"");
 
     [[EmployerModel sharedInstance]reset];
     
@@ -358,12 +358,12 @@
     
     for (int i = 0; i< [postedJobsArray count]; i++) {
         id<IJob> postedJob = [postedJobsArray postedJobAtIndex:i];
-        NSLog(@"Posted jobs are: %@", [postedJob getJobDisplayName]);
+        NSLog(@"Posted jobs are: %@", [postedJob appendJobDisplayName]);
         if(i%2==0){
-            XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test ATS Job-EMPFIRST Jay"], @"");
+            XCTAssertTrue([[postedJob appendJobDisplayName] isEqualToString: @"Test ATS Job-EMPFIRST Jay"], @"");
             
         }else{
-            XCTAssertTrue([[postedJob getJobDisplayName] isEqualToString: @"Test JReq Job-EMPFIRST Jay"], @"");
+            XCTAssertTrue([[postedJob appendJobDisplayName] isEqualToString: @"Test JReq Job-EMPFIRST Jay"], @"");
    
         }
     }

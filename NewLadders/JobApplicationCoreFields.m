@@ -46,7 +46,6 @@
     id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
     
     Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
-    
-    return  [NSString stringWithFormat:@"%@,%@", [jobseeker getJobApplicationReportElements], [job appendJobApplicationReportElements]] ;
+    return  [NSString stringWithFormat:@"%@,%@", [jobseeker appendJobApplicationReportElements:@""], [job appendJobApplicationReportElements:@""]] ;
 }
 @end

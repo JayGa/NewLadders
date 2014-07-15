@@ -14,7 +14,7 @@
 }
 
 -(UserDisplayName*)initWithFirstName:(NSString *)firstname andLastName:(NSString *)lastname;
--(NSString*)getUserDisplayNameString;
--(NSString*)appendJobApplicationReportElements:(NSString*)prefix;
--(NSString*)getUserDisplayNameString:(NSString*)prefix;
+-(NSString*)appendUserDisplayNameString;
+-(NSString*)appendJobApplicationReportElements:(NSString*)reportString;
+//-(NSString*)getUserDisplayNameString:(NSString*)reportString;
 @end

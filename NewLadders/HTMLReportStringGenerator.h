@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "IReportStringGenerator.h"
 #import "IDentifer.h"
+#import "Jobseeker.h"
 
 @interface HTMLReportStringGenerator : NSObject <IReportStringGenerator>{
     NSString *gReportString;

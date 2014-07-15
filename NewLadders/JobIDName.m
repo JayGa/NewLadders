@@ -20,13 +20,13 @@
     return self;
 }
 
--(NSString*)getJobApplicationReportElements{
-    return [gjobName getJobDisplayNameString];
-}
+//-(NSString*)getJobApplicationReportElements{
+//    return [gjobName getJobDisplayNameString];
+//}
 
--(NSString*)getJobDisplayName{
+-(NSString*)appendJobDisplayName:(NSString*)reportString{
     
-    return [gjobName getJobDisplayNameString];
+    return [gjobName appendJobDisplayNameString:reportString];
 }
 
 @end

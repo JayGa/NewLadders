@@ -14,5 +14,5 @@
 }
 
 -(JobDisplayName*)initWithJob:(NSString *)jobName andPoster:(UserDisplayName *)postersName;
--(NSString*)getJobDisplayNameString;
+-(NSString*)appendJobDisplayNameString:(NSString*)reportString;
 @end

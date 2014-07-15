@@ -19,12 +19,12 @@
     return self;
 }
 
--(NSString*)getJobDisplayName{
+-(NSString*)appendJobDisplayName{
     
-    return [gjobIDName getJobDisplayName];
+    return [gjobIDName appendJobDisplayName];
 }
--(NSString*)appendJobApplicationReportElements:(NSString*)prefix{
+-(NSString*)appendJobApplicationReportElements:(NSString*)reportString{
     
-    return [gjobIDName getJobApplicationReportElements];
+    return [gjobIDName appendJobDisplayName];
 }
 @end

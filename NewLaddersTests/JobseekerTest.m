@@ -128,8 +128,8 @@
     
     SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
     id<IJob> savedJob1 = [savedJobs savedJobAtIndex:0];
-    NSLog(@"Saved job1 is: %@", [savedJob1 getJobDisplayName]);
-    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test JReq Job1-EMPFIRST Jay"], @"");
+    NSLog(@"Saved job1 is: %@", [savedJob1 appendJobDisplayName]);
+    XCTAssertTrue([[savedJob1 appendJobDisplayName] isEqualToString: @"Test JReq Job1-EMPFIRST Jay"], @"");
 }
 
 
@@ -152,8 +152,8 @@
     [jobSeeker saveJob:job];
     SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
     id<IJob> savedJob1 = [savedJobs savedJobAtIndex:0];
-    NSLog(@"Saved job1 is: %@", [savedJob1 getJobDisplayName]);
-    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test ATS Job1-EMPFIRST Jay"], @"");
+    NSLog(@"Saved job1 is: %@", [savedJob1 appendJobDisplayName]);
+    XCTAssertTrue([[savedJob1 appendJobDisplayName] isEqualToString: @"Test ATS Job1-EMPFIRST Jay"], @"");
 
 }
 
@@ -190,12 +190,12 @@
     SavedJobs  *savedJobs = [jobSeeker seeSavedJobs];
     
     id<IJob> savedJob1 = [savedJobs savedJobAtIndex:0];
-    NSLog(@"Saved job1 is: %@", [savedJob1 getJobDisplayName]);
-    XCTAssertTrue([[savedJob1 getJobDisplayName] isEqualToString: @"Test ATS Job-EMPFIRST Jay"], @"");
+    NSLog(@"Saved job1 is: %@", [savedJob1 appendJobDisplayName]);
+    XCTAssertTrue([[savedJob1 appendJobDisplayName] isEqualToString: @"Test ATS Job-EMPFIRST Jay"], @"");
 
     id<IJob> savedJob2 = [savedJobs savedJobAtIndex:1];
-    NSLog(@"Saved job2 is: %@", [savedJob2 getJobDisplayName]);
-    XCTAssertTrue([[savedJob2 getJobDisplayName] isEqualToString: @"Test JReq Job-EMPFIRST Jay"], @"");
+    NSLog(@"Saved job2 is: %@", [savedJob2 appendJobDisplayName]);
+    XCTAssertTrue([[savedJob2 appendJobDisplayName] isEqualToString: @"Test JReq Job-EMPFIRST Jay"], @"");
 //    XCTAssertEqual([savedJobs count], 2, @"");
 }
 

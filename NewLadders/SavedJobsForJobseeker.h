@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 Jay Gaonkar. All rights reserved.
 //
 
+@class SavedJobs;
+@class IDentifer;
 #import <Foundation/Foundation.h>
-#import "SavedJobs.h"
 
 @interface SavedJobsForJobseeker : NSObject{
     

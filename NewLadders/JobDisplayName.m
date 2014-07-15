@@ -13,11 +13,11 @@
 
 -(JobDisplayName*)initWithJob:(NSString *)jobName andPoster:(UserDisplayName *)postersName{
     self = [super init];
-    gdisplayName = [NSString stringWithFormat:@"%@-%@", jobName, [postersName getUserDisplayNameString]];
+    gdisplayName = [NSString stringWithFormat:@"%@-%@", jobName, [postersName appendUserDisplayNameString]];
     return self;
 }
 
--(NSString*)getJobDisplayNameString{
-    return gdisplayName;
+-(NSString*)appendJobDisplayNameString:(NSString*)reportString{
+    return [reportString stringByAppendingString:gdisplayName];
 }
 @end
