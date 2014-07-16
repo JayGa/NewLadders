@@ -8,9 +8,7 @@
 
 #import "Jobseeker.h"
 
-@implementation Jobseeker{
-    NSString *gReportString;
-}
+@implementation Jobseeker
 -(Jobseeker*) initWithID:(JobSeekerIDName*)jobSeekerIDName andResumeArray:(Resumes*)resumes{
     
     self = [super init];
@@ -41,16 +39,9 @@
     return gresumes;
 }
 
--(void)callToAppendJobSeekerToJobApplicationReport:(JobApplicationCoreFields*)jobApplicationCoreFields{
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
     
-    [gjobSeekerIDName callToAppendJobSeekerToJobApplicationReport:self];
-    [jobApplicationCoreFields appendToReportString:gReportString];
+    [gjobSeekerIDName callToAppendJobSeekerToJobApplicationReport:iReportGenerator];
 }
 
--(void)appendToReportString:(NSString*)reportSubString{
-//    if(gReportString==nil){
-        gReportString = @"";
-//    }
-    gReportString = [gReportString stringByAppendingString:reportSubString];
-}
 @end

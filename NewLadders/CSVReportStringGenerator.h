@@ -18,5 +18,4 @@
 
 //- (NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString;
 - (NSString*)callToAppendJobApplicationReportWithJobseeker:(Jobseeker*)aJobseeker job:(id<IJob>)aJob jobAppliedDate:(NSString*)applicationDateString;
--(void)appendToReportString:(NSString*)reportSubString;
 @end

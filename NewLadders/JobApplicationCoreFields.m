@@ -14,9 +14,7 @@
 #import "JobsModel.h"
 #import "JobApplicationDate.h"
 
-@implementation JobApplicationCoreFields{
-    NSString *gReportString;
-}
+@implementation JobApplicationCoreFields
 
 -(JobApplicationCoreFields*) initWithJobID:(IDentifer*)jobID andJobSeekerID:(IDentifer*)jobSeekerID{
     
@@ -36,38 +34,37 @@
     [[JAModel sharedInstance]updateModelWithJobApplication:jobApplication withJobID:gjobID];
 }
 
-
--(void)callToAppendJobSeekerToJobApplicationReport:(id<IJobApplication>)jobApplication{
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
     Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
-    [jobseeker callToAppendJobSeekerToJobApplicationReport:self];
-    
-    [jobApplication appendToReportString:gReportString];
+    [jobseeker callToAppendJobSeekerToJobApplicationReport:iReportGenerator];
+
 }
 
 
--(void)callToAppendJobToJobApplicationReport:(id<IJobApplication>)jobApplication{
+-(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
     id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
-    [job callToAppendJobToJobApplicationReport:self];
+    [job callToAppendJobToJobApplicationReport:iReportGenerator];
     
-    [jobApplication appendToReportString:gReportString];
 }
-
--(void)appendToReportString:(NSString*)reportSubString{
-//    if(gReportString==nil){
-        gReportString = @"";
-//    }
-    gReportString = [gReportString stringByAppendingString:reportSubString];
-}
-
--(NSString*)prepareJobApplicationReportElements{
-    gReportString = @"";
-    Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
-    [jobseeker callToAppendJobSeekerToJobApplicationReport:self];
-    
-    [gReportString stringByAppendingString:@","];
+-(void)callToAppendJobToJobAggregrateJobApplicationReport{
     id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
-    [job callToAppendJobToJobApplicationReport:self];
-    
-    return gReportString;
+    [job callToAppendJobToJobAggregrateJobApplicationReport];
 }
+
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport{
+    id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
+    [job callToAppendJobToEmployerAggregrateJobApplicationReport];
+}
+
+//-(NSString*)prepareJobApplicationReportElements{
+//    gReportString = @"";
+//    Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
+//    [jobseeker callToAppendJobSeekerToJobApplicationReport:self];
+//    
+//    [gReportString stringByAppendingString:@","];
+//    id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
+//    [job callToAppendJobToJobApplicationReport:self];
+//    
+//    return gReportString;
+//}
 @end

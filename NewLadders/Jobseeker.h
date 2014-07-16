@@ -34,6 +34,5 @@
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
 -(Resumes*)getAllResumeForJobseeker;
--(void)callToAppendJobSeekerToJobApplicationReport:(JobApplicationCoreFields*)jobApplicationCoreFields;
--(void)appendToReportString:(NSString*)reportSubString;
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
 @end

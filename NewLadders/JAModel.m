@@ -98,14 +98,11 @@ static JAModel *sharedInstance;
     if([jobApplications count]>0){
         jobApplication = [jobApplications jobApplicationAtIndex:0];
     }
-    [jobApplication callToAppendJobToAggregrateJobApplicationReport];
-//    [jobID reportIDInteger]
+    [jobApplication callToAppendJobToJobAggregrateJobApplicationReport];
 }
 
 -(void)appendToReportString:(NSString*)reportSubString{
-//    if(gReportString==nil){
-        gReportString = @"";
-//    }
+    gReportString = @"";
     gReportString = [gReportString stringByAppendingString:reportSubString];
 }
 

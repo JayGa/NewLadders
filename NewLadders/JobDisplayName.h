@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "UserDisplayName.h"
 #import "JobIDName.h"
-#import "JobDisplayName.h"
+#import "EmployerModel.h"
+#import "JAModel.h"
+#import "IReportGenerator.h"
 @class UserDisplayName;
 @class JobIDName;
 @interface JobDisplayName : NSObject{
@@ -19,5 +21,7 @@
 
 -(JobDisplayName*)initWithJob:(NSString *)jobName andPoster:(UserDisplayName *)postersName;
 -(NSString*)appendJobDisplayNameString:(NSString*)reportString;
--(void)callToAppendJobToApplicationReportElements:(JobIDName*)jobIDName;
+-(void)callToAppendJobToApplicationReportElements:(id<IReportGenerator>)iReportGenerator;
+-(void)callToAppendJobToAggregrateJobApplicationReport;
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport;
 @end

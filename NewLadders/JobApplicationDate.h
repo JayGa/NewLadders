@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JobAppliedDateResume.h"
+#import "IReportGenerator.h"
 @class JobAppliedDateResume;
 
 @interface JobApplicationDate : NSObject{
@@ -16,6 +17,5 @@
 -(JobApplicationDate*)initWithJobApplicationDate:(NSDate*)jobApplicationDate;
 -(NSString*)prepareJobApplicationDateString;
 -(NSString*)jobApplicationDateKeyString;
--(void)callToAppendJobApplicationReportElements:(JobAppliedDateResume*)jobAppliedDateResume;
--(void)appendToReportString:(NSString*)reportSubString;
+-(void)callToAppendJobApplicationReportElements:(id<IReportGenerator>)iReportGenerator;
 @end

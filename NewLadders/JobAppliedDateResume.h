@@ -24,6 +24,5 @@
 -(NSString*)jobApplicationDateKeyString:(NSDate*)jobApplicationDate;
 -(NSString*)prepareJobApplicationDateString:(NSDate*)jobApplicationDate;
 -(void)callToappendJobApplicationReportRecordTo:(id<IJobApplication>)jobApplication;
--(void)appendToReportString:(NSString*)reportSubString;
 @end
 

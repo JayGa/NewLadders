@@ -29,8 +29,5 @@ self = [super init];
 return @"";
 }
 
--(void)appendToReportString:(NSString*)reportSubString{
-    gReportString = @"";
-    [gReportString stringByAppendingString:reportSubString];
-}
+
 @end

@@ -12,7 +12,9 @@
 
 static EmployerModel *sharedInstance;
 
-@implementation EmployerModel
+@implementation EmployerModel{
+    NSString* gReportString;
+}
 
 +(EmployerModel*)sharedInstance{
     if(!sharedInstance){
@@ -66,10 +68,25 @@ static EmployerModel *sharedInstance;
     for (int i =0 ; i<[employerIDArray count]; i++) {
         
         IDentifer *employerID = [employerIDArray objectAtIndex:i];
-        
-        reportString = [reportString stringByAppendingString:[NSString stringWithFormat:@"%@,%lu\n", [employerID appendIdentifier:reportString],[self getNumberOfPostedJobsByEmployerWithId:employerID]]];
+        [self prepareEmplyerNameForEmployerID:employerID];
+        reportString = [reportString stringByAppendingString:[NSString stringWithFormat:@"%@,%lu\n", gReportString,(unsigned long)[self getNumberOfPostedJobsByEmployerWithId:employerID]]];
     }
     return reportString;
+}
+
+-(void)prepareEmplyerNameForEmployerID:(IDentifer*)employerID{
+    PostedJobs *postedJobs = [employerJobMutableDict getJobsPostedByEmployerWithID:employerID];
+    id<IJob> job;
+    if([postedJobs count]>0){
+        job = [postedJobs postedJobAtIndex:0];
+    }
+    [job callToAppendJobToEmployerAggregrateJobApplicationReport];
+    
+    gReportString = [[gReportString componentsSeparatedByString:@"-"]objectAtIndex:1];
+}
+-(void)appendToReportString:(NSString*)reportSubString{
+    gReportString = @"";
+    gReportString = [gReportString stringByAppendingString:reportSubString];
 }
 
 -(void)reset{

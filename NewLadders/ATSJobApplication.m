@@ -10,9 +10,7 @@
 #import "JobApplications.h"
 #import "JAModel.h"
 
-@implementation ATSJobApplication{
-    NSString *gReportString;
-}
+@implementation ATSJobApplication
 
 -(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume{
     
@@ -28,35 +26,20 @@
 }
 
 -(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
-    [gjobApplicationCoreFields callToAppendJobToJobApplicationReport:self];
-    [iReportGenerator appendToReportString:gReportString];
+    [gjobApplicationCoreFields callToAppendJobSeekerToJobApplicationReport:iReportGenerator];
 }
 
 -(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
-    [gjobApplicationCoreFields callToAppendJobToJobApplicationReport:self];
-    [iReportGenerator appendToReportString:gReportString];
+    [gjobApplicationCoreFields callToAppendJobToJobApplicationReport:iReportGenerator];
 }
 
--(void)callToAppendJobAppDateToApplicationReportRecordTo:(id<IJobApplication>)jobApplication{
-    
-    
-//    [gJobAppliedDateResume callToappendJobApplicationReportRecordTo:self];
-//    [jobApplications appendToReportString:gReportString];
-    
+-(void)callToAppendJobToJobAggregrateJobApplicationReport{
+    [gjobApplicationCoreFields callToAppendJobToJobAggregrateJobApplicationReport];
 }
 
--(void)appendToReportString:(NSString*)reportSubString{
-//    if(gReportString==nil){
-        gReportString = @"";
-//    }
-    gReportString = [gReportString stringByAppendingString:reportSubString];
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport{
+    [gjobApplicationCoreFields callToAppendJobToEmployerAggregrateJobApplicationReport];
 }
-
--(void)callToAppendJobToAggregrateJobApplicationReport{
-    [gjobApplicationCoreFields callToAppendJobToJobApplicationReport:self];
-    [[JAModel sharedInstance]appendToReportString:gReportString];
-}
-
 
 -(void)callUpdateJobApplicationModel{
     [gjobApplicationCoreFields updateJobApplicationModel:self];

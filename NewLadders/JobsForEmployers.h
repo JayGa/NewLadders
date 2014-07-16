@@ -10,6 +10,7 @@
 #import "IDentifer.h"
 #import "PostedJobs.h"
 
+@class PostedJobs;
 @interface JobsForEmployers : NSObject{
     
     NSMutableDictionary *aDictionary;

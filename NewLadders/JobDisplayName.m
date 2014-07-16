@@ -8,6 +8,7 @@
 
 #import "JobDisplayName.h"
 
+
 @implementation JobDisplayName
 
 
@@ -20,8 +21,15 @@
 -(NSString*)appendJobDisplayNameString:(NSString*)reportString{
     return [reportString stringByAppendingString:gdisplayName];
 }
--(void)callToAppendJobToApplicationReportElements:(JobIDName*)jobIDName{
+-(void)callToAppendJobToApplicationReportElements:(id<IReportGenerator>)iReportGenerator{
     
-    [jobIDName appendToReportString:gdisplayName];
+    [iReportGenerator appendToReportString:gdisplayName];
+}
+
+-(void)callToAppendJobToAggregrateJobApplicationReport{
+    [[JAModel sharedInstance]appendToReportString:gdisplayName];
+}
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport{
+    [[EmployerModel sharedInstance]appendToReportString:gdisplayName];
 }
 @end

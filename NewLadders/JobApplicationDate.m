@@ -27,8 +27,8 @@
     formatter.dateFormat = @"yyyyMMdd";
     return [formatter stringFromDate:gJobApplicationDate];
 }
--(void)callToAppendJobApplicationReportElements:(JobAppliedDateResume*)jobAppliedDateResume{
-    [jobAppliedDateResume appendToReportString:[self jobApplicationDateKeyString]];
+-(void)callToAppendJobApplicationReportElements:(id<IReportGenerator>)iReportGenerator{
+    [iReportGenerator appendToReportString:[self jobApplicationDateKeyString]];
 }
 
 

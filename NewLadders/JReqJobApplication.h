@@ -26,6 +26,6 @@
 -(NSString*)prepareJobApplicationReport;
 -(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
 -(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
--(void)callToAppendJobToAggregrateJobApplicationReport;
--(void)appendToReportString:(NSString*)reportSubString;
+-(void)callToAppendJobToJobAggregrateJobApplicationReport;
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport;
 @end

@@ -22,9 +22,9 @@
 //-(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString jobAppliedDate:(JobApplicationDate*)jobApplicationDate;
 -(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
 -(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
--(void)callToAppendJobToAggregrateJobApplicationReport;
+-(void)callToAppendJobToJobAggregrateJobApplicationReport;
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport;
 -(void)callUpdateJobApplicationModel;
 -(NSString*)prepareJobApplicationReport;
--(void)appendToReportString:(NSString*)reportSubString;
 
 @end

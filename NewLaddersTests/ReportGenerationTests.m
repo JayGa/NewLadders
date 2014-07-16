@@ -58,12 +58,16 @@
     CSVReportGenerator *cSVReportGenerator = [[CSVReportGenerator alloc]init];
     NSString *csvReportString = [cSVReportGenerator prepareReport:jobApplications withTitle:jobPostedDateString];
     NSLog(@"CSV Report is:%@", csvReportString);
-//    XCTAssertTrue([csvReportString isEqualToString:@"Job Application Report,20140714\nJOB SEEKER, JOB DETAILS, APP DATE\nJSFIRST Jay, Test JReq Job-EMPFIRST Jay, 14Jul2014"],@"");
+    csvReportString = [csvReportString stringByReplacingOccurrencesOfString:@"\n" withString:@","];
+    NSLog(@"AFTER CSV Report is:%@", csvReportString);
+    XCTAssertTrue([csvReportString isEqualToString:@"Job Application Report,20140716, JOB SEEKER, JOB DETAILS, APP DATE,JSFIRST Jay,Test JReq Job-EMPFIRST Jay,16July2014,JSFIRST Jay,Test ATS Job-EMPFIRST Jay,16July2014,JSFIRST Jay,Test JReq Job2-EMPFIRST Jay,16July2014,JSFIRST Jay,Test ATS Job2-EMPFIRST Jay,16July2014,JSSECOND Jay,Test ATS Job2-EMPFIRST Jay,16July2014,"],@"");
     
     HTMLReportGenerator *hTMLReportGenerator = [[HTMLReportGenerator alloc]init];
     NSString* hTMLReportString = [hTMLReportGenerator prepareReport:jobApplications withTitle:jobPostedDateString];
     NSLog(@"HTML Report is:%@", hTMLReportString);
-//    XCTAssertTrue([hTMLReportString isEqualToString:@"<p>Job Application Report: 20140714</p><table><tr><th>JOB SEEKER</th><th>JOB DETAILS</th><th>APP DATE</th></tr><tr><td>JSFIRST Jay</td><td>Test JReq Job-EMPFIRST Jay</td><td>14Jul2014</td></tr></table>"],@"");
+    XCTAssertTrue([hTMLReportString isEqualToString:@"<p>Job Application Report: 20140716</p><table><tr><th>JOB SEEKER</th><th>JOB DETAILS</th><th>APP DATE</th></tr><tr><td>JSFIRST Jay</td><td>Test JReq Job-EMPFIRST Jay</td><td>16July2014</td></tr><tr><td>JSFIRST Jay</td><td>Test ATS Job-EMPFIRST Jay</td><td>16July2014</td></tr><tr><td>JSFIRST Jay</td><td>Test JReq Job2-EMPFIRST Jay</td><td>16July2014</td></tr><tr><td>JSFIRST Jay</td><td>Test ATS Job2-EMPFIRST Jay</td><td>16July2014</td></tr><tr><td>JSSECOND Jay</td><td>Test ATS Job2-EMPFIRST Jay</td><td>16July2014</td></tr></table>"],@"");
+//    hTMLReportString = [hTMLReportGenerator prepareReport:jobApplications withTitle:jobPostedDateString];
+//    NSLog(@"SECOND HTML Report is:%@", hTMLReportString);
 }
 
 -(NSString *)getTodayDateString{
@@ -78,8 +82,9 @@
     [self prepareForTest];
     jobApplicationReport = [[JobApplicationReport alloc]init];
     NSString *reportString = [jobApplicationReport prepareAggregrateReportByJob];
- 
     NSLog(@"AggregrateReportByJob is: %@", reportString);
+    reportString = [reportString stringByReplacingOccurrencesOfString:@"\n" withString:@","];
+    XCTAssertTrue([reportString isEqualToString:@"Test ATS Job-EMPFIRST Jay,1,Test JReq Job-EMPFIRST Jay,1,Test ATS Job2-EMPFIRST Jay,2,Test JReq Job2-EMPFIRST Jay,1,"], @"");
 }
 
 - (void)testPrepareAggregrateReportByJobByEmployer{
@@ -89,6 +94,8 @@
     NSString *reportString = [jobApplicationReport prepareAggregrateReportByEmployer];
     
     NSLog(@"AggregrateReportByJobByEmployer is: %@", reportString);
+    reportString = [reportString stringByReplacingOccurrencesOfString:@"\n" withString:@","];
+    XCTAssertTrue([reportString isEqualToString:@"EMPFIRST Jay,4,"], @"");
 }
 
 -(void)resetJAAndJSModel{

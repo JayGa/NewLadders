@@ -7,11 +7,8 @@
 //
 
 #import "ATSJob.h"
-
-@implementation ATSJob{
-    NSString *gReportString;
-}
-
+#import "EmployerModel.h"
+@implementation ATSJob
 
 
 -(id<IJob>)initWithIDName:(JobIDName*)jobIDName AndMetaData:(JobMetaData*)jobMetaData{
@@ -26,15 +23,15 @@
     return [gjobIDName appendJobDisplayName];
 }
 
--(void)callToAppendJobToJobApplicationReport:(JobApplicationCoreFields*)jobApplicationCoreFields{
-    [gjobIDName callToAppendJobToJobApplicationReport:self];
-    [jobApplicationCoreFields appendToReportString:gReportString];
+-(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
+    [gjobIDName callToAppendJobToJobApplicationReport:iReportGenerator];
 }
 
--(void)appendToReportString:(NSString*)reportSubString{
-//    if(gReportString==nil){
-        gReportString = @"";
-//    }
-    gReportString = [gReportString stringByAppendingString:reportSubString];
+-(void)callToAppendJobToJobAggregrateJobApplicationReport{
+    [gjobIDName callToAppendJobToJobAggregrateJobApplicationReport];
 }
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport{
+    [gjobIDName callToAppendJobToEmployerAggregrateJobApplicationReport];
+}
+
 @end

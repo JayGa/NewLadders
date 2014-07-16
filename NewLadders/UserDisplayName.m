@@ -20,9 +20,9 @@
     return self;
 }
 
--(void )callToAppendJobSeekerToApplicationReport:(JobSeekerIDName*)jobSeekerIDName{
+-(void )callToAppendJobSeekerToApplicationReport:(id<IReportGenerator>)iReportGenerator{
 
-    [jobSeekerIDName appendToReportString:gdisplayName];
+    [iReportGenerator appendToReportString:gdisplayName];
 }
 -(NSString*)appendUserDisplayNameString{
     NSString *reportString = @"";

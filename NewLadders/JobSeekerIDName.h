@@ -29,6 +29,5 @@
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
 //-(UserDisplayName*)getJobSeekerDisplayName;
--(void)callToAppendJobSeekerToJobApplicationReport:(Jobseeker*)jobSeeker;
--(void)appendToReportString:(NSString*)reportSubString;
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
 @end

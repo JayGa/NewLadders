@@ -27,8 +27,5 @@
 return @"";
 }
 
--(void)appendToReportString:(NSString*)reportSubString{
-    gReportString = @"";
-    [gReportString stringByAppendingString:reportSubString];
-}
+
 @end

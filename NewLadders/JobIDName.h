@@ -18,6 +18,7 @@
 - (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(JobDisplayName*)jobName;
 //-(NSString*)getJobApplicationReportElements;
 -(NSString*)appendJobDisplayName;
--(void)callToAppendJobToJobApplicationReport:(id<IJob>)jobApplicationCoreFields;
--(void)appendToReportString:(NSString*)reportSubString;
+-(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
+-(void)callToAppendJobToJobAggregrateJobApplicationReport;
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport;
 @end

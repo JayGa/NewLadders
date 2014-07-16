@@ -8,10 +8,7 @@
 
 #import "JobApplications.h"
 
-@implementation JobApplications{
-    NSString *gReportString;
-
-}
+@implementation JobApplications
 
 -(JobApplications*)init{
     self = [super init];

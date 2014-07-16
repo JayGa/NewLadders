@@ -13,6 +13,9 @@
 #import "PostedJobs.h"
 #import "JobApplications.h"
 
+@class JobsForEmployers;
+@class PostedJobs;
+@class JobApplications;
 @interface EmployerModel : NSObject{
     NSString *testJay;
     JobsForEmployers *employerJobMutableDict;
@@ -24,5 +27,6 @@
 -(PostedJobs*)jobsPostedByEmployerWithID:(IDentifer*)employerID;
 -(NSUInteger)getNumberOfPostedJobsByEmployerWithId:(IDentifer*)employerID;
 -(NSString*)prepareJobAggregrateReport;
+-(void)appendToReportString:(NSString*)reportSubString;
 -(void)reset;
 @end

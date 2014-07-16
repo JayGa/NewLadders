@@ -9,9 +9,7 @@
 #import "JobSeekerIDName.h"
 #import "JSModel.h"
 
-@implementation JobSeekerIDName{
-    NSString *gReportString;
-}
+@implementation JobSeekerIDName
 
 
 -(JobSeekerIDName*)initWithID:(IDentifer*)jobSeekerID andName:(UserDisplayName*)jobSeekerDisplayName{
@@ -42,17 +40,9 @@
 //    return gjobSeekerName;
 //}
 
--(void)callToAppendJobSeekerToJobApplicationReport:(Jobseeker*)jobSeeker{
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
     
-    [gjobSeekerName callToAppendJobSeekerToApplicationReport:self];
-    [jobSeeker appendToReportString:gReportString];
+    [gjobSeekerName callToAppendJobSeekerToApplicationReport:iReportGenerator];
 }
 
-
--(void)appendToReportString:(NSString*)reportSubString{
-//    if(gReportString==nil){
-        gReportString = @"";
-//    }
-    gReportString = [gReportString stringByAppendingString:reportSubString];
-}
 @end

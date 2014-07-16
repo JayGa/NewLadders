@@ -16,6 +16,7 @@
 
 @protocol IJob <NSObject>
 -(NSString*)appendJobDisplayName;
--(void)callToAppendJobToJobApplicationReport:(JobApplicationCoreFields*)jobApplicationCoreFields;
--(void)appendToReportString:(NSString*)reportSubString;
+-(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
+-(void)callToAppendJobToJobAggregrateJobApplicationReport;
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport;
 @end

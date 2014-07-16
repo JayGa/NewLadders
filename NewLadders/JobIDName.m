@@ -31,17 +31,15 @@
     return [gjobName appendJobDisplayNameString:reportString];
 }
 
--(void)callToAppendJobToJobApplicationReport:(id<IJob>)job{
+-(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
  
-    [gjobName callToAppendJobToApplicationReportElements:self];
-    [job appendToReportString:gReportString];
-}
+    [gjobName callToAppendJobToApplicationReportElements:iReportGenerator];
 
--(void)appendToReportString:(NSString*)reportSubString{
-//    if(gReportString==nil){
-        gReportString = @"";
-//    }
-    gReportString = [gReportString stringByAppendingString:reportSubString];
 }
-
+-(void)callToAppendJobToJobAggregrateJobApplicationReport{
+    [gjobName callToAppendJobToAggregrateJobApplicationReport];
+}
+-(void)callToAppendJobToEmployerAggregrateJobApplicationReport{
+    [gjobName callToAppendJobToEmployerAggregrateJobApplicationReport];
+}
 @end
