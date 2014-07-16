@@ -22,7 +22,7 @@
 }
 
 -(Jobseeker*)getJobSeekerForJobSeekerID:(IDentifer*)jobSeekerID{
-    NSLog(@"In getJobSeekerForJobSeekerID jobseekerID is:%@", jobSeekerID);
+//    NSLog(@"In getJobSeekerForJobSeekerID jobseekerID is:%@", jobSeekerID);
     [jobSeekerID printID];
     Jobseeker *jobSeeker = [aDictionary objectForKey:jobSeekerID];
     return jobSeeker;

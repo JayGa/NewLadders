@@ -20,4 +20,8 @@
 -(NSString*)appendJobDisplayNameString:(NSString*)reportString{
     return [reportString stringByAppendingString:gdisplayName];
 }
+-(void)callToAppendJobToApplicationReportElements:(JobIDName*)jobIDName{
+    
+    [jobIDName appendToReportString:gdisplayName];
+}
 @end

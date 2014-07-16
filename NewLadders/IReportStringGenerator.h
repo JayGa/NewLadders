@@ -6,12 +6,14 @@
 //  Copyright (c) 2014 Jay Gaonkar. All rights reserved.
 //
 
+@protocol IJob;
 #import <Foundation/Foundation.h>
 #import "IJob.h"
+#import "Jobseeker.h"
 @class Jobseeker;
-
 @protocol IReportStringGenerator <NSObject>
 
 -(id<IReportStringGenerator>)initWithString:(NSString*)aString;
--(NSString*)appendJobApplicationReportWithJobseeker:(Jobseeker*)aJobseeker job:(id<IJob>)aJob jobAppliedDate:(NSString*)applicationDateString;
+-(NSString*)callToAppendJobApplicationReportWithJobseeker:(Jobseeker*)aJobseeker job:(id<IJob>)aJob jobAppliedDate:(NSString*)applicationDateString;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

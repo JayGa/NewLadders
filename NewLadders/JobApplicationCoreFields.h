@@ -18,7 +18,9 @@
 
 -(JobApplicationCoreFields*) initWithJobID:(IDentifer*)jobID andJobSeekerID:(IDentifer*)jobSeekerID;
 -(void) updateJobApplicationModel:(id<IJobApplication>)jobApplication;
--(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString jobAppliedDate:(NSString*)jobApplicationDate;
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IJobApplication>)jobApplication;
+-(void)callToAppendJobToJobApplicationReport:(id<IJobApplication>)jobApplication;
 -(void)applyForJob:(id<IJobApplication>)jobApplication withResumeID:(IDentifer*)resumeID;
 -(NSString*)prepareJobApplicationReportElements;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

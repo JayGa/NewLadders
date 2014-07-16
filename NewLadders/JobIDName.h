@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
 #import "JobDisplayName.h"
-
+@class JobDisplayName;
 @interface JobIDName : NSObject{
     
     IDentifer *gjobID;
@@ -18,4 +18,6 @@
 - (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(JobDisplayName*)jobName;
 //-(NSString*)getJobApplicationReportElements;
 -(NSString*)appendJobDisplayName;
+-(void)callToAppendJobToJobApplicationReport:(id<IJob>)jobApplicationCoreFields;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

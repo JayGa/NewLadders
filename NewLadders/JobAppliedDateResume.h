@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "IDentifer.h"
 #import "JobApplicationDate.h"
+#import "IJobApplication.h"
 
+@class JobApplicationDate;
 @interface JobAppliedDateResume : NSObject{
     
     JobApplicationDate *gJobApplicationDate;
@@ -19,7 +21,9 @@
 
 -(JobAppliedDateResume*)initWithAppliedDate:(JobApplicationDate*)jobApplicationDate andResumeID:(IDentifer*)resumeID;
 -(NSString*)jobApplicationDateReport;
--(NSString*)jobApplicationDateKeyString:(NSDate*)gJobApplicationDate;
--(NSString*)prepareJobApplicationDateString:(NSDate*)gJobApplicationDate;
+-(NSString*)jobApplicationDateKeyString:(NSDate*)jobApplicationDate;
+-(NSString*)prepareJobApplicationDateString:(NSDate*)jobApplicationDate;
+-(void)callToappendJobApplicationReportRecordTo:(id<IJobApplication>)jobApplication;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end
 

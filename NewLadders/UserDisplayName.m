@@ -8,7 +8,10 @@
 
 #import "UserDisplayName.h"
 
-@implementation UserDisplayName
+@implementation UserDisplayName{
+    
+    NSString* gReportString;
+}
 
 -(UserDisplayName*)initWithFirstName:(NSString *)firstname andLastName:(NSString *)lastname{
     
@@ -17,8 +20,9 @@
     return self;
 }
 
--(NSString*)appendJobApplicationReportElements:(NSString*)reportString{
-    return [reportString stringByAppendingString: gdisplayName];
+-(void )callToAppendJobSeekerToApplicationReport:(JobSeekerIDName*)jobSeekerIDName{
+
+    [jobSeekerIDName appendToReportString:gdisplayName];
 }
 -(NSString*)appendUserDisplayNameString{
     NSString *reportString = @"";

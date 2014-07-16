@@ -18,6 +18,7 @@
 #import "IJob.h"
 #import "IJobApplication.h"
 #import "JobSeekerIDName.h"
+#import "IReportStringGenerator.h"
 
 @class JReqJobApplication;
 @class JobApplications;
@@ -33,5 +34,6 @@
 -(SavedJobs*) seeSavedJobs;
 -(JobApplications*) seeAppliedJobs;
 -(Resumes*)getAllResumeForJobseeker;
--(NSString*)appendJobApplicationReportElements:(NSString*)reportString;
+-(void)callToAppendJobSeekerToJobApplicationReport:(JobApplicationCoreFields*)jobApplicationCoreFields;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

@@ -11,7 +11,9 @@
 #import "JAModel.h"
 #import "IReportStringGenerator.h"
 
-@implementation JReqJobApplication
+@implementation JReqJobApplication{
+    NSString *gReportString;
+}
 
 -(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume{
     
@@ -26,11 +28,31 @@
     return nil;
 }
 
-
--(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString{
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
+    [gJobApplicationCoreFields callToAppendJobSeekerToJobApplicationReport:self];
     
-//    NSString *appliedDateString = [gJobAppliedDateResume jobApplicationDateReport];
-    return [gJobApplicationCoreFields appendJobApplicationReportRecordTo:reportString jobAppliedDate:@"14Jul2014"];
+    [iReportGenerator appendToReportString:gReportString];
+    
+}
+-(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator{
+    
+//    NSString *appliedDateString = [gJobAppliedDateResume jobApplicationDateReport];jobAppliedDate:@"14Jul2014"
+    [gJobApplicationCoreFields callToAppendJobToJobApplicationReport:self];
+
+    [iReportGenerator appendToReportString:gReportString];
+    
+}
+
+-(void)appendToReportString:(NSString*)reportSubString{
+//    if(gReportString==nil){
+        gReportString = @"";
+//    }
+    gReportString = [gReportString stringByAppendingString:reportSubString];
+}
+
+-(void)callToAppendJobToAggregrateJobApplicationReport{
+    [gJobApplicationCoreFields callToAppendJobToJobApplicationReport:self];
+    [[JAModel sharedInstance]appendToReportString:gReportString];
 }
 
 -(void)callUpdateJobApplicationModel{

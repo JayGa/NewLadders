@@ -15,14 +15,20 @@
     gReportString = aString;
     return self;
 }
-- (NSString*)appendJobApplicationReportWithJobseeker:(Jobseeker*)aJobseeker job:(id<IJob>)aJob jobAppliedDate:(NSString*)applicationDateString{
+- (NSString*)callToAppendJobApplicationReportWithJobseeker:(Jobseeker*)aJobseeker job:(id<IJob>)aJob jobAppliedDate:(NSString*)applicationDateString{
     
-    NSString *returnString = @"<tr><td>";
-    NSString *stringWithJobSeekerData = [aJobseeker appendJobApplicationReportElements:returnString];
-    stringWithJobSeekerData = [stringWithJobSeekerData stringByAppendingString:@"</td><td>"];
-    
-    NSString *stringWithJobNJobSeekerData = [aJob appendJobApplicationReportElements:stringWithJobSeekerData];
-    
-    return [NSString stringWithFormat:@"%@</td><td>%@</td></tr>", stringWithJobNJobSeekerData, applicationDateString];
+//    NSString *returnString = @"<tr><td>";
+//    NSString *stringWithJobSeekerData = [aJobseeker callToAppendJobApplicationReportElements:returnString];
+//    stringWithJobSeekerData = [stringWithJobSeekerData stringByAppendingString:@"</td><td>"];
+//    
+//    NSString *stringWithJobNJobSeekerData = [aJob callToAppendJobToApplicationReport:stringWithJobSeekerData];
+//    
+//    return [NSString stringWithFormat:@"%@</td><td>%@</td></tr>", stringWithJobNJobSeekerData, applicationDateString];
+return @"";
+}
+
+-(void)appendToReportString:(NSString*)reportSubString{
+    gReportString = @"";
+    [gReportString stringByAppendingString:reportSubString];
 }
 @end

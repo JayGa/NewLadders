@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobSeekerIDName.h"
 
+@class JobSeekerIDName;
 @interface UserDisplayName : NSObject{
     
     NSString *gdisplayName;
@@ -15,6 +17,7 @@
 
 -(UserDisplayName*)initWithFirstName:(NSString *)firstname andLastName:(NSString *)lastname;
 -(NSString*)appendUserDisplayNameString;
--(NSString*)appendJobApplicationReportElements:(NSString*)reportString;
+-(void )callToAppendJobSeekerToApplicationReport:(JobSeekerIDName*)jobSeekerIDName;
 //-(NSString*)getUserDisplayNameString:(NSString*)reportString;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "JobApplications.h"
-
+@class JobApplications;
 @protocol IReportGenerator <NSObject>
 -(NSString*)prepareReport:(JobApplications *)jobApplications withTitle:(NSString *)title;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

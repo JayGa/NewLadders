@@ -12,9 +12,10 @@
 #import "JobPostedDate.h"
 #import "JobMetaData.h"
 #import "JobIDName.h"
+#import "JobApplicationCoreFields.h"
 
 @protocol IJob <NSObject>
 -(NSString*)appendJobDisplayName;
--(NSString*)appendJobApplicationReportElements:(NSString*)reportString;
-
+-(void)callToAppendJobToJobApplicationReport:(JobApplicationCoreFields*)jobApplicationCoreFields;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

@@ -8,7 +8,9 @@
 
 #import "ATSJob.h"
 
-@implementation ATSJob
+@implementation ATSJob{
+    NSString *gReportString;
+}
 
 
 
@@ -23,8 +25,16 @@
     
     return [gjobIDName appendJobDisplayName];
 }
--(NSString*)appendJobApplicationReportElements:(NSString*)reportString{
-    
-    return [gjobIDName appendJobDisplayName];
+
+-(void)callToAppendJobToJobApplicationReport:(JobApplicationCoreFields*)jobApplicationCoreFields{
+    [gjobIDName callToAppendJobToJobApplicationReport:self];
+    [jobApplicationCoreFields appendToReportString:gReportString];
+}
+
+-(void)appendToReportString:(NSString*)reportSubString{
+//    if(gReportString==nil){
+        gReportString = @"";
+//    }
+    gReportString = [gReportString stringByAppendingString:reportSubString];
 }
 @end

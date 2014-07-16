@@ -14,7 +14,9 @@
 #import "JobApplicationsForJobIDs.h"
 #import "JobApplicationsForADay.h"
 #import "JobApplications.h"
-
+#import "JobApplicationDate.h"
+@class JobApplicationDate;
+@class JobApplicationsForADay;
 @interface JAModel : NSObject{
     
     JobApplicationsForJobIDs *jobIDApplicationsMutableDict;
@@ -33,4 +35,5 @@
 -(JobApplications*)jobApplicationsForADay:(JobApplicationDate*)jobPostedDate;
 -(NSString*)prepareJobAggregrateReport;
 -(void)reset;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

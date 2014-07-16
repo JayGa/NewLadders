@@ -9,7 +9,7 @@
 #import "JobApplications.h"
 
 @implementation JobApplications{
-    NSString *greportStringToReturn;
+    NSString *gReportString;
 
 }
 
@@ -33,17 +33,10 @@
     return [anArray objectAtIndex:index];
 }
 - (NSString*)generateReportBodyForString:(id<IReportStringGenerator>)reportGeneratorString{
-    id<IJobApplication> jobApplication;
-    NSString *reportStringToReturn = @"";
-    for (int i =0; i< [self count]; i++) {
-        jobApplication = [self jobApplicationAtIndex:i];
-        reportStringToReturn = [reportStringToReturn stringByAppendingString:[jobApplication appendJobApplicationReportRecordTo:reportGeneratorString]];
-    }
-    return reportStringToReturn;
+
+    return @"";
 }
 
--(void)appendToReportString:(NSString*)reportSubString{
-    [greportStringToReturn stringByAppendingString:reportSubString];
-}
+
 
 @end

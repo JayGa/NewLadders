@@ -54,15 +54,16 @@
     NSString *jobPostedDateString = [self getTodayDateString];
     jobApplicationReport = [[JobApplicationReport alloc]init];
     JobApplications *jobApplications = [jobApplicationReport prepareDailyJobReport:[[JobApplicationDate alloc]initWithJobApplicationDate:[NSDate date]]];
+
     CSVReportGenerator *cSVReportGenerator = [[CSVReportGenerator alloc]init];
     NSString *csvReportString = [cSVReportGenerator prepareReport:jobApplications withTitle:jobPostedDateString];
     NSLog(@"CSV Report is:%@", csvReportString);
 //    XCTAssertTrue([csvReportString isEqualToString:@"Job Application Report,20140714\nJOB SEEKER, JOB DETAILS, APP DATE\nJSFIRST Jay, Test JReq Job-EMPFIRST Jay, 14Jul2014"],@"");
+    
     HTMLReportGenerator *hTMLReportGenerator = [[HTMLReportGenerator alloc]init];
     NSString* hTMLReportString = [hTMLReportGenerator prepareReport:jobApplications withTitle:jobPostedDateString];
     NSLog(@"HTML Report is:%@", hTMLReportString);
 //    XCTAssertTrue([hTMLReportString isEqualToString:@"<p>Job Application Report: 20140714</p><table><tr><th>JOB SEEKER</th><th>JOB DETAILS</th><th>APP DATE</th></tr><tr><td>JSFIRST Jay</td><td>Test JReq Job-EMPFIRST Jay</td><td>14Jul2014</td></tr></table>"],@"");
-    
 }
 
 -(NSString *)getTodayDateString{

@@ -11,4 +11,5 @@
 @interface HTMLReportGenerator : NSObject  <IReportGenerator>
 
 -(NSString*)prepareReport:(JobApplications *)jobApplications withTitle:(NSString *)title;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

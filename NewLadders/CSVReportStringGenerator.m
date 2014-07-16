@@ -10,19 +10,27 @@
 
 @implementation CSVReportStringGenerator
 
-
 -(id<IReportStringGenerator>)initWithString:(NSString*)aString{
 self = [super init];
     gReportString = aString;
     return self;
 }
 
-- (NSString*)appendJobApplicationReportWithJobseeker:(Jobseeker*)aJobseeker job:(id<IJob>)aJob jobAppliedDate:(NSString*)applicationDateString{
+- (NSString*)callToAppendJobApplicationReportWithJobseeker:(Jobseeker*)aJobseeker job:(id<IJob>)aJob jobAppliedDate:(NSString*)applicationDateString{
     
-    NSString *returnString = @"";
-    NSString *strinWithJobSeekerData = [aJobseeker appendJobApplicationReportElements:returnString];
-    strinWithJobSeekerData = [strinWithJobSeekerData stringByAppendingString:@","];
-    NSString *stringWithJobNJobSeekerData = [strinWithJobSeekerData stringByAppendingString:[aJob appendJobApplicationReportElements:strinWithJobSeekerData]];
-    return [NSString stringWithFormat:@"%@, %@\n", stringWithJobNJobSeekerData, applicationDateString];
+//    gReportString = @"";
+//    
+//    [aJobseeker callToAppendJobSeekerToApplicationReport:<#(JobApplicationCoreFields *)#>:self];
+//    gReportString = [gReportString stringByAppendingString:@","];
+//    
+//    [aJob callToAppendJobToApplicationReport:self];
+//    NSString *stringWithJobNJobSeekerData = [strinWithJobSeekerData stringByAppendingString:];
+//    return [NSString stringWithFormat:@"%@, %@\n", stringWithJobNJobSeekerData, applicationDateString];
+return @"";
+}
+
+-(void)appendToReportString:(NSString*)reportSubString{
+    gReportString = @"";
+    [gReportString stringByAppendingString:reportSubString];
 }
 @end

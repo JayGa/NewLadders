@@ -12,7 +12,9 @@
 #import "JobApplicationCoreFields.h"
 #import "JobAppliedDateResume.h"
 #import "IReportStringGenerator.h"
+#import "IReportGenerator.h"
 
+@class JobAppliedDateResume;
 @interface JReqJobApplication : NSObject <IJobApplication>{
     
     JobApplicationCoreFields *gJobApplicationCoreFields;
@@ -22,6 +24,8 @@
 -(JReqJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume;
 -(void)callUpdateJobApplicationModel;
 -(NSString*)prepareJobApplicationReport;
--(NSString*) appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
-
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
+-(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
+-(void)callToAppendJobToAggregrateJobApplicationReport;
+-(void)appendToReportString:(NSString*)reportSubString;
 @end

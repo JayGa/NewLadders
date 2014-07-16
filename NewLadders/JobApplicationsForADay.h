@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JobApplicationDate.h"
 #import "JobApplications.h"
+@class JobApplicationDate;
 
 @interface JobApplicationsForADay : NSObject{
     

@@ -10,6 +10,8 @@
 #import "JobApplicationCoreFields.h"
 #import "IDentifer.h"
 #import "JobAppliedDateResume.h"
+#import "JobApplications.h"
+#import "IReportGenerator.h"
 
 @interface ATSJobApplication : NSObject <IJobApplication>{
     JobApplicationCoreFields *gjobApplicationCoreFields;
@@ -18,7 +20,11 @@
 
 -(ATSJobApplication*)initWithCoreFields:(JobApplicationCoreFields*)jobApplicationCoreFields withJobAppliedDateResumeID:(JobAppliedDateResume*)jobAppliedDateResume;
 //-(NSString*)appendJobApplicationReportRecordTo:(NSString*)reportString jobAppliedDate:(JobApplicationDate*)jobApplicationDate;
--(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString;
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
+-(void)callToAppendJobToJobApplicationReport:(id<IReportGenerator>)iReportGenerator;
+-(void)callToAppendJobToAggregrateJobApplicationReport;
 -(void)callUpdateJobApplicationModel;
 -(NSString*)prepareJobApplicationReport;
+-(void)appendToReportString:(NSString*)reportSubString;
+
 @end

@@ -9,7 +9,9 @@
 #import "JAModel.h"
 
 static JAModel *sharedInstance;
-@implementation JAModel
+@implementation JAModel{
+    NSString *gReportString;
+}
 +(JAModel*)sharedInstance{
     if(!sharedInstance){
         sharedInstance = [[JAModel alloc] init];
@@ -83,10 +85,30 @@ static JAModel *sharedInstance;
     for (int i =0 ; i<[jobIDArray count]; i++) {
         
         IDentifer *jobID = [jobIDArray objectAtIndex:i];
-        reportString = [reportString stringByAppendingString:[NSString stringWithFormat:@"%d,%lu\n", [jobID reportIDInteger], (unsigned long)[self getNumberOfApplicationsByJobID:jobID]]];
+        
+        [self prepareJobNameForJobID:jobID];
+        reportString = [reportString stringByAppendingString:[NSString stringWithFormat:@"%@,%lu\n", gReportString, (unsigned long)[self getNumberOfApplicationsByJobID:jobID]]];
     }
     return reportString;
 }
+
+-(void)prepareJobNameForJobID:(IDentifer*)jobID{
+    JobApplications *jobApplications = [jobIDApplicationsMutableDict getJobApplicationsForJobID:jobID];
+    id<IJobApplication> jobApplication;
+    if([jobApplications count]>0){
+        jobApplication = [jobApplications jobApplicationAtIndex:0];
+    }
+    [jobApplication callToAppendJobToAggregrateJobApplicationReport];
+//    [jobID reportIDInteger]
+}
+
+-(void)appendToReportString:(NSString*)reportSubString{
+//    if(gReportString==nil){
+        gReportString = @"";
+//    }
+    gReportString = [gReportString stringByAppendingString:reportSubString];
+}
+
 -(void)reset{
     jobIDApplicationsMutableDict = nil;
     dayApplicationsMutableDict = nil;

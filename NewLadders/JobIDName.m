@@ -9,8 +9,10 @@
 #import "JobIDName.h"
 #import "UserDisplayName.h"
 
-@implementation JobIDName
-
+@implementation JobIDName{
+ 
+    NSString* gReportString;
+}
 
 - (JobIDName*)initWithJobID:(IDentifer*)jobID AndName:(JobDisplayName*)jobName{
     
@@ -27,6 +29,19 @@
 -(NSString*)appendJobDisplayName:(NSString*)reportString{
     
     return [gjobName appendJobDisplayNameString:reportString];
+}
+
+-(void)callToAppendJobToJobApplicationReport:(id<IJob>)job{
+ 
+    [gjobName callToAppendJobToApplicationReportElements:self];
+    [job appendToReportString:gReportString];
+}
+
+-(void)appendToReportString:(NSString*)reportSubString{
+//    if(gReportString==nil){
+        gReportString = @"";
+//    }
+    gReportString = [gReportString stringByAppendingString:reportSubString];
 }
 
 @end

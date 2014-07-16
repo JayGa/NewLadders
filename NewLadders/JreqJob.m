@@ -9,7 +9,10 @@
 #import "JreqJob.h"
 
 
-@implementation JreqJob
+@implementation JreqJob{
+    
+    NSString* gReportString;
+}
 
 
 -(id<IJob>)initWithIDName:(JobIDName*)jobIDName AndMetaData:(JobMetaData*)jobMetaData{
@@ -24,8 +27,16 @@
     return [gjobIDName appendJobDisplayName];
 }
 
--(NSString*)appendJobApplicationReportElements:(NSString*)reportString{
-    
-    return [gjobIDName appendJobDisplayName];
+-(void)callToAppendJobToJobApplicationReport:(JobApplicationCoreFields*)jobApplicationCoreFields{
+    [gjobIDName callToAppendJobToJobApplicationReport:self];
+    [jobApplicationCoreFields appendToReportString:gReportString];
 }
+
+-(void)appendToReportString:(NSString*)reportSubString{
+//    if(gReportString==nil){
+        gReportString = @"";
+//    }
+    gReportString = [gReportString stringByAppendingString:reportSubString];
+}
+
 @end

@@ -12,18 +12,50 @@
 #import "IReportStringGenerator.h"
 #import "HTMLReportStringGenerator.h"
 
-@implementation HTMLReportGenerator
+@implementation HTMLReportGenerator{
+    NSString *gReportString;
+}
 
 -(NSString*)prepareReport:(JobApplications *)jobApplications withTitle:(NSString *)title{
  
-    NSString *htmlString = [NSString stringWithFormat:@"<p>Job Application Report: %@</p><table><tr><th>JOB SEEKER</th><th>JOB DETAILS</th><th>APP DATE</th></tr>", title];
+    gReportString = [NSString stringWithFormat:@"<p>Job Application Report: %@</p><table><tr><th>JOB SEEKER</th><th>JOB DETAILS</th><th>APP DATE</th></tr>", title];
 
-    id<IReportStringGenerator> htmlReportString = [[HTMLReportStringGenerator alloc]initWithString:@""];
+//    id<IReportStringGenerator> htmlReportString = [[HTMLReportStringGenerator alloc]initWithString:headerString];
+//    gReportString = [jobApplications generateReportBodyForString:htmlReportString];
+    
+    id<IJobApplication> jobApplication;
+    for (int i =0; i< [jobApplications count]; i++) {
+        jobApplication = [jobApplications jobApplicationAtIndex:i];
+        gReportString = [gReportString stringByAppendingString:@"<tr><td>"];
+        [jobApplication callToAppendJobSeekerToJobApplicationReport:self];
+        gReportString = [gReportString stringByAppendingString:@"</td><td>"];
+        [jobApplication callToAppendJobToJobApplicationReport:self];
+        gReportString = [gReportString stringByAppendingString:@"</td><td>"];
+        gReportString = [gReportString stringByAppendingString:[self formatDateForReport:title]];
+        gReportString = [gReportString stringByAppendingString:@"</td></tr>"];
+    }
+    
+    gReportString = [gReportString stringByAppendingString:@"</table>"];
+    [self writeReport:gReportString ToFile:title];
+    return gReportString;
+}
 
-    NSString *htmlReportStringToReturn = [NSString stringWithFormat:@"%@</table>",[jobApplications generateReportBodyForString:htmlReportString]];
-    NSString *finalHTMLString = [htmlString stringByAppendingString:htmlReportStringToReturn];
-    [self writeReport:finalHTMLString ToFile:title];
-    return finalHTMLString;
+-(void)appendToReportString:(NSString*)reportSubString{
+    if(gReportString==nil){
+        
+        gReportString= @"";
+    }
+    gReportString = [gReportString stringByAppendingString:reportSubString];
+}
+-(NSString*)formatDateForReport:(NSString*)dateStr{
+    // Convert string to date object
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyyMMdd"];
+    NSDate *date = [dateFormat dateFromString:dateStr];
+    
+    // Convert date object to desired output format
+    [dateFormat setDateFormat:@"dMMMMYYYY"];
+    return [dateFormat stringFromDate:date];
 }
 
 -(void)writeReport:(NSString *)content ToFile:(NSString *)title{

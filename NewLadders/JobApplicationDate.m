@@ -8,7 +8,6 @@
 
 #import "JobApplicationDate.h"
 
-
 @implementation JobApplicationDate
 @synthesize gJobApplicationDate;
 -(JobApplicationDate*)initWithJobApplicationDate:(NSDate*)jobApplicationDate{
@@ -28,4 +27,9 @@
     formatter.dateFormat = @"yyyyMMdd";
     return [formatter stringFromDate:gJobApplicationDate];
 }
+-(void)callToAppendJobApplicationReportElements:(JobAppliedDateResume*)jobAppliedDateResume{
+    [jobAppliedDateResume appendToReportString:[self jobApplicationDateKeyString]];
+}
+
+
 @end

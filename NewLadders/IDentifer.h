@@ -16,4 +16,5 @@
 -(void)printID;
 -(NSString*)appendIdentifier:(NSString*)reportString;
 -(int)reportIDInteger;
+
 @end

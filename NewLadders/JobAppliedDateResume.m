@@ -8,7 +8,9 @@
 
 #import "JobAppliedDateResume.h"
 
-@implementation JobAppliedDateResume
+@implementation JobAppliedDateResume{
+    NSString *gReportString;
+}
 
 - (JobAppliedDateResume*)initWithAppliedDate:(JobApplicationDate*)jobApplicationDate andResumeID:(IDentifer*)resumeID{
     
@@ -22,15 +24,28 @@
     return [self prepareJobApplicationDateString:gJobApplicationDate];
 }
 
--(NSString*)jobApplicationDateKeyString:(NSDate*)gJobApplicationDate{
+-(NSString*)jobApplicationDateKeyString:(NSDate*)jobApplicationDate{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMdd";
-    return [formatter stringFromDate:gJobApplicationDate];
+    return [formatter stringFromDate:jobApplicationDate];
 }
 
--(NSString*)prepareJobApplicationDateString:(NSDate*)gJobApplicationDate{
+-(NSString*)prepareJobApplicationDateString:(NSDate*)jobApplicationDate{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"dd-MM-yyyy";
-    return [formatter stringFromDate:gJobApplicationDate];
+    return [formatter stringFromDate:jobApplicationDate];
 }
+
+-(void)callToappendJobApplicationReportRecordTo:(id<IJobApplication>)jobApplication{
+    
+    [gJobApplicationDate callToAppendJobApplicationReportElements:self];
+    [jobApplication appendToReportString:gReportString];
+}
+
+
+-(void)appendToReportString:(NSString*)reportSubString{
+    gReportString = @"";
+    [gReportString stringByAppendingString:reportSubString];
+}
+
 @end

@@ -14,7 +14,9 @@
 #import "JobsModel.h"
 #import "JobApplicationDate.h"
 
-@implementation JobApplicationCoreFields
+@implementation JobApplicationCoreFields{
+    NSString *gReportString;
+}
 
 -(JobApplicationCoreFields*) initWithJobID:(IDentifer*)jobID andJobSeekerID:(IDentifer*)jobSeekerID{
     
@@ -34,18 +36,38 @@
     [[JAModel sharedInstance]updateModelWithJobApplication:jobApplication withJobID:gjobID];
 }
 
--(NSString*)appendJobApplicationReportRecordTo:(id<IReportStringGenerator>)reportString jobAppliedDate:(NSString*)jobApplicationDateString{
-    
-#warning USE -
-    id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
+
+-(void)callToAppendJobSeekerToJobApplicationReport:(id<IJobApplication>)jobApplication{
     Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
-    return [reportString appendJobApplicationReportWithJobseeker:jobseeker job:job jobAppliedDate:jobApplicationDateString];
+    [jobseeker callToAppendJobSeekerToJobApplicationReport:self];
+    
+    [jobApplication appendToReportString:gReportString];
+}
+
+
+-(void)callToAppendJobToJobApplicationReport:(id<IJobApplication>)jobApplication{
+    id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
+    [job callToAppendJobToJobApplicationReport:self];
+    
+    [jobApplication appendToReportString:gReportString];
+}
+
+-(void)appendToReportString:(NSString*)reportSubString{
+//    if(gReportString==nil){
+        gReportString = @"";
+//    }
+    gReportString = [gReportString stringByAppendingString:reportSubString];
 }
 
 -(NSString*)prepareJobApplicationReportElements{
-    id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
-    
+    gReportString = @"";
     Jobseeker *jobseeker = [[JobSeekerRepositiory sharedInstance]getJobSeekerWithID:gjobSeekerID];
-    return  [NSString stringWithFormat:@"%@,%@", [jobseeker appendJobApplicationReportElements:@""], [job appendJobApplicationReportElements:@""]] ;
+    [jobseeker callToAppendJobSeekerToJobApplicationReport:self];
+    
+    [gReportString stringByAppendingString:@","];
+    id<IJob> job = [[JobsModel sharedInstance]fetchJobWithID:gjobID];
+    [job callToAppendJobToJobApplicationReport:self];
+    
+    return gReportString;
 }
 @end
